@@ -5,5 +5,5 @@
     <br />
     <br />
     <br />
-    <p class="lead">Hello World!</p>
+    <p class="lead">Welcome!</p>
 </asp:Content>
