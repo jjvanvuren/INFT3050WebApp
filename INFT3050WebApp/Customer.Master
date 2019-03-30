@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="INFT3050WebApp.Site" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Customer.master.cs" Inherits="INFT3050WebApp.Customer1" %>
 
 <!DOCTYPE html>
 
@@ -31,12 +31,9 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="nav-item">
-                        <asp:HyperLink href="#" ID="cartLink" CssClass="nav-link" runat="server">View Cart</asp:HyperLink></li>
-                    <li class="nav-item">
-                        <asp:HyperLink href="Register.aspx" ID="registerLink" CssClass="nav-link" runat="server">Register</asp:HyperLink></li>
-                    <li class="nav-item">
-                        <asp:HyperLink href="Login.aspx" ID="loginLink" CssClass="nav-link" runat="server">Login</asp:HyperLink></li>
+                    <li class="nav-item"><asp:HyperLink href="#" id="cartLink" Cssclass="nav-link" runat="server">View Cart</asp:HyperLink></li>
+                    <li class="nav-item"><asp:HyperLink href="#" id="AccountLink" Cssclass="nav-link" runat="server">My Account</asp:HyperLink></li>
+                    <li class="nav-item"><asp:HyperLink href="#" id="logoutLink" Cssclass="nav-link" runat="server">Logout</asp:HyperLink></li>
                 </ul>
             </div>
         </div>

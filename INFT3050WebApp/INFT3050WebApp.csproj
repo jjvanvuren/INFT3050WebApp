@@ -73,6 +73,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\sidebar.css" />
     <Content Include="Customer.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -100,6 +101,7 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Customer.Master" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -133,6 +135,13 @@
     </Compile>
     <Compile Include="Customer.aspx.designer.cs">
       <DependentUpon>Customer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.Master.cs">
+      <DependentUpon>Customer.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer.Master.designer.cs">
+      <DependentUpon>Customer.Master</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
