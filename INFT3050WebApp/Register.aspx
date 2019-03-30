@@ -33,7 +33,7 @@
 
             
             <%-- Email confirmation field validation --%>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" CssClass="text-danger" ErrorMessage="Please enter your email address"
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" CssClass="text-danger" ErrorMessage="Please reenter your email address"
                 ControlToValidate="tbxEmailConfirm">Email required</asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid email address"
                 ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="tbxEmailConfirm">Valid email required</asp:RegularExpressionValidator>
@@ -57,7 +57,7 @@
             <asp:TextBox ID="tbxPasswordConfirm" runat="server" type="password" CssClass="form-control"></asp:TextBox>
 
             <%-- Password Confirmation Validation --%>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" CssClass="text-danger" ErrorMessage="Please enter a password"
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" CssClass="text-danger" ErrorMessage="Please reenter your password"
                 ControlToValidate="tbxPasswordConfirm">Password required</asp:RequiredFieldValidator>
             <asp:CompareValidator ID="CompareValidator1" runat="server" CssClass="text-danger" ErrorMessage="Passwords must match" 
                 Operator="Equal" ControlToCompare="tbxPassword" ControlToValidate="tbxPasswordConfirm"></asp:CompareValidator>

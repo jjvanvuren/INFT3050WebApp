@@ -16,12 +16,15 @@ namespace INFT3050WebApp
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-
+            if (IsValid)
+            {
+                Response.Redirect("~/SuccessfulRegistration.aspx");
+            }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/Default.aspx");
         }
     }
 }
