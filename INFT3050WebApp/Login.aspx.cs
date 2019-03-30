@@ -17,47 +17,43 @@ namespace INFT3050WebApp
         // Validate email and password. If successful redirect to Default.aspx
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            if (tbxEmail.Text == "" && tbxPassword.Text == "")
+            if (IsValid)
             {
-                lblEmail.Text = "Please enter your email address";
-                lblEmail.ForeColor = System.Drawing.Color.Red;
-                lblPassword.Text = "Please enter your password";
-                lblPassword.ForeColor = System.Drawing.Color.Red;
+                Response.Redirect("~/Customer.aspx");
             }
-            else if (tbxEmail.Text != "john.smith@example.com" && tbxPassword.Text != "password#1")
+        }
+
+        // Checks if customer email exists
+        // This is only temporary. Will change in next assignment
+        protected void customerRegistered(object source, ServerValidateEventArgs args)
+        {
+            if (tbxEmail.Text == "joe@example.com")
             {
-                lblEmail.Text = "Email does not exist";
-                lblEmail.ForeColor = System.Drawing.Color.Red;
-                lblPassword.Text = "Password incorrect";
-                lblPassword.ForeColor = System.Drawing.Color.Red;
-            }
-            else if (tbxEmail.Text == "")
-            {
-                lblEmail.Text = "Please enter your email address";
-                lblEmail.ForeColor = System.Drawing.Color.Red;
-            }
-            else if (tbxEmail.Text != "john.smith@example.com")
-            {
-                lblEmail.Text = "Email does not exist";
-                lblEmail.ForeColor = System.Drawing.Color.Red;
-            }
-            else if (tbxPassword.Text == "")
-            {
-                lblPassword.Text = "Please enter your password";
-                lblPassword.ForeColor = System.Drawing.Color.Red;
-            }
-            else if (tbxPassword.Text != "password#1")
-            {
-                lblPassword.Text = "Password incorrect";
-                lblPassword.ForeColor = System.Drawing.Color.Red;
+                args.IsValid = true;
             }
             else
             {
-                //btnLogin.CssClass = "btn btn-success";
-                //btnLogin.Text = "Success!";
-                Response.Redirect("~/Default.aspx");
+                args.IsValid = false;
             }
-   
+        }
+
+        // Checks if customer password is correct
+        // This is only temporary. Will change in next assignment
+        protected void passwordCorrect(object source, ServerValidateEventArgs args)
+        {
+            if (tbxPassword.Text == "password")
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Default.aspx");
         }
     }
 }
