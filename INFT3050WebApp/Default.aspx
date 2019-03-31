@@ -2,5 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1 class="text-center">Welcome!</h1>
+    <div class="text-center">
+        <h1>Welcome to Used Book Store</h1>
+        <asp:Image ImageUrl="Images/LightLibrary.jpg" runat="server" class="rounded" />
+    </div>
 </asp:Content>
