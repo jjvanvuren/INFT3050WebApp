@@ -79,6 +79,15 @@
     <Content Include="Customer.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Images\9780140256352_thumb.jpg" />
+    <Content Include="Images\9780140390032_thumb.jpg" />
+    <Content Include="Images\9780140431957_thumb.jpg" />
+    <Content Include="Images\9780141183534_thumb.jpg" />
+    <Content Include="Images\9780141183954_thumb.jpg" />
+    <Content Include="Images\9780141439846_thumb.jpg" />
+    <Content Include="Images\9780887276859_thumb.jpg" />
+    <Content Include="Images\9781442533547_thumb.jpg" />
+    <Content Include="Images\LightLibrary.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
