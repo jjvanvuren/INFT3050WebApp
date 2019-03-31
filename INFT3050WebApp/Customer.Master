@@ -33,7 +33,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item"><asp:HyperLink href="#" id="cartLink" Cssclass="nav-link" runat="server">View Cart</asp:HyperLink></li>
                     <li class="nav-item"><asp:HyperLink href="#" id="AccountLink" Cssclass="nav-link" runat="server">My Account</asp:HyperLink></li>
-                    <li class="nav-item"><asp:HyperLink href="#" id="logoutLink" Cssclass="nav-link" runat="server">Logout</asp:HyperLink></li>
+                    <li class="nav-item"><asp:HyperLink href="/Logout.aspx" id="logoutLink" Cssclass="nav-link" runat="server">Logout</asp:HyperLink></li>
                 </ul>
             </div>
         </div>
