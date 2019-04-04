@@ -11,7 +11,11 @@ namespace INFT3050WebApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Master.AccountLinkEnabled = false;
+            Master.AccountLinkVisible = false;
 
+            Master.LogoutLinkEnabled = false;
+            Master.LogoutLinkVisible = false;
         }
 
         // Validate email and password. If successful redirect to Customer.aspx

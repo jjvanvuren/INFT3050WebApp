@@ -10,7 +10,16 @@
 namespace INFT3050WebApp {
     
     
-    public partial class Default {
+    public partial class Search {
+        
+        /// <summary>
+        /// tbxSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxSearch;
         
         /// <summary>
         /// Master property.
