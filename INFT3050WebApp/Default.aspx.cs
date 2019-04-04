@@ -11,7 +11,13 @@ namespace INFT3050WebApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Hide and disable the "My Account" link
+            Master.AccountLinkEnabled = false;
+            Master.AccountLinkVisible = false;
 
+            // Hide and disable the "Logout" link
+            Master.LogoutLinkEnabled = false;
+            Master.LogoutLinkVisible = false;
         }
     }
 }

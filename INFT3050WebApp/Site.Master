@@ -5,8 +5,10 @@
 <html>
 <head runat="server">
     <title></title>
-    <link href="content/bootstrap.css" rel="stylesheet" type="text/css" />
+    
+    <link href="Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="Content/UsedBooks.css" rel="stylesheet" type="text/css" />
+    <link href="Content/font-awesome.min.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -24,20 +26,25 @@
             <div class="navbar-collapse collapse" id="navbarSupportedContent">
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item">
-                        <asp:HyperLink href="/" CssClass="nav-link" runat="server">Home</asp:HyperLink></li>
+                        <asp:HyperLink href="/" CssClass="nav-link" runat="server"><i class="fa fa-home"></i> Home</asp:HyperLink></li>
                     <li class="nav-item">
-                        <asp:HyperLink href="/About.aspx" CssClass="nav-link" runat="server" NavigateUrl="~/About.aspx">About</asp:HyperLink></li>
+                        <asp:HyperLink href="/About.aspx" CssClass="nav-link" runat="server" NavigateUrl="~/About.aspx"><i class="fa fa-info-circle"></i> About</asp:HyperLink></li>
                     <li class="nav-item">
-                        <asp:HyperLink href="/Contact.aspx" CssClass="nav-link" runat="server" NavigateUrl="~/Contact.aspx">Contact</asp:HyperLink></li>
+                        <asp:HyperLink href="/Contact.aspx" CssClass="nav-link" runat="server" NavigateUrl="~/Contact.aspx"><i class="fa fa-phone"></i> Contact</asp:HyperLink></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="nav-item">
-                        <asp:HyperLink href="#" ID="cartLink" CssClass="nav-link" runat="server">View Cart</asp:HyperLink></li>
-                    <li class="nav-item">
-                        <asp:HyperLink href="Register.aspx" ID="registerLink" CssClass="nav-link" runat="server">Register</asp:HyperLink></li>
-                    <li class="nav-item">
-                        <asp:HyperLink href="Login.aspx" ID="loginLink" CssClass="nav-link" runat="server">Login</asp:HyperLink></li>
+                    <li class="nav-item"><asp:HyperLink href="Search.aspx" ID="searchLink" CssClass="nav-link" runat="server"><i class="fa fa-search"></i> Search</asp:HyperLink></li>
+                    <li class="nav-item"><asp:HyperLink href="#" ID="cartLink" CssClass="nav-link" runat="server"><i class="fa fa-shopping-cart"></i> Cart</asp:HyperLink></li>
+                    <li class="nav-item"><asp:HyperLink href="Register.aspx" ID="registerLink" CssClass="nav-link" runat="server">Register</asp:HyperLink></li>
+
+                    <!-- Hidden by default -->
+                    <li class="nav-item"><asp:HyperLink href="#" id="accountLink" Cssclass="nav-link" runat="server">My Account</asp:HyperLink></li>
+
+                    <li class="nav-item"><asp:HyperLink href="Login.aspx" ID="loginLink" CssClass="nav-link" runat="server"><i class="fa fa-sign-in"></i> Login</asp:HyperLink></li>
+
+                    <!-- Hidden by default -->
+                    <li class="nav-item"><asp:HyperLink href="/Logout.aspx" id="logoutLink" Cssclass="nav-link" runat="server"><i class="fa fa-sign-out"></i> Logout</asp:HyperLink></li>
                 </ul>
             </div>
         </nav>
@@ -62,6 +69,7 @@
 
     <!-- Page content area -->
     <div class="container">
+        <br />
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
     </div>
 
