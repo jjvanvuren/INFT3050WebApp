@@ -4,13 +4,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         
     <h1>Welcome to Used Book Store</h1>
-    <asp:Image ImageUrl="Images/LightLibrary.jpg" runat="server" class="rounded" />
+    <%--<asp:Image ImageUrl="Images/LightLibrary.jpg" runat="server" class="rounded" />
+    <br />--%>
     <br />
-    <br />
-    <%-- Current Offers Section --%>
+    <!-- Current Offers Section -->
     <h3>Current Offers</h3>
     <div class="container-flex">
-        <%-- First Row --%>
+        <!-- First Row -->
         <div class="row">
             <div class="col">
                 <asp:Image ImageUrl="Images/9781442533547_thumb.jpg" runat="server" />
@@ -29,7 +29,7 @@
                 <p>This Earth of Mankind</p>
             </div>
         </div>
-        <%-- Second Row --%>
+        <!-- Second Row -->
         <div class="row">
             <div class="col">
                 <asp:Image ImageUrl="Images/9780140390032_thumb.jpg" runat="server" />
