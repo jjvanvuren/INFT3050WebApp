@@ -24,13 +24,13 @@ namespace INFT3050WebApp
         {
             if (IsValid)
             {
-                Response.Redirect("~/SuccessfulRegistration.aspx");
+                Response.Redirect("~/UL/SuccessfulRegistration.aspx");
             }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Default.aspx");
+            Response.Redirect("~/UL/Default.aspx");
         }
     }
 }
