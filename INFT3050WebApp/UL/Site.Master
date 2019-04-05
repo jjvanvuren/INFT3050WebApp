@@ -1,0 +1,71 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="INFT3050WebApp.Site" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Used Book Store</title>
+
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/bootstrapFlatly.min.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/UsedBooks.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/font-awesome.min.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body>
+    <div class="sticky-top ">
+
+        <!-- Top Navigation bar -->
+        <nav class="container-flex navbar navbar-expand-sm navbar-dark bg-primary">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <asp:HyperLink CssClass="navbar-brand" href="Default.aspx" runat="server">Used Book Store</asp:HyperLink>
+            <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <asp:HyperLink href="Default.aspx" CssClass="nav-link" runat="server"><i class="fa fa-home"></i> Home</asp:HyperLink></li>
+                    <li class="nav-item">
+                        <asp:HyperLink href="About.aspx" CssClass="nav-link" runat="server"><i class="fa fa-info-circle"></i> About</asp:HyperLink></li>
+                    <li class="nav-item">
+                        <asp:HyperLink href="Contact.aspx" CssClass="nav-link" runat="server"><i class="fa fa-phone"></i> Contact</asp:HyperLink></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <asp:HyperLink href="Search.aspx" ID="searchLink" CssClass="nav-link" runat="server"><i class="fa fa-search"></i> Search</asp:HyperLink></li>
+
+                    <li class="nav-item">
+                        <asp:HyperLink href="#" ID="cartLink" CssClass="nav-link" runat="server"><i class="fa fa-shopping-cart"></i> Cart</asp:HyperLink></li>
+                    <li class="nav-item">
+                        <asp:HyperLink href="Register.aspx" ID="registerLink" CssClass="nav-link" runat="server"><i class="fa fa-user"></i> Register</asp:HyperLink></li>
+
+                    <!-- Hidden by default -->
+                    <li class="nav-item">
+                        <asp:HyperLink href="#" ID="accountLink" CssClass="nav-link" runat="server"><i class="fa fa-user"></i> Account</asp:HyperLink></li>
+
+                    <li class="nav-item">
+                        <asp:HyperLink href="Login.aspx" ID="loginLink" CssClass="nav-link" runat="server"><i class="fa fa-sign-in"></i> Login</asp:HyperLink></li>
+
+                    <!-- Hidden by default -->
+                    <li class="nav-item">
+                        <asp:HyperLink href="Logout.aspx" ID="logoutLink" CssClass="nav-link" runat="server"><i class="fa fa-sign-out"></i> Logout</asp:HyperLink></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Page content area -->
+    <div class="container">
+        <br />
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+    </div>
+
+    <!-- Scripts -->
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+</body>
+</html>

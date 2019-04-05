@@ -1,4 +1,6 @@
-﻿<%@ Page Title="About Us" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="INFT3050WebApp.About" %>
+﻿<%@ Page Title="About Us" Language="C#" MasterPageFile="~/UL/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="INFT3050WebApp.About" %>
+<%@ MasterType VirtualPath="~/UL/Site.Master" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
