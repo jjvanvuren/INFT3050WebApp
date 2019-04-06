@@ -10,6 +10,18 @@
 namespace INFT3050WebApp {
     
     
-    public partial class About {
+    public partial class Logout {
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new INFT3050WebApp.Site Master {
+            get {
+                return ((INFT3050WebApp.Site)(base.Master));
+            }
+        }
     }
 }

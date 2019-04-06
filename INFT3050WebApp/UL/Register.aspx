@@ -1,10 +1,10 @@
-﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="INFT3050WebApp.Register" %>
-
+﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/UL/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="INFT3050WebApp.Register" %>
+<%@ MasterType VirtualPath="~/UL/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h1 class="text-center">Sign up</h1>
+    <h1 class="text-center">Register New Account</h1>
     <br />
     <br />
     <form runat="server">

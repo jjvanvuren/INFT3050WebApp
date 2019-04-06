@@ -1,9 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Inherits="INFT3050WebApp.Search" %>
-<%@ MasterType VirtualPath="~/Site.Master" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/Site.Master" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Inherits="INFT3050WebApp.Search" %>
+<%@ MasterType VirtualPath="~/UL/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <br />
+
     <div class="container-flex">
 
         <!-- Search form -->

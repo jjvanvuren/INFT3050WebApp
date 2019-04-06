@@ -58,5 +58,9 @@ namespace INFT3050WebApp
             set { registerLink.Enabled = value; }
         }
 
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/UL/Search.aspx");
+        }
     }
 }
