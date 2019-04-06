@@ -102,6 +102,7 @@
     <Content Include="UL\Default.aspx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="UL\Global.asax" />
+    <Content Include="UL\Images\768px-Books_Flat_Icon_Vector.png" />
     <Content Include="UL\Images\9780140256352_thumb.jpg" />
     <Content Include="UL\Images\9780140390032_thumb.jpg" />
     <Content Include="UL\Images\9780140431957_thumb.jpg" />
