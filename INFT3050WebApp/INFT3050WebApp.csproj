@@ -151,6 +151,8 @@
     <Content Include="UL\Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\Book.cs" />
+    <Compile Include="BL\StoreItem.cs" />
     <Compile Include="UL\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -240,7 +242,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="BL\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
