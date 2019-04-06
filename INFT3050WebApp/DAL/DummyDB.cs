@@ -54,7 +54,7 @@ namespace INFT3050WebApp.DAL
         }
 
         // Create Book: used to create dummy Book objects
-        private BL.Book CreateDummyBook( int id, double price, int quantity, string image, string thumbImage, string isbn, DateTime datePublished, 
+        private BL.Book CreateDummyBook(int id, double price, int quantity, string image, string thumbImage, string isbn, DateTime datePublished,
             string title, string secondTitle, BL.Author author, BL.Category category, string publisher)
         {
             BL.Book book = new BL.Book()
@@ -72,14 +72,15 @@ namespace INFT3050WebApp.DAL
                 SecondaryTitle = secondTitle,
                 Author = author,
                 Category = category,
-                Publisher = publisher
+                Publisher = publisher,
+                IsBestSeller = true
             };
 
             return book;
         }
 
         // Create Author:
-        private BL.Author CreateDummyAuthor (int id, string firstName, string lastName)
+        private BL.Author CreateDummyAuthor(int id, string firstName, string lastName)
         {
             BL.Author author = new BL.Author()
             {
@@ -92,7 +93,7 @@ namespace INFT3050WebApp.DAL
         }
 
         //Create Category:
-        private BL.Category CreateDummyCategory (int id, string name)
+        private BL.Category CreateDummyCategory(int id, string name)
         {
             BL.Category category = new BL.Category()
             {
@@ -110,11 +111,18 @@ namespace INFT3050WebApp.DAL
             return books;
         }
 
+        // get Best Sellers
+        //[DataObjectMethod(DataObjectMethodType.Select)]
+        //public BL.Book[] GetBestBooks()
+        //{
+
+        //}
+
         // find book by ID
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public BL.Book GetBookById(int id)
+        public BL.Book GetBooksById(int id)
         {
-            return Array.Find(books, d => { return d.Id == id; });
+            return Array.Find(books, b => { return b.Id == id; });
         }
     }
 }
