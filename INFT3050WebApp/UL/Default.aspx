@@ -7,7 +7,6 @@
     <h1>Welcome to Used Book Store</h1>
     <%--<asp:Image ImageUrl="Images/LightLibrary.jpg" runat="server" class="rounded" />
     <br />--%>
-    <br />
     <!-- Current Offers Section -->
     <h3>Current Offers</h3>
     <div class="container-flex">
