@@ -9,8 +9,8 @@
     <br />--%>
     <br />
     <!-- Current Offers Section -->
-    <h3>Current Offers</h3>
-    <div class="container-flex">
+    <h3>Best Sellers</h3>
+<%--    <div class="container-flex">
         <!-- First Row -->
         <div class="row">
             <div class="col">
@@ -48,6 +48,25 @@
                 <asp:Image ImageUrl="Images/9780141183534_thumb.jpg" runat="server" />
                 <p>A Room of One's Own</p>
             </div>
+        </div>
+    </div>--%>
+
+    <div class="container">
+        <div class="row">
+            <asp:Repeater ID="ImageRepeater" runat="server">
+                <ItemTemplate>
+
+                    <div class="col-md-4">
+                        <div class="img-thumbnail">
+                            <asp:Image ID="img1" runat="server" ImageUrl='<%# Eval("ThumbnailPath") %>'  OnCommand="img1_Command" CommandArgument='<%# Eval("Id") %>' />
+                            <div class="caption">
+                                <p><%# Eval("Title")%></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </ItemTemplate>
+            </asp:Repeater>
         </div>
     </div>
     

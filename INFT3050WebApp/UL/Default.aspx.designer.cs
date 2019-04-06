@@ -13,6 +13,15 @@ namespace INFT3050WebApp {
     public partial class Default {
         
         /// <summary>
+        /// ImageRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater ImageRepeater;
+        
+        /// <summary>
         /// Master property.
         /// </summary>
         /// <remarks>

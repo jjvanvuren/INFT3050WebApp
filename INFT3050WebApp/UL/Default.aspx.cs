@@ -18,6 +18,15 @@ namespace INFT3050WebApp
             // Hide and disable the "Logout" link
             Master.LogoutLinkEnabled = false;
             Master.LogoutLinkVisible = false;
+
+            if (!IsPostBack)
+            {
+                var db = new DAL.DummyDB();
+                var books = db.GetBooks();
+
+                ImageRepeater.DataSource = books;
+                ImageRepeater.DataBind();
+            }
         }
     }
 }

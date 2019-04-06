@@ -108,6 +108,7 @@
     <Content Include="UL\Images\9780141183534_thumb.jpg" />
     <Content Include="UL\Images\9780141183954_thumb.jpg" />
     <Content Include="UL\Images\9780141439846_thumb.jpg" />
+    <Content Include="UL\Images\9780813056173_thumb.jpg" />
     <Content Include="UL\Images\9780887276859_thumb.jpg" />
     <Content Include="UL\Images\9781442533547_thumb.jpg" />
     <Content Include="UL\Images\LightLibrary.jpg" />
@@ -151,8 +152,13 @@
     <Content Include="UL\Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\Address.cs" />
+    <Compile Include="BL\Author.cs" />
     <Compile Include="BL\Book.cs" />
+    <Compile Include="BL\Category.cs" />
+    <Compile Include="BL\Customer.cs" />
     <Compile Include="BL\StoreItem.cs" />
+    <Compile Include="BL\User.cs" />
     <Compile Include="UL\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
