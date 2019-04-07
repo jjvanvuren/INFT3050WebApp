@@ -1,10 +1,18 @@
-9781442533547_thumb.jpg - https://www.coop.com.au/c/textbooks/arts
-9780887276859_thumb.jpg - https://www.coop.com.au/c/promotions
-9780141439846_thumb.jpg - https://www.coop.com.au/c/promotions/f/manufacturer/penguinbooksltd
-9780140256352_thumb.jpg - https://www.coop.com.au/c/promotions/f/manufacturer/penguinbooksltd
-9780140431957_thumb.jpg - https://www.coop.com.au/c/promotions/f/manufacturer/penguinbooksltd
-9780140390032_thumb.jpg - https://www.coop.com.au/c/promotions/f/manufacturer/penguinbooksltd
-9780141183954_thumb.jpg - https://www.coop.com.au/c/promotions/f/manufacturer/penguinbooksltd
-9780141183534_thumb.jpg - https://www.coop.com.au/c/promotions/f/manufacturer/penguinbooksltd
+9780813056173_thumb.jpg - https://www.amazon.com.au/gp/new-releases/books/4893857051/ref=zg_bsnr_nav_1_books
+9780813056173.jpg - https://www.amazon.com.au/Picturing-Apollo-11-J-Pickering/dp/0813056179/ref=sr_1_1?crid=WVEV62TO8IXI&keywords=picturing+apollo+11&qid=1554612043&s=books&sprefix=picturing+%2Cstripbooks%2C281&sr=1-1-catcorr
+9781786812445.jpg - https://www.amazon.com.au/Mistake-unputdownable-psychological-thriller-brilliant/dp/1786812444/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=&sr=
+9781786812445_thumb.jpg - https://www.amazon.com.au/gp/bestsellers/books/4894130051/ref=zg_bs_nav_2_4893863051
+9781503903265_thumb.jpg - https://www.amazon.com.au/gp/bestsellers/books/4894184051/ref=zg_bs_nav_2_4893868051
+9781503903265.jpg - https://www.amazon.com.au/Word-Kill-Impossible-Times-Book-ebook/dp/B07C24V3SD/ref=zg_bs_4894184051_2?_encoding=UTF8&psc=1&refRID=F5THAVPMRY6RAFGAG3F0
+9781473635487.jpg - https://www.amazon.com.au/Keeper-Lost-Things-Richard-bestseller/dp/1473635489/ref=sr_1_1?keywords=horror+best+sellers&qid=1554619973&rnid=4851627051&s=books&sr=1-1
+9781473635487_thumb.jpg - https://www.amazon.com.au/gp/bestsellers/books/4898992051/ref=zg_bs_unv_4_4904819051_1
+9781784751173_thumb.jpg - https://www.amazon.com.au/gp/bestsellers/books/4900068051/ref=zg_bs_nav_3_4894130051
+9781784751173.jpg - https://www.amazon.com.au/Run-Away-Harlan-Coben-ebook/dp/B0791ZS353/ref=zg_bs_4900068051_9?_encoding=UTF8&psc=1&refRID=WVQ9S1K12DARP9AVVQYN
+9780008152406.jpg - https://www.amazon.com.au/Holy-Sister-Mark-Lawrence/dp/0008152403/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=&sr=
+9780008152406_thumb.jpg - https://www.amazon.com.au/gp/bestsellers/books/4894183051/ref=zg_bs_nav_2_4893868051
+9780847846597.jpg - https://www.amazon.com.au/Metropolitan-Museum-Art-Masterpiece-Paintings/dp/0847846598/ref=zg_bs_4893876051_5?_encoding=UTF8&psc=1&refRID=EE11G79GK80GAMCNKMQG
+9780847846597_thumb.jpg - https://www.amazon.com.au/gp/bestsellers/books/4893876051/ref=zg_bs_nav_2_4893842051
+9780753555644_thumb.jpg - https://www.amazon.com.au/gp/bestsellers/books/4894537051/ref=zg_bs_nav_3_4893978051
+9780753555644.jpg - https://www.amazon.com.au/Elon-Musk-Ashlee-Vance/dp/0753555646/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=&sr=
 LightLibrary.jpg - https://www.pexels.com/photo/blur-book-stack-books-bookshelves-590493/
 https://commons.wikimedia.org/wiki/File:Books_Flat_Icon_Vector.svg

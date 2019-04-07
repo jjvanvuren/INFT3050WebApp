@@ -93,6 +93,8 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="UL\About.aspx" />
+    <Content Include="UL\Book.aspx" />
+    <Content Include="UL\Books.aspx" />
     <Content Include="UL\Contact.aspx" />
     <Content Include="Content\bootstrapDarkly.min.css" />
     <Content Include="Content\bootstrapFlatly.min.css" />
@@ -103,14 +105,22 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="UL\Global.asax" />
     <Content Include="UL\Images\768px-Books_Flat_Icon_Vector.png" />
-    <Content Include="UL\Images\9780140256352_thumb.jpg" />
-    <Content Include="UL\Images\9780140390032_thumb.jpg" />
-    <Content Include="UL\Images\9780140431957_thumb.jpg" />
-    <Content Include="UL\Images\9780141183534_thumb.jpg" />
-    <Content Include="UL\Images\9780141183954_thumb.jpg" />
-    <Content Include="UL\Images\9780141439846_thumb.jpg" />
-    <Content Include="UL\Images\9780887276859_thumb.jpg" />
-    <Content Include="UL\Images\9781442533547_thumb.jpg" />
+    <Content Include="UL\Images\9780008152406.jpg" />
+    <Content Include="UL\Images\9780008152406_thumb.jpg" />
+    <Content Include="UL\Images\9780753555644.jpg" />
+    <Content Include="UL\Images\9780753555644_thumb.jpg" />
+    <Content Include="UL\Images\9780813056173.jpg" />
+    <Content Include="UL\Images\9780813056173_thumb.jpg" />
+    <Content Include="UL\Images\9780847846597.jpg" />
+    <Content Include="UL\Images\9780847846597_thumb.jpg" />
+    <Content Include="UL\Images\9781473635487.jpg" />
+    <Content Include="UL\Images\9781473635487_thumb.jpg" />
+    <Content Include="UL\Images\9781503903265.jpg" />
+    <Content Include="UL\Images\9781503903265_thumb.jpg" />
+    <Content Include="UL\Images\9781784751173.jpg" />
+    <Content Include="UL\Images\9781784751173_thumb.jpg" />
+    <Content Include="UL\Images\9781786812445.jpg" />
+    <Content Include="UL\Images\9781786812445_thumb.jpg" />
     <Content Include="UL\Images\LightLibrary.jpg" />
     <Content Include="UL\Login.aspx" />
     <Content Include="UL\Logout.aspx" />
@@ -152,14 +162,33 @@
     <Content Include="UL\Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\Address.cs" />
+    <Compile Include="BL\Author.cs" />
     <Compile Include="BL\Book.cs" />
+    <Compile Include="BL\Category.cs" />
+    <Compile Include="BL\Customer.cs" />
     <Compile Include="BL\StoreItem.cs" />
+    <Compile Include="BL\User.cs" />
     <Compile Include="UL\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UL\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Book.aspx.cs">
+      <DependentUpon>Book.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Book.aspx.designer.cs">
+      <DependentUpon>Book.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Books.aspx.cs">
+      <DependentUpon>Books.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Books.aspx.designer.cs">
+      <DependentUpon>Books.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
