@@ -113,7 +113,7 @@ namespace INFT3050WebApp.DAL
 
         // find book by ID
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public BL.Book GetBooksById(int id)
+        public BL.Book GetBookById(int id)
         {
             return Array.Find(books, b => { return b.Id == id; });
         }

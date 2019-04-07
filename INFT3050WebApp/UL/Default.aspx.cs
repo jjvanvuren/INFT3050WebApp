@@ -40,5 +40,10 @@ namespace INFT3050WebApp
                 ImageRepeater.DataBind();
             }
         }
+
+        protected void imgBestSeller_Command(object sender, CommandEventArgs e)
+        {
+            Response.Redirect("Book.aspx?id=" + e.CommandArgument);
+        }
     }
 }

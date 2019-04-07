@@ -93,6 +93,8 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="UL\About.aspx" />
+    <Content Include="UL\Book.aspx" />
+    <Content Include="UL\Books.aspx" />
     <Content Include="UL\Contact.aspx" />
     <Content Include="Content\bootstrapDarkly.min.css" />
     <Content Include="Content\bootstrapFlatly.min.css" />
@@ -109,6 +111,7 @@
     <Content Include="UL\Images\9780141183534_thumb.jpg" />
     <Content Include="UL\Images\9780141183954_thumb.jpg" />
     <Content Include="UL\Images\9780141439846_thumb.jpg" />
+    <Content Include="UL\Images\9780813056173.jpg" />
     <Content Include="UL\Images\9780813056173_thumb.jpg" />
     <Content Include="UL\Images\9780887276859_thumb.jpg" />
     <Content Include="UL\Images\9781442533547_thumb.jpg" />
@@ -166,6 +169,20 @@
     </Compile>
     <Compile Include="UL\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Book.aspx.cs">
+      <DependentUpon>Book.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Book.aspx.designer.cs">
+      <DependentUpon>Book.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Books.aspx.cs">
+      <DependentUpon>Books.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Books.aspx.designer.cs">
+      <DependentUpon>Books.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
