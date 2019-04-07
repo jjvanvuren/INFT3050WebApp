@@ -94,6 +94,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="UL\About.aspx" />
     <Content Include="UL\BackEnd\BackEndLogin.aspx" />
+    <Content Include="UL\BackEnd\BackEndRegister.aspx" />
     <Content Include="UL\Contact.aspx" />
     <Content Include="Content\bootstrapDarkly.min.css" />
     <Content Include="Content\bootstrapFlatly.min.css" />
@@ -168,6 +169,13 @@
     </Compile>
     <Compile Include="UL\BackEnd\BackEndLogin.aspx.designer.cs">
       <DependentUpon>BackEndLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\BackEnd\BackEndRegister.aspx.cs">
+      <DependentUpon>BackEndRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\BackEnd\BackEndRegister.aspx.designer.cs">
+      <DependentUpon>BackEndRegister.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>

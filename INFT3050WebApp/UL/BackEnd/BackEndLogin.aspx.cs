@@ -62,10 +62,5 @@ namespace INFT3050WebApp.UL.BackEnd
                 args.IsValid = false;
             }
         }
-
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/UL/Default.aspx");
-        }
     }
 }

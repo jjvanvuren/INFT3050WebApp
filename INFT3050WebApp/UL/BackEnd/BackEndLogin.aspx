@@ -23,7 +23,7 @@
             <asp:RegularExpressionValidator ID="revEmail" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid email address"
                 ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="tbxEmail">Valid email required</asp:RegularExpressionValidator>
 
-            <%-- Check if customer exists --%>
+            <%-- Check if Employee exists --%>
             <asp:CustomValidator ID="cvEmailExists" runat="server" CssClass="text-danger" ErrorMessage="Email not registered"
                 OnServerValidate="EmployeeRegistered"></asp:CustomValidator>
         </div>
