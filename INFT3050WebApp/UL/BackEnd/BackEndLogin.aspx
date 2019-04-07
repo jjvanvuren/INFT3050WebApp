@@ -1,5 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/Site.Master" AutoEventWireup="true" CodeBehind="BackEndLogin.aspx.cs" Inherits="INFT3050WebApp.UL.BackEnd.BackEndLogin" %>
-<%@ MasterType VirtualPath="~/UL/Site.Master" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/BackEnd/BackEnd.Master" AutoEventWireup="true" CodeBehind="BackEndLogin.aspx.cs" Inherits="INFT3050WebApp.UL.BackEnd.BackEndLogin" %>
+<%@ MasterType VirtualPath="~/UL/BackEnd/BackEnd.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -41,6 +41,6 @@
                 OnServerValidate="passwordCorrect"></asp:CustomValidator>
         </div>
         <asp:Button ID="btnLogin" type="submit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnLogin_Click" />
-        <asp:Button ID="btnCancel" type="cancel" CssClass="btn btn-secondary" runat="server" Text="Cancel" CausesValidation="false" OnClick="btnCancel_Click" />
+        <asp:Button ID="btnRegister" type="cancel" CssClass="btn btn-secondary" runat="server" Text="Register" CausesValidation="false" OnClick="btnRegister_Click" />
     </form>
 </asp:Content>

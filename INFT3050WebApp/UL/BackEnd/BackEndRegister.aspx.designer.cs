@@ -243,9 +243,9 @@ namespace INFT3050WebApp.UL.BackEnd {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        public new INFT3050WebApp.Site Master {
+        public new INFT3050WebApp.UL.BackEnd.BackEnd Master {
             get {
-                return ((INFT3050WebApp.Site)(base.Master));
+                return ((INFT3050WebApp.UL.BackEnd.BackEnd)(base.Master));
             }
         }
     }

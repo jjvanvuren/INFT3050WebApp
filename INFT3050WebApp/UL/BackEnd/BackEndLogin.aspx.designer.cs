@@ -112,13 +112,13 @@ namespace INFT3050WebApp.UL.BackEnd {
         protected global::System.Web.UI.WebControls.Button btnLogin;
         
         /// <summary>
-        /// btnCancel control.
+        /// btnRegister control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::System.Web.UI.WebControls.Button btnRegister;
         
         /// <summary>
         /// Master property.
@@ -126,9 +126,9 @@ namespace INFT3050WebApp.UL.BackEnd {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        public new INFT3050WebApp.Site Master {
+        public new INFT3050WebApp.UL.BackEnd.BackEnd Master {
             get {
-                return ((INFT3050WebApp.Site)(base.Master));
+                return ((INFT3050WebApp.UL.BackEnd.BackEnd)(base.Master));
             }
         }
     }

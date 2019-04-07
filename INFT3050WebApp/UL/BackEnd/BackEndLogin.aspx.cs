@@ -11,8 +11,6 @@ namespace INFT3050WebApp.UL.BackEnd
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Master.AccountLinkEnabled = false;
-            Master.AccountLinkVisible = false;
 
             Master.LogoutLinkEnabled = false;
             Master.LogoutLinkVisible = false;
@@ -23,8 +21,13 @@ namespace INFT3050WebApp.UL.BackEnd
         {
             if (IsValid)
             {
-                Response.Redirect("~/UL/Customer.aspx");
+                Response.Redirect("~/UL/BackEnd/BackEndEmployeePortal.aspx");
             }
+        }
+
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+                Response.Redirect("~/UL/BackEnd/BackEndRegister.aspx");
         }
 
         // Checks if Employee email exists

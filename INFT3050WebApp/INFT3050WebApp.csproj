@@ -93,6 +93,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="UL\About.aspx" />
+    <Content Include="UL\BackEnd\BackEndEmployeePortal.aspx" />
     <Content Include="UL\BackEnd\BackEndLogin.aspx" />
     <Content Include="UL\BackEnd\BackEndRegister.aspx" />
     <Content Include="UL\Contact.aspx" />
@@ -162,6 +163,20 @@
     </Compile>
     <Compile Include="UL\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\BackEnd\BackEnd.Master.cs">
+      <DependentUpon>BackEnd.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\BackEnd\BackEnd.Master.designer.cs">
+      <DependentUpon>BackEnd.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UL\BackEnd\BackEndEmployeePortal.aspx.cs">
+      <DependentUpon>BackEndEmployeePortal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\BackEnd\BackEndEmployeePortal.aspx.designer.cs">
+      <DependentUpon>BackEndEmployeePortal.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\BackEnd\BackEndLogin.aspx.cs">
       <DependentUpon>BackEndLogin.aspx</DependentUpon>
@@ -250,6 +265,7 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="UL\BackEnd\BackEnd.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
