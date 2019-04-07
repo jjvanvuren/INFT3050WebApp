@@ -14,7 +14,7 @@
                 <asp:Image CssClass="rounded" ID="imgBook" runat="server" />
             </div>
             <br />
-            <div class="col-md-6">
+            <div class="jumbotron col-md-6">
                 <!-- Second Column -->
                 <h1>
                     <!-- Display Book Title -->
@@ -36,8 +36,9 @@
                 <h5>
                     <!-- Display Book Price -->
                     <asp:Label ID="lblPrice" runat="server" Text="Price"></asp:Label>
+                    &nbsp;&nbsp;
                     <!-- Button to add book to cart -->
-                    <asp:Button Text="Add To Cart" runat="server"  />
+                    <asp:Button Text="Add To Cart" runat="server" CssClass="btn btn-success"  />
                 </h5>
                 
             </div>

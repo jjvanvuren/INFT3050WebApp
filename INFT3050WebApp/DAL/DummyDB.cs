@@ -28,7 +28,7 @@ namespace INFT3050WebApp.DAL
             categories = new BL.Category[]
             {
                 CreateDummyCategory(id++, "History"),
-                CreateDummyCategory(id++, "Fantasy"),
+                CreateDummyCategory(id++, "Thriller"),
                 CreateDummyCategory(id++, "Sci-Fi"),
                 CreateDummyCategory(id++, "Horror"),
                 CreateDummyCategory(id++, "Crime"),
