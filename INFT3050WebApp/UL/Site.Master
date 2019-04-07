@@ -32,11 +32,11 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/UL/Books.aspx">All Books</a></li>
                                 <li><a class="dropdown-item" href="#">History</a></li>
-                                <li><a class="dropdown-item" href="#">Fantasy</a></li>
+                                <li><a class="dropdown-item" href="#">Thriller</a></li>
                                 <li><a class="dropdown-item" href="#">Sci-Fi</a></li>
                                 <li><a class="dropdown-item" href="#">Horror</a></li>
                                 <li><a class="dropdown-item" href="#">Crime</a></li>
-                                <li><a class="dropdown-item" href="#">Self-Help</a></li>
+                                <li><a class="dropdown-item" href="#">Fantasy</a></li>
                                 <li><a class="dropdown-item" href="#">Art</a></li>
                                 <li><a class="dropdown-item" href="#">Technology</a></li>
                             </ul>
