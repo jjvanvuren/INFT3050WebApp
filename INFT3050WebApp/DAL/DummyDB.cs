@@ -111,13 +111,6 @@ namespace INFT3050WebApp.DAL
             return books;
         }
 
-        // get Best Sellers
-        //[DataObjectMethod(DataObjectMethodType.Select)]
-        //public BL.Book[] GetBestBooks()
-        //{
-
-        //}
-
         // find book by ID
         [DataObjectMethod(DataObjectMethodType.Select)]
         public BL.Book GetBooksById(int id)
