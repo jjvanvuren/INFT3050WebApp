@@ -1,0 +1,137 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.ComponentModel;
+using INFT3050WebApp.BL;
+
+namespace INFT3050WebApp.DAL
+{
+    public class DummyDB
+    {
+        // Used for Long Descriptions
+        const string Lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, " +
+            "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu " +
+            "fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+        // Used for Short Descriptions
+        const string ShortLorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit";
+
+        private BL.Book[] books;
+        private BL.Author[] authors;
+        private BL.Category[] categories;
+
+        // Default Constructor: Populates DummyDB with Dummy Data
+        public DummyDB()
+        {
+            // Populate Categories
+            int id = 0;
+            categories = new BL.Category[]
+            {
+                CreateDummyCategory(id++, "History"),
+                CreateDummyCategory(id++, "Thriller"),
+                CreateDummyCategory(id++, "Sci-Fi"),
+                CreateDummyCategory(id++, "Horror"),
+                CreateDummyCategory(id++, "Crime"),
+                CreateDummyCategory(id++, "Fantasy"),
+                CreateDummyCategory(id++, "Art"),
+                CreateDummyCategory(id++, "Technology")
+            };
+
+            //Populate Best Seller Authors
+            id = 0;
+            authors = new BL.Author[]
+            {
+                CreateDummyAuthor(id++, "J L", "Pickering"),
+                CreateDummyAuthor(id++, "K.L.", "Slater"),
+                CreateDummyAuthor(id++, "Mark", "Lawrence"),
+                CreateDummyAuthor(id++, "Ruth", "Hogan"),
+                CreateDummyAuthor(id++, "Harlan", "Coben"),
+                CreateDummyAuthor(id++, "Metropolitan Museum of Art New York", ""),
+                CreateDummyAuthor(id++, "Ashlee", "Vance")
+
+            };
+
+            //Populate Books
+            id = 0;
+            books = new BL.Book[]
+            {
+                // Add Books
+                CreateDummyBook(id++, 45.92, 20, "/UL/Images/9780813056173.jpg", "/UL/Images/9780813056173_thumb.jpg", "9780813056173", new DateTime (2019,04,30), "Picturing Apollo 11", "", authors[id-1], categories[id-1], "Univ Pr of Florida", true),
+                CreateDummyBook(id++, 16.49, 20, "/UL/Images/9781786812445.jpg", "/UL/Images/9781786812445_thumb.jpg", "9781786812445", new DateTime (2017,10,04), "The Mistake", "", authors[id-1], categories[id-1], "Bookouture", true),
+                CreateDummyBook(id++, 22.99, 20, "/UL/Images/9781503903265.jpg", "/UL/Images/9781503903265_thumb.jpg", "9781503903265", new DateTime (2019,05,01), "One Word Kill", "", authors[id-1], categories[id-1], "47 North", true),
+                CreateDummyBook(id++, 16.81, 20, "/UL/Images/9781473635487.jpg", "/UL/Images/9781473635487_thumb.jpg", "9781473635487", new DateTime (2017,08,10), "The Keeper of Lost Things", "", authors[id-1], categories[id-1], "Hodder & Stoughton General Division", true),
+                CreateDummyBook(id++, 16.11, 20, "/UL/Images/9781784751173.jpg", "/UL/Images/9781784751173_thumb.jpg", "9781784751173", new DateTime (2018,08,06), "Run Away", "", authors[id-1], categories[id-1], "ARROW LTD", true),
+                CreateDummyBook(id++, 19.99, 20, "/UL/Images/9780008152406.jpg", "/UL/Images/9780008152406_thumb.jpg", "9780008152406", new DateTime (2019,03,18), "Holy Sister", "", authors[2], categories[id-1], "Voyager - GB", true),
+                CreateDummyBook(id++, 74.62, 20, "/UL/Images/9780847846597.jpg", "/UL/Images/9780847846597_thumb.jpg", "9780847846597", new DateTime (2016,10,01), "Masterpiece Paintings", "", authors[id-2], categories[id-1], "Rizzoli", true),
+                CreateDummyBook(id++, 23.36, 20, "/UL/Images/9780753555644.jpg", "/UL/Images/9780753555644_thumb.jpg", "9780753555644", new DateTime (2016,03,10), "Elon Musk", "", authors[id-2], categories[id-1], "Ebury Publishing", true)
+            };
+
+        }
+
+        // Create Book: used to create dummy Book objects
+        private BL.Book CreateDummyBook(int id, double price, int quantity, string image, string thumbImage, string isbn, DateTime datePublished,
+            string title, string secondTitle, BL.Author author, BL.Category category, string publisher, bool isBestSell)
+        {
+            BL.Book book = new BL.Book()
+            {
+                Id = id,
+                Price = price,
+                StockQuantity = quantity,
+                ShortDescription = ShortLorem,
+                LongDescription = Lorem,
+                ImagePath = image,
+                ThumbnailPath = thumbImage,
+                Isbn = isbn,
+                DatePublished = datePublished,
+                Title = title,
+                SecondaryTitle = secondTitle,
+                Author = author,
+                Category = category,
+                Publisher = publisher,
+                IsBestSeller = isBestSell
+            };
+
+            return book;
+        }
+
+        // Create Author:
+        private BL.Author CreateDummyAuthor(int id, string firstName, string lastName)
+        {
+            BL.Author author = new BL.Author()
+            {
+                Id = id,
+                FirstName = firstName,
+                LastName = lastName
+            };
+
+            return author;
+        }
+
+        //Create Category:
+        private BL.Category CreateDummyCategory(int id, string name)
+        {
+            BL.Category category = new BL.Category()
+            {
+                Id = id,
+                Name = name
+            };
+
+            return category;
+        }
+
+        // get book list
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public BL.Book[] GetBooks()
+        {
+            return books;
+        }
+
+        // find book by ID
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public BL.Book GetBookById(int id)
+        {
+            return Array.Find(books, b => { return b.Id == id; });
+        }
+
+    }
+}
