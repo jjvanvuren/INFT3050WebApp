@@ -95,6 +95,7 @@
     <Content Include="UL\About.aspx" />
     <Content Include="UL\Book.aspx" />
     <Content Include="UL\Books.aspx" />
+    <Content Include="UL\Cart.aspx" />
     <Content Include="UL\Contact.aspx" />
     <Content Include="Content\bootstrapDarkly.min.css" />
     <Content Include="Content\bootstrapFlatly.min.css" />
@@ -167,6 +168,7 @@
     <Compile Include="BL\Book.cs" />
     <Compile Include="BL\Category.cs" />
     <Compile Include="BL\Customer.cs" />
+    <Compile Include="BL\CustomerSession.cs" />
     <Compile Include="BL\StoreItem.cs" />
     <Compile Include="BL\User.cs" />
     <Compile Include="UL\About.aspx.cs">
@@ -189,6 +191,13 @@
     </Compile>
     <Compile Include="UL\Books.aspx.designer.cs">
       <DependentUpon>Books.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
