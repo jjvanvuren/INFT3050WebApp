@@ -44,7 +44,7 @@
         <div class="form-group">
             <%-- Email confirmation field --%>
             <asp:Label ID="lblEmailConfirm" runat="server" Text="Confirm email address"></asp:Label>
-            <asp:TextBox ID="tbxEmailConfirm" runat="server" type="email" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="tbxEmailConfirm" runat="server" type="email" CssClass="form-control" autocomplete="off"></asp:TextBox>
 
 
             <%-- Email confirmation field validation --%>
