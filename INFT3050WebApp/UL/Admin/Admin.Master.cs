@@ -13,6 +13,16 @@ namespace INFT3050WebApp.UL.BackEnd
         {
 
         }
+
+        public bool ToolsVisible
+        {
+            set { AdminSites.Visible = value; }
+        }
+
+        /*public bool ToolsEnabled
+        {
+            set { AdminSites.Enabled = value; }
+        }*/
         public bool LogoutLinkVisible
         {
             set { logoutLink.Visible = value; }
