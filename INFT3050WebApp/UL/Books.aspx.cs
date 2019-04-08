@@ -16,7 +16,11 @@ namespace INFT3050WebApp.UL
 
         protected void GridBooks_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            Response.Redirect("Book.aspx?id=" + e.CommandArgument);
+            if  (e.CommandName == "cmdView")
+            {
+                Response.Redirect("Book.aspx?id=" + e.CommandArgument);
+            }
+
         }
     }
 }
