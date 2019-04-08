@@ -12,6 +12,7 @@ namespace INFT3050WebApp.UL.BackEnd
         protected void Page_Load(object sender, EventArgs e)
         {
             // Hide and disable the "Logout" link
+            Master.ToolsVisible = false;
             Master.LogoutLinkEnabled = false;
             Master.LogoutLinkVisible = false;
         }

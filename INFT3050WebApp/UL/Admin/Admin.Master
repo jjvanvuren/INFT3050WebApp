@@ -26,7 +26,7 @@
                 </button>
                 <asp:HyperLink CssClass="navbar-brand" href="Default.aspx" Text="Home Page" runat="server"><img src="../Images/768px-Books_Flat_Icon_Vector.png" alt="Used Book Store Logo" height="56" width="56" />Used Book Store - Admin</asp:HyperLink>
                 <div class="navbar-collapse collapse" id="navbarSupportedContent">
-                <ul class="nav navbar-nav mr-auto">
+                <ul class="nav navbar-nav mr-auto" id="AdminSites" runat="server">
                         <li class="dropdown">
                             <a href="#" class="nav-link btn dropdown-toggle" data-toggle="dropdown" role="button">Tools</a>
                             <ul class="dropdown-menu">
@@ -60,7 +60,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="../Scripts/jquery-3.3.1.min.js"></script>
-    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../../Scripts/jquery-3.3.1.min.js"></script>
+    <script src="../../Scripts/bootstrap.min.js"></script>
 </body>
 </html>
