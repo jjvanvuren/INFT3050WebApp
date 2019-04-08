@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-    <h2 class="text-center">Welcome</h2>
+    <h2 class="text-center">Inventory Managment</h2>
     <form runat="server">
         <div class="container-flex">
             <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetBooks" TypeName="INFT3050WebApp.DAL.DummyDB"></asp:ObjectDataSource>
@@ -39,7 +39,7 @@
                         <ItemStyle CssClass="col-xs-2" />
                     </asp:TemplateField>
 
-                    <asp:BoundField DataField="ImagePath" HeaderText="Image Path" MaxLength="45" ><ItemStyle CssClass="col-xs-3" /></asp:BoundField>
+                    <asp:BoundField DataField="ImagePath" HeaderText="Image Path" ><ItemStyle CssClass="col-xs-3" /></asp:BoundField>
 
                     <asp:TemplateField HeaderText="Price">
                         <EditItemTemplate>

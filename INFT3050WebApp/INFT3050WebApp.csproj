@@ -93,6 +93,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="UL\About.aspx" />
+    <Content Include="UL\Admin\AdminUserAccounts.aspx" />
     <Content Include="UL\Book.aspx" />
     <Content Include="UL\Books.aspx" />
     <Content Include="UL\Cart.aspx" />
@@ -179,6 +180,13 @@
     </Compile>
     <Compile Include="UL\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminUserAccounts.aspx.cs">
+      <DependentUpon>AdminUserAccounts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminUserAccounts.aspx.designer.cs">
+      <DependentUpon>AdminUserAccounts.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Book.aspx.cs">
       <DependentUpon>Book.aspx</DependentUpon>
