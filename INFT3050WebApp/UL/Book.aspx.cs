@@ -29,9 +29,11 @@ namespace INFT3050WebApp.UL
                         lblTitle.Text = book.Title;
                         imgBook.ImageUrl = book.ImagePath;
                         lblDescription.Text = book.LongDescription;
-                        lblPrice.Text = "$" + book.Price.ToString();
+                        lblPrice.Text = "Price: $" + book.Price.ToString();
                         lblAuthor.Text = book.Author.FirstName + " " + book.Author.LastName;
                         lblQuantity.Text = "In Stock: " + book.StockQuantity.ToString();
+                        lblPublisher.Text = "Published: " + book.Publisher;
+                        lblDatePublished.Text = book.DatePublished.ToShortDateString();
                     }
                 }
             }

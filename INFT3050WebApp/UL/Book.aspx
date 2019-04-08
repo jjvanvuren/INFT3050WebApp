@@ -24,22 +24,26 @@
                 <h5>
                     <asp:Label ID="lblAuthor" runat="server" />
                 </h5>
+                <!-- Display Publisher and Date Published -->
+                <p>
+                    <asp:Label ID="lblPublisher" runat="server"></asp:Label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Label ID="lblDatePublished" runat="server"></asp:Label>
+                </p>
                 <!-- Display Book Description -->
                 <p>
                     <asp:Label ID="lblDescription" runat="server"></asp:Label>
                 </p>
                 <!-- Display Amount of Books in stock -->
-                <h5>
+                <p>
                     <asp:Label ID="lblQuantity" runat="server"></asp:Label>
-                </h5>
-                <br />
-                <h5>
+                </p>
+                <p>
                     <!-- Display Book Price -->
                     <asp:Label ID="lblPrice" runat="server" Text="Price"></asp:Label>
-                    &nbsp;&nbsp;
-                    <!-- Button to add book to cart -->
-                    <asp:Button Text="Add To Cart" runat="server" CssClass="btn btn-success"  />
-                </h5>
+                </p>
+                <!-- Button to add book to cart -->
+                <asp:Button Text="Add To Cart" runat="server" CssClass="btn btn-success"  />
                 
             </div>
         </div>
