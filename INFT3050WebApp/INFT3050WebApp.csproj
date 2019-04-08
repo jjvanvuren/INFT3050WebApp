@@ -95,6 +95,7 @@
     <Content Include="UL\About.aspx" />
     <Content Include="UL\Book.aspx" />
     <Content Include="UL\Books.aspx" />
+    <Content Include="UL\Cart.aspx" />
     <Content Include="UL\Admin\AdminPortal.aspx" />
     <Content Include="UL\Admin\AdminLogin.aspx" />
     <Content Include="UL\Admin\AdminRegister.aspx" />
@@ -124,7 +125,6 @@
     <Content Include="UL\Images\9781784751173_thumb.jpg" />
     <Content Include="UL\Images\9781786812445.jpg" />
     <Content Include="UL\Images\9781786812445_thumb.jpg" />
-    <Content Include="UL\Images\LightLibrary.jpg" />
     <Content Include="UL\Login.aspx" />
     <Content Include="UL\Logout.aspx" />
     <Content Include="UL\Register.aspx" />
@@ -170,6 +170,7 @@
     <Compile Include="BL\Book.cs" />
     <Compile Include="BL\Category.cs" />
     <Compile Include="BL\Customer.cs" />
+    <Compile Include="BL\CustomerSession.cs" />
     <Compile Include="BL\StoreItem.cs" />
     <Compile Include="BL\User.cs" />
     <Compile Include="UL\About.aspx.cs">
@@ -192,6 +193,13 @@
     </Compile>
     <Compile Include="UL\Books.aspx.designer.cs">
       <DependentUpon>Books.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Admin\Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using INFT3050WebApp.BL;
 
 namespace INFT3050WebApp
 {
@@ -24,6 +25,19 @@ namespace INFT3050WebApp
         {
             if (IsValid)
             {
+                // Create a new user based on info entered
+                User registeredUser = new User(0, tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, false, "Active");
+
+                // Data to be retained in session
+                CustomerSession currentCustomerSession = new CustomerSession
+                {
+                    Email = tbxEmail.Text,
+                    Name = tbxFirstName.Text + " " + tbxLastName.Text,
+                    LoggedIn = true
+                };
+
+                Session["customerSession"] = currentCustomerSession;
+
                 Response.Redirect("~/UL/SuccessfulRegistration.aspx");
             }
         }
@@ -32,5 +46,21 @@ namespace INFT3050WebApp
         {
             Response.Redirect("~/UL/Default.aspx");
         }
+
+        //public User CreateUser (int id, string email, string password, string firstName, string lastName, bool isAdmin, string status)
+        //{
+        //    User user = new User()
+        //    {
+        //        Id = id,
+        //        Email = email,
+        //        Password = password,
+        //        FirstName = firstName,
+        //        LastName = lastName,
+        //        IsAdmin = isAdmin,
+        //        Status = status
+        //    };
+
+        //    return user;
+        //}
     }
 }

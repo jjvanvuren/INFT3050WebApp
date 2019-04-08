@@ -14,5 +14,19 @@ namespace INFT3050WebApp.BL
         public string LastName { get; set; }
         public bool IsAdmin { get; set; }
         public string Status { get; set; }
+
+        public User() { }
+
+        public User (int id, string email, string password, string firstName, string lastName, bool isAdmin, string status)
+        {
+            this.Id = id;
+            this.Email = email;
+            this.Password = password;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.IsAdmin = isAdmin;
+            this.Status = status;
+
+        }
     }
 }
