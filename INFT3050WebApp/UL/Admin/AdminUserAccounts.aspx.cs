@@ -13,5 +13,14 @@ namespace INFT3050WebApp.UL.Admin
         {
 
         }
+
+        protected void GridBooks_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "cmdView")
+            {
+                Response.Redirect("AdminUserAccount.aspx?id=" + e.CommandArgument);
+            }
+
+        }
     }
 }

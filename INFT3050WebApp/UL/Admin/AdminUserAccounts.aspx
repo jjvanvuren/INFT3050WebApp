@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
     <h2 class="text-center">User Accounts</h2>
-    <form runat="server">
+   <!-- <form runat="server">
         <div class="container-flex">
             <asp:ObjectDataSource ID="UserDataSource" runat="server" SelectMethod="GetUser" TypeName="INFT3050WebApp.DAL.DummyDB"></asp:ObjectDataSource>
             <asp:GridView ID="ItemManagment" runat="server" AutoGenerateColumns="false" DataSourceID="UserDataSource" AllowSorting="true">
@@ -55,7 +55,7 @@
                     <asp:BoundField DataField="LastName" HeaderText="Last Name" ><ItemStyle CssClass="col-xs-1" /></asp:BoundField>
                     <asp:BoundField DataField="IsAdmin" HeaderText="Admin Account" ><ItemStyle CssClass="col-xs-1" /></asp:BoundField>
                     <asp:BoundField DataField="Status" HeaderText="Acccount Status" ><ItemStyle CssClass="col-xs-1" /></asp:BoundField>
-
+                    <asp:ButtonField ButtonType="Button" CommandName="cmdView" Text="View Purchases" ControlStyle-CssClass="btn btn-success"/>
                     <asp:CommandField CausesValidation="True" ShowEditButton="True" ValidationGroup="Edit"> <ItemStyle CssClass="col-xs-2" /> </asp:CommandField>
                 
                 </Columns>
@@ -65,7 +65,6 @@
             <asp:ValidationSummary ID="ValidationSummary1" runat="server" HeaderText="Please correct the following errors:" ValidationGroup="Edit" CssClass="text-danger" />
 
         </div>
-    </form>
+    </form>-->
 
 </asp:Content>
-

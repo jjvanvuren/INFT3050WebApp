@@ -26,8 +26,21 @@
                 </button>
                 <asp:HyperLink CssClass="navbar-brand" href="Default.aspx" Text="Home Page" runat="server"><img src="../Images/768px-Books_Flat_Icon_Vector.png" alt="Used Book Store Logo" height="56" width="56" />Used Book Store - Admin</asp:HyperLink>
                 <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav mr-auto">
+                        <li class="dropdown">
+                            <a href="#" class="nav-link btn dropdown-toggle" data-toggle="dropdown" role="button">Tools</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/UL/Admin/AdminUserAccounts.aspx">User Accounts</a></li>
+                                <li><a class="dropdown-item" href="/UL/Admin/AdminPortal.aspx">Inventory Managment</a></li>
+                                <li><a class="dropdown-item" href="/UL/Admin/AdminOrdershipping.aspx">Orders Shipping</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                     <!-- Hidden by default -->
-                    <asp:HyperLink href="AdminLogin.aspx" ID="logoutLink" CssClass="nav-link" Title="Logout" runat="server"><i class="fa fa-sign-out"></i></asp:HyperLink>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item">
+                            <asp:HyperLink href="AdminLogin.aspx" ID="logoutLink" CssClass="nav-link" Title="Logout" runat="server"><i class="fa fa-sign-out"></i></asp:HyperLink></li>
+                    </ul>
                 </div>
             </div>
         </nav>
