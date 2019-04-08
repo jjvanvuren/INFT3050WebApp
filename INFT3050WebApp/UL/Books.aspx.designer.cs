@@ -13,22 +13,22 @@ namespace INFT3050WebApp.UL {
     public partial class Books {
         
         /// <summary>
-        /// lblTitle control.
+        /// bookDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitle;
+        protected global::System.Web.UI.WebControls.ObjectDataSource bookDataSource;
         
         /// <summary>
-        /// imgBook control.
+        /// GridBooks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgBook;
+        protected global::System.Web.UI.WebControls.GridView GridBooks;
         
         /// <summary>
         /// Master property.

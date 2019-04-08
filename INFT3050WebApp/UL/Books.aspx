@@ -11,13 +11,14 @@
         <!-- Get Data Source -->
         <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetBooks" TypeName="INFT3050WebApp.DAL.DummyDB"></asp:ObjectDataSource>
         <!-- Display all books using gridview -->
-        <asp:GridView ID="GridBooks" runat="server" AutoGenerateColumns="false" DataSourceID="bookDataSource">
+        <asp:GridView ID="GridBooks" runat="server" AutoGenerateColumns="false" DataSourceID="bookDataSource" OnRowCommand="GridBooks_RowCommand">
             <Columns>
-                <asp:ImageField DataImageUrlField="ThumbnailPath" >
+                <asp:ImageField DataImageUrlField="ThumbnailPath" > 
                 </asp:ImageField>
                 <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title"/>
                 <asp:BoundField DataField="ShortDescription" HeaderText="Description" SortExpression="ShortDescription"/>
                 <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price"/>
+                <asp:ButtonField ButtonType="Button" CommandName="View" Text="View" ControlStyle-CssClass="btn btn-success"/>
             </Columns>
         </asp:GridView>
 
