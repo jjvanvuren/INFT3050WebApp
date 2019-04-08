@@ -23,6 +23,9 @@ namespace INFT3050WebApp
         {
             if (IsValid)
             {
+                BL.CustomerSession session = new BL.CustomerSession();
+
+
                 Response.Redirect("~/UL/Customer.aspx");
             }
         }

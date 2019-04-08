@@ -63,5 +63,10 @@
         <%-- Register and Cancel buttons--%>
         <asp:Button ID="btnRegister" type="submit" CssClass="btn btn-primary" runat="server" Text="Register" OnClick="btnRegister_Click" />
         <asp:Button ID="btnCancel" type="cancel" CssClass="btn btn-secondary" runat="server" Text="Cancel" CausesValidation="false" OnClick="btnCancel_Click" />
+
+        <!-- MOVE THESE TEXT BOXES -->
+        <asp:TextBox ID="tbxFirstName" type="text" runat="server"></asp:TextBox>
+        <asp:TextBox ID="tbxLastName" type="text" runat="server"></asp:TextBox>
+
     </form>
 </asp:Content>
