@@ -122,7 +122,6 @@
     <Content Include="UL\Images\9781784751173_thumb.jpg" />
     <Content Include="UL\Images\9781786812445.jpg" />
     <Content Include="UL\Images\9781786812445_thumb.jpg" />
-    <Content Include="UL\Images\LightLibrary.jpg" />
     <Content Include="UL\Login.aspx" />
     <Content Include="UL\Logout.aspx" />
     <Content Include="UL\Register.aspx" />
