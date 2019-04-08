@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using INFT3050WebApp.BL;
 
 namespace INFT3050WebApp
 {
@@ -18,6 +19,31 @@ namespace INFT3050WebApp
             // Hide and disable the "Logout" link
             Master.LogoutLinkEnabled = false;
             Master.LogoutLinkVisible = false;
+
+            if (!IsPostBack)
+            {
+                var db = new DAL.DummyDB();
+                var books = db.GetBooks();
+
+                // Create list of best sellers and display them
+                List<Book> bestSellers = new List<Book>();
+                
+                foreach (Book book in books)
+                {
+                    if (book.IsBestSeller)
+                    {
+                        bestSellers.Add(book);
+                    }
+                }
+
+                ImageRepeater.DataSource = bestSellers;
+                ImageRepeater.DataBind();
+            }
+        }
+
+        protected void imgBestSeller_Command(object sender, CommandEventArgs e)
+        {
+            Response.Redirect("Book.aspx?id=" + e.CommandArgument);
         }
     }
 }
