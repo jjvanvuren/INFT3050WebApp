@@ -26,7 +26,7 @@ namespace INFT3050WebApp.UL.BackEnd
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/UL/BackEnd/BackEndLogin.aspx");
+            Response.Redirect("~/UL/Admin/AdminLogin.aspx");
         }
     }
 }

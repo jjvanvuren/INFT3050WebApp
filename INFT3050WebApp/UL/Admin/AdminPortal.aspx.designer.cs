@@ -13,6 +13,24 @@ namespace INFT3050WebApp.UL.BackEnd {
     public partial class BackEndEmployeePortal {
         
         /// <summary>
+        /// bookDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource bookDataSource;
+        
+        /// <summary>
+        /// ItemManagment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView ItemManagment;
+        
+        /// <summary>
         /// Master property.
         /// </summary>
         /// <remarks>

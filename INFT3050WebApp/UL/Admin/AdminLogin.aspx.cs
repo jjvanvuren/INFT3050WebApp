@@ -21,13 +21,13 @@ namespace INFT3050WebApp.UL.BackEnd
         {
             if (IsValid)
             {
-                Response.Redirect("~/UL/BackEnd/BackEndEmployeePortal.aspx");
+                Response.Redirect("~/UL/Admin/AdminEmployeePortal.aspx");
             }
         }
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-                Response.Redirect("~/UL/BackEnd/BackEndRegister.aspx");
+                Response.Redirect("~/UL/Admin/AdminRegister.aspx");
         }
 
         // Checks if Employee email exists

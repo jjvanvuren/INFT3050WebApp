@@ -1,5 +1,5 @@
-﻿<%@ Page Title="Employee Register" Language="C#" MasterPageFile="~/UL/BackEnd/BackEnd.Master" AutoEventWireup="true" CodeBehind="BackEndRegister.aspx.cs" Inherits="INFT3050WebApp.UL.BackEnd.BackEndRegister" %>
-<%@ MasterType VirtualPath="~/UL/BackEnd/BackEnd.Master" %>
+﻿<%@ Page Title="Employee Register" Language="C#" MasterPageFile="~/UL/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="AdminRegister.aspx.cs" Inherits="INFT3050WebApp.UL.BackEnd.BackEndRegister" %>
+<%@ MasterType VirtualPath="~/UL/Admin/Admin.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
