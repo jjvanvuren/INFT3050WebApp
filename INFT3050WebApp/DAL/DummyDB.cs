@@ -19,7 +19,8 @@ namespace INFT3050WebApp.DAL
         private BL.Book[] books;
         private BL.Author[] authors;
         private BL.Category[] categories;
-        private BL.User[]user;
+        private BL.User[] user;
+        private BL.PostageOption[] postageOption;
 
         // Default Constructor: Populates DummyDB with Dummy Data
         public DummyDB()
@@ -85,8 +86,16 @@ namespace INFT3050WebApp.DAL
                CreateDummyUser(id++, "francois@usedbooksales.com.au", "password", "Francois", "Janse van Vuren",true, "active")
             };
 
-
-
+            //Populate Postage Options
+            id = 0;
+            postageOption = new BL.PostageOption[]
+            {
+                CreatePostageOption(id++, "Pick Up", 0),
+                CreatePostageOption(id++, "AusPost", 5.99),
+                CreatePostageOption(id++, "AusPost Express", 9.99),
+                CreatePostageOption(id++, "Startrek", 3.99),
+                CreatePostageOption(id++, "Startrek Express", 7.99)
+            };
 
         }
 
@@ -141,7 +150,7 @@ namespace INFT3050WebApp.DAL
             return category;
         }
 
-        // Create Book: used to create dummy User objects
+        // Create User: used to create dummy User objects
         private BL.User CreateDummyUser(int id, string email, string password, string firstName, string lastName, bool isadmin, string status)
         {
             BL.User user = new BL.User()
@@ -156,6 +165,17 @@ namespace INFT3050WebApp.DAL
             };
 
             return user;
+        }
+        // Create PostageOption: Used to create dummy postage options
+        private BL.PostageOption CreatePostageOption(int id, string name, double price)
+        {
+            BL.PostageOption postageOption = new BL.PostageOption()
+            {
+                Id = id,
+                Name = name,
+                Price = price
+            };
+            return postageOption;
         }
 
         // get book list
@@ -172,11 +192,19 @@ namespace INFT3050WebApp.DAL
             return Array.Find(books, b => { return b.Id == id; });
         }
 
-        // get book list
+        // get user list
         [DataObjectMethod(DataObjectMethodType.Select)]
         public BL.User[] GetUsers()
         {
             return user;
+        }
+
+
+        // get postageoption list
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public BL.PostageOption[] GetPostageOptions()
+        {
+            return postageOption;
         }
     }
 }

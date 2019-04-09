@@ -4,15 +4,17 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+
     <h2 class="text-center">Inventory Managment</h2>
     <form runat="server">
         <div class="container-flex">
             <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetBooks" TypeName="INFT3050WebApp.DAL.DummyDB"></asp:ObjectDataSource>
-            <asp:GridView ID="ItemManagment" runat="server" AutoGenerateColumns="false" DataSourceID="bookDataSource" AllowSorting="true">
+            <asp:GridView ID="ItemManagment" runat="server" AutoGenerateColumns="false" DataSourceID="bookDataSource" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True">
                 <Columns>
-                    
-                    <asp:BoundField DataField="id" HeaderText="id" ReadOnly="True" SortExpression="id" ><ItemStyle CssClass="col-xs-1" /></asp:BoundField>
+
+                    <asp:BoundField DataField="Id" HeaderText="ID" ReadOnly="True" SortExpression="Id">
+                        <ItemStyle CssClass="col-xs-1" />
+                    </asp:BoundField>
                     <asp:TemplateField HeaderText="Title" SortExpression="Title">
                         <EditItemTemplate>
                             <div class="col-xs-11 col-edit">
@@ -20,9 +22,9 @@
                             </div>
                             <asp:RequiredFieldValidator ID="rfvGridTitle" runat="server" ControlToValidate="txtGridTitle" ValidationGroup="Edit" Text="*" ErrorMessage="Title is a required field" CssClass="text-danger"></asp:RequiredFieldValidator>
                         </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="lblGridTitle" runat="server" Text='<%# Bind("Title") %>'></asp:Label>
-                    </ItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="lblGridTitle" runat="server" Text='<%# Bind("Title") %>'></asp:Label>
+                        </ItemTemplate>
                         <ItemStyle CssClass="col-xs-3" />
                     </asp:TemplateField>
 
@@ -33,13 +35,18 @@
                             </div>
                             <asp:RequiredFieldValidator ID="rfvGridStockQuantity" runat="server" ControlToValidate="txtGridStockQuantity" ValidationGroup="Edit" Text="*" ErrorMessage="StockQuantity is a required field" CssClass="text-danger"></asp:RequiredFieldValidator>
                         </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="lblGridStockQuantity" runat="server" Text='<%# Bind("StockQuantity") %>'></asp:Label>
-                    </ItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="lblGridStockQuantity" runat="server" Text='<%# Bind("StockQuantity") %>'></asp:Label>
+                        </ItemTemplate>
                         <ItemStyle CssClass="col-xs-2" />
                     </asp:TemplateField>
 
-                    <asp:BoundField DataField="ImagePath" HeaderText="Image Path" ><ItemStyle CssClass="col-xs-3" /></asp:BoundField>
+                    <asp:BoundField DataField="ImagePath" HeaderText="Image Path">
+                        <ItemStyle CssClass="col-xs-3" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="ThumbnailPath" HeaderText="Thumbnail Image Path">
+                        <ItemStyle CssClass="col-xs-3" />
+                    </asp:BoundField>
 
                     <asp:TemplateField HeaderText="Price">
                         <EditItemTemplate>
@@ -48,14 +55,16 @@
                             </div>
                             <asp:RequiredFieldValidator ID="rfvGridPrice" runat="server" ControlToValidate="txtGridPrice" ValidationGroup="Edit" Text="*" ErrorMessage="Price is a required field" CssClass="text-danger"></asp:RequiredFieldValidator>
                         </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="lblGridPrice" runat="server" Text='<%# Bind("Price") %>'></asp:Label>
-                    </ItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="lblGridPrice" runat="server" Text='<%# Bind("Price") %>'></asp:Label>
+                        </ItemTemplate>
                         <ItemStyle CssClass="col-xs-1" />
                     </asp:TemplateField>
 
-                    <asp:CommandField CausesValidation="True" ShowEditButton="True" ValidationGroup="Edit"> <ItemStyle CssClass="col-xs-2" /> </asp:CommandField>
-                
+                    <asp:CommandField CausesValidation="True" ShowEditButton="True" ValidationGroup="Edit">
+                        <ItemStyle CssClass="col-xs-2" />
+                    </asp:CommandField>
+
                 </Columns>
                 <EditRowStyle CssClass="warning" />
             </asp:GridView>

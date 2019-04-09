@@ -95,7 +95,7 @@
     <Content Include="UL\About.aspx" />
     <Content Include="UL\Admin\AdminOrderShipping.aspx" />
     <Content Include="UL\Admin\AdminUserAccounts.aspx" />
-    <Content Include="UL\Admin\AdminUserPurchaseHistory.aspx" />
+    <Content Include="UL\Admin\AdminPostageOptions.aspx" />
     <Content Include="UL\Book.aspx" />
     <Content Include="UL\Books.aspx" />
     <Content Include="UL\Cart.aspx" />
@@ -174,6 +174,7 @@
     <Compile Include="BL\Category.cs" />
     <Compile Include="BL\Customer.cs" />
     <Compile Include="BL\CustomerSession.cs" />
+    <Compile Include="BL\PostageOption.cs" />
     <Compile Include="BL\StoreItem.cs" />
     <Compile Include="BL\User.cs" />
     <Compile Include="UL\About.aspx.cs">
@@ -197,12 +198,12 @@
     <Compile Include="UL\Admin\AdminUserAccounts.aspx.designer.cs">
       <DependentUpon>AdminUserAccounts.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UL\Admin\AdminUserPurchaseHistory.aspx.cs">
-      <DependentUpon>AdminUserPurchaseHistory.aspx</DependentUpon>
+    <Compile Include="UL\Admin\AdminPostageOptions.aspx.cs">
+      <DependentUpon>AdminPostageOptions.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UL\Admin\AdminUserPurchaseHistory.aspx.designer.cs">
-      <DependentUpon>AdminUserPurchaseHistory.aspx</DependentUpon>
+    <Compile Include="UL\Admin\AdminPostageOptions.aspx.designer.cs">
+      <DependentUpon>AdminPostageOptions.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Book.aspx.cs">
       <DependentUpon>Book.aspx</DependentUpon>
