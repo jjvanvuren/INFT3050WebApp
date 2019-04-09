@@ -28,5 +28,10 @@ namespace INFT3050WebApp.UL
         {
 
         }
+
+        protected void btnCheckout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/UL/Checkout.aspx");
+        }
     }
 }
