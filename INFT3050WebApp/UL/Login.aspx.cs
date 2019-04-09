@@ -4,18 +4,29 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using INFT3050WebApp.BL;
 
 namespace INFT3050WebApp
 {
     public partial class Login : System.Web.UI.Page
     {
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Check if user is logged in to use correct master page
+            if (Session["customerSession"] != null)
+            {
+                Page.MasterPageFile = "~/UL/Customer.Master";
+            }
+            else
+            {
+                Page.MasterPageFile = "~/UL/Site.Master";
+            }
+
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            Master.AccountLinkEnabled = false;
-            Master.AccountLinkVisible = false;
 
-            Master.LogoutLinkEnabled = false;
-            Master.LogoutLinkVisible = false;
         }
 
         // Validate email and password. If successful redirect to Customer.aspx
@@ -23,8 +34,16 @@ namespace INFT3050WebApp
         {
             if (IsValid)
             {
-                BL.CustomerSession session = new BL.CustomerSession();
+                Session.Clear();
 
+                CustomerSession currentCustomerSession = new CustomerSession()
+                {
+                    Email = tbxEmail.Text,
+                    Name = "Joe Smith",
+                    LoggedIn = true
+                };
+
+                Session["customerSession"] = currentCustomerSession;
 
                 Response.Redirect("~/UL/Customer.aspx");
             }
