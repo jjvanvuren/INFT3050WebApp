@@ -73,22 +73,10 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Customer.aspx" />
-    <Content Include="Default.aspx" />
-    <Content Include="Global.asax" />
-    <Content Include="Login.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\esm\popper-utils.js" />
-    <Content Include="Scripts\esm\popper-utils.min.js" />
-    <Content Include="Scripts\esm\popper.js" />
-    <Content Include="Scripts\esm\popper.min.js" />
-    <Content Include="Scripts\esm\popper.min.js.map" />
-    <Content Include="Scripts\esm\popper.js.map" />
-    <Content Include="Scripts\esm\popper-utils.min.js.map" />
-    <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
@@ -104,6 +92,58 @@
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="UL\About.aspx" />
+    <Content Include="UL\Admin\AdminOrderShipping.aspx" />
+    <Content Include="UL\Admin\AdminUserAccounts.aspx" />
+    <Content Include="UL\Admin\AdminUserPurchaseHistory.aspx" />
+    <Content Include="UL\Book.aspx" />
+    <Content Include="UL\Books.aspx" />
+    <Content Include="UL\Cart.aspx" />
+    <Content Include="UL\Admin\AdminPortal.aspx" />
+    <Content Include="UL\Admin\AdminLogin.aspx" />
+    <Content Include="UL\Admin\AdminRegister.aspx" />
+    <Content Include="UL\Contact.aspx" />
+    <Content Include="Content\bootstrapDarkly.min.css" />
+    <Content Include="Content\bootstrapFlatly.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="UL\Customer.aspx" />
+    <Content Include="UL\Default.aspx" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="UL\Global.asax" />
+    <Content Include="UL\Images\768px-Books_Flat_Icon_Vector.png" />
+    <Content Include="UL\Images\9780008152406.jpg" />
+    <Content Include="UL\Images\9780008152406_thumb.jpg" />
+    <Content Include="UL\Images\9780753555644.jpg" />
+    <Content Include="UL\Images\9780753555644_thumb.jpg" />
+    <Content Include="UL\Images\9780813056173.jpg" />
+    <Content Include="UL\Images\9780813056173_thumb.jpg" />
+    <Content Include="UL\Images\9780847846597.jpg" />
+    <Content Include="UL\Images\9780847846597_thumb.jpg" />
+    <Content Include="UL\Images\9781473635487.jpg" />
+    <Content Include="UL\Images\9781473635487_thumb.jpg" />
+    <Content Include="UL\Images\9781503903265.jpg" />
+    <Content Include="UL\Images\9781503903265_thumb.jpg" />
+    <Content Include="UL\Images\9781784751173.jpg" />
+    <Content Include="UL\Images\9781784751173_thumb.jpg" />
+    <Content Include="UL\Images\9781786812445.jpg" />
+    <Content Include="UL\Images\9781786812445_thumb.jpg" />
+    <Content Include="UL\Login.aspx" />
+    <Content Include="UL\Logout.aspx" />
+    <Content Include="UL\Register.aspx" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -112,6 +152,9 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="UL\Search.aspx" />
+    <Content Include="UL\SuccessfulRegistration.aspx" />
+    <Content Include="Content\UsedBooks.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -122,46 +165,168 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Site.Master" />
+    <Content Include="UL\Site.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer.aspx.cs">
+    <Compile Include="BL\Address.cs" />
+    <Compile Include="BL\Author.cs" />
+    <Compile Include="BL\Book.cs" />
+    <Compile Include="BL\Category.cs" />
+    <Compile Include="BL\Customer.cs" />
+    <Compile Include="BL\CustomerSession.cs" />
+    <Compile Include="BL\StoreItem.cs" />
+    <Compile Include="BL\User.cs" />
+    <Compile Include="UL\About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminOrderShipping.aspx.cs">
+      <DependentUpon>AdminOrderShipping.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminOrderShipping.aspx.designer.cs">
+      <DependentUpon>AdminOrderShipping.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminUserAccounts.aspx.cs">
+      <DependentUpon>AdminUserAccounts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminUserAccounts.aspx.designer.cs">
+      <DependentUpon>AdminUserAccounts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminUserPurchaseHistory.aspx.cs">
+      <DependentUpon>AdminUserPurchaseHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminUserPurchaseHistory.aspx.designer.cs">
+      <DependentUpon>AdminUserPurchaseHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Book.aspx.cs">
+      <DependentUpon>Book.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Book.aspx.designer.cs">
+      <DependentUpon>Book.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Books.aspx.cs">
+      <DependentUpon>Books.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Books.aspx.designer.cs">
+      <DependentUpon>Books.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminPortal.aspx.cs">
+      <DependentUpon>AdminPortal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminPortal.aspx.designer.cs">
+      <DependentUpon>AdminPortal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminLogin.aspx.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminLogin.aspx.designer.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminRegister.aspx.cs">
+      <DependentUpon>AdminRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminRegister.aspx.designer.cs">
+      <DependentUpon>AdminRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Customer.aspx.cs">
       <DependentUpon>Customer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Customer.aspx.designer.cs">
+    <Compile Include="UL\Customer.aspx.designer.cs">
       <DependentUpon>Customer.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
+    <Compile Include="DAL\DummyDB.cs" />
+    <Compile Include="UL\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
+    <Compile Include="UL\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Global.asax.cs">
+    <Compile Include="UL\Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Login.aspx.cs">
+    <Compile Include="UL\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login.aspx.designer.cs">
+    <Compile Include="UL\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Site.Master.cs">
+    <Compile Include="UL\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Site.Master.designer.cs">
+    <Compile Include="UL\Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UL\SuccessfulRegistration.aspx.cs">
+      <DependentUpon>SuccessfulRegistration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\SuccessfulRegistration.aspx.designer.cs">
+      <DependentUpon>SuccessfulRegistration.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="UL\Admin\Admin.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
