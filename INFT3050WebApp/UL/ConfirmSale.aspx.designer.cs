@@ -10,15 +10,15 @@
 namespace INFT3050WebApp.UL {
     
     
-    public partial class Cart {
+    public partial class ConfirmSale {
         
         /// <summary>
-        /// btnCheckout control.
+        /// confirmSaleMessageLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCheckout;
+        protected global::System.Web.UI.WebControls.Label confirmSaleMessageLabel;
     }
 }
