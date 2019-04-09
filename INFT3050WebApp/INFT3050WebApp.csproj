@@ -93,9 +93,15 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="UL\About.aspx" />
+    <Content Include="UL\Admin\AdminOrderShipping.aspx" />
+    <Content Include="UL\Admin\AdminUserAccounts.aspx" />
+    <Content Include="UL\Admin\AdminPostageOptions.aspx" />
     <Content Include="UL\Book.aspx" />
     <Content Include="UL\Books.aspx" />
     <Content Include="UL\Cart.aspx" />
+    <Content Include="UL\Admin\AdminPortal.aspx" />
+    <Content Include="UL\Admin\AdminLogin.aspx" />
+    <Content Include="UL\Admin\AdminRegister.aspx" />
     <Content Include="UL\Contact.aspx" />
     <Content Include="Content\bootstrapDarkly.min.css" />
     <Content Include="Content\bootstrapFlatly.min.css" />
@@ -122,9 +128,9 @@
     <Content Include="UL\Images\9781784751173_thumb.jpg" />
     <Content Include="UL\Images\9781786812445.jpg" />
     <Content Include="UL\Images\9781786812445_thumb.jpg" />
-    <Content Include="UL\Images\LightLibrary.jpg" />
     <Content Include="UL\Login.aspx" />
     <Content Include="UL\Logout.aspx" />
+    <Content Include="UL\PurchaseHistory.aspx" />
     <Content Include="UL\Register.aspx" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
@@ -169,6 +175,7 @@
     <Compile Include="BL\Category.cs" />
     <Compile Include="BL\Customer.cs" />
     <Compile Include="BL\CustomerSession.cs" />
+    <Compile Include="BL\PostageOption.cs" />
     <Compile Include="BL\StoreItem.cs" />
     <Compile Include="BL\User.cs" />
     <Compile Include="UL\About.aspx.cs">
@@ -177,6 +184,27 @@
     </Compile>
     <Compile Include="UL\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminOrderShipping.aspx.cs">
+      <DependentUpon>AdminOrderShipping.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminOrderShipping.aspx.designer.cs">
+      <DependentUpon>AdminOrderShipping.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminUserAccounts.aspx.cs">
+      <DependentUpon>AdminUserAccounts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminUserAccounts.aspx.designer.cs">
+      <DependentUpon>AdminUserAccounts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminPostageOptions.aspx.cs">
+      <DependentUpon>AdminPostageOptions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminPostageOptions.aspx.designer.cs">
+      <DependentUpon>AdminPostageOptions.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Book.aspx.cs">
       <DependentUpon>Book.aspx</DependentUpon>
@@ -199,6 +227,34 @@
     <Compile Include="UL\Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UL\Admin\Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminPortal.aspx.cs">
+      <DependentUpon>AdminPortal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminPortal.aspx.designer.cs">
+      <DependentUpon>AdminPortal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminLogin.aspx.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminLogin.aspx.designer.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminRegister.aspx.cs">
+      <DependentUpon>AdminRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminRegister.aspx.designer.cs">
+      <DependentUpon>AdminRegister.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UL\Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -214,6 +270,13 @@
       <DependentUpon>Customer.aspx</DependentUpon>
     </Compile>
     <Compile Include="DAL\DummyDB.cs" />
+    <Compile Include="UL\Customer.Master.cs">
+      <DependentUpon>Customer.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Customer.Master.designer.cs">
+      <DependentUpon>Customer.Master</DependentUpon>
+    </Compile>
     <Compile Include="UL\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -239,6 +302,13 @@
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UL\PurchaseHistory.aspx.cs">
+      <DependentUpon>PurchaseHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\PurchaseHistory.aspx.designer.cs">
+      <DependentUpon>PurchaseHistory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UL\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -272,6 +342,8 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="UL\Admin\Admin.Master" />
+    <Content Include="UL\Customer.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

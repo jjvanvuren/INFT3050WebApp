@@ -22,24 +22,6 @@ namespace INFT3050WebApp {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
-        /// registerLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink registerLink;
-        
-        /// <summary>
-        /// accountLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink accountLink;
-        
-        /// <summary>
         /// searchLink control.
         /// </summary>
         /// <remarks>
@@ -49,13 +31,13 @@ namespace INFT3050WebApp {
         protected global::System.Web.UI.WebControls.HyperLink searchLink;
         
         /// <summary>
-        /// cartLink control.
+        /// registerLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink cartLink;
+        protected global::System.Web.UI.WebControls.HyperLink registerLink;
         
         /// <summary>
         /// loginLink control.
@@ -65,15 +47,6 @@ namespace INFT3050WebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink loginLink;
-        
-        /// <summary>
-        /// logoutLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink logoutLink;
         
         /// <summary>
         /// ContentPlaceHolder1 control.

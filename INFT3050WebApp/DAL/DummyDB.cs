@@ -19,6 +19,8 @@ namespace INFT3050WebApp.DAL
         private BL.Book[] books;
         private BL.Author[] authors;
         private BL.Category[] categories;
+        private BL.User[] user;
+        private BL.PostageOption[] postageOption;
 
         // Default Constructor: Populates DummyDB with Dummy Data
         public DummyDB()
@@ -66,10 +68,39 @@ namespace INFT3050WebApp.DAL
                 CreateDummyBook(id++, 23.36, 20, "/UL/Images/9780753555644.jpg", "/UL/Images/9780753555644_thumb.jpg", "9780753555644", new DateTime (2016,03,10), "Elon Musk", "", authors[id-2], categories[id-1], "Ebury Publishing", true)
             };
 
+            //Populate users
+            id = 0;
+            user = new BL.User[]
+            {
+                // Add user
+               CreateDummyUser(id++, "joe@example.com", "password", "Joe", "",false, "active"),
+               CreateDummyUser(id++, "james@example.com", "password", "James", "Smith",false, "inactive"),
+               CreateDummyUser(id++, "sara@example.com", "password", "Sara", "Headges",false, "active"),
+               CreateDummyUser(id++, "alex@usedbooksales.com.au", "password", "Alex", "Budwill",true, "active"),
+               CreateDummyUser(id++, "patrick@usedbooksales.com.au", "password", "Patrick", "Foley",true, "active"),
+               CreateDummyUser(id++, "derrick@example.com", "password", "Derrick", "Hardy",false, "active"),
+               CreateDummyUser(id++, "soli@example.com", "password", "Soli", "Soliman",false, "inactive"),
+               CreateDummyUser(id++, "chelsea@example.com", "password", "chelsea", "Gordon",false, "inactive"),
+               CreateDummyUser(id++, "karl@usedbooksales.com.au", "password", "Karl", "Foley",true, "active"),
+               CreateDummyUser(id++, "jacques@usedbooksales.com.au", "password", "Jacques", "Janse van Vuren",true, "active"),
+               CreateDummyUser(id++, "francois@usedbooksales.com.au", "password", "Francois", "Janse van Vuren",true, "active")
+            };
+
+            //Populate Postage Options
+            id = 0;
+            postageOption = new BL.PostageOption[]
+            {
+                CreatePostageOption(id++, "Pick Up", 0),
+                CreatePostageOption(id++, "AusPost", 5.99),
+                CreatePostageOption(id++, "AusPost Express", 9.99),
+                CreatePostageOption(id++, "Startrek", 3.99),
+                CreatePostageOption(id++, "Startrek Express", 7.99)
+            };
+
         }
 
-        // Create Book: used to create dummy Book objects
-        private BL.Book CreateDummyBook(int id, double price, int quantity, string image, string thumbImage, string isbn, DateTime datePublished,
+    // Create Book: used to create dummy Book objects
+    private BL.Book CreateDummyBook(int id, double price, int quantity, string image, string thumbImage, string isbn, DateTime datePublished,
             string title, string secondTitle, BL.Author author, BL.Category category, string publisher, bool isBestSell)
         {
             BL.Book book = new BL.Book()
@@ -119,6 +150,34 @@ namespace INFT3050WebApp.DAL
             return category;
         }
 
+        // Create User: used to create dummy User objects
+        private BL.User CreateDummyUser(int id, string email, string password, string firstName, string lastName, bool isadmin, string status)
+        {
+            BL.User user = new BL.User()
+            {
+                Id = id,
+                Email = email,
+                Password = password,
+                FirstName = firstName,
+                LastName = lastName,
+                IsAdmin = isadmin,
+                Status = status
+            };
+
+            return user;
+        }
+        // Create PostageOption: Used to create dummy postage options
+        private BL.PostageOption CreatePostageOption(int id, string name, double price)
+        {
+            BL.PostageOption postageOption = new BL.PostageOption()
+            {
+                Id = id,
+                Name = name,
+                Price = price
+            };
+            return postageOption;
+        }
+
         // get book list
         [DataObjectMethod(DataObjectMethodType.Select)]
         public BL.Book[] GetBooks()
@@ -133,5 +192,19 @@ namespace INFT3050WebApp.DAL
             return Array.Find(books, b => { return b.Id == id; });
         }
 
+        // get user list
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public BL.User[] GetUsers()
+        {
+            return user;
+        }
+
+
+        // get postageoption list
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public BL.PostageOption[] GetPostageOptions()
+        {
+            return postageOption;
+        }
     }
 }

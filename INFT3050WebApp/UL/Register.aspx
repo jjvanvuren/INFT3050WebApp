@@ -11,6 +11,23 @@
         <div>
             <asp:ValidationSummary ID="vsRegister" runat="server" CssClass="alert-danger" HeaderText="Please correct these issues" />
         </div>
+        <!-- Firstname and Lastname entry fields -->
+        <div class="form-group">
+            <!-- Firstname -->
+            <asp:Label ID="lblFirstName" runat="server" Text="Name"></asp:Label>
+            <asp:TextBox ID="tbxFirstName" type="text" runat="server" CssClass="form-control"></asp:TextBox>   
+
+            <%-- Password Confirmation Validation --%>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" CssClass="text-danger" ErrorMessage="Please enter your Name"
+                ControlToValidate="tbxFirstName">First Name Required</asp:RequiredFieldValidator>
+        </div>
+
+        <div class="form-group">
+             <!-- Lastname -->
+            <asp:Label ID="lblLastName" runat="server" Text="Last Name"></asp:Label>
+            <asp:TextBox ID="tbxLastName" type="text" runat="server" CssClass="form-control"></asp:TextBox>     
+        </div>
+
         <%-- Email --%>
         <div class="form-group">
             <%-- Email entry field --%>
@@ -27,7 +44,7 @@
         <div class="form-group">
             <%-- Email confirmation field --%>
             <asp:Label ID="lblEmailConfirm" runat="server" Text="Confirm email address"></asp:Label>
-            <asp:TextBox ID="tbxEmailConfirm" runat="server" type="email" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="tbxEmailConfirm" runat="server" type="email" CssClass="form-control" autocomplete="off"></asp:TextBox>
 
 
             <%-- Email confirmation field validation --%>
@@ -64,9 +81,8 @@
         <asp:Button ID="btnRegister" type="submit" CssClass="btn btn-primary" runat="server" Text="Register" OnClick="btnRegister_Click" />
         <asp:Button ID="btnCancel" type="cancel" CssClass="btn btn-secondary" runat="server" Text="Cancel" CausesValidation="false" OnClick="btnCancel_Click" />
 
-        <!-- MOVE THESE TEXT BOXES -->
-        <asp:TextBox ID="tbxFirstName" type="text" runat="server"></asp:TextBox>
-        <asp:TextBox ID="tbxLastName" type="text" runat="server"></asp:TextBox>
+
+
 
     </form>
 </asp:Content>

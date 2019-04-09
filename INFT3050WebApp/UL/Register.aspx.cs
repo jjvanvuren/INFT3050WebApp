@@ -10,15 +10,23 @@ namespace INFT3050WebApp
 {
     public partial class Register : System.Web.UI.Page
     {
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Check if user is logged in to use correct master page
+            if (Session["customerSession"] != null)
+            {
+                Page.MasterPageFile = "~/UL/Customer.Master";
+            }
+            else
+            {
+                Page.MasterPageFile = "~/UL/Site.Master";
+            }
+
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Hide and disable the "My Account" link
-            Master.AccountLinkEnabled = false;
-            Master.AccountLinkVisible = false;
 
-            // Hide and disable the "Logout" link
-            Master.LogoutLinkEnabled = false;
-            Master.LogoutLinkVisible = false;
         }
 
         protected void btnRegister_Click(object sender, EventArgs e)
@@ -26,7 +34,7 @@ namespace INFT3050WebApp
             if (IsValid)
             {
                 // Create a new user based on info entered
-                User registeredUser = CreateUser(0, tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, false, "Active");
+                User registeredUser = new User(0, tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, false, "Active");
 
                 // Data to be retained in session
                 CustomerSession currentCustomerSession = new CustomerSession
@@ -47,20 +55,20 @@ namespace INFT3050WebApp
             Response.Redirect("~/UL/Default.aspx");
         }
 
-        public User CreateUser (int id, string email, string password, string firstName, string lastName, bool isAdmin, string status)
-        {
-            User user = new User()
-            {
-                Id = id,
-                Email = email,
-                Password = password,
-                FirstName = firstName,
-                LastName = lastName,
-                IsAdmin = isAdmin,
-                Status = status
-            };
+        //public User CreateUser (int id, string email, string password, string firstName, string lastName, bool isAdmin, string status)
+        //{
+        //    User user = new User()
+        //    {
+        //        Id = id,
+        //        Email = email,
+        //        Password = password,
+        //        FirstName = firstName,
+        //        LastName = lastName,
+        //        IsAdmin = isAdmin,
+        //        Status = status
+        //    };
 
-            return user;
-        }
+        //    return user;
+        //}
     }
 }

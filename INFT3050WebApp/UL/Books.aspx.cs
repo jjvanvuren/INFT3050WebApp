@@ -9,6 +9,21 @@ namespace INFT3050WebApp.UL
 {
     public partial class Books : System.Web.UI.Page
     {
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Check if user is logged in to use correct master page
+            if (Session["customerSession"] != null)
+            {
+                Page.MasterPageFile = "~/UL/Customer.Master";
+            }
+            else
+            {
+                Page.MasterPageFile = "~/UL/Site.Master";
+            }
+
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -16,7 +31,11 @@ namespace INFT3050WebApp.UL
 
         protected void GridBooks_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            Response.Redirect("Book.aspx?id=" + e.CommandArgument);
+            if  (e.CommandName == "cmdView")
+            {
+                Response.Redirect("Book.aspx?id=" + e.CommandArgument);
+            }
+
         }
     }
 }

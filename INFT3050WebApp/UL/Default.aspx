@@ -14,10 +14,10 @@
                 <asp:Repeater ID="ImageRepeater" runat="server">
                     <ItemTemplate>
 
-                        <div class="col-md-4">
-                            <div class="img-thumbnail">
-                                <asp:ImageButton ID="imgBestSeller" runat="server" ImageUrl='<%# Eval("ThumbnailPath") %>' OnCommand="imgBestSeller_Command" CommandArgument='<%# Eval("Id") %>' />
-                                <div class="caption">
+                        <div class="col-sm-4 col-md-3 col-lg-3 col-xl-3">
+                            <div class="img-thumbnail border-0">
+                                <asp:ImageButton ID="imgBestSeller" CssClass="mx-auto d-block" runat="server" ImageUrl='<%# Eval("ThumbnailPath") %>' OnCommand="imgBestSeller_Command" CommandArgument='<%# Eval("Id") %>' />
+                                <div class="figure-caption text-center">
                                     <p><%# Eval("Title")%></p>
                                 </div>
                             </div>
