@@ -21,6 +21,7 @@ namespace INFT3050WebApp.DAL
         private BL.Category[] categories;
         private BL.User[] user;
         private BL.PostageOption[] postageOption;
+        private BL.Order[] orders;
 
         // Default Constructor: Populates DummyDB with Dummy Data
         public DummyDB()
@@ -97,6 +98,21 @@ namespace INFT3050WebApp.DAL
                 CreatePostageOption(id++, "Startrek Express", 7.99)
             };
 
+            id = 0;
+            orders = new BL.Order[]
+            {
+                CreateDummyOrders(id++,1,id++,"shipped",10,4.99, "4/5/2019"),
+                CreateDummyOrders(id++,1,id++,"WaitingShip",10,14.99, "3/7/2019"),
+                CreateDummyOrders(id++,1,id++,"shipped",10,4.99, "4/7/2019"),
+                CreateDummyOrders(id++,1,id++,"shipped",10,20.99, "4/12/2019"),
+                CreateDummyOrders(id++,1,id++,"shipped",10,31.99, "23/9/2019"),
+                CreateDummyOrders(id++,1,id++,"shipped",10,2.99, "28/5/2019"),
+                CreateDummyOrders(id++,1,id++,"shipped",10,5.99, "22/9/2019"),
+                CreateDummyOrders(id++,1,id++,"shipped",10,6.99, "2/10/2019"),
+                CreateDummyOrders(id++,1,id++,"shipped",10,8.99, "3/3/2019"),
+                CreateDummyOrders(id++,1,id++,"shipped",10,7.99, "1/2/2019")
+            };
+
         }
 
     // Create Book: used to create dummy Book objects
@@ -166,6 +182,24 @@ namespace INFT3050WebApp.DAL
 
             return user;
         }
+
+        // Create User: used to create dummy User objects
+        private BL.Order CreateDummyOrders(int OrderId, int UserId, int PurchaseId, string OrderStatus, int gst, double total, String DateOrdered)
+        {
+            BL.Order order = new BL.Order()
+            {
+                orderId = OrderId,
+                userId = UserId,
+                purchaseId = PurchaseId,
+                orderStatus = OrderStatus,
+                GST = gst,
+                Total = total,
+                dateOrderd = DateOrdered
+            };
+
+            return order;
+        }
+
         // Create PostageOption: Used to create dummy postage options
         private BL.PostageOption CreatePostageOption(int id, string name, double price)
         {
@@ -206,5 +240,13 @@ namespace INFT3050WebApp.DAL
         {
             return postageOption;
         }
+
+        // find orders
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public BL.Order[] GetOrderById()
+        {
+            return orders;
+        }
+
     }
 }

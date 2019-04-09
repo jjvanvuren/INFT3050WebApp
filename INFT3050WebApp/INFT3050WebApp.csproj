@@ -94,6 +94,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="UL\About.aspx" />
     <Content Include="UL\Admin\AdminOrderShipping.aspx" />
+    <Content Include="UL\Admin\AdminPurchaseHistory.aspx" />
     <Content Include="UL\Admin\AdminUserAccounts.aspx" />
     <Content Include="UL\Admin\AdminPostageOptions.aspx" />
     <Content Include="UL\Book.aspx" />
@@ -102,6 +103,8 @@
     <Content Include="UL\Admin\AdminPortal.aspx" />
     <Content Include="UL\Admin\AdminLogin.aspx" />
     <Content Include="UL\Admin\AdminRegister.aspx" />
+    <Content Include="UL\Checkout.aspx" />
+    <Content Include="UL\ConfirmSale.aspx" />
     <Content Include="UL\Contact.aspx" />
     <Content Include="Content\bootstrapDarkly.min.css" />
     <Content Include="Content\bootstrapFlatly.min.css" />
@@ -173,6 +176,7 @@
     <Compile Include="BL\Author.cs" />
     <Compile Include="BL\Book.cs" />
     <Compile Include="BL\Category.cs" />
+    <Compile Include="BL\Order.cs" />
     <Compile Include="BL\UserSession.cs" />
     <Compile Include="BL\Customer.cs" />
     <Compile Include="BL\CustomerSession.cs" />
@@ -192,6 +196,13 @@
     </Compile>
     <Compile Include="UL\Admin\AdminOrderShipping.aspx.designer.cs">
       <DependentUpon>AdminOrderShipping.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminPurchaseHistory.aspx.cs">
+      <DependentUpon>AdminPurchaseHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminPurchaseHistory.aspx.designer.cs">
+      <DependentUpon>AdminPurchaseHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Admin\AdminUserAccounts.aspx.cs">
       <DependentUpon>AdminUserAccounts.aspx</DependentUpon>
@@ -255,6 +266,20 @@
     </Compile>
     <Compile Include="UL\Admin\AdminRegister.aspx.designer.cs">
       <DependentUpon>AdminRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\ConfirmSale.aspx.cs">
+      <DependentUpon>ConfirmSale.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\ConfirmSale.aspx.designer.cs">
+      <DependentUpon>ConfirmSale.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>

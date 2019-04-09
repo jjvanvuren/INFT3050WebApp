@@ -114,6 +114,7 @@ CREATE TABLE customerAddress(
 CREATE TABLE order(
 	orderId VARCHAR(30) NOT NULL,
 	userId VARCHAR(30) NOT NULL,
+	paymentId VARCHAR(30) NOT NULL,
 	orderStatus VARCHAR(30) NOT NULL,
 	GST INTEGER(2),
 	shippingCost DECIMAL(7,2) DEFAULT 0.0,
@@ -121,6 +122,7 @@ CREATE TABLE order(
 	dateOrderd Date
 	Primary key (orderId)
 	Foreign key(userId) references customer(userId)ON DELETE NO ACTION ON UPDATE CASCADE
+	Foreign key(paymentId) references payment(paymentId)ON DELETE NO ACTION ON UPDATE CASCADE
 )
 
 CREATE TABLE orderItem(
@@ -134,10 +136,8 @@ CREATE TABLE orderItem(
 
 CREATE TABLE payment(
 	paymentId VARCHAR(30) NOT NULL,
-	orderId VARCHAR(30) NOT NULL,
 	datePayed Date,
 	total DECIMAL(7,2) DEFAULT 0.0
 	Primary key (orderId)
-	Foreign key(orderId) references order(orderId)ON DELETE CASCADE ON UPDATE CASCADE
 )
 
