@@ -28,5 +28,19 @@ namespace INFT3050WebApp
         {
 
         }
+
+        protected void GridSearch_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "cmdView")
+            {
+                Response.Redirect("Book.aspx?id=" + e.CommandArgument);
+            }
+
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
