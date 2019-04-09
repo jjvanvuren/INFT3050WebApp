@@ -26,12 +26,12 @@ namespace INFT3050WebApp.UL
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // get id from query string and try to parse
+            // Get ID and try parse
             var idString = Request.QueryString["id"];
             int id;
             if (!string.IsNullOrEmpty(idString) && int.TryParse(idString, out id))
             {
-                // using dummy database
+                // Create dummyDB
                 DAL.DummyDB db = new DAL.DummyDB();
 
                 if (!IsPostBack)
@@ -40,7 +40,7 @@ namespace INFT3050WebApp.UL
                     var book = db.GetBookById(id);
                     if (book != null)
                     {
-                        // set up page elements
+                        // Use data for page elements
                         lblTitle.Text = book.Title;
                         imgBook.ImageUrl = book.ImagePath;
                         lblDescription.Text = book.LongDescription;
