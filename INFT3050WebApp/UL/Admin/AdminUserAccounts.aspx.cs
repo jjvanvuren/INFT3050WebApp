@@ -21,7 +21,7 @@ namespace INFT3050WebApp.UL.Admin
         {
             if (e.CommandName == "cmdView")
             {
-                Response.Redirect("AdminUserAccount.aspx?id=" + e.CommandArgument);
+                Response.Redirect("AdminPurchaseHistory.aspx?id=" + e.CommandArgument);
             }
 
         }

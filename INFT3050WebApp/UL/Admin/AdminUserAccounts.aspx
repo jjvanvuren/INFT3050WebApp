@@ -9,7 +9,7 @@
     <form runat="server">
         <div class="container-flex">
             <asp:ObjectDataSource ID="UserDataSource" runat="server" SelectMethod="GetUsers" TypeName="INFT3050WebApp.DAL.DummyDB"></asp:ObjectDataSource>
-            <asp:GridView ID="ItemManagment" runat="server" AutoGenerateColumns="false" DataSourceID="UserDataSource" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True">
+            <asp:GridView ID="ItemManagment" runat="server" AutoGenerateColumns="false" DataSourceID="UserDataSource" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True" OnRowCommand=" GridBooks_RowCommand">
                 <Columns>
 
                     <asp:BoundField DataField="Id" HeaderText="ID" ReadOnly="True" SortExpression="Id">
