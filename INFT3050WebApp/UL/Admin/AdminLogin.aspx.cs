@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using INFT3050WebApp.BL;
 
 namespace INFT3050WebApp.UL.BackEnd
 {
@@ -21,6 +22,17 @@ namespace INFT3050WebApp.UL.BackEnd
         {
             if (IsValid)
             {
+                Session.Clear();
+
+                UserSession currentUserSession = new UserSession()
+                {
+                    Email = tbxEmail.Text,
+                    Name = "Joe Smith",
+                    LoggedIn = true
+                };
+
+                Session["UserSession"] = currentUserSession;
+
                 Response.Redirect("~/UL/Admin/AdminPortal.aspx");
             }
         }

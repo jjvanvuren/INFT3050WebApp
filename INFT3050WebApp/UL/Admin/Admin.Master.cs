@@ -28,5 +28,10 @@ namespace INFT3050WebApp.UL.BackEnd
         {
             set { logoutLink.Enabled = value; }
         }
+
+        protected void logoutLink_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+        }
     }
 }
