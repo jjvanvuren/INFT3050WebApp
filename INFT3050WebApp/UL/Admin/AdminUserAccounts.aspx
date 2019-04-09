@@ -78,7 +78,7 @@
                     <asp:BoundField DataField="Status" HeaderText="Acccount Status">
                         <ItemStyle CssClass="col-xs-1" />
                     </asp:BoundField>
-                    <asp:ButtonField ButtonType="Button" CommandName="cmdView" Text="View Purchases" ControlStyle-CssClass="btn btn-success" />
+                    <asp:ButtonField ButtonType="Button" CommandName="cmdView" Text="View Transactions" ControlStyle-CssClass="btn btn-success" />
                     <asp:CommandField CausesValidation="True" ShowEditButton="True" ValidationGroup="Edit">
                         <ItemStyle CssClass="col-xs-2" />
                     </asp:CommandField>
