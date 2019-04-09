@@ -21,7 +21,7 @@ namespace INFT3050WebApp.UL.BackEnd
         {
             if (IsValid)
             {
-                Response.Redirect("~/UL/Admin/AdminEmployeePortal.aspx");
+                Response.Redirect("~/UL/Admin/AdminPortal.aspx");
             }
         }
 

@@ -5,8 +5,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h1 class="text-center">Logout Successful</h1>
+    <h1>Logout Successful</h1>
     <br />
     <br />
-    <p class="text-center">End of session information to be displayed here</p>
+    <asp:Label ID="lblLogoutMessage" runat="server" Text=""></asp:Label>
 </asp:Content>

@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace INFT3050WebApp {
+namespace INFT3050WebApp.UL {
     
     
-    public partial class Site {
+    public partial class Customer {
         
         /// <summary>
         /// head control.
@@ -31,22 +31,31 @@ namespace INFT3050WebApp {
         protected global::System.Web.UI.WebControls.HyperLink searchLink;
         
         /// <summary>
-        /// registerLink control.
+        /// cartLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink registerLink;
+        protected global::System.Web.UI.WebControls.HyperLink cartLink;
         
         /// <summary>
-        /// loginLink control.
+        /// accountLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink loginLink;
+        protected global::System.Web.UI.WebControls.HyperLink accountLink;
+        
+        /// <summary>
+        /// logoutLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink logoutLink;
         
         /// <summary>
         /// ContentPlaceHolder1 control.

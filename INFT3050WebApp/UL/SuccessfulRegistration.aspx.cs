@@ -10,17 +10,24 @@ namespace INFT3050WebApp
 {
     public partial class SuccessfulRegistration : System.Web.UI.Page
     {
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Check if user is logged in to use correct master page
+            if (Session["customerSession"] != null)
+            {
+                Page.MasterPageFile = "~/UL/Customer.Master";
+            }
+            else
+            {
+                Page.MasterPageFile = "~/UL/Site.Master";
+            }
+
+        }
+
         const string THANKS_FORMAT = "Thank you for registering with us {0}, please login using the link located in the top right of this page.";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Hide and disable the "My Account" link
-            Master.AccountLinkEnabled = false;
-            Master.AccountLinkVisible = false;
-
-            // Hide and disable the "Logout" link
-            Master.LogoutLinkEnabled = false;
-            Master.LogoutLinkVisible = false;
 
             CustomerSession query = (CustomerSession)Session[CustomerSession.SESSION_KEY];
             if (query != null)
