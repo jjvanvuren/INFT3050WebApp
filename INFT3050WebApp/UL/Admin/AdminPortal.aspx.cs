@@ -11,7 +11,10 @@ namespace INFT3050WebApp.UL.BackEnd
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["UserSession"] == null)
+            {
+                Response.Redirect("~/UL/Admin/AdminLogin.aspx");
+            }
         }
     }
 }

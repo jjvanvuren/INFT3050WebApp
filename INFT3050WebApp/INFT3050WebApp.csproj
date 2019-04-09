@@ -172,6 +172,7 @@
     <Compile Include="BL\Author.cs" />
     <Compile Include="BL\Book.cs" />
     <Compile Include="BL\Category.cs" />
+    <Compile Include="BL\UserSession.cs" />
     <Compile Include="BL\Customer.cs" />
     <Compile Include="BL\CustomerSession.cs" />
     <Compile Include="BL\PostageOption.cs" />
