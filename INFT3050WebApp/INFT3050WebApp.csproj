@@ -268,6 +268,13 @@
       <DependentUpon>Customer.aspx</DependentUpon>
     </Compile>
     <Compile Include="DAL\DummyDB.cs" />
+    <Compile Include="UL\Customer.Master.cs">
+      <DependentUpon>Customer.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Customer.Master.designer.cs">
+      <DependentUpon>Customer.Master</DependentUpon>
+    </Compile>
     <Compile Include="UL\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -327,6 +334,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="UL\Admin\Admin.Master" />
+    <Content Include="UL\Customer.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
