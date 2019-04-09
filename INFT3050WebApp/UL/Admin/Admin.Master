@@ -32,7 +32,7 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/UL/Admin/AdminUserAccounts.aspx">User Accounts</a></li>
                                 <li><a class="dropdown-item" href="/UL/Admin/AdminPortal.aspx">Inventory Managment</a></li>
-                                <li><a class="dropdown-item" href="/UL/Admin/AdminOrdershipping.aspx">Orders Shipping</a></li>
+                                <li><a class="dropdown-item" href="/UL/Admin/AdminPostageOptions.aspx">Postage Options</a></li>
                             </ul>
                         </li>
                     </ul>

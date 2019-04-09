@@ -7,28 +7,37 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace INFT3050WebApp {
+namespace INFT3050WebApp.UL.Admin {
     
     
-    public partial class Customer {
+    public partial class AdminPostageOptions {
         
         /// <summary>
-        /// customerWelcome control.
+        /// PostageOptionDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label customerWelcome;
+        protected global::System.Web.UI.WebControls.ObjectDataSource PostageOptionDataSource;
         
         /// <summary>
-        /// ImageRepeater control.
+        /// PostageOptionManagement control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater ImageRepeater;
+        protected global::System.Web.UI.WebControls.GridView PostageOptionManagement;
+        
+        /// <summary>
+        /// ValidationSummary1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
         
         /// <summary>
         /// Master property.
@@ -36,9 +45,9 @@ namespace INFT3050WebApp {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        public new INFT3050WebApp.Site Master {
+        public new INFT3050WebApp.UL.BackEnd.BackEnd Master {
             get {
-                return ((INFT3050WebApp.Site)(base.Master));
+                return ((INFT3050WebApp.UL.BackEnd.BackEnd)(base.Master));
             }
         }
     }

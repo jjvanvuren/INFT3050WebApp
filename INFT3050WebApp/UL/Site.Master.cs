@@ -14,49 +14,49 @@ namespace INFT3050WebApp
             
         }
 
-        // Used to enable and disable loginLink
-        public bool LoginLinkVisible
-        {
-            set { loginLink.Visible = value; }
-        }
+        //// Used to enable and disable loginLink
+        //public bool LoginLinkVisible
+        //{
+        //    set { loginLink.Visible = value; }
+        //}
 
-        public bool LoginLinkEnabled
-        {
-            set { loginLink.Enabled = value; }
-        }
+        //public bool LoginLinkEnabled
+        //{
+        //    set { loginLink.Enabled = value; }
+        //}
 
-        // Used to enable and disable accountLink
-        public bool AccountLinkVisible
-        {
-            set { accountLink.Visible = value; }
-        }
+        //// Used to enable and disable accountLink
+        //public bool AccountLinkVisible
+        //{
+        //    set { accountLink.Visible = value; }
+        //}
 
-        public bool AccountLinkEnabled
-        {
-            set { accountLink.Enabled = value; }
-        }
+        //public bool AccountLinkEnabled
+        //{
+        //    set { accountLink.Enabled = value; }
+        //}
 
-        // Used to enable and disable logoutLink
-        public bool LogoutLinkVisible
-        {
-            set { logoutLink.Visible = value; }
-        }
+        //// Used to enable and disable logoutLink
+        //public bool LogoutLinkVisible
+        //{
+        //    set { logoutLink.Visible = value; }
+        //}
 
-        public bool LogoutLinkEnabled
-        {
-            set { logoutLink.Enabled = value; }
-        }
+        //public bool LogoutLinkEnabled
+        //{
+        //    set { logoutLink.Enabled = value; }
+        //}
 
-        // Used to enable and disable accountLink
-        public bool RegisterLinkVisible
-        {
-            set { registerLink.Visible = value; }
-        }
+        //// Used to enable and disable accountLink
+        //public bool RegisterLinkVisible
+        //{
+        //    set { registerLink.Visible = value; }
+        //}
 
-        public bool RegisterLinkEnabled
-        {
-            set { registerLink.Enabled = value; }
-        }
+        //public bool RegisterLinkEnabled
+        //{
+        //    set { registerLink.Enabled = value; }
+        //}
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {

@@ -7,57 +7,63 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace INFT3050WebApp {
+namespace INFT3050WebApp.UL {
     
     
-    public partial class Search {
+    public partial class Customer {
         
         /// <summary>
-        /// tbxSearch control.
+        /// head control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbxSearch;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
-        /// btnSearch control.
+        /// searchLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
+        protected global::System.Web.UI.WebControls.HyperLink searchLink;
         
         /// <summary>
-        /// bookDataSource control.
+        /// cartLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource bookDataSource;
+        protected global::System.Web.UI.WebControls.HyperLink cartLink;
         
         /// <summary>
-        /// GridBooks control.
+        /// accountLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridBooks;
+        protected global::System.Web.UI.WebControls.HyperLink accountLink;
         
         /// <summary>
-        /// Master property.
+        /// logoutLink control.
         /// </summary>
         /// <remarks>
-        /// Auto-generated property.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        public new INFT3050WebApp.Site Master {
-            get {
-                return ((INFT3050WebApp.Site)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.WebControls.HyperLink logoutLink;
+        
+        /// <summary>
+        /// ContentPlaceHolder1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
     }
 }

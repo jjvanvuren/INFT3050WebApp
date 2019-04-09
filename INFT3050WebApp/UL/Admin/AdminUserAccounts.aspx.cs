@@ -22,5 +22,25 @@ namespace INFT3050WebApp.UL.Admin
             }
 
         }
+
+        /*https://www.codeproject.com/Articles/53559/Accessing-a-DropDownList-inside-a-GridView */
+        /*protected void GridView1_RowCommand(object sender, GridViewRowEventArgs e)
+        {
+            Control ctrl = e.Row.FindControl("DdlIsAdmin");
+            if (ctrl != null)
+            {
+                DropDownList dd = ctrl as DropDownList;
+            }
+        }
+
+        protected void ddlIsAdmin_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        /* protected void ddlIsAdmin_SelectedIndexChanged(Object sender, EventArgs e)
+         {
+
+             DdlIsAdmin.SelectedIndex
+         }*/
     }
 }

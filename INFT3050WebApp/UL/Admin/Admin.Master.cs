@@ -19,10 +19,6 @@ namespace INFT3050WebApp.UL.BackEnd
             set { AdminSites.Visible = value; }
         }
 
-        /*public bool ToolsEnabled
-        {
-            set { AdminSites.Enabled = value; }
-        }*/
         public bool LogoutLinkVisible
         {
             set { logoutLink.Visible = value; }

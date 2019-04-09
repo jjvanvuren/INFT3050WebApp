@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="INFT3050WebApp.Site" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Customer.master.cs" Inherits="INFT3050WebApp.UL.Customer" %>
 
 <!DOCTYPE html>
 
@@ -24,7 +24,7 @@
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <asp:HyperLink CssClass="navbar-brand" href="Default.aspx" Text="Home Page" runat="server"><img src="Images/768px-Books_Flat_Icon_Vector.png" alt="Used Book Store Logo" height="56" width="56" />Used Book Store</asp:HyperLink>
+                <asp:HyperLink CssClass="navbar-brand" href="Customer.aspx" Text="Home Page" runat="server"><img src="Images/768px-Books_Flat_Icon_Vector.png" alt="Used Book Store Logo" height="56" width="56" />Used Book Store</asp:HyperLink>
                 <div class="navbar-collapse collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav mr-auto">
                         <li class="dropdown">
@@ -48,11 +48,13 @@
                             <asp:HyperLink href="Search.aspx" ID="searchLink" CssClass="nav-link" Title="Search for books" runat="server"><i class="fa fa-search"></i></asp:HyperLink></li>
 
                         <li class="nav-item">
-                            <asp:HyperLink href="Register.aspx" ID="registerLink" CssClass="nav-link" runat="server"><i class="fa fa-user-circle"></i>&nbsp;&nbsp;Register</asp:HyperLink></li>
+                            <asp:HyperLink href="#" ID="cartLink" CssClass="nav-link" Title="View Shopping Cart" runat="server"><i class="fa fa-shopping-cart"></i></asp:HyperLink></li>
 
                         <li class="nav-item">
-                            <asp:HyperLink href="Login.aspx" ID="loginLink" CssClass="nav-link" Title="Login" runat="server"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Login</asp:HyperLink></li>
+                            <asp:HyperLink href="#" ID="accountLink" CssClass="nav-link" runat="server"><i class="fa fa-user-circle"></i>&nbsp;&nbsp;Account</asp:HyperLink></li>
 
+                        <li class="nav-item">
+                            <asp:HyperLink href="Logout.aspx" ID="logoutLink" CssClass="nav-link" Title="Logout" runat="server"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Logout</asp:HyperLink></li>
                     </ul>
                 </div>
             </div>
