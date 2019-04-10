@@ -32,6 +32,7 @@ namespace INFT3050WebApp.UL.BackEnd
         protected void logoutLink_Click(object sender, EventArgs e)
         {
             Session.Clear();
+            Session.Abandon();
         }
     }
 }
