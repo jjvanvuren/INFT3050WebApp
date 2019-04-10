@@ -12,5 +12,6 @@ namespace INFT3050WebApp.BL
         public string StreetName { get; set; }
         public string City { get; set; }
         public string State { get; set; }
+        public int postCode { get; set; }
     }
 }

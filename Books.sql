@@ -18,8 +18,9 @@ CREATE TABLE item(
 	itemId VARCHAR(30) NOT NULL, 
 	price DECIMAL(7,2) NOT NULL DEFAULT 0.0,
 	stockQuantity INTEGER DEFAULT 0,
-	shortDescription VARCHAR(200),
+	longDescription VARCHAR(200),
 	shortDescription VARCHAR(100),
+	imagePath VARCHAR(100)
 	Primary Key (categoryId)
 )
 
@@ -71,7 +72,7 @@ CREATE TABLE user(
 	password VARCHAR(45) NOT NULL,
 	firstName CHAR(30) NOT NULL, 
 	lastName CHAR(30),
-	isAdim boolean, 
+	isAdmin boolean, 
 	isActive boolean
 	Primary Key (userId)
 )
@@ -84,9 +85,9 @@ CREATE TABLE customer(
 )
 
 CREATE TABLE postCode(
-	suburd VARCHAR(15) NOT NULL, 
+	city VARCHAR(15) NOT NULL, 
 	state CHAR(3)NOT NULL,
-	postCodeDigit INTEGER
+	postCode INTEGER(4)
 	Primary Key(suburd,states)
 )
 
@@ -94,11 +95,10 @@ CREATE TABLE address(
 	addressId VARCHAR(30) NOT NULL,
 	streetNumber VARCHAR(6)NOT NULL, 
 	streetName VARCHAR(15)NOT NULL, 
-	suburd VARCHAR(15)NOT NULL, 
+	city VARCHAR(15)NOT NULL, 
 	states CHAR(3) NOT NULL,
-	postCodeDigit INTEGER NOT NULL
 	Primary key (addressId)
-	Foreign key(suburd,state) references postCode(suburd)ON DELETE NO ACTION ON UPDATE CASCADE
+	Foreign key(city,state) references postCode(city,state)ON DELETE NO ACTION ON UPDATE CASCADE
 )
 
 CREATE TABLE customerAddress(
@@ -115,15 +115,27 @@ CREATE TABLE order(
 	orderId VARCHAR(30) NOT NULL,
 	userId VARCHAR(30) NOT NULL,
 	paymentId VARCHAR(30) NOT NULL,
+	postageOptionId VARCHAR(30),
 	orderStatus VARCHAR(30) NOT NULL,
 	GST INTEGER(2),
-	shippingCost DECIMAL(7,2) DEFAULT 0.0,
 	subTotal DECIMAL(7,2) NOT NULL DEFAULT 0.0,
 	dateOrderd Date
 	Primary key (orderId)
 	Foreign key(userId) references customer(userId)ON DELETE NO ACTION ON UPDATE CASCADE
 	Foreign key(paymentId) references payment(paymentId)ON DELETE NO ACTION ON UPDATE CASCADE
+	Foreign key(postageOptionId) references postalOption(postageOptionId)ON DELETE NO ACTION ON UPDATE CASCADE
+
 )
+
+CREATE TABLE postageOption(
+	postageOptionId VARCHAR(30) NOT NULL,
+	postageOptionName VARCHAR(30),
+	amountOfDaysToDeliver DECIMAL(7,2) DEFAULT 0.0,
+	shippingCost DECIMAL(7,2) DEFAULT 0.0
+	Primary key (PostalOptionId) 
+)
+
+
 
 CREATE TABLE orderItem(
 	orderId VARCHAR(30) NOT NULL,
