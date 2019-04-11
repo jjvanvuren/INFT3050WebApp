@@ -132,6 +132,7 @@
     <Content Include="UL\Images\9781786812445_thumb.jpg" />
     <Content Include="UL\Login.aspx" />
     <Content Include="UL\Logout.aspx" />
+    <Content Include="UL\CardPayment.aspx" />
     <Content Include="UL\PurchaseHistory.aspx" />
     <Content Include="UL\Register.aspx" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -320,6 +321,13 @@
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UL\CardPayment.aspx.cs">
+      <DependentUpon>CardPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\CardPayment.aspx.designer.cs">
+      <DependentUpon>CardPayment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UL\PurchaseHistory.aspx.cs">
       <DependentUpon>PurchaseHistory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

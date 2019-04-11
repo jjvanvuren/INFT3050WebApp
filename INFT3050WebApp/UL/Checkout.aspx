@@ -54,21 +54,6 @@
         </div>
 
         <div class="form-group">
-            <%--Post Code field--%>
-            <asp:Label ID="lblPostCode" runat="server" Text="Post Code"></asp:Label>
-            <asp:TextBox ID="tbxPostCode" class="form-control" type="text" runat="server"></asp:TextBox>
-
-            <%--Post Code is required--%>
-            <asp:RequiredFieldValidator ID="rfvPostCode" runat="server" CssClass="text-danger" ErrorMessage="Please enter your post code"
-                ControlToValidate="tbxPostCode">Post code required</asp:RequiredFieldValidator>
-
-            <%--Checks for a valid Australian post code--%>
-            <asp:RegularExpressionValidator ID="revPostCode" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid Australian post code"
-                ValidationExpression="/^(0[289][0-9]{2})|([1345689][0-9]{3})|(2[0-8][0-9]{2})|(290[0-9])|(291[0-4])|(7[0-4][0-9]{2})|(7[8-9][0-9]{2})$/"
-                ControlToValidate="tbxPostCode">Valid post code required</asp:RegularExpressionValidator>
-        </div>
-
-        <div class="form-group">
             <%--City/Suburb field--%>
             <asp:Label ID="lblCity" runat="server" Text="City"></asp:Label>
             <asp:TextBox ID="tbxCity" class="form-control" type="text" runat="server"></asp:TextBox>
@@ -81,6 +66,21 @@
             <asp:RegularExpressionValidator ID="revCity" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid city or suburb"
                 ValidationExpression="^[A-Za-z\-\s]+$"
                 ControlToValidate="tbxCity">Valid city or suburb required</asp:RegularExpressionValidator>
+        </div>
+
+        <div class="form-group">
+            <%--Post Code field--%>
+            <asp:Label ID="lblPostCode" runat="server" Text="Post Code"></asp:Label>
+            <asp:TextBox ID="tbxPostCode" class="form-control" type="text" runat="server"></asp:TextBox>
+
+            <%--Post Code is required--%>
+            <asp:RequiredFieldValidator ID="rfvPostCode" runat="server" CssClass="text-danger" ErrorMessage="Please enter your post code"
+                ControlToValidate="tbxPostCode">Post code required</asp:RequiredFieldValidator>
+
+            <%--Checks for a valid Australian post code--%>
+            <asp:RegularExpressionValidator ID="revPostCode" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid Australian post code"
+                ValidationExpression="/^(0[289][0-9]{2})|([1345689][0-9]{3})|(2[0-8][0-9]{2})|(290[0-9])|(291[0-4])|(7[0-4][0-9]{2})|(7[8-9][0-9]{2})$/"
+                ControlToValidate="tbxPostCode">Valid post code required</asp:RegularExpressionValidator>
         </div>
 
         <div class="form-group">
@@ -133,6 +133,17 @@
         </div>
 
         <div class="form-group">
+            <%--Shipping City/Suburb field--%>
+            <asp:Label ID="lblCityShip" runat="server" Text="City"></asp:Label>
+            <asp:TextBox ID="tbxCityShip" class="form-control" type="text" runat="server"></asp:TextBox>
+
+            <%--Checks that City/Suburb only contains either upper/lower case letters, spaces or "-"--%>
+            <asp:RegularExpressionValidator ID="revCityShip" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid city or suburb"
+                ValidationExpression="^[A-Za-z\-\s]+$"
+                ControlToValidate="tbxCityShip">Valid city or suburb required</asp:RegularExpressionValidator>
+        </div>
+
+        <div class="form-group">
             <%--Shipping Post Code field--%>
             <asp:Label ID="lblPostCodeShip" runat="server" Text="Post Code"></asp:Label>
             <asp:TextBox ID="tbxPostCodeShip" class="form-control" type="text" runat="server"></asp:TextBox>
@@ -141,17 +152,6 @@
             <asp:RegularExpressionValidator ID="revPostCodeShip" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid Australian post code"
                 ValidationExpression="/^(0[289][0-9]{2})|([1345689][0-9]{3})|(2[0-8][0-9]{2})|(290[0-9])|(291[0-4])|(7[0-4][0-9]{2})|(7[8-9][0-9]{2})$/"
                 ControlToValidate="tbxPostCodeShip">Valid post code required</asp:RegularExpressionValidator>
-        </div>
-
-        <div class="form-group">
-            <%--Shipping City/Suburb field--%>
-            <asp:Label ID="lblCityShip" runat="server" Text="Suburb"></asp:Label>
-            <asp:TextBox ID="tbxCityShip" class="form-control" type="text" runat="server"></asp:TextBox>
-
-            <%--Checks that City/Suburb only contains either upper/lower case letters, spaces or "-"--%>
-            <asp:RegularExpressionValidator ID="revCityShip" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid city or suburb"
-                ValidationExpression="^[A-Za-z\-\s]+$"
-                ControlToValidate="tbxCityShip">Valid city or suburb required</asp:RegularExpressionValidator>
         </div>
 
         <div class="form-group">

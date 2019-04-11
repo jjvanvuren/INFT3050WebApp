@@ -7,9 +7,8 @@ using System.Web.UI.WebControls;
 
 namespace INFT3050WebApp.UL
 {
-    public partial class Checkout : System.Web.UI.Page
+    public partial class CardPayment : System.Web.UI.Page
     {
-
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Check if user is logged in to use correct master page
@@ -28,18 +27,17 @@ namespace INFT3050WebApp.UL
 
         }
 
-        protected void btnPlaceOrder_Click(object sender, EventArgs e)
+        protected void btnPay_Click(object sender, EventArgs e)
         {
             if (IsValid)
             {
-                Response.Redirect("~/UL/CardPayment.aspx");
+                Response.Redirect("~/UL/ConfirmSale.aspx");
             }
-            
         }
 
-        protected void btnCancelOrder_Click(object sender, EventArgs e)
+        protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/UL/Cart.aspx");
+            Response.Redirect("~/UL/Checkout.aspx");
         }
     }
 }
