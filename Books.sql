@@ -1,18 +1,18 @@
-DROP TABLE payment
-DROP TABLE orderItem
-DROP TABLE order
-DROP TABLE customerAddress
-DROP TABLE address
 DROP TABLE postCode
+DROP TABLE userAddress
+DROP TABLE customerAddress
+DROP TABLE orderItem
+DROP TABLE orders
+DROP Table postageOption
+DROP TABLE payment
 DROP TABLE customer
-DROP TABLE user
+DROP TABLE webSiteUser
 DROP TABLE bookCategory
 DROP TABLE bookAuthor
 DROP TABLE category
 DROP TABLE author
 DROP TABLE book
 DROP TABLE item
-
 
 CREATE TABLE item(
 	itemId VARCHAR(30) NOT NULL, 
@@ -21,7 +21,7 @@ CREATE TABLE item(
 	longDescription VARCHAR(200),
 	shortDescription VARCHAR(100),
 	imagePath VARCHAR(100)
-	Primary Key (categoryId)
+	Primary Key (itemId)
 )
 
 CREATE TABLE book(
@@ -66,14 +66,14 @@ CREATE TABLE bookCategory(
 	Foreign Key (categoryId) references category (categoryId)ON DELETE NO ACTION ON UPDATE NO ACTION
 )
 
-CREATE TABLE user(
+CREATE TABLE webSiteUser(
 	userId VARCHAR(30) NOT NULL, 
 	email VARCHAR(45) NOT NULL,
 	password VARCHAR(45) NOT NULL,
 	firstName CHAR(30) NOT NULL, 
 	lastName CHAR(30),
-	isAdmin boolean, 
-	isActive boolean
+	isAdmin Bit, 
+	isActive Bit
 	Primary Key (userId)
 )
 
@@ -81,50 +81,14 @@ CREATE TABLE customer(
 	userId VARCHAR(30) NOT NULL, 
 	phoneNumber INTEGER
 	Primary Key (userId)
-	Foreign Key (userId) references user(userId)ON DELETE CASCADE ON UPDATE CASCADE
+	Foreign Key (userId) references webSiteUser(userId)ON DELETE CASCADE ON UPDATE CASCADE
 )
 
-CREATE TABLE postCode(
-	city VARCHAR(15) NOT NULL, 
-	state CHAR(3)NOT NULL,
-	postCode INTEGER(4)
-	Primary Key(suburd,states)
-)
-
-CREATE TABLE address(
-	addressId VARCHAR(30) NOT NULL,
-	streetNumber VARCHAR(6)NOT NULL, 
-	streetName VARCHAR(15)NOT NULL, 
-	city VARCHAR(15)NOT NULL, 
-	states CHAR(3) NOT NULL,
-	Primary key (addressId)
-	Foreign key(city,state) references postCode(city,state)ON DELETE NO ACTION ON UPDATE CASCADE
-)
-
-CREATE TABLE customerAddress(
-	addressId VARCHAR(30) NOT NULL,
-	userId VARCHAR(30) NOT NULL, 
-	addressType VARCHAR(50) 
-	Primary key (addressId,userId)
-	Foreign key(addressId) references address(addressId)ON DELETE CASCADE ON UPDATE CASCADE
-	Foreign key(userId) references user(userId)ON DELETE CASCADE ON UPDATE CASCADE
-)
-
-
-CREATE TABLE order(
-	orderId VARCHAR(30) NOT NULL,
-	userId VARCHAR(30) NOT NULL,
+CREATE TABLE payment(
 	paymentId VARCHAR(30) NOT NULL,
-	postageOptionId VARCHAR(30),
-	orderStatus VARCHAR(30) NOT NULL,
-	GST INTEGER(2),
-	subTotal DECIMAL(7,2) NOT NULL DEFAULT 0.0,
-	dateOrderd Date
-	Primary key (orderId)
-	Foreign key(userId) references customer(userId)ON DELETE NO ACTION ON UPDATE CASCADE
-	Foreign key(paymentId) references payment(paymentId)ON DELETE NO ACTION ON UPDATE CASCADE
-	Foreign key(postageOptionId) references postalOption(postageOptionId)ON DELETE NO ACTION ON UPDATE CASCADE
-
+	datePayed Date,
+	total DECIMAL(7,2) DEFAULT 0.0
+	Primary key (paymentId)
 )
 
 CREATE TABLE postageOption(
@@ -132,7 +96,23 @@ CREATE TABLE postageOption(
 	postageOptionName VARCHAR(30),
 	amountOfDaysToDeliver DECIMAL(7,2) DEFAULT 0.0,
 	shippingCost DECIMAL(7,2) DEFAULT 0.0
-	Primary key (PostalOptionId) 
+	Primary key (postageOptionId) 
+)
+
+CREATE TABLE orders(
+	orderId VARCHAR(30) NOT NULL,
+	userId VARCHAR(30) NOT NULL,
+	paymentId VARCHAR(30) NOT NULL,
+	postageOptionId VARCHAR(30),
+	orderStatus VARCHAR(30) NOT NULL,
+	GST INTEGER,
+	subTotal DECIMAL(7,2) NOT NULL DEFAULT 0.0,
+	dateOrderd Date,
+	Primary key (orderId),
+	Foreign key(userId) references customer(userId)ON DELETE NO ACTION ON UPDATE CASCADE,
+	Foreign key(paymentId) references payment(paymentId)ON DELETE NO ACTION ON UPDATE CASCADE,
+	Foreign key(postageOptionId) references postageOption(postageOptionId)ON DELETE NO ACTION ON UPDATE CASCADE
+
 )
 
 
@@ -140,16 +120,36 @@ CREATE TABLE postageOption(
 CREATE TABLE orderItem(
 	orderId VARCHAR(30) NOT NULL,
 	itemId VARCHAR(30) NOT NULL, 
-	quantaty INTEGER(10) 
-	Primary key (orderId, itemId)
-	Foreign key(orderId) references order(orderId)ON DELETE CASCADE ON UPDATE CASCADE
-	Foreign key(itemId) references item(itemId)ON DELETE CASCADE ON UPDATE CASCADE
+	quantity INTEGER ,
+	Primary key (orderId, itemId),
+	Foreign key(orderId) references orders(orderId)ON DELETE CASCADE ON UPDATE CASCADE,
+	Foreign key(itemId) references item(itemId)ON DELETE NO ACTION 
 )
 
-CREATE TABLE payment(
-	paymentId VARCHAR(30) NOT NULL,
-	datePayed Date,
-	total DECIMAL(7,2) DEFAULT 0.0
-	Primary key (orderId)
+
+
+CREATE TABLE postCode(
+	city VARCHAR(15) NOT NULL, 
+	adressStates CHAR(3)NOT NULL,
+	postCode INTEGER,
+	Primary Key(city,adressStates)
 )
 
+CREATE TABLE userAddress(
+	addressId VARCHAR(30) NOT NULL,
+	streetNumber VARCHAR(6)NOT NULL, 
+	streetName VARCHAR(15)NOT NULL, 
+	city VARCHAR(15)NOT NULL, 
+	adressStates CHAR(3) NOT NULL,
+	Primary key (addressId),
+	Foreign key(city,adressStates) references postCode(city,adressStates)ON DELETE NO ACTION ON UPDATE CASCADE
+)
+
+CREATE TABLE customerAddress(
+	addressId VARCHAR(30) NOT NULL,
+	userId VARCHAR(30) NOT NULL, 
+	addressType VARCHAR(50),
+	Primary key (addressId,userId),
+	Foreign key(addressId) references userAddress(addressId)ON DELETE CASCADE ON UPDATE CASCADE,
+	Foreign key(userId) references customer(userId)ON DELETE CASCADE ON UPDATE CASCADE
+)
