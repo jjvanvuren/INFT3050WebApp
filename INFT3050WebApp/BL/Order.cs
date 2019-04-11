@@ -13,6 +13,6 @@ namespace INFT3050WebApp.BL
         public string orderStatus { get; set; }
         public int GST { get; set; }
         public double Total { get; set; }
-        public String dateOrderd { get; set; }
+        public String dateOrdered { get; set; }
     }
 }

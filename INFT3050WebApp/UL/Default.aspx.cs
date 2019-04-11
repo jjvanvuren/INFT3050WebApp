@@ -29,10 +29,11 @@ namespace INFT3050WebApp
 
             if (!IsPostBack)
             {
+                // Create dummy database and pull all books from database
                 var db = new DAL.DummyDB();
                 var books = db.GetBooks();
 
-                // Create list of best sellers and display them
+                // Create list of best sellers based on IsBestSeller property
                 List<Book> bestSellers = new List<Book>();
                 
                 foreach (Book book in books)
@@ -42,7 +43,7 @@ namespace INFT3050WebApp
                         bestSellers.Add(book);
                     }
                 }
-
+                // Use best seller list as data source for splash page
                 ImageRepeater.DataSource = bestSellers;
                 ImageRepeater.DataBind();
             }
@@ -50,6 +51,7 @@ namespace INFT3050WebApp
 
         protected void imgBestSeller_Command(object sender, CommandEventArgs e)
         {
+            // When a book's image is clicked redirect to the book's details page
             Response.Redirect("Book.aspx?id=" + e.CommandArgument);
         }
     }

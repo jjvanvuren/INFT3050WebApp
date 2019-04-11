@@ -5,51 +5,21 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <h1>Purchase History</h1>
+    <%--Use GridView to Display Purchase History--%>
+    <form runat="server">
+        <div class="container-flex">
+            <asp:ObjectDataSource ID="OrderDataSource" runat="server" SelectMethod="GetOrders" TypeName="INFT3050WebApp.DAL.DummyDB"></asp:ObjectDataSource>
+            <asp:GridView ID="Orders" runat="server" AutoGenerateColumns="false" DataSourceID="OrderDataSource" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True">
+                <Columns>
+                <asp:BoundField DataField="orderId" HeaderText="Order ID" SortExpression="orderId"/>
+                <asp:BoundField DataField="purchaseId" HeaderText="Purchase ID" SortExpression="purchaseId"/>
+                <asp:BoundField DataField="Total" HeaderText="Total Cost" SortExpression="Total"/>
+                <asp:BoundField DataField="dateOrdered" HeaderText="Date Ordered" SortExpression="dateOrderd"/>
+                </Columns>
 
-    <div>
-        <!-- This table is only to show desired layout 
-             Will be replaced in assignment 2-->
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Order ID</th>
-                    <th scope="col">Payment ID</th>
-                    <th scope="col">Total</th>
-                    <th scope="col">Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>01325</td>
-                    <td>02106</td>
-                    <td>$50.00</td>
-                    <td>04/03/2018</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>14656</td>
-                    <td>45621</td>
-                    <td>$121.41</td>
-                    <td>05/04/2018</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>78951</td>
-                    <td>56894</td>
-                    <td>$501.10</td>
-                    <td>20/01/2019</td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>98754</td>
-                    <td>95588</td>
-                    <td>$3.50</td>
-                    <td>04/04/2019</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+            </asp:GridView>
+
+        </div>
+    </form>
 
 </asp:Content>
