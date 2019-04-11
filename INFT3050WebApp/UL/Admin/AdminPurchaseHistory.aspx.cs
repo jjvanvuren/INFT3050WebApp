@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace INFT3050WebApp.UL.BackEnd
+namespace INFT3050WebApp.UL.Admin
 {
-    public partial class BackEndEmployeePortal : System.Web.UI.Page
+    public partial class AdminPurchaseHistory : System.Web.UI.Page
     {
         void Page_PreInit(object sender, EventArgs e)
         {
@@ -17,6 +17,7 @@ namespace INFT3050WebApp.UL.BackEnd
             }
 
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
         }

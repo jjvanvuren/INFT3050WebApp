@@ -5,10 +5,11 @@ using System.Web;
 
 namespace INFT3050WebApp.BL
 {
-    public class Category
+    public class UserSession
     {
-        public int Id { get; set; }
+        public const string SESSION_KEY = "UserSession";
+        public string Email { get; set; }
         public string Name { get; set; }
-        public string Discription { get; set; }
+        public bool LoggedIn { get; set; }
     }
 }

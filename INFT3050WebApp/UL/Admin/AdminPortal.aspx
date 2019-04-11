@@ -64,6 +64,9 @@
                     <asp:CommandField CausesValidation="True" ShowEditButton="True" ValidationGroup="Edit">
                         <ItemStyle CssClass="col-xs-2" />
                     </asp:CommandField>
+                    <asp:CommandField ShowDeleteButton="True">
+                        <ItemStyle CssClass="col-xs-2" />
+                    </asp:CommandField>
 
                 </Columns>
                 <EditRowStyle CssClass="warning" />

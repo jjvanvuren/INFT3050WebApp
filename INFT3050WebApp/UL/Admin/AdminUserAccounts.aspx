@@ -9,7 +9,7 @@
     <form runat="server">
         <div class="container-flex">
             <asp:ObjectDataSource ID="UserDataSource" runat="server" SelectMethod="GetUsers" TypeName="INFT3050WebApp.DAL.DummyDB"></asp:ObjectDataSource>
-            <asp:GridView ID="ItemManagment" runat="server" AutoGenerateColumns="false" DataSourceID="UserDataSource" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True">
+            <asp:GridView ID="ItemManagment" runat="server" AutoGenerateColumns="false" DataSourceID="UserDataSource" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True" OnRowCommand=" GridBooks_RowCommand" OnRowUpdated="ItemManagment_RowUpdated">
                 <Columns>
 
                     <asp:BoundField DataField="Id" HeaderText="ID" ReadOnly="True" SortExpression="Id">
@@ -63,15 +63,15 @@
 
                             <asp:TextBox ID="txtGridIsAdmin" runat="server" MaxLength="45" CssClass="form-control" Text='# Bind("IsAdmin") %>'></asp:TextBox>
                             </div>
-                           <asp:RequiredFieldValidator ID="rfvGridIsAdmin" runat="server" ControlToValidate="ddlIsAdmin" ValidationGroup="Edit" Text="*" ErrorMessage="IsAdmin is a required field" CssClass="text-danger"></asp:RequiredFieldValidator>
+                           <asp:RequiredFieldValidator ID="rfvGridIsAdmin" runat="server" ControlToValidate="txtGridIsAdmin" ValidationGroup="Edit" Text="*" ErrorMessage="IsAdmin is a required field" CssClass="text-danger"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="revIsAdmin" runat="server" CssClass="text-danger" ErrorMessage="Please provide true or false"
+                            ValidationExpression="/^true$/" ControlToValidate="txtGridIsAdmin">Valid email required</asp:RegularExpressionValidator>
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="lblGridIsAdmin" runat="server" Text='<%# Bind("IsAdmin") %>'></asp:Label>
                         </ItemTemplate>
                         <ItemStyle CssClass="col-xs-1" />
                     </asp:TemplateField>
-
-
                     <asp:BoundField DataField="IsAdmin" HeaderText="Admin Account">
                         <ItemStyle CssClass="col-xs-1" />
                     </asp:BoundField>
