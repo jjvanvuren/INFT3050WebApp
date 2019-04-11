@@ -43,28 +43,6 @@ namespace INFT3050WebApp.UL.BackEnd
                 Response.Redirect("~/UL/Admin/AdminRegister.aspx");
         }
 
-        // Checks if Employee email exists
-        // This is only temporary. Will change in next assignment
-        protected void EmployeeRegistered(object source, ServerValidateEventArgs args)
-        {
-            String strEmail = tbxEmail.Text;
-            for (int i = 0; i == strEmail.Length; i++)
-            {
-                if (strEmail[i].Equals("@"))
-                {
-                    String strEmployeeEmail = strEmail.Substring(i, strEmail.Length);
-                    if (strEmployeeEmail == "@usedbookstore.com.au")
-                    {
-                        args.IsValid = true;
-                    }
-                    else
-                    {
-                        args.IsValid = false;
-                    }
-                }
-            }
-        }
-
         // Checks if customer password is correct
         // This is only temporary. Will change in next assignment
         protected void passwordCorrect(object source, ServerValidateEventArgs args)
