@@ -70,6 +70,13 @@
             <%-- Password Validation --%>
             <asp:RequiredFieldValidator ID="rfvPassword" runat="server" CssClass="text-danger" ErrorMessage="Please enter a password"
                 ControlToValidate="tbxPassword">Password required</asp:RequiredFieldValidator>
+
+            <%-- Check that password meets complexity requirements --%>
+            <asp:RegularExpressionValidator ID="revPasswordComplex" runat="server" ControlToValidate="tbxPassword" CssClass="text-danger"
+                ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[A-Za-z\d$@$!%*?&_]{8,}"
+                ErrorMessage="Password must meet complexity requirements">
+                Password must contain at least 8 characters at least 1 uppercase, 1 lowercase, 1 number and 1 special character</asp:RegularExpressionValidator>
+
         </div>
         <%-- Password Confirmation--%>
         <div class="form-group">
@@ -78,9 +85,10 @@
             <asp:TextBox ID="tbxPasswordConfirm" runat="server" type="password" CssClass="form-control"></asp:TextBox>
 
             <%-- Password Confirmation Validation --%>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" CssClass="text-danger" ErrorMessage="Please reenter your password"
+            <asp:RequiredFieldValidator ID="rfvPasswordConfirm" runat="server" CssClass="text-danger" ErrorMessage="Please reenter your password"
                 ControlToValidate="tbxPasswordConfirm">Password required</asp:RequiredFieldValidator>
-            <asp:CompareValidator ID="CompareValidator1" runat="server" CssClass="text-danger" ErrorMessage="Passwords must match"
+
+            <asp:CompareValidator ID="cvPasswordConfirm" runat="server" CssClass="text-danger" ErrorMessage="Passwords must match"
                 Operator="Equal" ControlToCompare="tbxPassword" ControlToValidate="tbxPasswordConfirm"></asp:CompareValidator>
         </div>
         <%-- Register and Cancel buttons--%>
