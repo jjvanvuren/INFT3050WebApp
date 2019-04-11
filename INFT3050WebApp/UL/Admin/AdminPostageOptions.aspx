@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h2 class="text-center">Postage Options</h2>
+    <h1>Postage Options</h1>
     <form runat="server">
         <div class="container-flex">
             <asp:ObjectDataSource ID="PostageOptionDataSource" runat="server" SelectMethod="GetPostageOptions" TypeName="INFT3050WebApp.DAL.DummyDB"></asp:ObjectDataSource>

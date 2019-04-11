@@ -7,7 +7,7 @@
     <h1>Welcome to Used Book Store</h1>
     <br />
     <%--Current Offers Section--%>
-    <h3>Best Sellers</h3>
+    <h2>Best Sellers</h2>
     <form runat="server">
         <%--Splash Page which displays all the best selling books--%>
         <div class="container-flex">

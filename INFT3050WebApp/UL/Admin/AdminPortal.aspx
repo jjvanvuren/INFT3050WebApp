@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h2 class="text-center">Inventory Managment</h2>
+    <h1>Inventory Managment</h1>
     <form runat="server">
         <div class="container-flex">
              <%--Setting data source to be used for display of data in gridview --%>

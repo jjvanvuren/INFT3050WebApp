@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h1 class="text-center">Register New Account</h1>
+    <h1>Register New Account</h1>
     <br />
     <br />
     <form runat="server">
