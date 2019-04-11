@@ -25,12 +25,13 @@
             <%-- Check if email is valid --%>
             <asp:RequiredFieldValidator ID="rfvEmail" runat="server" CssClass="text-danger" ErrorMessage="Please enter your email address"
                 ControlToValidate="tbxEmail">Email required</asp:RequiredFieldValidator>
+            <%-- Check that its an email address --%>
             <asp:RegularExpressionValidator ID="revEmail" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid email address"
                 ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="tbxEmail">Valid email required</asp:RegularExpressionValidator>
+            <%-- Check that email domain matches required domain "usedbooks.com.au" --%>
+            <asp:RegularExpressionValidator ID="revEmailDomain" runat="server" CssClass="text-danger" ErrorMessage="Please use your employee email address"
+                ValidationExpression="^[A-Za-z0-9._%+-]+@usedbooksales.com.au$" ControlToValidate="tbxEmail">Email is not an employee email address</asp:RegularExpressionValidator>
 
-            <%-- Check if Employee exists --%>
-            <asp:CustomValidator ID="cvEmailExists" runat="server" CssClass="text-danger" ErrorMessage="Email not registered"
-                OnServerValidate="EmployeeRegistered"></asp:CustomValidator>
         </div>
         <div class="form-group">
             <%-- Password field --%>

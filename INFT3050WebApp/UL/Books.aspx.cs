@@ -28,9 +28,10 @@ namespace INFT3050WebApp.UL
         {
 
         }
-
+        
         protected void GridBooks_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            // When clicking the View button take the user to the matching book's page
             if  (e.CommandName == "cmdView")
             {
                 Response.Redirect("Book.aspx?id=" + e.CommandArgument);

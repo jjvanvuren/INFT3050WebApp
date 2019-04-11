@@ -58,13 +58,13 @@ namespace INFT3050WebApp.UL.BackEnd {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revEmail;
         
         /// <summary>
-        /// cvEmailExists control.
+        /// revEmailDomain control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cvEmailExists;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revEmailDomain;
         
         /// <summary>
         /// lblPassword control.

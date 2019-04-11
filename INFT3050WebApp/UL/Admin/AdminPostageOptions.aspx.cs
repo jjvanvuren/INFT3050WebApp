@@ -8,6 +8,7 @@ using INFT3050WebApp.BL;
 
 namespace INFT3050WebApp.UL.Admin
 {
+    //On PreInit check session data to see if logged in if not send to AdminLogin.axpc
     public partial class AdminPostageOptions : System.Web.UI.Page
     {
         void Page_PreInit(object sender, EventArgs e)

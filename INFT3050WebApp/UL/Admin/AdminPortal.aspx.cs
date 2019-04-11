@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace INFT3050WebApp.UL.BackEnd
 {
+    //On PreInit check session data to see if logged in if not send to AdminLogin.axpc
     public partial class BackEndEmployeePortal : System.Web.UI.Page
     {
         void Page_PreInit(object sender, EventArgs e)

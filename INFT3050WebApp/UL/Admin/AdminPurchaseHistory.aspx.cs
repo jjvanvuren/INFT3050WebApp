@@ -9,6 +9,7 @@ namespace INFT3050WebApp.UL.Admin
 {
     public partial class AdminPurchaseHistory : System.Web.UI.Page
     {
+        //On PreInit check session data to see if logged in if not send to AdminLogin.axpc
         void Page_PreInit(object sender, EventArgs e)
         {
             if (Session["UserSession"] == null)

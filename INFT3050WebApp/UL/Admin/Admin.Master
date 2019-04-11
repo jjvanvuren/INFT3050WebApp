@@ -24,10 +24,12 @@
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <!-- logo link set as a hyperlink to AdminPortal.aspx -->
                 <asp:HyperLink CssClass="navbar-brand" href="AdminPortal.aspx" Text="Home Page" runat="server"><img src="../Images/768px-Books_Flat_Icon_Vector.png" alt="Used Book Store Logo" height="56" width="56" />Used Book Store - Admin</asp:HyperLink>
                 <div class="navbar-collapse collapse" id="navbarSupportedContent">
                 <ul class="nav navbar-nav mr-auto" id="AdminSites" runat="server">
-                        <li class="dropdown">
+                    <!-- drop down for access to other sites --> 
+                    <li class="dropdown">
                             <a href="#" class="nav-link btn dropdown-toggle" data-toggle="dropdown" role="button">Tools</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/UL/Admin/AdminUserAccounts.aspx">User Accounts</a></li>
@@ -36,7 +38,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <!-- Hidden by default -->
+                    
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item">
                             <asp:HyperLink href="AdminLogin.aspx" ID="logoutLink" CssClass="nav-link" Title="Logout" runat="server"><i class="fa fa-sign-out"></i></asp:HyperLink></li>

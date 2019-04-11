@@ -12,6 +12,7 @@ namespace INFT3050WebApp.UL.BackEnd
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Hide and disable the "Logout" link and links to other pages from master
             Session.Clear();
             Master.ToolsVisible = false;
             Master.LogoutLinkEnabled = false;
@@ -38,31 +39,10 @@ namespace INFT3050WebApp.UL.BackEnd
             }
         }
 
+        //On click handler for Register button - Sends to AdminRegister.aspx
         protected void btnRegister_Click(object sender, EventArgs e)
         {
                 Response.Redirect("~/UL/Admin/AdminRegister.aspx");
-        }
-
-        // Checks if Employee email exists
-        // This is only temporary. Will change in next assignment
-        protected void EmployeeRegistered(object source, ServerValidateEventArgs args)
-        {
-            String strEmail = tbxEmail.Text;
-            for (int i = 0; i == strEmail.Length; i++)
-            {
-                if (strEmail[i].Equals("@"))
-                {
-                    String strEmployeeEmail = strEmail.Substring(i, strEmail.Length);
-                    if (strEmployeeEmail == "@usedbookstore.com.au")
-                    {
-                        args.IsValid = true;
-                    }
-                    else
-                    {
-                        args.IsValid = false;
-                    }
-                }
-            }
         }
 
         // Checks if customer password is correct
