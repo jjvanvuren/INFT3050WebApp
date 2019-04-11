@@ -319,13 +319,31 @@ namespace INFT3050WebApp.UL {
         protected global::System.Web.UI.WebControls.DropDownList ddlStateShip;
         
         /// <summary>
-        /// rblShippingMethod control.
+        /// lblShippingMethod control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblShippingMethod;
+        protected global::System.Web.UI.WebControls.Label lblShippingMethod;
+        
+        /// <summary>
+        /// ddlShippingMethod control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlShippingMethod;
+        
+        /// <summary>
+        /// rfvShippingMethod control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvShippingMethod;
         
         /// <summary>
         /// rblPaymentMethod control.
