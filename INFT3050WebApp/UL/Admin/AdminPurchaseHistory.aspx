@@ -8,7 +8,6 @@
     <form runat="server">
         <div class="container-flex">
             <%--Setting data source to be used for display of data in gridview --%>
-            <asp:ObjectDataSource ID="OrderDataSource" runat="server" SelectMethod="GetOrderById" TypeName="INFT3050WebApp.DAL.DummyDB"></asp:ObjectDataSource>
             <asp:ObjectDataSource ID="OrderDataSource" runat="server" SelectMethod="GetOrders" TypeName="INFT3050WebApp.DAL.DummyDB"></asp:ObjectDataSource>
             <asp:GridView ID="Orders" runat="server" AutoGenerateColumns="false" DataSourceID="OrderDataSource" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True">
                 <%--Display of selected attributes of a order - no validation --%>
