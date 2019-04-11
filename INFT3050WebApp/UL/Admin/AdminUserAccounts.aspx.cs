@@ -22,5 +22,14 @@ namespace INFT3050WebApp.UL.Admin
         {
         }
 
+        protected void UserManagement_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            // When clicking the View button take the user to the matching book's page
+            if (e.CommandName == "cmdView")
+            {
+                Response.Redirect("~/UL/Admin/AdminPurchaseHistory.aspx");
+            }
+
+        }
     }
 }
