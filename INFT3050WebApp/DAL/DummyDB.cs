@@ -94,10 +94,11 @@ namespace INFT3050WebApp.DAL
                 CreatePostageOption(id++, "Pick Up", 0),
                 CreatePostageOption(id++, "AusPost", 5.99),
                 CreatePostageOption(id++, "AusPost Express", 9.99),
-                CreatePostageOption(id++, "Startrek", 3.99),
-                CreatePostageOption(id++, "Startrek Express", 7.99)
+                CreatePostageOption(id++, "Startrack", 3.99),
+                CreatePostageOption(id++, "Startrack Express", 7.99)
             };
 
+            // Populate Orders
             id = 0;
             orders = new BL.Order[]
             {
@@ -154,7 +155,7 @@ namespace INFT3050WebApp.DAL
             return author;
         }
 
-        //Create Category:
+        //Create Category: Create a dummy category
         private BL.Category CreateDummyCategory(int id, string name)
         {
             BL.Category category = new BL.Category()
@@ -166,7 +167,7 @@ namespace INFT3050WebApp.DAL
             return category;
         }
 
-        // Create User: used to create dummy User objects
+        // Create User: Used to create a dummy user
         private BL.User CreateDummyUser(int id, string email, string password, string firstName, string lastName, bool isadmin, string status)
         {
             BL.User user = new BL.User()
@@ -183,7 +184,7 @@ namespace INFT3050WebApp.DAL
             return user;
         }
 
-        // Create User: used to create dummy User objects
+        // Create Order: used to create a dummy order
         private BL.Order CreateDummyOrders(int OrderId, int UserId, int PurchaseId, string OrderStatus, int gst, double total, String DateOrdered)
         {
             BL.Order order = new BL.Order()
@@ -194,13 +195,13 @@ namespace INFT3050WebApp.DAL
                 orderStatus = OrderStatus,
                 GST = gst,
                 Total = total,
-                dateOrderd = DateOrdered
+                dateOrdered = DateOrdered
             };
 
             return order;
         }
 
-        // Create PostageOption: Used to create dummy postage options
+        // Create PostageOption: Used to create a dummy postage option
         private BL.PostageOption CreatePostageOption(int id, string name, double price)
         {
             BL.PostageOption postageOption = new BL.PostageOption()
@@ -234,7 +235,7 @@ namespace INFT3050WebApp.DAL
         }
 
 
-        // get postageoption list
+        // get postage option list
         [DataObjectMethod(DataObjectMethodType.Select)]
         public BL.PostageOption[] GetPostageOptions()
         {
@@ -243,7 +244,7 @@ namespace INFT3050WebApp.DAL
 
         // find orders
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public BL.Order[] GetOrderById()
+        public BL.Order[] GetOrders()
         {
             return orders;
         }

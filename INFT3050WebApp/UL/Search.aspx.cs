@@ -31,6 +31,7 @@ namespace INFT3050WebApp
 
         protected void GridSearch_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            // When clicking the View button take the user to the matching book's page
             if (e.CommandName == "cmdView")
             {
                 Response.Redirect("Book.aspx?id=" + e.CommandArgument);
@@ -40,7 +41,7 @@ namespace INFT3050WebApp
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-
+            //Button doesnt do anything yet, need database connection to make this work with queries
         }
     }
 }

@@ -17,19 +17,20 @@
             <%-- First Name field --%>
             <asp:Label ID="lblFirstName" runat="server" Text="FirstName"></asp:Label>
             <asp:TextBox ID="tbxFirstName" runat="server" type="text" CssClass="form-control"></asp:TextBox>
-
-            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid First Name"
-                ValidationExpression="^[A-Za-z]+$" ControlToValidate="tbxFirstName">Valid First name required</asp:RegularExpressionValidator>
+            
+            <%-- First Name field Validation is Reuired--%>
+            <asp:RequiredFieldValidator ID="rfvGridFirstName" runat="server" ControlToValidate="tbxFirstName" ValidationGroup="Edit" Text="*" ErrorMessage="First Name is a required field" CssClass="text-danger"></asp:RequiredFieldValidator>
+            <%-- First Name field Validation is a valid Name--%>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid First Name" ValidationExpression="^[A-Za-z]+$" ControlToValidate="tbxFirstName">Valid First name required</asp:RegularExpressionValidator>
         </div>
 
         <%-- Last Name --%>
         <div class="form-group">
-            <%-- First Name field --%>
+            <%-- Last Name field --%>
             <asp:Label ID="lblLastName" runat="server" Text="LastName"></asp:Label>
             <asp:TextBox ID="tbxLastName" runat="server" type="text" CssClass="form-control"></asp:TextBox>
-
-            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid Last Name"
-                ValidationExpression="^[A-Za-z]+$" ControlToValidate="tbxLastName">Valid Last name required</asp:RegularExpressionValidator>
+            <%-- Last Name field Validation is a valid Name--%>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid Last Name" ValidationExpression="^[A-Za-z]+$" ControlToValidate="tbxLastName">Valid Last name required</asp:RegularExpressionValidator>
         </div>
 
 
@@ -43,8 +44,12 @@
             <%-- Email entry field validation --%>
             <asp:RequiredFieldValidator ID="rfvEmail" runat="server" CssClass="text-danger" ErrorMessage="Please enter your email address"
                 ControlToValidate="tbxEmail">Email required</asp:RequiredFieldValidator>
+            <%-- Check that its an email address --%>
             <asp:RegularExpressionValidator ID="revEmail" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid email address"
                 ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="tbxEmail">Valid email required</asp:RegularExpressionValidator>
+            <%-- Check that email domain matches required domain "usedbooks.com.au" --%>
+            <asp:RegularExpressionValidator ID="revEmailDomain" runat="server" CssClass="text-danger" ErrorMessage="Please use your employee email address"
+                ValidationExpression="^[A-Za-z0-9._%+-]+@usedbooksales.com.au$" ControlToValidate="tbxEmail">Email is not an employee email address</asp:RegularExpressionValidator>
         </div>
         <%-- Email Confirmation--%>
         <div class="form-group">
@@ -56,8 +61,10 @@
             <%-- Email confirmation field validation --%>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" CssClass="text-danger" ErrorMessage="Please reenter your email address"
                 ControlToValidate="tbxEmailConfirm">Email required</asp:RequiredFieldValidator>
+            <%-- Check that its an email address --%>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid email address"
                 ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="tbxEmailConfirm">Valid email required</asp:RegularExpressionValidator>
+            <%-- Check that its an email address that matches the first email entered --%>
             <asp:CompareValidator ID="emailCompareValidator" runat="server" CssClass="text-danger" ErrorMessage="Email addresses must match"
                 Operator="Equal" ControlToCompare="tbxEmail" ControlToValidate="tbxEmailConfirm"></asp:CompareValidator>
         </div>

@@ -54,21 +54,5 @@ namespace INFT3050WebApp
         {
             Response.Redirect("~/UL/Default.aspx");
         }
-
-        //public User CreateUser (int id, string email, string password, string firstName, string lastName, bool isAdmin, string status)
-        //{
-        //    User user = new User()
-        //    {
-        //        Id = id,
-        //        Email = email,
-        //        Password = password,
-        //        FirstName = firstName,
-        //        LastName = lastName,
-        //        IsAdmin = isAdmin,
-        //        Status = status
-        //    };
-
-        //    return user;
-        //}
     }
 }

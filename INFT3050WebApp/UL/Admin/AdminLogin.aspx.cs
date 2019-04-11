@@ -12,6 +12,7 @@ namespace INFT3050WebApp.UL.BackEnd
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Hide and disable the "Logout" link and links to other pages from master
             Session.Clear();
             Master.ToolsVisible = false;
             Master.LogoutLinkEnabled = false;
@@ -38,6 +39,7 @@ namespace INFT3050WebApp.UL.BackEnd
             }
         }
 
+        //On click handler for Register button - Sends to AdminRegister.aspx
         protected void btnRegister_Click(object sender, EventArgs e)
         {
                 Response.Redirect("~/UL/Admin/AdminRegister.aspx");
