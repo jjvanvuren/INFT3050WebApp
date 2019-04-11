@@ -28,15 +28,6 @@ namespace INFT3050WebApp.UL
 
         }
 
-        protected void radSameAddress_CheckedChanged(object sender, EventArgs e)
-        {
-            tbxAddress1Ship.Enabled = false;
-            tbxAddress2Ship.Enabled = false;
-            tbxPostCodeShip.Enabled = false;
-            tbxSuburbShip.Enabled = false;
-            tbxStateShip.Enabled = false;
-        }
-
         protected void btnPlaceOrder_Click(object sender, EventArgs e)
         {
             if (IsValid)

@@ -94,8 +94,8 @@ namespace INFT3050WebApp.DAL
                 CreatePostageOption(id++, "Pick Up", 0),
                 CreatePostageOption(id++, "AusPost", 5.99),
                 CreatePostageOption(id++, "AusPost Express", 9.99),
-                CreatePostageOption(id++, "Startrek", 3.99),
-                CreatePostageOption(id++, "Startrek Express", 7.99)
+                CreatePostageOption(id++, "Startrack", 3.99),
+                CreatePostageOption(id++, "Startrack Express", 7.99)
             };
 
             id = 0;
