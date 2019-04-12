@@ -49,7 +49,7 @@ namespace INFT3050WebApp.UL.BackEnd
         // This is only temporary. Will change in next assignment
         protected void passwordCorrect(object source, ServerValidateEventArgs args)
         {
-            if (tbxPassword.Text == "password")
+            if (tbxPassword.Text == "Password#1")
             {
                 args.IsValid = true;
             }
