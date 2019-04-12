@@ -77,6 +77,7 @@ namespace INFT3050WebApp
             }
         }
 
+        // Redirects to the Website home page
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/UL/Default.aspx");

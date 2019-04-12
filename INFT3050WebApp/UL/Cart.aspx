@@ -55,6 +55,7 @@
             </table>
     <br />
 
+    <%-- Button for customer to proceed to checkout --%>
     <form runat="server">
         <asp:Button ID="btnCheckout" CssClass="btn btn-success" runat="server" Text="Checkout" OnClick="btnCheckout_Click" />
     </form>
