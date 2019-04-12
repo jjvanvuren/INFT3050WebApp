@@ -15,22 +15,22 @@
         <%-- First Name --%>
         <div class="form-group">
             <%-- First Name field --%>
-            <asp:Label ID="lblFirstName" runat="server" Text="FirstName"></asp:Label>
+            <asp:Label ID="lblFirstName" runat="server" Text="Name"></asp:Label>
             <asp:TextBox ID="tbxFirstName" runat="server" type="text" CssClass="form-control"></asp:TextBox>
             
             <%-- First Name field Validation is Reuired--%>
-            <asp:RequiredFieldValidator ID="rfvGridFirstName" runat="server" ControlToValidate="tbxFirstName" ValidationGroup="Edit" Text="*" ErrorMessage="First Name is a required field" CssClass="text-danger"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" ControlToValidate="tbxFirstName" Text="Please enter your name" ErrorMessage="Name is a required field" CssClass="text-danger"></asp:RequiredFieldValidator>
             <%-- First Name field Validation is a valid Name--%>
-            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid First Name" ValidationExpression="^[A-Za-z]+$" ControlToValidate="tbxFirstName">Valid First name required</asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator ID="revFirstName" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid First Name" ValidationExpression="^[A-Za-z]+$" ControlToValidate="tbxFirstName">Valid First name required</asp:RegularExpressionValidator>
         </div>
 
         <%-- Last Name --%>
         <div class="form-group">
             <%-- Last Name field --%>
-            <asp:Label ID="lblLastName" runat="server" Text="LastName"></asp:Label>
+            <asp:Label ID="lblLastName" runat="server" Text="Last Name"></asp:Label>
             <asp:TextBox ID="tbxLastName" runat="server" type="text" CssClass="form-control"></asp:TextBox>
             <%-- Last Name field Validation is a valid Name--%>
-            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid Last Name" ValidationExpression="^[A-Za-z]+$" ControlToValidate="tbxLastName">Valid Last name required</asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator ID="revLastName" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid Last Name" ValidationExpression="^[A-Za-z]+$" ControlToValidate="tbxLastName">Valid Last name required</asp:RegularExpressionValidator>
         </div>
 
 
@@ -98,9 +98,9 @@
             <asp:TextBox ID="tbxPasswordConfirm" runat="server" type="password" CssClass="form-control"></asp:TextBox>
 
             <%-- Password Confirmation Validation --%>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" CssClass="text-danger" ErrorMessage="Please reenter your password"
+            <asp:RequiredFieldValidator ID="rfvPasswordConfirm" runat="server" CssClass="text-danger" ErrorMessage="Please reenter your password"
                 ControlToValidate="tbxPasswordConfirm">Password required</asp:RequiredFieldValidator>
-            <asp:CompareValidator ID="CompareValidator1" runat="server" CssClass="text-danger" ErrorMessage="Passwords must match"
+            <asp:CompareValidator ID="cvPasswordConfirm" runat="server" CssClass="text-danger" ErrorMessage="Passwords must match"
                 Operator="Equal" ControlToCompare="tbxPassword" ControlToValidate="tbxPasswordConfirm"></asp:CompareValidator>
         </div>
         <%-- Register and Cancel buttons--%>
