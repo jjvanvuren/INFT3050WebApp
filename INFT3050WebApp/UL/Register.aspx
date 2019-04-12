@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            <!-- Lastname -->
+            <%--Lastname--%>
             <asp:Label ID="lblLastName" runat="server" Text="Last Name"></asp:Label>
             <asp:TextBox ID="tbxLastName" type="text" runat="server" CssClass="form-control"></asp:TextBox>
         </div>

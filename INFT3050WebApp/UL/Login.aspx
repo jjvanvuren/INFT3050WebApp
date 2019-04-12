@@ -4,6 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
+    <%-- Customer login page --%>
     <h1>Customer Login</h1>
     <br />
     <br />
@@ -40,6 +41,8 @@
             <asp:CustomValidator ID="cvPasswordCorrect" runat="server" CssClass="text-danger" ErrorMessage="Password incorrect"
                 OnServerValidate="passwordCorrect"></asp:CustomValidator>
         </div>
+
+        <%-- Buttons to login or cancel --%>
         <asp:Button ID="btnLogin" type="submit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnLogin_Click" />
         <asp:Button ID="btnCancel" type="cancel" CssClass="btn btn-secondary" runat="server" Text="Cancel" CausesValidation="false" OnClick="btnCancel_Click" />
     </form>
