@@ -21,5 +21,10 @@ namespace INFT3050WebApp.UL.BackEnd
         protected void Page_Load(object sender, EventArgs e)
         {
         }
+
+        //Button to add a new book to database: No functionality yet
+        protected void btnAddBook_Click(object sender, EventArgs e)
+        {
+        }
     }
 }
