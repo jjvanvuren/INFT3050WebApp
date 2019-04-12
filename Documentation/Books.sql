@@ -20,7 +20,8 @@ CREATE TABLE item(
 	stockQuantity INTEGER DEFAULT 0,
 	longDescription VARCHAR(200),
 	shortDescription VARCHAR(100),
-	imagePath VARCHAR(100)
+	imagePath VARCHAR(100),
+	thumbnailPath VARCHAR(100)
 	Primary Key (itemID)
 )
 
@@ -30,7 +31,8 @@ CREATE TABLE book(
 	title CHAR(45) NOT NULL,
 	datePublished Date NOT NULL,
 	secondaryTitle CHAR(45), 
-	description VARCHAR(100)
+	isBestSeller Boolean,
+	publisher VARCHAR(100)
 	Primary Key (itemID)
 	Foreign Key (itemID) references item(itemID)ON DELETE CASCADE ON UPDATE CASCADE
 )
