@@ -14,6 +14,10 @@ DROP TABLE author
 DROP TABLE book
 DROP TABLE item
 
+/* Create Database Login */
+CREATE LOGIN Admin WITH PASSWORD = 'Password#1';
+
+/* Create Item Table */
 CREATE TABLE item(
 	itemID VARCHAR(30) NOT NULL, 
 	price DECIMAL(7,2) NOT NULL DEFAULT 0.0,
@@ -25,6 +29,7 @@ CREATE TABLE item(
 	Primary Key (itemID)
 )
 
+/* Create Book Table */
 CREATE TABLE book(
 	itemID VARCHAR(30) NOT NULL, 
 	ISBN VARCHAR(30) NOT NULL, 
@@ -37,6 +42,7 @@ CREATE TABLE book(
 	Foreign Key (itemID) references item(itemID)ON DELETE CASCADE ON UPDATE CASCADE
 )
 
+/* Create Author Table */
 CREATE TABLE author(
 	authorID VARCHAR(30) NOT NULL, 
 	firstName CHAR(30) NOT NULL, 
@@ -45,6 +51,7 @@ CREATE TABLE author(
 	Primary Key (authorID)
 )
 
+/* Create Category Table */
 CREATE TABLE category(
 	categoryID VARCHAR(30) NOT NULL, 
 	Name CHAR(30) NOT NULL, 
@@ -52,6 +59,7 @@ CREATE TABLE category(
 	Primary Key (categoryID)
 )
 
+/* Create BookAuthor Table */
 CREATE TABLE bookAuthor(
 	itemID VARCHAR(30) NOT NULL,
 	authorID VARCHAR(30) NOT NULL
@@ -60,6 +68,7 @@ CREATE TABLE bookAuthor(
 	Foreign Key (authorID) references author (authorID)ON DELETE NO ACTION ON UPDATE NO ACTION
 )
 
+/* Create BookCategory Table */
 CREATE TABLE bookCategory(
 	itemID VARCHAR(30) NOT NULL,
 	categoryID VARCHAR(30) NOT NULL
@@ -68,6 +77,7 @@ CREATE TABLE bookCategory(
 	Foreign Key (categoryID) references category (categoryID)ON DELETE NO ACTION ON UPDATE NO ACTION
 )
 
+/* Create WebSiteUser Table*/
 CREATE TABLE webSiteUser(
 	userID VARCHAR(30) NOT NULL, 
 	email VARCHAR(45) NOT NULL,
@@ -79,6 +89,7 @@ CREATE TABLE webSiteUser(
 	Primary Key (userID)
 )
 
+/* Create Customer Table */
 CREATE TABLE customer(
 	userID VARCHAR(30) NOT NULL, 
 	phoneNumber VARCHAR(15)
@@ -86,6 +97,7 @@ CREATE TABLE customer(
 	Foreign Key (userID) references webSiteUser(userID)ON DELETE CASCADE ON UPDATE CASCADE
 )
 
+/* Create Payment Table*/
 CREATE TABLE payment(
 	paymentID VARCHAR(30) NOT NULL,
 	datePayed Date,
@@ -93,6 +105,7 @@ CREATE TABLE payment(
 	Primary key (paymentID)
 )
 
+/* Create Postage Option Table*/
 CREATE TABLE postageOption(
 	postageOptionID VARCHAR(30) NOT NULL,
 	postageOptionName VARCHAR(30),
@@ -101,6 +114,7 @@ CREATE TABLE postageOption(
 	Primary key (postageOptionID) 
 )
 
+/* Create Orders Table */
 CREATE TABLE orders(
 	orderID VARCHAR(30) NOT NULL,
 	userID VARCHAR(30) NOT NULL,
@@ -117,8 +131,7 @@ CREATE TABLE orders(
 
 )
 
-
-
+/* Create OrderItem Table */
 CREATE TABLE orderItem(
 	orderID VARCHAR(30) NOT NULL,
 	itemID VARCHAR(30) NOT NULL, 
@@ -129,14 +142,14 @@ CREATE TABLE orderItem(
 )
 
 
-
+/* Create PostCode Table*/
 CREATE TABLE postCode(
 	city VARCHAR(15) NOT NULL, 
 	adressStates CHAR(3)NOT NULL,
 	postCode INTEGER,
 	Primary Key(city,adressStates)
 )
-
+/* Create User Address Table */
 CREATE TABLE userAddress(
 	addressID VARCHAR(30) NOT NULL,
 	streetNumber VARCHAR(6)NOT NULL, 
@@ -147,6 +160,7 @@ CREATE TABLE userAddress(
 	Foreign key(city,adressStates) references postCode(city,adressStates)ON DELETE NO ACTION ON UPDATE CASCADE
 )
 
+/* Create Customer Address Table*/
 CREATE TABLE customerAddress(
 	addressID VARCHAR(30) NOT NULL,
 	userID VARCHAR(30) NOT NULL, 
