@@ -83,7 +83,7 @@
             <%-- Buttons to pay or cancel --%>
             <asp:Button ID="btnPay" CssClass="btn btn-success" runat="server" Text="Pay" OnClick="btnPay_Click" />
             &nbsp;&nbsp;
-            <asp:Button ID="btnCancel" CssClass="btn btn-danger" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
+            <asp:Button ID="btnCancel" type="cancel" CssClass="btn btn-danger" runat="server" Text="Cancel" OnClick="btnCancel_Click" CausesValidation="False" />
         </div>
     </form>
 </asp:Content>
