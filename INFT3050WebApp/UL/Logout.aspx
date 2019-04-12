@@ -5,8 +5,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <%-- Customer logout page --%>
     <h1>Logout Successful</h1>
     <br />
     <br />
+    <%-- Displays logout message using session state --%>
     <asp:Label ID="lblLogoutMessage" runat="server" Text=""></asp:Label>
 </asp:Content>

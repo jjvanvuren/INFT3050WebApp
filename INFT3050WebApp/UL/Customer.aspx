@@ -6,7 +6,7 @@
 
     <h1><asp:Label ID="customerWelcome" runat="server" Text=""></asp:Label></h1>
 
-    <!-- Current Offers Section -->
+    <%--Current Offers Section--%>
     <h2>Best Sellers</h2>
     <br />
     <form runat="server">

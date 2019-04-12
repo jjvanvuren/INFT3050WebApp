@@ -5,8 +5,8 @@
 
     <h1>Shopping Cart</h1>
     <br />
-    <!-- This table is only to show desired layout 
-             Will be replaced in assignment 2-->
+            <%--This table is only to show desired layout 
+            Will be replaced in assignment 2--%>
             <table class="table">
                 <thead>
                     <tr>
@@ -55,6 +55,7 @@
             </table>
     <br />
 
+    <%-- Button for customer to proceed to checkout --%>
     <form runat="server">
         <asp:Button ID="btnCheckout" CssClass="btn btn-success" runat="server" Text="Checkout" OnClick="btnCheckout_Click" />
     </form>
