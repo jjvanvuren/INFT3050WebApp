@@ -9,7 +9,7 @@
         <h1>Search</h1>
         <br />
         <form runat="server">
-            <!-- Search Field -->
+            <%--Search Field--%>
             <div class="input-group">
                     <asp:TextBox ID="tbxSearch" class="form-control" type="text" placeholder="Search" aria-label="Search" runat="server"></asp:TextBox>
                 <span class="input-group-btn">
@@ -20,9 +20,9 @@
             </div>
             <br />
             <div class="container-flex">
-                <!-- Get Data Source -->
+                <%--Get Data Source--%>
                 <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetBooks" TypeName="INFT3050WebApp.DAL.DummyDB"></asp:ObjectDataSource>
-                <!-- Display all books using gridview -->
+                <%--Display all books using gridview--%>
                 <asp:GridView ID="GridBooks" runat="server" AutoGenerateColumns="false" DataSourceID="bookDataSource" OnRowCommand="GridSearch_RowCommand" CssClass="table" GridLines="None" AllowPaging="True" PageSize="4">
                     <Columns>
                         <asp:ImageField DataImageUrlField="ThumbnailPath" HeaderText="Cover">

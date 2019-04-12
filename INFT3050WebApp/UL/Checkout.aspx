@@ -4,6 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form runat="server">
+        <%-- Customer Checkout page --%>
         <h1>Checkout</h1>
 
         <%--Validation summary for checkout--%>

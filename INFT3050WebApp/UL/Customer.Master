@@ -6,6 +6,7 @@
 <head runat="server">
     <title>Used Book Store</title>
 
+    <%-- Style sheets --%>
     <link href="../Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="../Content/bootstrapFlatly.min.css" rel="stylesheet" type="text/css" />
     <link href="../Content/UsedBooks.css" rel="stylesheet" type="text/css" />
@@ -17,7 +18,7 @@
 <body>
     <div class="sticky-top">
 
-        <!-- Top Navigation bar -->
+        <%--Top Navigation bar--%>
         <nav class="container-flex navbar navbar-expand-sm navbar-dark bg-primary">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -27,6 +28,8 @@
                 <asp:HyperLink CssClass="navbar-brand" href="Customer.aspx" Text="Home Page" runat="server"><img src="Images/768px-Books_Flat_Icon_Vector.png" alt="Used Book Store Logo" height="56" width="56" />Used Book Store</asp:HyperLink>
                 <div class="navbar-collapse collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav mr-auto">
+
+                        <%-- Dropdown list to display all books and individual categories --%>
                         <li class="dropdown">
                             <a href="#" class="nav-link btn dropdown-toggle" data-toggle="dropdown" role="button">Books</a>
                             <ul class="dropdown-menu">
@@ -43,6 +46,7 @@
                         </li>
                     </ul>
 
+                    <%-- All navbar items on the right --%>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item">
                             <asp:HyperLink href="Search.aspx" ID="searchLink" CssClass="nav-link" Title="Search for books" runat="server"><i class="fa fa-search"></i></asp:HyperLink></li>
@@ -50,6 +54,7 @@
                         <li class="nav-item">
                             <asp:HyperLink href="Cart.aspx" ID="cartLink" CssClass="nav-link" Title="View Shopping Cart" runat="server"><i class="fa fa-shopping-cart"></i></asp:HyperLink></li>
 
+                        <%-- Dropdown to access purchase history --%>
                         <li class="nav-item">
                             <ul class="nav navbar-nav mr-auto">
                                 <li class="dropdown">
@@ -71,13 +76,13 @@
         </nav>
     </div>
 
-    <!-- Page content area -->
+    <%-- Page content area --%>
     <div class="container">
         <br />
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
     </div>
 
-    <!-- Footer -->
+    <%-- Footer that contains about and contact page links --%>
     <footer class="footer">
         <div class="container">
             <span>
@@ -88,7 +93,7 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <%-- Scripts --%>
     <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
 </body>

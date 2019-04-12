@@ -10,7 +10,7 @@
         <div class="container-flex">
             <%--Setting data source to be used for display of data in gridview --%>
             <asp:ObjectDataSource ID="UserDataSource" runat="server" SelectMethod="GetUsers" TypeName="INFT3050WebApp.DAL.DummyDB"></asp:ObjectDataSource>
-            <asp:GridView ID="UserManagment" runat="server" AutoGenerateColumns="false" DataSourceID="UserDataSource" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True" OnRowCommand="UserManagement_RowCommand">
+            <asp:GridView ID="UserManagment" runat="server" AutoGenerateColumns="false" DataSourceID="UserDataSource" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True" OnRowCommand="UserManagement_RowCommand" PageSize="5">
                 <Columns>
                     <%--User iD displayed--%>
                     <asp:BoundField DataField="Id" HeaderText="ID" ReadOnly="True" SortExpression="Id">

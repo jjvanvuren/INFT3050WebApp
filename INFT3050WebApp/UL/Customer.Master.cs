@@ -13,10 +13,5 @@ namespace INFT3050WebApp.UL
         {
 
         }
-
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/UL/Search.aspx");
-        }
     }
 }

@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            <!-- Lastname -->
+            <%--Lastname--%>
             <asp:Label ID="lblLastName" runat="server" Text="Last Name"></asp:Label>
             <asp:TextBox ID="tbxLastName" type="text" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
@@ -59,8 +59,15 @@
         <%-- Password --%>
         <div class="form-group">
             <%-- Password field --%>
-            <asp:Label ID="lblPassword" runat="server" Text="Password"></asp:Label>
-            <asp:TextBox ID="tbxPassword" runat="server" type="password" CssClass="form-control"></asp:TextBox>
+            <asp:Label ID="lblPassword" runat="server" Text="Password" ></asp:Label>
+            <%--Includes ToolTip for password creation--%>
+            <asp:TextBox ID="tbxPassword" runat="server" type="password" CssClass="form-control" 
+                ToolTip="Password must contain at least: 
+                8 characters at least
+                1 uppercase 
+                1 lowercase
+                1 number
+                1 special character"></asp:TextBox>
 
             <%-- Password Validation --%>
             <asp:RequiredFieldValidator ID="rfvPassword" runat="server" CssClass="text-danger" ErrorMessage="Please enter a password"
