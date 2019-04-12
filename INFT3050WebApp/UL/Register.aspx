@@ -75,7 +75,7 @@
 
             <%-- Check that password meets complexity requirements --%>
             <asp:RegularExpressionValidator ID="revPasswordComplex" runat="server" ControlToValidate="tbxPassword" CssClass="text-danger"
-                ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[A-Za-z\d$@$!%*?&_]{8,}"
+                ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@!%*?&_#^])[A-Za-z\d$@!%*?&_#^]{8,}"
                 ErrorMessage="Password must meet complexity requirements">
                 Password must contain at least 8 characters at least 1 uppercase, 1 lowercase, 1 number and 1 special character</asp:RegularExpressionValidator>
         </div>
