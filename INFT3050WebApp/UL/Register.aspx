@@ -18,8 +18,8 @@
             <asp:Label ID="lblFirstName" runat="server" Text="Name"></asp:Label>
             <asp:TextBox ID="tbxFirstName" type="text" runat="server" CssClass="form-control"></asp:TextBox>
 
-            <%-- Password Confirmation Validation --%>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" CssClass="text-danger" ErrorMessage="Please enter your Name"
+            <%-- FirstName Validation --%>
+            <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" CssClass="text-danger" ErrorMessage="Please enter your Name"
                 ControlToValidate="tbxFirstName">First Name Required</asp:RequiredFieldValidator>
         </div>
 
@@ -49,9 +49,9 @@
 
 
             <%-- Email confirmation field validation --%>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" CssClass="text-danger" ErrorMessage="Please reenter your email address"
+            <asp:RequiredFieldValidator ID="rfvEmailConfirm" runat="server" CssClass="text-danger" ErrorMessage="Please reenter your email address"
                 ControlToValidate="tbxEmailConfirm">Email required</asp:RequiredFieldValidator>
-            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid email address"
+            <asp:RegularExpressionValidator ID="revEmailConfirm" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid email address"
                 ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="tbxEmailConfirm">Valid email required</asp:RegularExpressionValidator>
             <asp:CompareValidator ID="emailCompareValidator" runat="server" CssClass="text-danger" ErrorMessage="Email addresses must match"
                 Operator="Equal" ControlToCompare="tbxEmail" ControlToValidate="tbxEmailConfirm"></asp:CompareValidator>
