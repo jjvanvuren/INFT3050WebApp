@@ -17,7 +17,7 @@
 <body>
     <div class="sticky-top">
 
-        <!-- Top Navigation bar -->
+        <%--Top Navigation bar--%>
         <nav class="container-flex navbar navbar-expand-sm navbar-dark bg-primary">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -71,13 +71,13 @@
         </nav>
     </div>
 
-    <!-- Page content area -->
+    <%--Page content area--%>
     <div class="container">
         <br />
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
     </div>
 
-    <!-- Footer -->
+    <%--Footer--%>
     <footer class="footer">
         <div class="container">
             <span>
@@ -88,7 +88,7 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <%--Scripts--%>
     <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
 </body>

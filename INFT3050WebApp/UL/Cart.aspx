@@ -5,8 +5,8 @@
 
     <h1>Shopping Cart</h1>
     <br />
-    <!-- This table is only to show desired layout 
-             Will be replaced in assignment 2-->
+            <%--This table is only to show desired layout 
+            Will be replaced in assignment 2--%>
             <table class="table">
                 <thead>
                     <tr>
