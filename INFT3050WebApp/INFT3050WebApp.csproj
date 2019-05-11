@@ -87,11 +87,11 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="UL\About.aspx" />
     <Content Include="UL\Admin\AdminPurchaseHistory.aspx" />
     <Content Include="UL\Admin\AdminUserAccounts.aspx" />
@@ -106,7 +106,7 @@
     <Content Include="UL\ConfirmSale.aspx" />
     <Content Include="UL\Contact.aspx" />
     <Content Include="Content\bootstrapDarkly.min.css" />
-    <Content Include="Content\bootstrapFlatly.min.css" />
+    <Content Include="UL\css\bootstrapFlatly.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="UL\Customer.aspx" />
@@ -130,6 +130,7 @@
     <Content Include="UL\Images\9781784751173_thumb.jpg" />
     <Content Include="UL\Images\9781786812445.jpg" />
     <Content Include="UL\Images\9781786812445_thumb.jpg" />
+    <Content Include="UL\Images\favicon.ico" />
     <Content Include="UL\Login.aspx" />
     <Content Include="UL\Logout.aspx" />
     <Content Include="UL\CardPayment.aspx" />
@@ -158,7 +159,7 @@
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="UL\Search.aspx" />
     <Content Include="UL\SuccessfulRegistration.aspx" />
-    <Content Include="Content\UsedBooks.css" />
+    <Content Include="UL\css\UsedBooks.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -366,10 +367,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="UL\Admin\Admin.Master" />
     <Content Include="UL\Customer.Master" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

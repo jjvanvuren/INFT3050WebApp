@@ -36,7 +36,7 @@ CREATE TABLE book(
 	title CHAR(45) NOT NULL,
 	datePublished Date NOT NULL,
 	secondaryTitle CHAR(45), 
-	isBestSeller Boolean,
+	isBestSeller BIT,
 	publisher VARCHAR(100)
 	Primary Key (itemID)
 	Foreign Key (itemID) references item(itemID)ON DELETE CASCADE ON UPDATE CASCADE
@@ -84,8 +84,8 @@ CREATE TABLE webSiteUser(
 	password VARCHAR(45) NOT NULL,
 	firstName CHAR(30) NOT NULL, 
 	lastName CHAR(30),
-	isAdmin Bit, 
-	isActive Bit
+	isAdmin BIT, 
+	isActive BIT,
 	Primary Key (userID)
 )
 

@@ -8,9 +8,10 @@
 
     <%-- Style sheets --%>
     <link href="../Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="../Content/bootstrapFlatly.min.css" rel="stylesheet" type="text/css" />
-    <link href="../Content/UsedBooks.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrapFlatly.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/UsedBooks.css" rel="stylesheet" type="text/css" />
     <link href="../Content/font-awesome.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
