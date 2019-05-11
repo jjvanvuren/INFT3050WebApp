@@ -12,12 +12,12 @@ namespace INFT3050WebApp.BL
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public bool IsAdmin { get; set; }
-        public string Status { get; set; }
+        public int IsAdmin { get; set; }
+        public int IsActive { get; set; }
 
         public User() { }
 
-        public User (int id, string email, string password, string firstName, string lastName, bool isAdmin, string status)
+        public User (int id, string email, string password, string firstName, string lastName, int isAdmin, int status)
         {
             this.Id = id;
             this.Email = email;
@@ -25,7 +25,7 @@ namespace INFT3050WebApp.BL
             this.FirstName = firstName;
             this.LastName = lastName;
             this.IsAdmin = isAdmin;
-            this.Status = status;
+            this.IsActive = status;
 
         }
     }

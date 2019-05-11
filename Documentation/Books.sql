@@ -1,4 +1,3 @@
-DROP TABLE postCode
 DROP TABLE userAddress
 DROP TABLE customerAddress
 DROP TABLE orderItem
@@ -13,13 +12,14 @@ DROP TABLE category
 DROP TABLE author
 DROP TABLE book
 DROP TABLE item
+DROP TABLE postCode
 
 /* Create Database Login */
 CREATE LOGIN Admin WITH PASSWORD = 'Password#1';
 
 /* Create Item Table */
 CREATE TABLE item(
-	itemID VARCHAR(30) NOT NULL, 
+	itemID INTEGER IDENTITY(1,1), 
 	price DECIMAL(7,2) NOT NULL DEFAULT 0.0,
 	stockQuantity INTEGER DEFAULT 0,
 	longDescription VARCHAR(200),
@@ -31,7 +31,7 @@ CREATE TABLE item(
 
 /* Create Book Table */
 CREATE TABLE book(
-	itemID VARCHAR(30) NOT NULL, 
+	itemID INTEGER, 
 	ISBN VARCHAR(30) NOT NULL, 
 	title CHAR(45) NOT NULL,
 	datePublished Date NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE book(
 
 /* Create Author Table */
 CREATE TABLE author(
-	authorID VARCHAR(30) NOT NULL, 
+	authorID INTEGER IDENTITY(1,1), 
 	firstName CHAR(30) NOT NULL, 
 	lastName CHAR(30), 
 	description VARCHAR(100)
@@ -53,7 +53,7 @@ CREATE TABLE author(
 
 /* Create Category Table */
 CREATE TABLE category(
-	categoryID VARCHAR(30) NOT NULL, 
+	categoryID INTEGER IDENTITY(1,1), 
 	Name CHAR(30) NOT NULL, 
 	description VARCHAR(100)
 	Primary Key (categoryID)
@@ -61,25 +61,25 @@ CREATE TABLE category(
 
 /* Create BookAuthor Table */
 CREATE TABLE bookAuthor(
-	itemID VARCHAR(30) NOT NULL,
-	authorID VARCHAR(30) NOT NULL
-	Primary Key (itemID, authorID)
+	itemID INTEGER,
+	authorID INTEGER,
+	Primary Key (itemID, authorID),
 	Foreign Key (itemID) references book (itemID)ON DELETE CASCADE ON UPDATE CASCADE,
 	Foreign Key (authorID) references author (authorID)ON DELETE NO ACTION ON UPDATE NO ACTION
 )
 
 /* Create BookCategory Table */
 CREATE TABLE bookCategory(
-	itemID VARCHAR(30) NOT NULL,
-	categoryID VARCHAR(30) NOT NULL
-	Primary Key (itemID, categoryID)
+	itemID INTEGER,
+	categoryID INTEGER,
+	Primary Key (itemID, categoryID),
 	Foreign Key (itemID) references book (itemID)ON DELETE CASCADE ON UPDATE CASCADE,
 	Foreign Key (categoryID) references category (categoryID)ON DELETE NO ACTION ON UPDATE NO ACTION
 )
 
 /* Create WebSiteUser Table*/
 CREATE TABLE webSiteUser(
-	userID VARCHAR(30) NOT NULL, 
+	userID INTEGER IDENTITY(1,1), 
 	email VARCHAR(45) NOT NULL,
 	password VARCHAR(45) NOT NULL,
 	firstName CHAR(30) NOT NULL, 
@@ -91,7 +91,7 @@ CREATE TABLE webSiteUser(
 
 /* Create Customer Table */
 CREATE TABLE customer(
-	userID VARCHAR(30) NOT NULL, 
+	userID INTEGER, 
 	phoneNumber VARCHAR(15)
 	Primary Key (userID)
 	Foreign Key (userID) references webSiteUser(userID)ON DELETE CASCADE ON UPDATE CASCADE
@@ -99,7 +99,7 @@ CREATE TABLE customer(
 
 /* Create Payment Table*/
 CREATE TABLE payment(
-	paymentID VARCHAR(30) NOT NULL,
+	paymentID INTEGER IDENTITY(1,1),
 	datePayed Date,
 	total DECIMAL(7,2) DEFAULT 0.0
 	Primary key (paymentID)
@@ -107,7 +107,7 @@ CREATE TABLE payment(
 
 /* Create Postage Option Table*/
 CREATE TABLE postageOption(
-	postageOptionID VARCHAR(30) NOT NULL,
+	postageOptionID INTEGER IDENTITY(1,1),
 	postageOptionName VARCHAR(30),
 	amountOfDaysToDeliver DECIMAL(7,2) DEFAULT 0.0,
 	shippingCost DECIMAL(7,2) DEFAULT 0.0
@@ -116,10 +116,10 @@ CREATE TABLE postageOption(
 
 /* Create Orders Table */
 CREATE TABLE orders(
-	orderID VARCHAR(30) NOT NULL,
-	userID VARCHAR(30) NOT NULL,
-	paymentID VARCHAR(30) NOT NULL,
-	postageOptionID VARCHAR(30),
+	orderID INTEGER IDENTITY(1,1),
+	userID INTEGER,
+	paymentID INTEGER,
+	postageOptionID INTEGER,
 	orderStatus VARCHAR(30) NOT NULL,
 	GST INTEGER,
 	subTotal DECIMAL(7,2) NOT NULL DEFAULT 0.0,
@@ -133,8 +133,8 @@ CREATE TABLE orders(
 
 /* Create OrderItem Table */
 CREATE TABLE orderItem(
-	orderID VARCHAR(30) NOT NULL,
-	itemID VARCHAR(30) NOT NULL, 
+	orderID INTEGER,
+	itemID INTEGER,
 	quantity INTEGER ,
 	Primary key (orderID, itemID),
 	Foreign key(orderID) references orders(orderID)ON DELETE CASCADE ON UPDATE CASCADE,
@@ -151,7 +151,7 @@ CREATE TABLE postCode(
 )
 /* Create User Address Table */
 CREATE TABLE userAddress(
-	addressID VARCHAR(30) NOT NULL,
+	addressID INTEGER IDENTITY(1,1),
 	streetNumber VARCHAR(6)NOT NULL, 
 	streetName VARCHAR(15)NOT NULL, 
 	city VARCHAR(15)NOT NULL, 
@@ -162,10 +162,25 @@ CREATE TABLE userAddress(
 
 /* Create Customer Address Table*/
 CREATE TABLE customerAddress(
-	addressID VARCHAR(30) NOT NULL,
-	userID VARCHAR(30) NOT NULL, 
+	addressID INTEGER,
+	userID INTEGER,
 	addressType VARCHAR(50),
 	Primary key (addressID,userID),
 	Foreign key(addressID) references userAddress(addressID)ON DELETE CASCADE ON UPDATE CASCADE,
 	Foreign key(userID) references customer(userID)ON DELETE CASCADE ON UPDATE CASCADE
 )
+
+--INSERT DATA INTO TABLES
+
+--Insert Users
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('joe@example.com', 'Password#1', 'Joe', '', 0, 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('james@example.com', 'Password#1', 'James', 'Smith', 0, 0);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('sara@example.com', 'Password#1', 'Sara', 'Headges', 0, 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('alex@usedbooksales.com.au', 'Password#1', 'Alex', 'Budwill', 1, 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('patrick@usedbooksales.com.au', 'Password#1', 'Patrick', 'Foley', 1, 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('derrick@example.com', 'Password#1', 'Derrick', 'Hardy', 0, 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('soli@example.com', 'Password#1', 'Soli', 'Soliman', 0, 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('chelsea@example.com', 'Password#1', 'Chelsea', 'Gordon', 0, 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('karl@usedbooksales.com.au', 'Password#1', 'Karl', 'Foley', 1, 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('jacques@usedbooksales.com.au', 'Password#1', 'Jacques', 'Janse van Vuren', 1, 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('francois@usedbooksales.com.au', 'Password#1', 'Francois', 'Janse van Vuren', 1, 1);

@@ -34,7 +34,7 @@ namespace INFT3050WebApp
             if (IsValid)
             {
                 // Create a new user based on info entered
-                User registeredUser = new User(0, tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, false, "Active");
+                User registeredUser = new User(0, tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, 0, 1);
 
                 // Data to be retained in session
                 CustomerSession currentCustomerSession = new CustomerSession

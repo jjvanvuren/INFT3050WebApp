@@ -160,7 +160,9 @@
     <Content Include="UL\Search.aspx" />
     <Content Include="UL\SuccessfulRegistration.aspx" />
     <Content Include="UL\css\UsedBooks.css" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -184,6 +186,8 @@
     <Compile Include="BL\PostageOption.cs" />
     <Compile Include="BL\StoreItem.cs" />
     <Compile Include="BL\User.cs" />
+    <Compile Include="DAL\IUserDataAccess.cs" />
+    <Compile Include="DAL\UserDataAccess.cs" />
     <Compile Include="UL\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
