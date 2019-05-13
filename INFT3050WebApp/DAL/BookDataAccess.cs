@@ -12,28 +12,33 @@ namespace INFT3050WebApp.DAL
     [DataObject(true)]
     public class BookDataAccess : IBookDataAccess
     {
-        private string ConnectionString
-        {
-            get
-            {
-                return ConfigurationManager.ConnectionStrings["UsedBooksConnectionString"].ConnectionString;
-            }
-        }
+        //private string ConnectionString
+        //{
+        //    get
+        //    {
+        //        return ConfigurationManager.ConnectionStrings["UsedBooksConnectionString"].ConnectionString;
+        //    }
+        //}
+
+        // String used to connect to the Azure SQL Server
+        static String ConnectionString = "Server=tcp:inft3050book.database.windows.net,1433;Initial " +
+            "Catalog=INFT3050;Persist Security Info=False;User ID = editAdmin; Password=INFT3050!;" +
+            "MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30;";
 
         // Method used to get all books
         [DataObjectMethod(DataObjectMethodType.Select)]
         public IEnumerable<Book> GetBooks()
         {
             List<Book> books = new List<Book>();
-            string sql = @"SELECT item.itemID, price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, 
-                            ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher, author.firstName, author.lastName, author.description, 
-                            category.name, category.description, author.authorID, category.categoryID
-                            FROM item 
-                            INNER JOIN book ON item.itemID = book.itemID
-                            INNER JOIN bookAuthor ON book.itemID = bookAuthor.itemID
-                            INNER JOIN author ON bookAuthor.authorID = author.authorID
-                            INNER JOIN bookCategory ON book.itemID = bookCategory.itemID
-                            INNER JOIN category ON bookCategory.categoryID = category.categoryID;";
+            string sql = @"SELECT [item].[itemID], [price], [stockQuantity], [longDescription], [shortDescription], [imagePath], [thumbnailPath], 
+                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher], [author].[firstName], [author].[lastName], [author].[description], 
+                            [category].[name], [category].[description], [author].[authorID], [category].[categoryID]
+                            FROM [dbo].[item] 
+                            INNER JOIN [book] ON [item].[itemID] = [book].[itemID]
+                            INNER JOIN [bookAuthor] ON [book].[itemID] = [bookAuthor].[itemID]
+                            INNER JOIN [author] ON [bookAuthor].[authorID] = [author].[authorID]
+                            INNER JOIN [bookCategory] ON [book].[itemID] = [bookCategory].[itemID]
+                            INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID];";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
@@ -54,16 +59,16 @@ namespace INFT3050WebApp.DAL
         [DataObjectMethod(DataObjectMethodType.Select)]
         public Book GetBookById(int Id)
         {
-            string sql = @"SELECT item.itemID, price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, 
-                            ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher, author.firstName, author.lastName, author.description, 
-                            category.name, category.description, author.authorID, category.categoryID
-                            FROM item 
-                            INNER JOIN book ON item.itemID = book.itemID
-                            INNER JOIN bookAuthor ON book.itemID = bookAuthor.itemID
-                            INNER JOIN author ON bookAuthor.authorID = author.authorID
-                            INNER JOIN bookCategory ON book.itemID = bookCategory.itemID
-                            INNER JOIN category ON bookCategory.categoryID = category.categoryID;
-                            WHERE item.itemID=@Id ";
+            string sql = @"SELECT [item].[itemID], [price], [stockQuantity], [longDescription], [shortDescription], [imagePath], [thumbnailPath], 
+                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher], [author].[firstName], [author].[lastName], [author].[description], 
+                            [category].[name], [category].[description], [author].[authorID], [category].[categoryID]
+                            FROM [dbo].[item] 
+                            INNER JOIN [book] ON [item].[itemID] = [book].[itemID]
+                            INNER JOIN [bookAuthor] ON [book].[itemID] = [bookAuthor].[itemID]
+                            INNER JOIN [author] ON [bookAuthor].[authorID] = [author].[authorID]
+                            INNER JOIN [bookCategory] ON [book].[itemID] = [bookCategory].[itemID]
+                            INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID];
+                            WHERE [item].[itemID]=@Id ";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
@@ -85,16 +90,16 @@ namespace INFT3050WebApp.DAL
         [DataObjectMethod(DataObjectMethodType.Select)]
         public Book GetBookByCategory(int Id)
         {
-            string sql = @"SELECT item.itemID, price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, 
-                            ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher, author.firstName, author.lastName, author.description, 
-                            category.name, category.description, author.authorID, category.categoryID
-                            FROM item 
-                            INNER JOIN book ON item.itemID = book.itemID
-                            INNER JOIN bookAuthor ON book.itemID = bookAuthor.itemID
-                            INNER JOIN author ON bookAuthor.authorID = author.authorID
-                            INNER JOIN bookCategory ON book.itemID = bookCategory.itemID
-                            INNER JOIN category ON bookCategory.categoryID = category.categoryID;
-                            WHERE category.categoryID=@Id ";
+            string sql = @"SELECT [item].[itemID], [price], [stockQuantity], [longDescription], [shortDescription], [imagePath], [thumbnailPath], 
+                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher], [author].[firstName], [author].[lastName], [author].[description], 
+                            [category].[name], [category].[description], [author].[authorID], [category].[categoryID]
+                            FROM [dbo].[item] 
+                            INNER JOIN [book] ON [item].[itemID] = [book].[itemID]
+                            INNER JOIN [bookAuthor] ON [book].[itemID] = [bookAuthor].[itemID]
+                            INNER JOIN [author] ON [bookAuthor].[authorID] = [author].[authorID]
+                            INNER JOIN [bookCategory] ON [book].[itemID] = [bookCategory].[itemID]
+                            INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID];
+                            WHERE [category].[categoryID]=@Id ";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
