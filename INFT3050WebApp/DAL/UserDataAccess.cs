@@ -6,7 +6,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using INFT3050WebApp.BL;
-using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp.DAL
 {
