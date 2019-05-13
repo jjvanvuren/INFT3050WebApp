@@ -59,14 +59,14 @@ namespace INFT3050WebApp.DAL
             books = new BL.Book[]
             {
                 // Add Books
-                CreateDummyBook(id++, 45.92, 20, "/UL/Images/9780813056173.jpg", "/UL/Images/9780813056173_thumb.jpg", "9780813056173", new DateTime (2019,04,30), "Picturing Apollo 11", "", authors[id-1], categories[id-1], "Univ Pr of Florida", true),
-                CreateDummyBook(id++, 16.49, 20, "/UL/Images/9781786812445.jpg", "/UL/Images/9781786812445_thumb.jpg", "9781786812445", new DateTime (2017,10,04), "The Mistake", "", authors[id-1], categories[id-1], "Bookouture", true),
-                CreateDummyBook(id++, 22.99, 20, "/UL/Images/9781503903265.jpg", "/UL/Images/9781503903265_thumb.jpg", "9781503903265", new DateTime (2019,05,01), "One Word Kill", "", authors[id-1], categories[id-1], "47 North", true),
-                CreateDummyBook(id++, 16.81, 20, "/UL/Images/9781473635487.jpg", "/UL/Images/9781473635487_thumb.jpg", "9781473635487", new DateTime (2017,08,10), "The Keeper of Lost Things", "", authors[id-1], categories[id-1], "Hodder & Stoughton General Division", true),
-                CreateDummyBook(id++, 16.11, 20, "/UL/Images/9781784751173.jpg", "/UL/Images/9781784751173_thumb.jpg", "9781784751173", new DateTime (2018,08,06), "Run Away", "", authors[id-1], categories[id-1], "ARROW LTD", true),
-                CreateDummyBook(id++, 19.99, 20, "/UL/Images/9780008152406.jpg", "/UL/Images/9780008152406_thumb.jpg", "9780008152406", new DateTime (2019,03,18), "Holy Sister", "", authors[2], categories[id-1], "Voyager - GB", true),
-                CreateDummyBook(id++, 74.62, 20, "/UL/Images/9780847846597.jpg", "/UL/Images/9780847846597_thumb.jpg", "9780847846597", new DateTime (2016,10,01), "Masterpiece Paintings", "", authors[id-2], categories[id-1], "Rizzoli", true),
-                CreateDummyBook(id++, 23.36, 20, "/UL/Images/9780753555644.jpg", "/UL/Images/9780753555644_thumb.jpg", "9780753555644", new DateTime (2016,03,10), "Elon Musk", "", authors[id-2], categories[id-1], "Ebury Publishing", true)
+                CreateDummyBook(id++, 45.92, 20, "/UL/Images/9780813056173.jpg", "/UL/Images/9780813056173_thumb.jpg", "9780813056173", new DateTime (2019,04,30), "Picturing Apollo 11", "", authors[id-1], categories[id-1], "Univ Pr of Florida", 1),
+                CreateDummyBook(id++, 16.49, 20, "/UL/Images/9781786812445.jpg", "/UL/Images/9781786812445_thumb.jpg", "9781786812445", new DateTime (2017,10,04), "The Mistake", "", authors[id-1], categories[id-1], "Bookouture", 1),
+                CreateDummyBook(id++, 22.99, 20, "/UL/Images/9781503903265.jpg", "/UL/Images/9781503903265_thumb.jpg", "9781503903265", new DateTime (2019,05,01), "One Word Kill", "", authors[id-1], categories[id-1], "47 North", 1),
+                CreateDummyBook(id++, 16.81, 20, "/UL/Images/9781473635487.jpg", "/UL/Images/9781473635487_thumb.jpg", "9781473635487", new DateTime (2017,08,10), "The Keeper of Lost Things", "", authors[id-1], categories[id-1], "Hodder & Stoughton General Division", 1),
+                CreateDummyBook(id++, 16.11, 20, "/UL/Images/9781784751173.jpg", "/UL/Images/9781784751173_thumb.jpg", "9781784751173", new DateTime (2018,08,06), "Run Away", "", authors[id-1], categories[id-1], "ARROW LTD", 1),
+                CreateDummyBook(id++, 19.99, 20, "/UL/Images/9780008152406.jpg", "/UL/Images/9780008152406_thumb.jpg", "9780008152406", new DateTime (2019,03,18), "Holy Sister", "", authors[2], categories[id-1], "Voyager - GB", 1),
+                CreateDummyBook(id++, 74.62, 20, "/UL/Images/9780847846597.jpg", "/UL/Images/9780847846597_thumb.jpg", "9780847846597", new DateTime (2016,10,01), "Masterpiece Paintings", "", authors[id-2], categories[id-1], "Rizzoli", 1),
+                CreateDummyBook(id++, 23.36, 20, "/UL/Images/9780753555644.jpg", "/UL/Images/9780753555644_thumb.jpg", "9780753555644", new DateTime (2016,03,10), "Elon Musk", "", authors[id-2], categories[id-1], "Ebury Publishing", 1)
             };
 
             //Populate users
@@ -118,7 +118,7 @@ namespace INFT3050WebApp.DAL
 
     // Create Book: used to create dummy Book objects
     private BL.Book CreateDummyBook(int id, double price, int quantity, string image, string thumbImage, string isbn, DateTime datePublished,
-            string title, string secondTitle, BL.Author author, BL.Category category, string publisher, bool isBestSell)
+            string title, string secondTitle, BL.Author author, BL.Category category, string publisher, int isBestSell)
         {
             BL.Book book = new BL.Book()
             {

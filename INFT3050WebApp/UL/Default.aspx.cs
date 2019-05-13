@@ -30,7 +30,7 @@ namespace INFT3050WebApp
             if (!IsPostBack)
             {
                 // Create dummy database and pull all books from database
-                var db = new DAL.DummyDB();
+                var db = new DAL.BookDataAccess();
                 var books = db.GetBooks();
 
                 // Create list of best sellers based on IsBestSeller property
@@ -38,7 +38,7 @@ namespace INFT3050WebApp
                 
                 foreach (Book book in books)
                 {
-                    if (book.IsBestSeller)
+                    if (book.IsBestSeller == 1)
                     {
                         bestSellers.Add(book);
                     }
