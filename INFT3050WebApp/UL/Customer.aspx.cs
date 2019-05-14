@@ -45,7 +45,7 @@ namespace INFT3050WebApp
 
                 foreach (Book book in books)
                 {
-                    if (book.IsBestSeller == 1)
+                    if (book.IsBestSeller)
                     {
                         bestSellers.Add(book);
                     }

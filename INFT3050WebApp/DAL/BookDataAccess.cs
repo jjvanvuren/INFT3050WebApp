@@ -67,8 +67,8 @@ namespace INFT3050WebApp.DAL
                             INNER JOIN [bookAuthor] ON [book].[itemID] = [bookAuthor].[itemID]
                             INNER JOIN [author] ON [bookAuthor].[authorID] = [author].[authorID]
                             INNER JOIN [bookCategory] ON [book].[itemID] = [bookCategory].[itemID]
-                            INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID];
-                            WHERE [item].[itemID]=@Id ";
+                            INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID]
+                            WHERE [item].[itemID]=@Id;";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
@@ -98,8 +98,8 @@ namespace INFT3050WebApp.DAL
                             INNER JOIN [bookAuthor] ON [book].[itemID] = [bookAuthor].[itemID]
                             INNER JOIN [author] ON [bookAuthor].[authorID] = [author].[authorID]
                             INNER JOIN [bookCategory] ON [book].[itemID] = [bookCategory].[itemID]
-                            INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID];
-                            WHERE [category].[categoryID]=@Id ";
+                            INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID]
+                            WHERE [category].[categoryID]=@Id;";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
@@ -121,8 +121,10 @@ namespace INFT3050WebApp.DAL
         private static Book CreateBook(SqlDataReader reader)
         {
             Book book = new Book();
-            book.Id = (int)reader["item.itemID"];
-            book.Price = (double)reader["price"];
+            Author author = new Author();
+            Category category = new Category();
+            book.Id = (int)reader["itemID"];
+            book.Price = (double)reader.GetDecimal(1);
             book.StockQuantity = (int)reader["stockQuantity"];
             book.LongDescription = reader["longDescription"].ToString();
             book.ShortDescription = reader["shortDescription"].ToString();
@@ -132,17 +134,23 @@ namespace INFT3050WebApp.DAL
             book.Title = reader["title"].ToString();
             book.DatePublished = (DateTime)reader["datePublished"];
             book.SecondaryTitle = reader["secondaryTitle"].ToString();
-            book.IsBestSeller = (int)reader["isBestSeller"];
+            book.IsBestSeller = (bool)reader.GetSqlBoolean(11);
             book.Publisher = reader["publisher"].ToString();
-            book.Author.Id = (int)reader["author.authorID"];
-            book.Author.Description = reader["author.description"].ToString();
-            book.Author.FirstName = reader["author.firstName"].ToString();
-            book.Author.LastName = reader["author.lastName"].ToString();
-            book.Category.Id = (int)reader["category.categoryID"];
-            book.Category.Name = reader["category.name"].ToString();
-            book.Category.Description = reader["category.description"].ToString();
+            book.AuthorId = (int)reader["authorID"];
+            book.CategoryId = (int)reader["categoryID"];
 
             return book;
+
+            // Move these to new CreateCategory & CreateAuthor methods
+
+            //book.Author.Description = reader["author.description"].ToString();
+            //book.Author.Description = (string)reader.GetSqlString(15);
+            //book.Author.FirstName = reader["firstName"].ToString();
+            //book.Author.LastName = reader["lastName"].ToString();
+
+            //book.Category.Name = reader["name"].ToString();
+            //book.Category.Description = reader["category.description"].ToString();
+            //book.Category.Description = (string)reader.GetSqlString(17);
         }
     }
 }
