@@ -8,7 +8,6 @@
     <br />
     <%--Current Offers Section--%>
     <h2>Best Sellers</h2>
-    <form runat="server">
         <%--Splash Page which displays all the best selling books--%>
         <div class="container-flex">
             <div class="row">
@@ -27,5 +26,4 @@
                 </asp:Repeater>
             </div>
         </div>
-    </form>
 </asp:Content>

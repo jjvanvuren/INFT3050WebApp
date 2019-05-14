@@ -9,7 +9,7 @@
     <form runat="server">
         <div class="container-flex">
             <%--Setting data source to be used for display of data in gridview --%>
-            <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetBooks" TypeName="INFT3050WebApp.DAL.DummyDB"></asp:ObjectDataSource>
+            <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetBooks" TypeName="INFT3050WebApp.DAL.BookDataAccess"></asp:ObjectDataSource>
             <asp:GridView ID="ItemManagment" runat="server" AutoGenerateColumns="false" DataSourceID="bookDataSource" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True" PageSize="5">
                 <Columns>
                     <%--Item iD displayed--%>

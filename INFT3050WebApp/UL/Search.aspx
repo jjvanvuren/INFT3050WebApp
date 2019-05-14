@@ -21,7 +21,7 @@
             <br />
             <div class="container-flex">
                 <%--Get Data Source--%>
-                <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetBooks" TypeName="INFT3050WebApp.DAL.DummyDB"></asp:ObjectDataSource>
+                <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetBooks" TypeName="INFT3050WebApp.DAL.BookDataAccess"></asp:ObjectDataSource>
                 <%--Display all books using gridview--%>
                 <asp:GridView ID="GridBooks" runat="server" AutoGenerateColumns="false" DataSourceID="bookDataSource" OnRowCommand="GridSearch_RowCommand" CssClass="table" GridLines="None" AllowPaging="True" PageSize="4">
                     <Columns>

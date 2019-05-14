@@ -25,7 +25,7 @@ namespace INFT3050WebApp.DAL
         public IEnumerable<Book> GetBooks()
         {
             List<Book> books = new List<Book>();
-            string sql = @"SELECT [item].[itemID], [price], [stockQuantity], [longDescription], [shortDescription], [imagePath], [thumbnailPath], 
+                string sql = @"SELECT [item].[itemID], [price], [stockQuantity], [longDescription], [shortDescription], [imagePath], [thumbnailPath], 
                             [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher], [author].[firstName], [author].[lastName], [author].[description], 
                             [category].[name], [category].[description], [author].[authorID], [category].[categoryID]
                             FROM [dbo].[item] 
@@ -35,25 +35,26 @@ namespace INFT3050WebApp.DAL
                             INNER JOIN [bookCategory] ON [book].[itemID] = [bookCategory].[itemID]
                             INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID];";
 
-            using (SqlConnection con = new SqlConnection(ConnectionString))
-            {
-                using (SqlCommand command = new SqlCommand(sql, con))
+                using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
-                    con.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
+                    using (SqlCommand command = new SqlCommand(sql, con))
                     {
-                        Author newAuthor = CreateAuthor(reader);
-                        Category newCategory = CreateCategory(reader);
-                        Book newBook = CreateBook(reader);
-                        newBook.Author = newAuthor;
-                        newBook.Category = newCategory;
-                        books.Add(newBook);
+                        con.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            Author newAuthor = CreateAuthor(reader);
+                            Category newCategory = CreateCategory(reader);
+                            Book newBook = CreateBook(reader);
+                            newBook.Author = newAuthor;
+                            newBook.Category = newCategory;
+                            books.Add(newBook);
+                        }
                     }
                 }
-            }
-            return books;
+                return books;
         }
+
         // Method used to get books by their ID
         [DataObjectMethod(DataObjectMethodType.Select)]
         public Book GetBookById(int Id)
@@ -93,8 +94,9 @@ namespace INFT3050WebApp.DAL
 
         // Method used to get books by their Category
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public Book GetBookByCategory(int Id)
+        public IEnumerable<Book> GetBooksByCategory(int CategoryId)
         {
+            List<Book> books = new List<Book>();
             string sql = @"SELECT [item].[itemID], [price], [stockQuantity], [longDescription], [shortDescription], [imagePath], [thumbnailPath], 
                             [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher], [author].[firstName], [author].[lastName], [author].[description], 
                             [category].[name], [category].[description], [author].[authorID], [category].[categoryID]
@@ -110,7 +112,7 @@ namespace INFT3050WebApp.DAL
             {
                 using (SqlCommand command = new SqlCommand(sql, con))
                 {
-                    command.Parameters.Add(new SqlParameter("Id", Id));
+                    command.Parameters.Add(new SqlParameter("Id", CategoryId));
                     con.Open();
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
@@ -120,12 +122,11 @@ namespace INFT3050WebApp.DAL
                         Book newBook = CreateBook(reader);
                         newBook.Author = newAuthor;
                         newBook.Category = newCategory;
-
-                        return newBook;
+                        books.Add(newBook);
                     }
                 }
             }
-            return null;
+            return books;
         }
 
         // Method used to create a book object from the reader
