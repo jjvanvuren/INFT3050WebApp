@@ -16,85 +16,87 @@
 </head>
 
 <body>
-    <div class="sticky-top">
+    <form runat="server">
+        <div class="sticky-top">
 
-        <%--Top Navigation bar--%>
-        <nav class="container-flex navbar navbar-expand-sm navbar-dark bg-primary">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <asp:HyperLink CssClass="navbar-brand" href="Customer.aspx" Text="Home Page" runat="server"><img src="Images/768px-Books_Flat_Icon_Vector.png" alt="Used Book Store Logo" height="56" width="56" />Used Book Store</asp:HyperLink>
-                <div class="navbar-collapse collapse" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav mr-auto">
+            <%--Top Navigation bar--%>
+            <nav class="container-flex navbar navbar-expand-sm navbar-dark bg-primary">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <asp:HyperLink CssClass="navbar-brand" href="Customer.aspx" Text="Home Page" runat="server"><img src="Images/768px-Books_Flat_Icon_Vector.png" alt="Used Book Store Logo" height="56" width="56" />Used Book Store</asp:HyperLink>
+                    <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav mr-auto">
 
-                        <%-- Dropdown list to display all books and individual categories --%>
-                        <li class="dropdown">
-                            <a href="#" class="nav-link btn dropdown-toggle" data-toggle="dropdown" role="button">Books</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/UL/Books.aspx">All Books</a></li>
-                                <li><a class="dropdown-item" href="#">History</a></li>
-                                <li><a class="dropdown-item" href="#">Thriller</a></li>
-                                <li><a class="dropdown-item" href="#">Sci-Fi</a></li>
-                                <li><a class="dropdown-item" href="#">Horror</a></li>
-                                <li><a class="dropdown-item" href="#">Crime</a></li>
-                                <li><a class="dropdown-item" href="#">Fantasy</a></li>
-                                <li><a class="dropdown-item" href="#">Art</a></li>
-                                <li><a class="dropdown-item" href="#">Technology</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                            <%-- Dropdown list to display all books and individual categories --%>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link btn dropdown-toggle" data-toggle="dropdown" role="button">Books</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/UL/Books.aspx">All Books</a></li>
+                                    <li><a class="dropdown-item" href="#">History</a></li>
+                                    <li><a class="dropdown-item" href="#">Thriller</a></li>
+                                    <li><a class="dropdown-item" href="#">Sci-Fi</a></li>
+                                    <li><a class="dropdown-item" href="#">Horror</a></li>
+                                    <li><a class="dropdown-item" href="#">Crime</a></li>
+                                    <li><a class="dropdown-item" href="#">Fantasy</a></li>
+                                    <li><a class="dropdown-item" href="#">Art</a></li>
+                                    <li><a class="dropdown-item" href="#">Technology</a></li>
+                                </ul>
+                            </li>
+                        </ul>
 
-                    <%-- All navbar items on the right --%>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item">
-                            <asp:HyperLink href="Search.aspx" ID="searchLink" CssClass="nav-link" Title="Search for books" runat="server"><i class="fa fa-search"></i></asp:HyperLink></li>
+                        <%-- All navbar items on the right --%>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="nav-item">
+                                <asp:HyperLink href="Search.aspx" ID="searchLink" CssClass="nav-link" Title="Search for books" runat="server"><i class="fa fa-search"></i></asp:HyperLink></li>
 
-                        <li class="nav-item">
-                            <asp:HyperLink href="Cart.aspx" ID="cartLink" CssClass="nav-link" Title="View Shopping Cart" runat="server"><i class="fa fa-shopping-cart"></i></asp:HyperLink></li>
+                            <li class="nav-item">
+                                <asp:HyperLink href="Cart.aspx" ID="cartLink" CssClass="nav-link" Title="View Shopping Cart" runat="server"><i class="fa fa-shopping-cart"></i></asp:HyperLink></li>
 
-                        <%-- Dropdown to access purchase history --%>
-                        <li class="nav-item">
-                            <ul class="nav navbar-nav mr-auto">
-                                <li class="dropdown">
-                                    <a href="#" class="nav-link btn dropdown-toggle" data-toggle="dropdown" role="button">Account</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/UL/PurchaseHistory.aspx">Purchase History</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <%-- Dropdown to access purchase history --%>
+                            <li class="nav-item">
+                                <ul class="nav navbar-nav mr-auto">
+                                    <li class="dropdown">
+                                        <a href="#" class="nav-link btn dropdown-toggle" data-toggle="dropdown" role="button">Account</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="/UL/PurchaseHistory.aspx">Purchase History</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
 
-                        </li>
+                            </li>
 
-                        <li class="nav-item">
-                            <asp:HyperLink href="Logout.aspx" ID="logoutLink" CssClass="nav-link" Title="Logout" runat="server"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Logout</asp:HyperLink></li>
-                    </ul>
+                            <li class="nav-item">
+                                <asp:HyperLink href="Logout.aspx" ID="logoutLink" CssClass="nav-link" Title="Logout" runat="server"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Logout</asp:HyperLink></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
 
-        </nav>
-    </div>
-
-    <%-- Page content area --%>
-    <div class="container">
-        <br />
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
-    </div>
-
-    <%-- Footer that contains about and contact page links --%>
-    <footer class="footer">
-        <div class="container">
-            <span>
-                <asp:HyperLink href="About.aspx" runat="server"><i class="fa fa-info-circle"></i> About</asp:HyperLink>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:HyperLink href="Contact.aspx" runat="server"><i class="fa fa-phone"></i> Contact</asp:HyperLink>
-            </span>
+            </nav>
         </div>
-    </footer>
 
-    <%-- Scripts --%>
-    <script src="../Scripts/jquery-3.4.1.min.js"></script>
-    <script src="../Scripts/bootstrap.min.js"></script>
+        <%-- Page content area --%>
+        <div class="container">
+            <br />
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        </div>
+
+        <%-- Footer that contains about and contact page links --%>
+        <footer class="footer">
+            <div class="container">
+                <span>
+                    <asp:HyperLink href="About.aspx" runat="server"><i class="fa fa-info-circle"></i> About</asp:HyperLink>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:HyperLink href="Contact.aspx" runat="server"><i class="fa fa-phone"></i> Contact</asp:HyperLink>
+                </span>
+            </div>
+        </footer>
+
+        <%-- Scripts --%>
+        <script src="../Scripts/jquery-3.4.1.min.js"></script>
+        <script src="../Scripts/bootstrap.min.js"></script>
+    </form>
 </body>
 </html>
