@@ -12,18 +12,13 @@ namespace INFT3050WebApp.DAL
     [DataObject(true)]
     public class BookDataAccess : IBookDataAccess
     {
-        //private string ConnectionString
-        //{
-        //    get
-        //    {
-        //        return ConfigurationManager.ConnectionStrings["UsedBooksConnectionString"].ConnectionString;
-        //    }
-        //}
-
-        // String used to connect to the Azure SQL Server
-        static String ConnectionString = "Server=tcp:inft3050book.database.windows.net,1433;Initial " +
-            "Catalog=INFT3050;Persist Security Info=False;User ID = editAdmin; Password=INFT3050!;" +
-            "MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30;";
+        private string ConnectionString
+        {
+            get
+            {
+                return ConfigurationManager.ConnectionStrings["UsedBooksConnectionString"].ConnectionString;
+            }
+        }
 
         // Method used to get all books
         [DataObjectMethod(DataObjectMethodType.Select)]
