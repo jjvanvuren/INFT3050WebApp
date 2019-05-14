@@ -32,7 +32,7 @@ namespace INFT3050WebApp.UL
             if (!string.IsNullOrEmpty(idString) && int.TryParse(idString, out id))
             {
                 // Create dummyDB
-                DAL.DummyDB db = new DAL.DummyDB();
+                DAL.IBookDataAccess db = new DAL.BookDataAccess();
 
                 if (!IsPostBack)
                 {

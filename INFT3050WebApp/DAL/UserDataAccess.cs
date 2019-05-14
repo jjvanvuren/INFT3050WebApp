@@ -57,7 +57,7 @@ namespace INFT3050WebApp.DAL
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public User GetUserByEmail(string strEmail)
+        public User GetUserByEmail(string Email)
         {
             List<User> users = new List<User>();
             string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive] 
@@ -67,7 +67,7 @@ namespace INFT3050WebApp.DAL
             {
                 using (SqlCommand command = new SqlCommand(sql, con))
                 {
-                    command.Parameters.Add(new SqlParameter("Email", strEmail));
+                    command.Parameters.Add(new SqlParameter("Email", Email));
                     con.Open();
                     SqlDataReader reader = command.ExecuteReader();
                     if (reader.Read())
