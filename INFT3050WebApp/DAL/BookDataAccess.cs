@@ -43,7 +43,11 @@ namespace INFT3050WebApp.DAL
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
+                        Author newAuthor = CreateAuthor(reader);
+                        Category newCategory = CreateCategory(reader);
                         Book newBook = CreateBook(reader);
+                        newBook.Author = newAuthor;
+                        newBook.Category = newCategory;
                         books.Add(newBook);
                     }
                 }
@@ -74,7 +78,13 @@ namespace INFT3050WebApp.DAL
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        return CreateBook(reader);
+                        Author newAuthor = CreateAuthor(reader);
+                        Category newCategory = CreateCategory(reader);
+                        Book newBook = CreateBook(reader);
+                        newBook.Author = newAuthor;
+                        newBook.Category = newCategory;
+
+                        return newBook;
                     }
                 }
             }
@@ -105,7 +115,13 @@ namespace INFT3050WebApp.DAL
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        return CreateBook(reader);
+                        Author newAuthor = CreateAuthor(reader);
+                        Category newCategory = CreateCategory(reader);
+                        Book newBook = CreateBook(reader);
+                        newBook.Author = newAuthor;
+                        newBook.Category = newCategory;
+
+                        return newBook;
                     }
                 }
             }
@@ -116,8 +132,6 @@ namespace INFT3050WebApp.DAL
         private static Book CreateBook(SqlDataReader reader)
         {
             Book book = new Book();
-            Author author = new Author();
-            Category category = new Category();
             book.Id = (int)reader["itemID"];
             book.Price = (double)reader.GetDecimal(1);
             book.StockQuantity = (int)reader["stockQuantity"];
@@ -135,17 +149,29 @@ namespace INFT3050WebApp.DAL
             book.CategoryId = (int)reader["categoryID"];
 
             return book;
+        }
 
-            // Move these to new CreateCategory & CreateAuthor methods
+        // Method used to create Author object from the reader
+        private static Author CreateAuthor(SqlDataReader reader)
+        {
+            Author author = new Author();
+            author.Id = (int)reader["authorID"];
+            author.Description = (string)reader.GetSqlString(15);
+            author.FirstName = (string)reader.GetSqlString(13);
+            author.LastName = (string)reader.GetSqlString(14);
 
-            //book.Author.Description = reader["author.description"].ToString();
-            //book.Author.Description = (string)reader.GetSqlString(15);
-            //book.Author.FirstName = reader["firstName"].ToString();
-            //book.Author.LastName = reader["lastName"].ToString();
+            return author;
+        }
 
-            //book.Category.Name = reader["name"].ToString();
-            //book.Category.Description = reader["category.description"].ToString();
-            //book.Category.Description = (string)reader.GetSqlString(17);
+        // Method used to create Category object from the reader
+        private static Category CreateCategory(SqlDataReader reader)
+        {
+            Category category = new Category();
+            category.Id = (int)reader["categoryID"];
+            category.Name = (string)reader.GetSqlString(16);
+            category.Description = (string)reader.GetSqlString(17);
+
+            return category;
         }
     }
 }

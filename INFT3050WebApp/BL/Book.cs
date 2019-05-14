@@ -11,11 +11,8 @@ namespace INFT3050WebApp.BL
         public DateTime DatePublished { get; set; }
         public string Title { get; set; }
         public string SecondaryTitle { get; set; }
-
-        // Need to remove Author & Category
         public Author Author { get; set; } 
         public Category Category { get; set; }
-
         public string Publisher { get; set; }
         public bool IsBestSeller { get; set; }
         public int AuthorId { get; set; }
