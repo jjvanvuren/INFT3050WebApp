@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
+using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp
 {
@@ -29,10 +30,18 @@ namespace INFT3050WebApp
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
             CustomerSession query = (CustomerSession)Session[CustomerSession.SESSION_KEY];
             if (query != null)
             {
-                customerWelcome.Text = String.Format(WELCOME_FORMAT, query.Name);
+                // Setup access to database
+                IUserDataAccess db = new UserDataAccess();
+
+                User currentUser = db.GetUserById(query.SessionId);
+
+                string strUserName = currentUser.FirstName;
+
+                customerWelcome.Text = String.Format(WELCOME_FORMAT, strUserName);
             }
 
             if (!IsPostBack)

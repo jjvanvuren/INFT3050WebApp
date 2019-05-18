@@ -281,6 +281,32 @@ INSERT INTO bookCategory (itemID, categoryID) VALUES (6, 6);
 INSERT INTO bookCategory (itemID, categoryID) VALUES (7, 7);
 INSERT INTO bookCategory (itemID, categoryID) VALUES (8, 8);
 
+--Insert postage options
+INSERT INTO postageOption (postageOptionName, shippingCost) VALUES ('Pick Up', 0.00);
+INSERT INTO postageOption (postageOptionName, shippingCost) VALUES ('AusPost', 5.99);
+INSERT INTO postageOption (postageOptionName, shippingCost) VALUES ('AusPost Express', 9.99);
+INSERT INTO postageOption (postageOptionName, shippingCost) VALUES ('Startrack', 3.99);
+INSERT INTO postageOption (postageOptionName, shippingCost) VALUES ('Startrack Express', 7.99);
+
+
+
+--Insert Payments
+INSERT INTO payment (datePayed, total) VALUES ('20190504', 4.99);
+INSERT INTO payment (datePayed, total) VALUES ('20190703', 14.99);
+INSERT INTO payment (datePayed, total) VALUES ('20190704', 4.99);
+INSERT INTO payment (datePayed, total) VALUES ('20191204', 20.99);
+INSERT INTO payment (datePayed, total) VALUES ('20190923', 31.99);
+INSERT INTO payment (datePayed, total) VALUES ('20190528', 2.99);
+INSERT INTO payment (datePayed, total) VALUES ('20190922', 5.99);
+INSERT INTO payment (datePayed, total) VALUES ('20191002', 6.99);
+INSERT INTO payment (datePayed, total) VALUES ('20190303', 8.99);
+INSERT INTO payment (datePayed, total) VALUES ('20190201', 7.99);
+
+--Insert Orders
+INSERT INTO orders (userID, paymentID, orderStatus, GST, subTotal, );
+
+
+
 --Select all book information
 SELECT item.itemID, price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, 
 ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher, firstName, lastName, author.description, 
@@ -303,3 +329,16 @@ INNER JOIN author ON bookAuthor.authorID = author.authorID
 INNER JOIN bookCategory ON book.itemID = bookCategory.itemID
 INNER JOIN category ON bookCategory.categoryID = category.categoryID
 WHERE category.Name = 'category';
+
+
+--Select all book information
+SELECT item.itemID, title, price
+FROM item 
+INNER JOIN book ON item.itemID = book.itemID
+INNER JOIN bookAuthor ON book.itemID = bookAuthor.itemID
+INNER JOIN author ON bookAuthor.authorID = author.authorID
+INNER JOIN bookCategory ON book.itemID = bookCategory.itemID
+INNER JOIN category ON bookCategory.categoryID = category.categoryID;
+
+SELECT * FROM orders
+SELECT * FROM payment

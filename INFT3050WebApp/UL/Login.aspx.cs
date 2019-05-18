@@ -5,11 +5,16 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
+using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp
 {
     public partial class Login : System.Web.UI.Page
     {
+        string strEmail;
+        string strPassword;
+        int iCheckUser;
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Check if user is logged in to use correct master page
@@ -32,48 +37,63 @@ namespace INFT3050WebApp
         // Validate email and password. If successful redirect to Customer.aspx
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            if (IsValid)
-            {
-                Session.Clear();
+            Session.Clear();
 
-                CustomerSession currentCustomerSession = new CustomerSession()
+            strEmail = tbxEmail.Text;
+            strPassword = tbxPassword.Text;
+
+            // Used for BL Validation
+            bool bValid;
+
+            User userVerify = new User();
+            iCheckUser = userVerify.CheckUser(strEmail, strPassword);
+
+            if (iCheckUser == 0)
+            {
+                lblUserExists.Text = "Email not registered";
+                lblUserExists.Visible = true;
+
+                lblInvalidPassword.Text = "Password incorrect";
+                lblInvalidPassword.Visible = true;
+
+                bValid = false;
+            }
+            else if (iCheckUser == 1)
+            {
+                lblUserExists.Visible = false;
+
+                lblInvalidPassword.Text = "Password incorrect";
+                lblInvalidPassword.Visible = true;
+
+                bValid = false;
+            }
+            else
+            {
+                lblUserExists.Visible = false;
+                lblInvalidPassword.Visible = false;
+
+                bValid = true;
+            }
+
+            if (IsValid && bValid)
+            {
+                if (iCheckUser == 2)
                 {
-                    Email = tbxEmail.Text,
-                    Name = "Joe Smith",
-                    LoggedIn = true
-                };
+                    // Setup access to database
+                    IUserDataAccess db = new UserDataAccess();
 
-                Session["customerSession"] = currentCustomerSession;
+                    // Get the user from db using the GetUserByEmail method
+                    User user = db.GetUserByEmail(strEmail);
 
-                Response.Redirect("~/UL/Customer.aspx");
-            }
-        }
+                    CustomerSession currentCustomerSession = new CustomerSession()
+                    {
+                        SessionId = user.Id
+                    };
 
-        // Checks if customer email exists
-        // This is only temporary. Will change in next assignment
-        protected void customerRegistered(object source, ServerValidateEventArgs args)
-        {
-            if (tbxEmail.Text == "joe@example.com")
-            {
-                args.IsValid = true;
-            }
-            else
-            {
-                args.IsValid = false;
-            }
-        }
+                    Session["customerSession"] = currentCustomerSession;
 
-        // Checks if customer password is correct
-        // This is only temporary. Will change in next assignment
-        protected void passwordCorrect(object source, ServerValidateEventArgs args)
-        {
-            if (tbxPassword.Text == "Password#1")
-            {
-                args.IsValid = true;
-            }
-            else
-            {
-                args.IsValid = false;
+                    Response.Redirect("~/UL/Customer.aspx");
+                }
             }
         }
 

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
+using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp.UL
 {
@@ -19,7 +20,14 @@ namespace INFT3050WebApp.UL
             CustomerSession query = (CustomerSession)Session[CustomerSession.SESSION_KEY];
             if (query != null)
             {
-                confirmSaleMessageLabel.Text = String.Format(CONFIRM_SALE_FORMAT, query.Name, query.Email);
+                // Setup access to database
+                IUserDataAccess db = new UserDataAccess();
+
+                User currentUser = db.GetUserById(query.SessionId);
+                string strEmail = currentUser.Email;
+                string strUserName = currentUser.FirstName;
+
+                confirmSaleMessageLabel.Text = String.Format(CONFIRM_SALE_FORMAT, strUserName, strEmail);
             }
         }
     }
