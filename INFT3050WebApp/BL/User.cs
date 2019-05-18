@@ -21,11 +21,16 @@ namespace INFT3050WebApp.BL
 
         public User() { }
 
-        public User (int id, string email, string password, string firstName, string lastName, bool isAdmin, bool status)
+        public User (string email, string password, string firstName, string lastName, bool isAdmin, bool status)
         {
-            this.Id = id;
+            using (MD5 md5Hash = MD5.Create())
+            {
+                string passwordHash = GetMd5Hash(md5Hash, password);
+
+                this.Password = passwordHash;
+            }
+                
             this.Email = email;
-            this.Password = password;
             this.FirstName = firstName;
             this.LastName = lastName;
             this.IsAdmin = isAdmin;

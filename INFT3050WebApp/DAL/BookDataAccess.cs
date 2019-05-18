@@ -101,10 +101,10 @@ namespace INFT3050WebApp.DAL
         {
             int firstRowsEffected;
             int secondRowsEffected;
-            string sql = @"UPDATE item SET [price] = @price, [stockQuantity] = @stockQuantity, [imagePath] = @imagePath, [thumbnailPath] = @thumbnailPath 
+            string sql = @"UPDATE dbo.item SET [price] = @price, [stockQuantity] = @stockQuantity, [imagePath] = @imagePath, [thumbnailPath] = @thumbnailPath 
                             WHERE [itemID]=@Id;";
 
-            string sql2 = @"UPDATE book SET [title] = @title
+            string sql2 = @"UPDATE dbo.book SET [title] = @title
                             WHERE [itemID]=@Id;";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
@@ -138,7 +138,7 @@ namespace INFT3050WebApp.DAL
         [DataObjectMethod(DataObjectMethodType.Update)]
         public int DeleteItemById(int itemId)
         {
-            string sql = @"UPDATE item SET [isActive] = 0
+            string sql = @"UPDATE dbo.item SET [isActive] = 0
                             WHERE [itemID]=@Id;";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))

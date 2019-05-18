@@ -99,7 +99,7 @@ namespace INFT3050WebApp.DAL
         [DataObjectMethod(DataObjectMethodType.Select)]
         public User GetUserById(int Id)
         {
-            string sql = @"SELECT [userID], [firstName] 
+            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive] 
                 FROM[dbo].[webSiteUser] WHERE [userID]=@Id";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
@@ -147,6 +147,25 @@ namespace INFT3050WebApp.DAL
                 }
             }
             return null;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Insert)]
+        public int RegisterUser(User user)
+        {
+            string sql = @"INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES (@email, @password, @firstName, @lastName, 0, 1);";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("email", user.Email);
+                    command.Parameters.AddWithValue("password", user.Password);
+                    command.Parameters.AddWithValue("firstName", user.FirstName);
+                    command.Parameters.AddWithValue("lastName", user.LastName);
+                    con.Open();
+                    return command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

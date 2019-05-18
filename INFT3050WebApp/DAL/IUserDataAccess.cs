@@ -13,5 +13,6 @@ namespace INFT3050WebApp.DAL
         string GetPasswordHash(string strEmail);
         bool CheckUserExists(string strEmail);
         User GetUserById(int Id);
+        int RegisterUser(User user);
     }
 }
