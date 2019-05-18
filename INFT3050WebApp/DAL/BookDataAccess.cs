@@ -152,6 +152,19 @@ namespace INFT3050WebApp.DAL
             }
         }
 
+        //[DataObjectMethod(DataObjectMethodType.Insert)]
+        //public int AddBook(Book book)
+        //{
+        //    string sql = @"INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive)
+        //                   VALUES (@price, @stockQuantity, @longDescription, @shortDescription, @imagePath, @thumbnailPalth, 1); ";
+        //    string sql2 = @"INSERT INTO book (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive)
+        //                   VALUES (@price, @stockQuantity, @longDescription, @shortDescription, @imagePath, @thumbnailPalth, 1); ";
+
+        //}
+
+
+
+
         // Method used to get books by their Category
         [DataObjectMethod(DataObjectMethodType.Select)]
         public IEnumerable<Book> GetBooksByCategory(int CategoryId)
