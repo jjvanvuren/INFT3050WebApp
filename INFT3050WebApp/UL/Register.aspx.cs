@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
+using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp
 {
@@ -34,12 +35,20 @@ namespace INFT3050WebApp
             if (IsValid)
             {
                 // Create a new user based on info entered
-                User registeredUser = new User(0, tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, false, true);
+                User registeredUser = new User(tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, false, true);
+
+                // Setup access to database
+                IUserDataAccess db = new UserDataAccess();
+
+                int rowsAffected = db.RegisterUser(registeredUser);
+
+                User currentUser = new User();
+                currentUser = db.GetUserByEmail(registeredUser.Email);
 
                 // Data to be retained in session
                 CustomerSession currentCustomerSession = new CustomerSession
                 {
-                    SessionId = registeredUser.Id
+                    SessionId = currentUser.Id
                 };
 
                 Session["customerSession"] = currentCustomerSession;

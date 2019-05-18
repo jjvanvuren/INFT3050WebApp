@@ -33,7 +33,8 @@ namespace INFT3050WebApp.DAL
                             INNER JOIN [bookAuthor] ON [book].[itemID] = [bookAuthor].[itemID]
                             INNER JOIN [author] ON [bookAuthor].[authorID] = [author].[authorID]
                             INNER JOIN [bookCategory] ON [book].[itemID] = [bookCategory].[itemID]
-                            INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID];";
+                            INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID]
+                            WHERE isActive = 1;";
 
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
@@ -91,6 +92,78 @@ namespace INFT3050WebApp.DAL
             }
             return null;
         }
+
+        // Method for updating books that have been edited by admins
+        // Method is currently untested
+        // Method should return 0, if it returns anything else somethings wrong
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public int UpdateBookById(Book bookUpdate)
+        {
+            int firstRowsEffected;
+            int secondRowsEffected;
+            string sql = @"UPDATE dbo.item SET [price] = @price, [stockQuantity] = @stockQuantity, [imagePath] = @imagePath, [thumbnailPath] = @thumbnailPath 
+                            WHERE [itemID]=@Id;";
+
+            string sql2 = @"UPDATE dbo.book SET [title] = @title
+                            WHERE [itemID]=@Id;";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("Id", bookUpdate.Id);
+                    command.Parameters.AddWithValue("price", bookUpdate.Price);
+                    command.Parameters.AddWithValue("stockQuantity", bookUpdate.StockQuantity);
+                    command.Parameters.AddWithValue("imagePath", bookUpdate.ImagePath);
+                    command.Parameters.AddWithValue("thumbnailPath", bookUpdate.ThumbnailPath);
+                    con.Open();
+                    firstRowsEffected = command.ExecuteNonQuery();
+                }
+
+                using (SqlCommand command = new SqlCommand(sql2, con))
+                {
+                    command.Parameters.AddWithValue("Id", bookUpdate.Id);
+                    command.Parameters.AddWithValue("Title", bookUpdate.Title);
+                    con.Open();
+                    secondRowsEffected = command.ExecuteNonQuery();
+                }
+            }
+
+            return firstRowsEffected - secondRowsEffected;
+        }
+
+        // Method to "delete" item by setting status flag to 0
+        // returns the number of rows effected (should be 1)
+        // Untested
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public int DeleteItemById(int itemId)
+        {
+            string sql = @"UPDATE dbo.item SET [isActive] = 0
+                            WHERE [itemID]=@Id;";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("Id", itemId);
+                    con.Open();
+                    return command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        //[DataObjectMethod(DataObjectMethodType.Insert)]
+        //public int AddBook(Book book)
+        //{
+        //    string sql = @"INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive)
+        //                   VALUES (@price, @stockQuantity, @longDescription, @shortDescription, @imagePath, @thumbnailPalth, 1); ";
+        //    string sql2 = @"INSERT INTO book (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive)
+        //                   VALUES (@price, @stockQuantity, @longDescription, @shortDescription, @imagePath, @thumbnailPalth, 1); ";
+
+        //}
+
+
+
 
         // Method used to get books by their Category
         [DataObjectMethod(DataObjectMethodType.Select)]
