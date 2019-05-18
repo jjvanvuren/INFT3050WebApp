@@ -38,9 +38,7 @@ namespace INFT3050WebApp
 
                 CustomerSession currentCustomerSession = new CustomerSession()
                 {
-                    Email = tbxEmail.Text,
-                    Name = "Joe Smith",
-                    LoggedIn = true
+                    SessionId = 1
                 };
 
                 Session["customerSession"] = currentCustomerSession;
