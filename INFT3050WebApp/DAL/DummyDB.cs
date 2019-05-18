@@ -74,17 +74,17 @@ namespace INFT3050WebApp.DAL
             user = new BL.User[]
             {
                 // Add user
-               CreateDummyUser(id++, "joe@example.com", "password", "Joe", "", 0, 1),
-               CreateDummyUser(id++, "james@example.com", "password", "James", "Smith", 0, 0),
-               CreateDummyUser(id++, "sara@example.com", "password", "Sara", "Headges", 0, 1),
-               CreateDummyUser(id++, "alex@usedbooksales.com.au", "password", "Alex", "Budwill", 1, 1),
-               CreateDummyUser(id++, "patrick@usedbooksales.com.au", "password", "Patrick", "Foley", 1, 1),
-               CreateDummyUser(id++, "derrick@example.com", "password", "Derrick", "Hardy", 0, 1),
-               CreateDummyUser(id++, "soli@example.com", "password", "Soli", "Soliman", 0, 0),
-               CreateDummyUser(id++, "chelsea@example.com", "password", "chelsea", "Gordon", 0, 0),
-               CreateDummyUser(id++, "karl@usedbooksales.com.au", "password", "Karl", "Foley", 1, 1),
-               CreateDummyUser(id++, "jacques@usedbooksales.com.au", "password", "Jacques", "Janse van Vuren", 1, 1),
-               CreateDummyUser(id++, "francois@usedbooksales.com.au", "password", "Francois", "Janse van Vuren", 1, 1)
+               CreateDummyUser(id++, "joe@example.com", "password", "Joe", "", false, true),
+               CreateDummyUser(id++, "james@example.com", "password", "James", "Smith", false, false),
+               CreateDummyUser(id++, "sara@example.com", "password", "Sara", "Headges", false, true),
+               CreateDummyUser(id++, "alex@usedbooksales.com.au", "password", "Alex", "Budwill", true, true),
+               CreateDummyUser(id++, "patrick@usedbooksales.com.au", "password", "Patrick", "Foley", true, true),
+               CreateDummyUser(id++, "derrick@example.com", "password", "Derrick", "Hardy", false, true),
+               CreateDummyUser(id++, "soli@example.com", "password", "Soli", "Soliman", false, false),
+               CreateDummyUser(id++, "chelsea@example.com", "password", "chelsea", "Gordon", false, false),
+               CreateDummyUser(id++, "karl@usedbooksales.com.au", "password", "Karl", "Foley", true, true),
+               CreateDummyUser(id++, "jacques@usedbooksales.com.au", "password", "Jacques", "Janse van Vuren", true, true),
+               CreateDummyUser(id++, "francois@usedbooksales.com.au", "password", "Francois", "Janse van Vuren", true, true)
             };
 
             //Populate Postage Options
@@ -168,7 +168,7 @@ namespace INFT3050WebApp.DAL
         }
 
         // Create User: Used to create a dummy user
-        private BL.User CreateDummyUser(int id, string email, string password, string firstName, string lastName, int isadmin, int isactive)
+        private BL.User CreateDummyUser(int id, string email, string password, string firstName, string lastName, bool isadmin, bool isactive)
         {
             BL.User user = new BL.User()
             {

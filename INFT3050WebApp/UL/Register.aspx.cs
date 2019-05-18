@@ -34,14 +34,12 @@ namespace INFT3050WebApp
             if (IsValid)
             {
                 // Create a new user based on info entered
-                User registeredUser = new User(0, tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, 0, 1);
+                User registeredUser = new User(0, tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, false, true);
 
                 // Data to be retained in session
                 CustomerSession currentCustomerSession = new CustomerSession
                 {
-                    Email = tbxEmail.Text,
-                    Name = tbxFirstName.Text + " " + tbxLastName.Text,
-                    LoggedIn = true
+                    SessionId = registeredUser.Id
                 };
 
                 Session["customerSession"] = currentCustomerSession;

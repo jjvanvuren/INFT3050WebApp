@@ -9,7 +9,9 @@ namespace INFT3050WebApp.DAL
 {
     interface IUserDataAccess
     {
-        IEnumerable<User> GetUsers();
         User GetUserByEmail(string strEmail);
+        string GetPasswordHash(string strEmail);
+        bool CheckUserExists(string strEmail);
+        User GetUserById(int Id);
     }
 }

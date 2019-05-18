@@ -20,27 +20,7 @@ namespace INFT3050WebApp.DAL
             }
         }
 
-        [DataObjectMethod(DataObjectMethodType.Select)]
-        public IEnumerable<User> GetUsers()
-        {
-            List<User> users = new List<User>();
-            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive] FROM[dbo].[webSiteUser]";
-
-            using (SqlConnection con = new SqlConnection(ConnectionString))
-            {
-                using (SqlCommand command = new SqlCommand(sql, con))
-                {
-                    con.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        User newUser = CreateUser(reader);
-                        users.Add(newUser);
-                    }
-                }
-            }
-            return users;
-        }
+        
                 
         private static User CreateUser(SqlDataReader reader)
         {
@@ -57,46 +37,36 @@ namespace INFT3050WebApp.DAL
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public int CheckUser(string strEmail, string strPassword)
+        public bool CheckUserExists(string strEmail)
         {
-            string sqlCheckAll = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive] 
-                FROM[dbo].[webSiteUser] WHERE [email]=@strEmail AND [password]=@strPassword";
-
-            string sqlCheckEmail = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive] 
+            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive] 
                 FROM[dbo].[webSiteUser] WHERE [email]=@strEmail";
 
-
+            User checkUser = new User
+            {
+                Id = 0
+            };
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand(sqlCheckAll, con))
+                using (SqlCommand command = new SqlCommand(sql, con))
                 {
                     command.Parameters.Add(new SqlParameter("strEmail", strEmail));
-                    command.Parameters.Add(new SqlParameter("strPassword", strPassword));
                     con.Open();
                     SqlDataReader reader = command.ExecuteReader();
 
-                    if (reader.HasRows)
+                    while (reader.Read())
                     {
-                        return 2;
+                        checkUser.Id = (int)reader["userID"];
+                    }
+
+                    if (checkUser.Id != 0)
+                    {
+                        return true;
                     }
                     else
                     {
-                        using (SqlCommand commandEmail = new SqlCommand(sqlCheckEmail, con))
-                        {
-                            commandEmail.Parameters.Add(new SqlParameter("strEmail", strEmail));
-                            con.Open();
-                            SqlDataReader readerEmail = commandEmail.ExecuteReader();
-
-                            if (readerEmail.HasRows)
-                            {
-                                return 1;
-                            }
-                            else
-                            {
-                                return 0;
-                            }
-                        }
+                        return false;
                     }
                 }
             }
@@ -105,7 +75,6 @@ namespace INFT3050WebApp.DAL
         [DataObjectMethod(DataObjectMethodType.Select)]
         public User GetUserByEmail(string strEmail)
         {
-            User users = new User();
             string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive] 
                 FROM[dbo].[webSiteUser] WHERE [email]=@Email";
 
@@ -116,16 +85,68 @@ namespace INFT3050WebApp.DAL
                     command.Parameters.Add(new SqlParameter("Email", strEmail));
                     con.Open();
                     SqlDataReader reader = command.ExecuteReader();
-                    if (reader.Read())
+                    while (reader.Read())
                     {
-                        return CreateUser(reader);
+                        User newUser = CreateUser(reader);
+
+                        return newUser;
                     }
                 }
             }
             return null;
         }
 
-        //[DataObjectMethod(DataObjectMethodType.Insert)]
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public User GetUserById(int Id)
+        {
+            string sql = @"SELECT [userID], [firstName] 
+                FROM[dbo].[webSiteUser] WHERE [userID]=@Id";
 
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.Add(new SqlParameter("Id", Id));
+                    con.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        User newUser = CreateUser(reader);
+
+                        return newUser;
+                    }
+                }
+            }
+            return null;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public string GetPasswordHash(string strEmail)
+        {
+            string strPasswordHash;
+
+            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive] 
+                FROM[dbo].[webSiteUser] WHERE [email]=@Email";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.Add(new SqlParameter("Email", strEmail));
+                    con.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        User newUser = CreateUser(reader);
+
+                        strPasswordHash = newUser.Password;
+
+                        return strPasswordHash;
+                    }
+                }
+            }
+            return null;
+        }
     }
 }
