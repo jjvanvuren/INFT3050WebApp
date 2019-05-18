@@ -34,7 +34,7 @@ namespace INFT3050WebApp
             if (IsValid)
             {
                 // Create a new user based on info entered
-                User registeredUser = new User(0, tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, false, "Active");
+                User registeredUser = new User(0, tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, 0, 1);
 
                 // Data to be retained in session
                 CustomerSession currentCustomerSession = new CustomerSession
@@ -54,21 +54,5 @@ namespace INFT3050WebApp
         {
             Response.Redirect("~/UL/Default.aspx");
         }
-
-        //public User CreateUser (int id, string email, string password, string firstName, string lastName, bool isAdmin, string status)
-        //{
-        //    User user = new User()
-        //    {
-        //        Id = id,
-        //        Email = email,
-        //        Password = password,
-        //        FirstName = firstName,
-        //        LastName = lastName,
-        //        IsAdmin = isAdmin,
-        //        Status = status
-        //    };
-
-        //    return user;
-        //}
     }
 }

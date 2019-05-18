@@ -67,7 +67,7 @@ namespace INFT3050WebApp
         // This is only temporary. Will change in next assignment
         protected void passwordCorrect(object source, ServerValidateEventArgs args)
         {
-            if (tbxPassword.Text == "password")
+            if (tbxPassword.Text == "Password#1")
             {
                 args.IsValid = true;
             }
@@ -77,6 +77,7 @@ namespace INFT3050WebApp
             }
         }
 
+        // Redirects to the Website home page
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/UL/Default.aspx");

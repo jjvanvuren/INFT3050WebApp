@@ -24,7 +24,7 @@ namespace INFT3050WebApp
 
         }
 
-        const string THANKS_FORMAT = "Thank you for registering with us {0}, please login using the link located in the top right of this page.";
+        const string THANKS_FORMAT = "Thank you for registering with us {0}.";
 
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -15,5 +15,7 @@ namespace INFT3050WebApp.BL
         public Category Category { get; set; }
         public string Publisher { get; set; }
         public bool IsBestSeller { get; set; }
+        public int AuthorId { get; set; }
+        public int CategoryId { get; set; }
     }
 }

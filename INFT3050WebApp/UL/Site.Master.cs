@@ -14,53 +14,56 @@ namespace INFT3050WebApp
             
         }
 
-        //// Used to enable and disable loginLink
-        //public bool LoginLinkVisible
+        //protected void ddlCategories_SelectedIndexChanged(object sender, EventArgs e)
         //{
-        //    set { loginLink.Visible = value; }
+        //    Response.Redirect("BooksByCategory.aspx?id=" + ddlCategories.SelectedItem.Value);
         //}
 
-        //public bool LoginLinkEnabled
-        //{
-        //    set { loginLink.Enabled = value; }
-        //}
-
-        //// Used to enable and disable accountLink
-        //public bool AccountLinkVisible
-        //{
-        //    set { accountLink.Visible = value; }
-        //}
-
-        //public bool AccountLinkEnabled
-        //{
-        //    set { accountLink.Enabled = value; }
-        //}
-
-        //// Used to enable and disable logoutLink
-        //public bool LogoutLinkVisible
-        //{
-        //    set { logoutLink.Visible = value; }
-        //}
-
-        //public bool LogoutLinkEnabled
-        //{
-        //    set { logoutLink.Enabled = value; }
-        //}
-
-        //// Used to enable and disable accountLink
-        //public bool RegisterLinkVisible
-        //{
-        //    set { registerLink.Visible = value; }
-        //}
-
-        //public bool RegisterLinkEnabled
-        //{
-        //    set { registerLink.Enabled = value; }
-        //}
-
-        protected void btnSearch_Click(object sender, EventArgs e)
+        protected void lnkAllBooks_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/UL/Search.aspx");
+            Response.Redirect("Books.aspx");
         }
+
+        protected void lnkHistory_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("BooksByCategory.aspx?id=" + 1);
+        }
+
+        protected void lnkThriller_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("BooksByCategory.aspx?id=" + 2);
+        }
+
+        protected void lnkSciFi_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("BooksByCategory.aspx?id=" + 3);
+        }
+
+        protected void lnkHorror_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("BooksByCategory.aspx?id=" + 4);
+        }
+
+        protected void lnkCrime_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("BooksByCategory.aspx?id=" + 5);
+        }
+
+        protected void lnkFantasy_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("BooksByCategory.aspx?id=" + 6);
+        }
+
+        protected void lnkArt_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("BooksByCategory.aspx?id=" + 7);
+        }
+
+        protected void lnkTechnology_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("BooksByCategory.aspx?id=" + 8);
+        }
+
+
     }
 }

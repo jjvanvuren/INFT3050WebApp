@@ -28,5 +28,11 @@ namespace INFT3050WebApp.UL
         {
 
         }
+
+        // If the cancel button is clicked go back to Checkout
+        protected void btnCheckout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/UL/Checkout.aspx");
+        }
     }
 }

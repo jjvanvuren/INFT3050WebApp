@@ -1,67 +1,37 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UL/Site.Master" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Inherits="INFT3050WebApp.Search" %>
+
 <%@ MasterType VirtualPath="~/UL/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="container-flex">
+        <h1>Search</h1>
+        <br />
+        <%--Search Field--%>
+        <div class="input-group">
+            <asp:TextBox ID="tbxSearch" class="form-control" type="text" placeholder="Search" aria-label="Search" runat="server"></asp:TextBox>
+            <span class="input-group-btn">&nbsp;&nbsp;
+                    <asp:Button ID="btnSearch" Text="Search" runat="server" OnClick="btnSearch_Click" CssClass="btn btn-success" />
+            </span>
 
-        <!-- Search form -->
-        <div class="md-form mt-0">
-            <form runat="server">
-                <asp:TextBox ID="tbxSearch" class="form-control" type="text" placeholder="Search" aria-label="Search" runat="server" MaxLength="250"></asp:TextBox>
-            </form>
         </div>
-
-        <div>
-            <br />
-            <h1>Results</h1>
-            <br />
-
-            <!-- This table is only to show desired layout 
-             Will be replaced in assignment 2-->
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Series</th>
-                        <th scope="col">Author(s)</th>
-                        <th scope="col">Published</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Title 1</td>
-                        <td>Series 1</td>
-                        <td>Author 1</td>
-                        <td>Date 1</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Title 2</td>
-                        <td>Series 2</td>
-                        <td>Author 2</td>
-                        <td>Date 2</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Title 3</td>
-                        <td>Series 3</td>
-                        <td>Author 3</td>
-                        <td>Date 3</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Title 4</td>
-                        <td>Series 4</td>
-                        <td>Author 4</td>
-                        <td>Date 4</td>
-                    </tr>
-                </tbody>
-            </table>
+        <br />
+        <div class="container-flex">
+            <%--Get Data Source--%>
+            <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetBooks" TypeName="INFT3050WebApp.DAL.BookDataAccess"></asp:ObjectDataSource>
+            <%--Display all books using gridview--%>
+            <asp:GridView ID="GridBooks" runat="server" AutoGenerateColumns="false" DataSourceID="bookDataSource" OnRowCommand="GridSearch_RowCommand" CssClass="table" GridLines="None" AllowPaging="True" PageSize="4">
+                <Columns>
+                    <asp:ImageField DataImageUrlField="ThumbnailPath" HeaderText="Cover">
+                    </asp:ImageField>
+                    <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
+                    <asp:BoundField DataField="ShortDescription" HeaderText="Description" SortExpression="ShortDescription" />
+                    <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
+                    <asp:ButtonField ButtonType="Button" CommandName="cmdView" Text="View" ControlStyle-CssClass="btn btn-success" />
+                </Columns>
+            </asp:GridView>
         </div>
-
     </div>
+
 </asp:Content>

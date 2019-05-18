@@ -40,13 +40,13 @@ namespace INFT3050WebApp {
         protected global::System.Web.UI.WebControls.TextBox tbxFirstName;
         
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// rfvFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFirstName;
         
         /// <summary>
         /// lblLastName control.
@@ -121,22 +121,22 @@ namespace INFT3050WebApp {
         protected global::System.Web.UI.WebControls.TextBox tbxEmailConfirm;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// rfvEmailConfirm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmailConfirm;
         
         /// <summary>
-        /// RegularExpressionValidator1 control.
+        /// revEmailConfirm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revEmailConfirm;
         
         /// <summary>
         /// emailCompareValidator control.
@@ -175,6 +175,15 @@ namespace INFT3050WebApp {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPassword;
         
         /// <summary>
+        /// revPasswordComplex control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revPasswordComplex;
+        
+        /// <summary>
         /// lblPasswordConfirm control.
         /// </summary>
         /// <remarks>
@@ -193,22 +202,22 @@ namespace INFT3050WebApp {
         protected global::System.Web.UI.WebControls.TextBox tbxPasswordConfirm;
         
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// rfvPasswordConfirm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPasswordConfirm;
         
         /// <summary>
-        /// CompareValidator1 control.
+        /// cvPasswordConfirm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator CompareValidator1;
+        protected global::System.Web.UI.WebControls.CompareValidator cvPasswordConfirm;
         
         /// <summary>
         /// btnRegister control.

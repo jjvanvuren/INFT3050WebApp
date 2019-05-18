@@ -19,7 +19,9 @@ namespace INFT3050WebApp.DAL
         private BL.Book[] books;
         private BL.Author[] authors;
         private BL.Category[] categories;
-        private BL.User[]user;
+        private BL.User[] user;
+        private BL.PostageOption[] postageOption;
+        private BL.Order[] orders;
 
         // Default Constructor: Populates DummyDB with Dummy Data
         public DummyDB()
@@ -72,21 +74,45 @@ namespace INFT3050WebApp.DAL
             user = new BL.User[]
             {
                 // Add user
-               CreateDummyUser(id++, "joe@example.com", "password", "Joe", "",false, "active"),
-               CreateDummyUser(id++, "james@example.com", "password", "James", "Smith",false, "inactive"),
-               CreateDummyUser(id++, "sara@example.com", "password", "Sara", "Headges",false, "active"),
-               CreateDummyUser(id++, "alex@usedbooksales.com.au", "password", "Alex", "Budwill",true, "active"),
-               CreateDummyUser(id++, "patrick@usedbooksales.com.au", "password", "Patrick", "Foley",true, "active"),
-               CreateDummyUser(id++, "derrick@example.com", "password", "Derrick", "Hardy",false, "active"),
-               CreateDummyUser(id++, "soli@example.com", "password", "Soli", "Soliman",false, "inactive"),
-               CreateDummyUser(id++, "chelsea@example.com", "password", "chelsea", "Gordon",false, "inactive"),
-               CreateDummyUser(id++, "karl@usedbooksales.com.au", "password", "Karl", "Foley",true, "active"),
-               CreateDummyUser(id++, "jacques@usedbooksales.com.au", "password", "Jacques", "Janse van Vuren",true, "active"),
-               CreateDummyUser(id++, "francois@usedbooksales.com.au", "password", "Francois", "Janse van Vuren",true, "active")
+               CreateDummyUser(id++, "joe@example.com", "password", "Joe", "", 0, 1),
+               CreateDummyUser(id++, "james@example.com", "password", "James", "Smith", 0, 0),
+               CreateDummyUser(id++, "sara@example.com", "password", "Sara", "Headges", 0, 1),
+               CreateDummyUser(id++, "alex@usedbooksales.com.au", "password", "Alex", "Budwill", 1, 1),
+               CreateDummyUser(id++, "patrick@usedbooksales.com.au", "password", "Patrick", "Foley", 1, 1),
+               CreateDummyUser(id++, "derrick@example.com", "password", "Derrick", "Hardy", 0, 1),
+               CreateDummyUser(id++, "soli@example.com", "password", "Soli", "Soliman", 0, 0),
+               CreateDummyUser(id++, "chelsea@example.com", "password", "chelsea", "Gordon", 0, 0),
+               CreateDummyUser(id++, "karl@usedbooksales.com.au", "password", "Karl", "Foley", 1, 1),
+               CreateDummyUser(id++, "jacques@usedbooksales.com.au", "password", "Jacques", "Janse van Vuren", 1, 1),
+               CreateDummyUser(id++, "francois@usedbooksales.com.au", "password", "Francois", "Janse van Vuren", 1, 1)
             };
 
+            //Populate Postage Options
+            id = 0;
+            postageOption = new BL.PostageOption[]
+            {
+                CreatePostageOption(id++, "Pick Up", 0),
+                CreatePostageOption(id++, "AusPost", 5.99),
+                CreatePostageOption(id++, "AusPost Express", 9.99),
+                CreatePostageOption(id++, "Startrack", 3.99),
+                CreatePostageOption(id++, "Startrack Express", 7.99)
+            };
 
-
+            // Populate Orders
+            id = 0;
+            orders = new BL.Order[]
+            {
+                CreateDummyOrders(id++,1,id++,"shipped",10,4.99, "4/5/2019"),
+                CreateDummyOrders(id++,1,id++,"WaitingShip",10,14.99, "3/7/2019"),
+                CreateDummyOrders(id++,1,id++,"shipped",10,4.99, "4/7/2019"),
+                CreateDummyOrders(id++,1,id++,"shipped",10,20.99, "4/12/2019"),
+                CreateDummyOrders(id++,1,id++,"shipped",10,31.99, "23/9/2019"),
+                CreateDummyOrders(id++,1,id++,"shipped",10,2.99, "28/5/2019"),
+                CreateDummyOrders(id++,1,id++,"shipped",10,5.99, "22/9/2019"),
+                CreateDummyOrders(id++,1,id++,"shipped",10,6.99, "2/10/2019"),
+                CreateDummyOrders(id++,1,id++,"shipped",10,8.99, "3/3/2019"),
+                CreateDummyOrders(id++,1,id++,"shipped",10,7.99, "1/2/2019")
+            };
 
         }
 
@@ -129,7 +155,7 @@ namespace INFT3050WebApp.DAL
             return author;
         }
 
-        //Create Category:
+        //Create Category: Create a dummy category
         private BL.Category CreateDummyCategory(int id, string name)
         {
             BL.Category category = new BL.Category()
@@ -141,8 +167,8 @@ namespace INFT3050WebApp.DAL
             return category;
         }
 
-        // Create Book: used to create dummy User objects
-        private BL.User CreateDummyUser(int id, string email, string password, string firstName, string lastName, bool isadmin, string status)
+        // Create User: Used to create a dummy user
+        private BL.User CreateDummyUser(int id, string email, string password, string firstName, string lastName, int isadmin, int isactive)
         {
             BL.User user = new BL.User()
             {
@@ -152,10 +178,39 @@ namespace INFT3050WebApp.DAL
                 FirstName = firstName,
                 LastName = lastName,
                 IsAdmin = isadmin,
-                Status = status
+                IsActive = isactive
             };
 
             return user;
+        }
+
+        // Create Order: used to create a dummy order
+        private BL.Order CreateDummyOrders(int OrderId, int UserId, int PurchaseId, string OrderStatus, int gst, double total, String DateOrdered)
+        {
+            BL.Order order = new BL.Order()
+            {
+                orderId = OrderId,
+                userId = UserId,
+                purchaseId = PurchaseId,
+                orderStatus = OrderStatus,
+                GST = gst,
+                Total = total,
+                dateOrdered = DateOrdered
+            };
+
+            return order;
+        }
+
+        // Create PostageOption: Used to create a dummy postage option
+        private BL.PostageOption CreatePostageOption(int id, string name, double price)
+        {
+            BL.PostageOption postageOption = new BL.PostageOption()
+            {
+                Id = id,
+                Name = name,
+                Price = price
+            };
+            return postageOption;
         }
 
         // get book list
@@ -172,11 +227,27 @@ namespace INFT3050WebApp.DAL
             return Array.Find(books, b => { return b.Id == id; });
         }
 
-        // get book list
+        // get user list
         [DataObjectMethod(DataObjectMethodType.Select)]
         public BL.User[] GetUsers()
         {
             return user;
         }
+
+
+        // get postage option list
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public BL.PostageOption[] GetPostageOptions()
+        {
+            return postageOption;
+        }
+
+        // find orders
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public BL.Order[] GetOrders()
+        {
+            return orders;
+        }
+
     }
 }

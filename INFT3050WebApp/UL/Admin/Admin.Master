@@ -15,52 +15,57 @@
 </head>
 
 <body>
-    <div class="sticky-top">
+    <form runat="server">
+        <div class="sticky-top">
 
-        <!-- Top Navigation bar -->
-        <nav class="container-flex navbar navbar-expand-sm navbar-dark bg-primary">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <asp:HyperLink CssClass="navbar-brand" href="Default.aspx" Text="Home Page" runat="server"><img src="../Images/768px-Books_Flat_Icon_Vector.png" alt="Used Book Store Logo" height="56" width="56" />Used Book Store - Admin</asp:HyperLink>
-                <div class="navbar-collapse collapse" id="navbarSupportedContent">
-                <ul class="nav navbar-nav mr-auto" id="AdminSites" runat="server">
-                        <li class="dropdown">
-                            <a href="#" class="nav-link btn dropdown-toggle" data-toggle="dropdown" role="button">Tools</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/UL/Admin/AdminUserAccounts.aspx">User Accounts</a></li>
-                                <li><a class="dropdown-item" href="/UL/Admin/AdminPortal.aspx">Inventory Managment</a></li>
-                                <li><a class="dropdown-item" href="/UL/Admin/AdminOrdershipping.aspx">Orders Shipping</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <!-- Hidden by default -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item">
-                            <asp:HyperLink href="AdminLogin.aspx" ID="logoutLink" CssClass="nav-link" Title="Logout" runat="server"><i class="fa fa-sign-out"></i></asp:HyperLink></li>
-                    </ul>
+            <%--Top Navigation bar--%>
+            <nav class="container-flex navbar navbar-expand-sm navbar-dark bg-primary">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <%--logo link set as a hyperlink to AdminPortal.aspx--%>
+                    <asp:HyperLink CssClass="navbar-brand" href="AdminPortal.aspx" Text="Home Page" runat="server"><img src="../Images/768px-Books_Flat_Icon_Vector.png" alt="Used Book Store Logo" height="56" width="56" />Used Book Store - Admin</asp:HyperLink>
+                    <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav mr-auto" id="AdminSites" runat="server">
+                            <%--drop down for access to other sites--%>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link btn dropdown-toggle" data-toggle="dropdown" role="button">Tools</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/UL/Admin/AdminUserAccounts.aspx">User Accounts</a></li>
+                                    <li><a class="dropdown-item" href="/UL/Admin/AdminPortal.aspx">Inventory Managment</a></li>
+                                    <li><a class="dropdown-item" href="/UL/Admin/AdminPostageOptions.aspx">Postage Options</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="nav-item">
+                                <asp:HyperLink href="AdminLogin.aspx" ID="logoutLink" CssClass="nav-link" Title="Logout" runat="server"><i class="fa fa-sign-out"></i></asp:HyperLink></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </div>
-    <!-- Page content area -->
-    <div class="container">
-
-        <br />
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <span></span>
+            </nav>
         </div>
-    </footer>
+        <%--Page content area--%>
+        <div class="container">
 
-    <!-- Scripts -->
-    <script src="../../Scripts/jquery-3.3.1.min.js"></script>
-    <script src="../../Scripts/bootstrap.min.js"></script>
+            <br />
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        </div>
+
+        <%--Footer--%>
+        <footer class="footer">
+            <div class="container">
+                <span></span>
+            </div>
+        </footer>
+
+        <%--Scripts--%>
+        <script src="../../Scripts/jquery-3.3.1.min.js"></script>
+        <script src="../../Scripts/bootstrap.min.js"></script>
+
+    </form>
 </body>
 </html>
