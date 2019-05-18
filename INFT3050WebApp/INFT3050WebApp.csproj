@@ -98,6 +98,7 @@
     <Content Include="UL\Admin\AdminPostageOptions.aspx" />
     <Content Include="UL\Book.aspx" />
     <Content Include="UL\Books.aspx" />
+    <Content Include="UL\BooksByCategory.aspx" />
     <Content Include="UL\Cart.aspx" />
     <Content Include="UL\Admin\AdminPortal.aspx" />
     <Content Include="UL\Admin\AdminLogin.aspx" />
@@ -187,7 +188,9 @@
     <Compile Include="BL\StoreItem.cs" />
     <Compile Include="BL\User.cs" />
     <Compile Include="DAL\BookDataAccess.cs" />
+    <Compile Include="DAL\CategoryDataAccess.cs" />
     <Compile Include="DAL\IBookDataAccess.cs" />
+    <Compile Include="DAL\ICategoryDataAccess.cs" />
     <Compile Include="DAL\IUserDataAccess.cs" />
     <Compile Include="DAL\UserDataAccess.cs" />
     <Compile Include="UL\About.aspx.cs">
@@ -231,6 +234,13 @@
     </Compile>
     <Compile Include="UL\Books.aspx.designer.cs">
       <DependentUpon>Books.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\BooksByCategory.aspx.cs">
+      <DependentUpon>BooksByCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\BooksByCategory.aspx.designer.cs">
+      <DependentUpon>BooksByCategory.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Cart.aspx.cs">
       <DependentUpon>Cart.aspx</DependentUpon>

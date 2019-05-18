@@ -37,7 +37,8 @@ namespace INFT3050WebApp
 
             if (!IsPostBack)
             {
-                var db = new DAL.DummyDB();
+                // Create dummy database and pull all books from database
+                var db = new DAL.BookDataAccess();
                 var books = db.GetBooks();
 
                 // Create list of best sellers and display them

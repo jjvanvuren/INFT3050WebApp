@@ -7,11 +7,8 @@ using INFT3050WebApp.BL;
 
 namespace INFT3050WebApp.DAL
 {
-    interface IBookDataAccess
+    interface ICategoryDataAccess
     {
-        IEnumerable<Book> GetBooks();
-        Book GetBookById(int Id);
-        IEnumerable<Book> GetBooksByCategory(int categoryId);
-
+        Category GetCategoryById(int categoryID);
     }
 }
