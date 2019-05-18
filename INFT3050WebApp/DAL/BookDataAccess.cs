@@ -33,7 +33,8 @@ namespace INFT3050WebApp.DAL
                             INNER JOIN [bookAuthor] ON [book].[itemID] = [bookAuthor].[itemID]
                             INNER JOIN [author] ON [bookAuthor].[authorID] = [author].[authorID]
                             INNER JOIN [bookCategory] ON [book].[itemID] = [bookCategory].[itemID]
-                            INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID];";
+                            INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID]
+                            WHERE isActive = 1;";
 
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
@@ -90,6 +91,46 @@ namespace INFT3050WebApp.DAL
                 }
             }
             return null;
+        }
+
+        // Method for updating books that have been edited by admins
+        // Method is currently untested
+        // Method should return 0, if it returns anything else somethings wrong
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public int UpdateBookById(Book bookUpdate)
+        {
+            int firstRowsEffected;
+            int secondRowsEffected;
+            int Id = bookUpdate.Id;
+            string sql = @"UPDATE item SET [price] = @price, [stockQuantity] = @stockQuantity, [imagePath] = @imagePath, [thumbnailPath] = @thumbnailPath 
+                            WHERE [itemID]=@Id;";
+
+            string sql2 = @"UPDATE book SET [title] = @title
+                            WHERE [itemID]=@Id;";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("Id", bookUpdate.Id);
+                    command.Parameters.AddWithValue("price", bookUpdate.Price);
+                    command.Parameters.AddWithValue("stockQuantity", bookUpdate.StockQuantity);
+                    command.Parameters.AddWithValue("imagePath", bookUpdate.ImagePath);
+                    command.Parameters.AddWithValue("thumbnailPath", bookUpdate.ThumbnailPath);
+                    con.Open();
+                    firstRowsEffected = command.ExecuteNonQuery();
+                }
+
+                using (SqlCommand command = new SqlCommand(sql2, con))
+                {
+                    command.Parameters.AddWithValue("Id", bookUpdate.Id);
+                    command.Parameters.AddWithValue("Title", bookUpdate.Title);
+                    con.Open();
+                    secondRowsEffected = command.ExecuteNonQuery();
+                }
+            }
+
+            return firstRowsEffected - secondRowsEffected;
         }
 
         // Method used to get books by their Category

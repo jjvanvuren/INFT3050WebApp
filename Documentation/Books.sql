@@ -25,7 +25,8 @@ CREATE TABLE item(
 	longDescription VARCHAR(MAX),
 	shortDescription VARCHAR(250),
 	imagePath VARCHAR(100),
-	thumbnailPath VARCHAR(100)
+	thumbnailPath VARCHAR(100),
+	isActive BIT,
 	Primary Key (itemID)
 )
 
@@ -110,7 +111,8 @@ CREATE TABLE postageOption(
 	postageOptionID INTEGER IDENTITY(1,1),
 	postageOptionName VARCHAR(30),
 	amountOfDaysToDeliver DECIMAL(7,2) DEFAULT 0.0,
-	shippingCost DECIMAL(7,2) DEFAULT 0.0
+	shippingCost DECIMAL(7,2) DEFAULT 0.0,
+	isActive BIT,
 	Primary key (postageOptionID) 
 )
 
@@ -205,60 +207,60 @@ INSERT INTO author (firstName, lastName, description) VALUES ('Metropolitan Muse
 INSERT INTO author (firstName, lastName, description) VALUES ('Ashlee', 'Vance', 'Author description goes here.');
 
 --Insert item and book tables
-INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath) VALUES (45.92, 20, 
+INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive) VALUES (45.92, 20, 
 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, 
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9780813056173.jpg', '/UL/Images/9780813056173_thumb.jpg');
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9780813056173.jpg', '/UL/Images/9780813056173_thumb.jpg', 1);
 INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher) VALUES (1, '9780813056173', 'Picturing Apollo 11', '20190430', '', 1, 'Univ Pr of Florida');
 
-INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath) VALUES (16.49, 20, 
+INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive) VALUES (16.49, 20, 
 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, 
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9781786812445.jpg', '/UL/Images/9781786812445_thumb.jpg');
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9781786812445.jpg', '/UL/Images/9781786812445_thumb.jpg', 1);
 INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher) VALUES (2, '9781786812445', 'The Mistake', '20171004', '', 1, 'Bookouture');
 
-INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath) VALUES (22.99, 20, 
+INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive) VALUES (22.99, 20, 
 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, 
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9781503903265.jpg', '/UL/Images/9781503903265_thumb.jpg');
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9781503903265.jpg', '/UL/Images/9781503903265_thumb.jpg', 1);
 INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher) VALUES (3, '9781503903265', 'One Word Kill', '20190501', '', 1, '47 North');
 
-INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath) VALUES (16.81, 20, 
+INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive) VALUES (16.81, 20, 
 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, 
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9781473635487.jpg', '/UL/Images/9781473635487_thumb.jpg');
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9781473635487.jpg', '/UL/Images/9781473635487_thumb.jpg', 1);
 INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher) VALUES (4, '9781473635487', 'The Keeper of Lost Things', '20170810', '', 1, 'Hodder & Stoughton General Division');
 
-INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath) VALUES (16.11, 20, 
+INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive) VALUES (16.11, 20, 
 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, 
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9781784751173.jpg', '/UL/Images/9781784751173_thumb.jpg');
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9781784751173.jpg', '/UL/Images/9781784751173_thumb.jpg', 1);
 INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher) VALUES (5, '9781784751173', 'Run Away', '20180806', '', 1, 'ARROW LTD');
 
-INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath) VALUES (19.99, 20, 
+INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive) VALUES (19.99, 20, 
 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, 
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9780008152406.jpg', '/UL/Images/9780008152406_thumb.jpg');
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9780008152406.jpg', '/UL/Images/9780008152406_thumb.jpg', 1);
 INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher) VALUES (6, '9780008152406', 'Holy Sister', '20190318', '', 1, 'Voyager - GB');
 
-INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath) VALUES (74.62, 20, 
+INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive) VALUES (74.62, 20, 
 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, 
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9780847846597.jpg', '/UL/Images/9780847846597_thumb.jpg');
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9780847846597.jpg', '/UL/Images/9780847846597_thumb.jpg', 1);
 INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher) VALUES (7, '9780847846597', 'Masterpiece Paintings', '20161001', '', 1, 'Rizzoli');
 
-INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath) VALUES (23.36, 20, 
+INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive) VALUES (23.36, 20, 
 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, 
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9780753555644.jpg', '/UL/Images/9780753555644_thumb.jpg');
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9780753555644.jpg', '/UL/Images/9780753555644_thumb.jpg', 1);
 INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher) VALUES (8, '9780753555644', 'Elon Musk', '20160310', '', 1, 'Ebury Publishing');
 
 --Insert into bookAuthor
