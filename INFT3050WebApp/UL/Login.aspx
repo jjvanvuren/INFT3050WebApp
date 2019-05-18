@@ -14,32 +14,33 @@
         <asp:ValidationSummary ID="vsLogin" runat="server" CssClass="alert-danger" HeaderText="Please correct these issues" />
     </div>
     <div class="form-group">
+
         <%-- Email/username field --%>
         <asp:Label ID="lblEmail" runat="server" Text="Email"></asp:Label>
         <asp:TextBox ID="tbxEmail" runat="server" type="email" CssClass="form-control"></asp:TextBox>
+
+        <%-- Email/username field BL Validation --%>
+        <asp:Label ID="lblUserExists" CssClass="alert-danger" runat="server" Text="" Visible="False"></asp:Label>
 
         <%-- Check if email is valid --%>
         <asp:RequiredFieldValidator ID="rfvEmail" runat="server" CssClass="text-danger" ErrorMessage="Please enter your email address"
             ControlToValidate="tbxEmail">Email required</asp:RequiredFieldValidator>
         <asp:RegularExpressionValidator ID="revEmail" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid email address"
             ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="tbxEmail">Valid email required</asp:RegularExpressionValidator>
-
-        <%-- Check if customer exists --%>
-        <asp:CustomValidator ID="cvEmailExists" runat="server" CssClass="text-danger" ErrorMessage="Email not registered"
-            OnServerValidate="customerRegistered"></asp:CustomValidator>
     </div>
+
     <div class="form-group">
+
         <%-- Password field --%>
         <asp:Label ID="lblPassword" runat="server" Text="Password"></asp:Label>
         <asp:TextBox ID="tbxPassword" runat="server" type="password" CssClass="form-control"></asp:TextBox>
 
+        <%-- Password field BL Validation --%>
+        <asp:Label ID="lblInvalidPassword" CssClass="alert-danger" runat="server" Text="" Visible="False"></asp:Label>
+
         <%-- Password is required --%>
         <asp:RequiredFieldValidator ID="rfvPassword" runat="server" CssClass="text-danger" ErrorMessage="Please enter your password"
             ControlToValidate="tbxPassword">Password required</asp:RequiredFieldValidator>
-
-        <%-- Check if password is correct --%>
-        <asp:CustomValidator ID="cvPasswordCorrect" runat="server" CssClass="text-danger" ErrorMessage="Password incorrect"
-            OnServerValidate="passwordCorrect"></asp:CustomValidator>
     </div>
 
     <%-- Buttons to login or cancel --%>

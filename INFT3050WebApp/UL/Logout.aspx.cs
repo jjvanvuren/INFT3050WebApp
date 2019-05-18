@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
+using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp
 {
@@ -34,7 +35,14 @@ namespace INFT3050WebApp
             CustomerSession query = (CustomerSession)Session[CustomerSession.SESSION_KEY];
             if (query != null)
             {
-                lblLogoutMessage.Text = String.Format(LOGOUT_FORMAT, query.Name);
+                // Setup access to database
+                IUserDataAccess db = new UserDataAccess();
+
+                User currentUser = db.GetUserById(query.SessionId);
+
+                string strUserName = currentUser.FirstName;
+
+                lblLogoutMessage.Text = String.Format(LOGOUT_FORMAT, strUserName);
             }
 
             // Clear all session data once user has logged out
