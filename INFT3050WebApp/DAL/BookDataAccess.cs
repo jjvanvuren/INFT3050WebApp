@@ -101,7 +101,6 @@ namespace INFT3050WebApp.DAL
         {
             int firstRowsEffected;
             int secondRowsEffected;
-            int Id = bookUpdate.Id;
             string sql = @"UPDATE item SET [price] = @price, [stockQuantity] = @stockQuantity, [imagePath] = @imagePath, [thumbnailPath] = @thumbnailPath 
                             WHERE [itemID]=@Id;";
 
@@ -131,6 +130,26 @@ namespace INFT3050WebApp.DAL
             }
 
             return firstRowsEffected - secondRowsEffected;
+        }
+
+        // Method to "delete" item by setting status flag to 0
+        // returns the number of rows effected (should be 1)
+        // Untested
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public int DeleteItemById(int itemId)
+        {
+            string sql = @"UPDATE item SET [isActive] = 0
+                            WHERE [itemID]=@Id;";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("Id", itemId);
+                    con.Open();
+                    return command.ExecuteNonQuery();
+                }
+            }
         }
 
         // Method used to get books by their Category
