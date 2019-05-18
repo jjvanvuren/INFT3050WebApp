@@ -28,7 +28,12 @@
                 <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
                 <asp:BoundField DataField="ShortDescription" HeaderText="Description" SortExpression="ShortDescription" />
                 <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
-                <asp:ButtonField ButtonType="Button" CommandName="cmdView" Text="View" ControlStyle-CssClass="btn btn-success" />
+                <asp:TemplateField ShowHeader="False">
+                    <ItemTemplate>
+                        <asp:Button ID="btnView" runat="server" CausesValidation="false" CommandName="cmdView" CssClass="btn btn-success"
+                            Text="View" CommandArgument='<%# Eval("id") %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView>
 

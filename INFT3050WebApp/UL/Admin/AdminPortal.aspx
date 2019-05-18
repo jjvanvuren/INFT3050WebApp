@@ -54,7 +54,7 @@
                 <asp:BoundField DataField="ImagePath" HeaderText="Image Path">
                     <ItemStyle CssClass="col-xs-3" />
                 </asp:BoundField>
-                <%--Item ThambnailPath displayed--%>
+                <%--Item ThumbnailPath displayed--%>
                 <asp:BoundField DataField="ThumbnailPath" HeaderText="Thumbnail Image Path">
                     <ItemStyle CssClass="col-xs-3" />
                 </asp:BoundField>
