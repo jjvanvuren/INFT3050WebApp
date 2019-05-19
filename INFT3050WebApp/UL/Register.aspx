@@ -34,6 +34,9 @@
         <asp:Label ID="lblEmail" runat="server" Text="Email address"></asp:Label>
         <asp:TextBox ID="tbxEmail" runat="server" type="email" CssClass="form-control"></asp:TextBox>
 
+        <%-- Check if email already exists on DB --%>
+        <asp:Label ID="lblEmailExists" CssClass="text-danger" runat="server" Text="" Visible="False"></asp:Label>
+
         <%-- Email entry field validation --%>
         <asp:RequiredFieldValidator ID="rfvEmail" runat="server" CssClass="text-danger" ErrorMessage="Please enter your email address"
             ControlToValidate="tbxEmail">Email required</asp:RequiredFieldValidator>

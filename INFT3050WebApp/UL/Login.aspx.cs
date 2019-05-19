@@ -50,11 +50,8 @@ namespace INFT3050WebApp
 
             if (iCheckUser == 0)
             {
-                lblUserExists.Text = "Email not registered";
+                lblUserExists.Text = "Email not registered or account has been disabled";
                 lblUserExists.Visible = true;
-
-                lblInvalidPassword.Text = "Password incorrect";
-                lblInvalidPassword.Visible = true;
 
                 bValid = false;
             }

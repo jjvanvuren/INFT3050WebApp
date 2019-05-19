@@ -46,7 +46,7 @@ namespace INFT3050WebApp.BL
             Regex rxEmail = new Regex(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*");
             Regex rxPassword = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@!%*?&_#^])[A-Za-z\d$@!%*?&_#^]{8,}");
 
-            // Double check user email and password is in the valid format
+            // Double check user email and password is in the valid format using Regex
             Match matchEmail = rxEmail.Match(strEmail);
             Match matchPassword = rxPassword.Match(strPassword);
 
@@ -55,6 +55,7 @@ namespace INFT3050WebApp.BL
 
             if (matchEmail.Success && matchPassword.Success)
             {
+                // Check if the user exists in the DB
                 bCheckUserExists = db.CheckUserExists(strEmail);
 
                 if (bCheckUserExists)
@@ -90,11 +91,10 @@ namespace INFT3050WebApp.BL
             }
         }
 
-        // https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.md5?view=netframework-4.8
-        // Get the MD5 Hash for a string
+        // Get the MD5 Hash for a string. Used for the user password
+        // Method sourced from https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.md5?view=netframework-4.8
         static private string GetMd5Hash(MD5 md5Hash, string input)
         {
-
             // Convert the input string to a byte array and compute the hash.
             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
 

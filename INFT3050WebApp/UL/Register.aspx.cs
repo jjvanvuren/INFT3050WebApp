@@ -32,17 +32,33 @@ namespace INFT3050WebApp
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            if (IsValid)
+            
+
+            // Create a new user based on info entered
+            User registeredUser = new User(tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, false, true);
+
+            // Setup access to database
+            IUserDataAccess db = new UserDataAccess();
+
+            // Check if email already exists in DB
+            bool bRegistered = db.CheckUserExists(tbxEmail.Text);
+
+            if (bRegistered)
             {
-                // Create a new user based on info entered
-                User registeredUser = new User(tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, false, true);
+                lblEmailExists.Text = "Email already exists";
+                lblEmailExists.Visible = true;
+            }
+            else
+            {
+                lblEmailExists.Visible = false;
+            }
 
-                // Setup access to database
-                IUserDataAccess db = new UserDataAccess();
-
+            if (IsValid && !bRegistered)
+            {
                 int rowsAffected = db.RegisterUser(registeredUser);
 
                 User currentUser = new User();
+
                 currentUser = db.GetUserByEmail(registeredUser.Email);
 
                 // Data to be retained in session

@@ -44,7 +44,8 @@ namespace INFT3050WebApp.DAL
 
             User checkUser = new User
             {
-                Id = 0
+                Id = 0,
+                IsActive = false
             };
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
@@ -58,9 +59,10 @@ namespace INFT3050WebApp.DAL
                     while (reader.Read())
                     {
                         checkUser.Id = (int)reader["userID"];
+                        checkUser.IsActive = (bool)reader.GetSqlBoolean(6);
                     }
 
-                    if (checkUser.Id != 0)
+                    if (checkUser.Id != 0 && checkUser.IsActive)
                     {
                         return true;
                     }
