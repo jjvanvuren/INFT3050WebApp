@@ -57,9 +57,6 @@ namespace INFT3050WebApp
                 }
             }
 
-            // Create dummyDB
-            DAL.IBookDataAccess db = new DAL.BookDataAccess();
-
             bookDataSource.SelectParameters.Clear();
             bookDataSource.SelectParameters.Add("searchString", searchString);
 
