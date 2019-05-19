@@ -11,9 +11,6 @@ namespace INFT3050WebApp
 {
     public partial class Login : System.Web.UI.Page
     {
-        string strEmail;
-        string strPassword;
-        int iCheckUser;
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -39,14 +36,14 @@ namespace INFT3050WebApp
         {
             Session.Clear();
 
-            strEmail = tbxEmail.Text;
-            strPassword = tbxPassword.Text;
+            string strEmail = tbxEmail.Text;
+            string strPassword = tbxPassword.Text;
 
             // Used for BL Validation
             bool bValid;
 
             User userVerify = new User();
-            iCheckUser = userVerify.CheckUser(strEmail, strPassword);
+            int iCheckUser = userVerify.CheckUser(strEmail, strPassword);
 
             if (iCheckUser == 0)
             {
@@ -82,12 +79,12 @@ namespace INFT3050WebApp
                     // Get the user from db using the GetUserByEmail method
                     User user = db.GetUserByEmail(strEmail);
 
-                    CustomerSession currentCustomerSession = new CustomerSession()
+                    UserSession currentUserSession = new UserSession()
                     {
                         SessionId = user.Id
                     };
 
-                    Session["customerSession"] = currentCustomerSession;
+                    Session["userSession"] = currentUserSession;
 
                     Response.Redirect("~/UL/Customer.aspx");
                 }

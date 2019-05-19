@@ -17,7 +17,7 @@ namespace INFT3050WebApp.UL
         protected void Page_Load(object sender, EventArgs e)
         {
             // Use the customers name stored in session data to display the confirmation message
-            CustomerSession query = (CustomerSession)Session[CustomerSession.SESSION_KEY];
+            UserSession query = (UserSession)Session[UserSession.SESSION_KEY];
             if (query != null)
             {
                 // Setup access to database

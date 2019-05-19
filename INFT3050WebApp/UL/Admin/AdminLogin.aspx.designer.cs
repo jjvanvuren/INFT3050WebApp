@@ -40,6 +40,15 @@ namespace INFT3050WebApp.UL.BackEnd {
         protected global::System.Web.UI.WebControls.TextBox tbxEmail;
         
         /// <summary>
+        /// lblUserExists control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUserExists;
+        
+        /// <summary>
         /// rfvEmail control.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace INFT3050WebApp.UL.BackEnd {
         protected global::System.Web.UI.WebControls.TextBox tbxPassword;
         
         /// <summary>
+        /// lblInvalidPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblInvalidPassword;
+        
+        /// <summary>
         /// rfvPassword control.
         /// </summary>
         /// <remarks>
@@ -92,15 +110,6 @@ namespace INFT3050WebApp.UL.BackEnd {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPassword;
-        
-        /// <summary>
-        /// cvPasswordCorrect control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cvPasswordCorrect;
         
         /// <summary>
         /// btnLogin control.

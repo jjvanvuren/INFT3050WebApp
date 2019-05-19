@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
+using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp.UL.BackEnd
 {
@@ -21,18 +22,42 @@ namespace INFT3050WebApp.UL.BackEnd
         //If registration is valid, send user to AdminPortal.aspx and create a session for login.
         protected void btnRegister_Click(object sender, EventArgs e)
         {
+            Session.Clear();
+
+            // Create a new user based on info entered
+            User registeredUser = new User(tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, true, true);
+
+            // Setup access to database
+            IUserDataAccess db = new UserDataAccess();
+
+            // Check if email already exists in DB
+            bool bRegistered = db.CheckUserExists(tbxEmail.Text);
+
+            if (bRegistered)
+            {
+                lblEmailExists.Text = "Email already exists";
+                lblEmailExists.Visible = true;
+            }
+            else
+            {
+                lblEmailExists.Visible = false;
+            }
+
             if (IsValid)
             {
-                Session.Clear();
+                int rowsAffected = db.RegisterUser(registeredUser);
 
-                UserSession currentUserSession = new UserSession()
+                User currentUser = new User();
+
+                currentUser = db.GetUserByEmail(registeredUser.Email);
+
+                // Data to be retained in session
+                UserSession currentUserSession = new UserSession
                 {
-                    Email = tbxEmail.Text,
-                    Name = "Joe Smith",
-                    LoggedIn = true
+                    SessionId = currentUser.Id
                 };
 
-                Session["UserSession"] = currentUserSession;
+                Session["userSession"] = currentUserSession;
 
                 Response.Redirect("~/UL/Admin/AdminPortal.aspx");
             }

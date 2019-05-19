@@ -31,7 +31,7 @@ namespace INFT3050WebApp
         {
 
 
-            CustomerSession query = (CustomerSession)Session[CustomerSession.SESSION_KEY];
+            UserSession query = (UserSession)Session[UserSession.SESSION_KEY];
             if (query != null)
             {
                 // Setup access to database

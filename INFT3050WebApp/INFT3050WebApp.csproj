@@ -183,7 +183,6 @@
     <Compile Include="BL\Order.cs" />
     <Compile Include="BL\UserSession.cs" />
     <Compile Include="BL\Customer.cs" />
-    <Compile Include="BL\CustomerSession.cs" />
     <Compile Include="BL\PostageOption.cs" />
     <Compile Include="BL\StoreItem.cs" />
     <Compile Include="BL\User.cs" />
