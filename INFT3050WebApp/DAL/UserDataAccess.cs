@@ -154,16 +154,28 @@ namespace INFT3050WebApp.DAL
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public int RegisterUser(User user)
         {
-            string sql = @"INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES (@email, @password, @firstName, @lastName, 0, 1);";
+            string sql = @"INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES (@email, @password, @firstName, @lastName, @isAdmin, 1);";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(sql, con))
                 {
+                    int iIsAdmin;
+
+                    if (user.IsAdmin)
+                    {
+                        iIsAdmin = 1;
+                    }
+                    else
+                    {
+                        iIsAdmin = 0;
+                    }
+
                     command.Parameters.AddWithValue("email", user.Email);
                     command.Parameters.AddWithValue("password", user.Password);
                     command.Parameters.AddWithValue("firstName", user.FirstName);
                     command.Parameters.AddWithValue("lastName", user.LastName);
+                    command.Parameters.AddWithValue("isAdmin", iIsAdmin.ToString());
                     con.Open();
                     return command.ExecuteNonQuery();
                 }

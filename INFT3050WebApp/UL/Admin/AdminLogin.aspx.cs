@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
+using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp.UL.BackEnd
 {
@@ -22,20 +23,60 @@ namespace INFT3050WebApp.UL.BackEnd
         // Validate email and password. If successful redirect to Customer.aspx
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            if (IsValid)
+            Session.Clear();
+
+            string strEmail = tbxEmail.Text;
+            string strPassword = tbxPassword.Text;
+
+            // Used for BL Validation
+            bool bValid;
+
+            User userVerify = new User();
+            int iCheckUser = userVerify.CheckUser(strEmail, strPassword);
+
+            if (iCheckUser == 0)
             {
-                Session.Clear();
+                lblUserExists.Text = "Email not registered or account has been disabled";
+                lblUserExists.Visible = true;
 
-                UserSession currentUserSession = new UserSession()
+                bValid = false;
+            }
+            else if (iCheckUser == 1)
+            {
+                lblUserExists.Visible = false;
+
+                lblInvalidPassword.Text = "Password incorrect";
+                lblInvalidPassword.Visible = true;
+
+                bValid = false;
+            }
+            else
+            {
+                lblUserExists.Visible = false;
+                lblInvalidPassword.Visible = false;
+
+                bValid = true;
+            }
+
+            if (IsValid && bValid)
+            {
+                if (iCheckUser == 2)
                 {
-                    Email = tbxEmail.Text,
-                    Name = "Joe Smith",
-                    LoggedIn = true
-                };
+                    // Setup access to database
+                    IUserDataAccess db = new UserDataAccess();
 
-                Session["UserSession"] = currentUserSession;
+                    // Get the user from db using the GetUserByEmail method
+                    User user = db.GetUserByEmail(strEmail);
 
-                Response.Redirect("~/UL/Admin/AdminPortal.aspx");
+                    UserSession currentUserSession = new UserSession()
+                    {
+                        SessionId = user.Id
+                    };
+
+                    Session["UserSession"] = currentUserSession;
+
+                    Response.Redirect("~/UL/Admin/AdminPortal.aspx");
+                }
             }
         }
 
@@ -43,20 +84,6 @@ namespace INFT3050WebApp.UL.BackEnd
         protected void btnRegister_Click(object sender, EventArgs e)
         {
                 Response.Redirect("~/UL/Admin/AdminRegister.aspx");
-        }
-
-        // Checks if customer password is correct
-        // This is only temporary. Will change in next assignment
-        protected void passwordCorrect(object source, ServerValidateEventArgs args)
-        {
-            if (tbxPassword.Text == "Password#1")
-            {
-                args.IsValid = true;
-            }
-            else
-            {
-                args.IsValid = false;
-            }
         }
     }
 }

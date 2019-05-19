@@ -62,12 +62,12 @@ namespace INFT3050WebApp
                 currentUser = db.GetUserByEmail(registeredUser.Email);
 
                 // Data to be retained in session
-                CustomerSession currentCustomerSession = new CustomerSession
+                UserSession currentUserSession = new UserSession
                 {
                     SessionId = currentUser.Id
                 };
 
-                Session["customerSession"] = currentCustomerSession;
+                Session["userSession"] = currentUserSession;
 
                 Response.Redirect("~/UL/SuccessfulRegistration.aspx");
             }
