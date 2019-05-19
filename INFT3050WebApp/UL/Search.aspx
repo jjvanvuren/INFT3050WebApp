@@ -18,8 +18,12 @@
         </div>
         <br />
         <div class="container-flex">
-            <%--Get Data Source--%>
-            <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetBooks" TypeName="INFT3050WebApp.DAL.BookDataAccess"></asp:ObjectDataSource>
+            <%-- Get Data Source --%>
+            <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="SearchBooksByTitle" TypeName="INFT3050WebApp.DAL.BookDataAccess">
+                <SelectParameters>
+                    <asp:Parameter Name="searchString" Type="String" />
+                </SelectParameters>
+            </asp:ObjectDataSource>
             <%--Display all books using gridview--%>
             <asp:GridView ID="GridBooks" runat="server" AutoGenerateColumns="false" DataSourceID="bookDataSource" OnRowCommand="GridSearch_RowCommand" CssClass="table" GridLines="None" AllowPaging="True" PageSize="4">
                 <Columns>
@@ -28,7 +32,12 @@
                     <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
                     <asp:BoundField DataField="ShortDescription" HeaderText="Description" SortExpression="ShortDescription" />
                     <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
-                    <asp:ButtonField ButtonType="Button" CommandName="cmdView" Text="View" ControlStyle-CssClass="btn btn-success" />
+                    <asp:TemplateField ShowHeader="False">
+                        <ItemTemplate>
+                            <asp:Button ID="btnView" runat="server" CausesValidation="false" CommandName="cmdView" CssClass="btn btn-success"
+                                Text="View" CommandArgument='<%# Eval("id") %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
             </asp:GridView>
         </div>
