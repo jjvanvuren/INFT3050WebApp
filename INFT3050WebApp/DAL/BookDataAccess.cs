@@ -163,7 +163,50 @@ namespace INFT3050WebApp.DAL
         //}
 
 
+        // Method used to get books by their Category
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public IEnumerable<Book> SearchBooksByTitle(string searchString)
+        {
+            List<Book> books = new List<Book>();
+            string sql = @"SELECT [item].[itemID], [price], [stockQuantity], [longDescription], [shortDescription], [imagePath], [thumbnailPath], 
+                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher], [author].[firstName], [author].[lastName], [author].[description], 
+                            [category].[name], [category].[description], [author].[authorID], [category].[categoryID]
+                            FROM [dbo].[item] 
+                            INNER JOIN [book] ON [item].[itemID] = [book].[itemID]
+                            INNER JOIN [bookAuthor] ON [book].[itemID] = [bookAuthor].[itemID]
+                            INNER JOIN [author] ON [bookAuthor].[authorID] = [author].[authorID]
+                            INNER JOIN [bookCategory] ON [book].[itemID] = [bookCategory].[itemID]
+                            INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID]
+                            WHERE isActive = 1 AND CONTAINS (title, @searchString);";
 
+            if (searchString == null)
+            {
+                return GetBooks();
+            }
+            else
+            {
+                using (SqlConnection con = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(sql, con))
+                    {
+                        command.Parameters.Add(new SqlParameter("searchString", searchString));
+                        con.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            Author newAuthor = CreateAuthor(reader);
+                            Category newCategory = CreateCategory(reader);
+                            Book newBook = CreateBook(reader);
+                            newBook.Author = newAuthor;
+                            newBook.Category = newCategory;
+                            books.Add(newBook);
+                        }
+                    }
+                }
+                return books;
+            }
+
+        }
 
         // Method used to get books by their Category
         [DataObjectMethod(DataObjectMethodType.Select)]
