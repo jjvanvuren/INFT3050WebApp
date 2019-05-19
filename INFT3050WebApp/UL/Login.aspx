@@ -20,7 +20,7 @@
         <asp:TextBox ID="tbxEmail" runat="server" type="email" CssClass="form-control"></asp:TextBox>
 
         <%-- Email/username field BL Validation --%>
-        <asp:Label ID="lblUserExists" CssClass="alert-danger" runat="server" Text="" Visible="False"></asp:Label>
+        <asp:Label ID="lblUserExists" CssClass="text-danger" runat="server" Text="" Visible="False"></asp:Label>
 
         <%-- Check if email is valid --%>
         <asp:RequiredFieldValidator ID="rfvEmail" runat="server" CssClass="text-danger" ErrorMessage="Please enter your email address"
@@ -36,7 +36,7 @@
         <asp:TextBox ID="tbxPassword" runat="server" type="password" CssClass="form-control"></asp:TextBox>
 
         <%-- Password field BL Validation --%>
-        <asp:Label ID="lblInvalidPassword" CssClass="alert-danger" runat="server" Text="" Visible="False"></asp:Label>
+        <asp:Label ID="lblInvalidPassword" CssClass="text-danger" runat="server" Text="" Visible="False"></asp:Label>
 
         <%-- Password is required --%>
         <asp:RequiredFieldValidator ID="rfvPassword" runat="server" CssClass="text-danger" ErrorMessage="Please enter your password"

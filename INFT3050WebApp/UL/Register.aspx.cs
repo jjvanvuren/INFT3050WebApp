@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
+using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp
 {
@@ -31,15 +32,39 @@ namespace INFT3050WebApp
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            if (IsValid)
+            
+
+            // Create a new user based on info entered
+            User registeredUser = new User(tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, false, true);
+
+            // Setup access to database
+            IUserDataAccess db = new UserDataAccess();
+
+            // Check if email already exists in DB
+            bool bRegistered = db.CheckUserExists(tbxEmail.Text);
+
+            if (bRegistered)
             {
-                // Create a new user based on info entered
-                User registeredUser = new User(0, tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, false, true);
+                lblEmailExists.Text = "Email already exists";
+                lblEmailExists.Visible = true;
+            }
+            else
+            {
+                lblEmailExists.Visible = false;
+            }
+
+            if (IsValid && !bRegistered)
+            {
+                int rowsAffected = db.RegisterUser(registeredUser);
+
+                User currentUser = new User();
+
+                currentUser = db.GetUserByEmail(registeredUser.Email);
 
                 // Data to be retained in session
                 CustomerSession currentCustomerSession = new CustomerSession
                 {
-                    SessionId = registeredUser.Id
+                    SessionId = currentUser.Id
                 };
 
                 Session["customerSession"] = currentCustomerSession;
