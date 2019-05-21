@@ -117,10 +117,10 @@ namespace INFT3050WebApp.DAL
         }
 
     // Create Book: used to create dummy Book objects
-    private BL.Book CreateDummyBook(int id, double price, int quantity, string image, string thumbImage, string isbn, DateTime datePublished,
+    private Book CreateDummyBook(int id, double price, int quantity, string image, string thumbImage, string isbn, DateTime datePublished,
             string title, string secondTitle, BL.Author author, BL.Category category, string publisher, bool isBestSell)
         {
-            BL.Book book = new BL.Book()
+            Book book = new Book()
             {
                 Id = id,
                 Price = price,

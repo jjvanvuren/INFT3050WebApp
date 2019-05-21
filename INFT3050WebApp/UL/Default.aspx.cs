@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
+using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp
 {
@@ -29,9 +30,14 @@ namespace INFT3050WebApp
 
             if (!IsPostBack)
             {
-                // Create dummy database and pull all books from database
-                var db = new DAL.BookDataAccess();
-                var books = db.GetBooks();
+                //// Create dummy database and pull all books from database
+                //var db = new DAL.BookDataAccess();
+                //var books = db.GetBooks();
+                Book dbBook = new Book();
+
+                List<Book> books = new List<Book>();
+
+                books = dbBook.GetAllBooks();
 
                 // Create list of best sellers based on IsBestSeller property
                 List<Book> bestSellers = new List<Book>();
