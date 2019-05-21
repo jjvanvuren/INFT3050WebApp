@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
-using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp.UL.BackEnd
 {
@@ -22,39 +21,48 @@ namespace INFT3050WebApp.UL.BackEnd
         //If registration is valid, send user to AdminPortal.aspx and create a session for login.
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            Session.Clear();
+            // Used for BL Validation
+            bool bValid;
 
             // Create a new user based on info entered
             User registeredUser = new User(tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, true, true);
 
-            // Setup access to database
-            IUserDataAccess db = new UserDataAccess();
+            int iRegistered = registeredUser.CheckRegisterUser(tbxEmail.Text, tbxPassword.Text);
 
-            // Check if email already exists in DB
-            bool bRegistered = db.CheckUserExists(tbxEmail.Text);
-
-            if (bRegistered)
+            if (iRegistered == 0)
             {
-                lblEmailExists.Text = "Email already exists";
+                lblEmailExists.Text = "Is not a valid email or is already registered";
                 lblEmailExists.Visible = true;
+
+                bValid = false;
+            }
+            else if (iRegistered == 1)
+            {
+                lblInvalidPassword.Text = "Password must meet complexity requirements";
+                lblInvalidPassword.Visible = true;
+
+                bValid = false;
             }
             else
             {
                 lblEmailExists.Visible = false;
+                lblInvalidPassword.Visible = false;
+
+                bValid = true;
             }
 
-            if (IsValid)
+            if (IsValid && bValid)
             {
-                int rowsAffected = db.RegisterUser(registeredUser);
-
                 User currentUser = new User();
 
-                currentUser = db.GetUserByEmail(registeredUser.Email);
+                currentUser.RegisterNewUser(registeredUser);
+
+                User dbUser = new User(registeredUser.Email);
 
                 // Data to be retained in session
                 UserSession currentUserSession = new UserSession
                 {
-                    SessionId = currentUser.Id
+                    SessionId = dbUser.Id
                 };
 
                 Session["userSession"] = currentUserSession;

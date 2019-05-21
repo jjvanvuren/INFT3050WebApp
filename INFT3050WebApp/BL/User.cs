@@ -37,49 +37,140 @@ namespace INFT3050WebApp.BL
             this.IsActive = status;
         }
 
-        
-        public int CheckUser(string strEmail, string strPassword)
+        public User (string strEmail)
+        {
+            // Setup access to database
+            IUserDataAccess db = new UserDataAccess();
+
+            User user = db.GetUserByEmail(strEmail);
+
+            this.Id = user.Id;
+            this.Email = user.Email;
+            this.Password = user.Password;
+            this.FirstName = user.FirstName;
+            this.LastName = user.LastName;
+            this.IsAdmin = user.IsAdmin;
+            this.IsActive = user.IsActive;
+        }
+
+        public User(int iUserId)
+        {
+            // Setup access to database
+            IUserDataAccess db = new UserDataAccess();
+
+            User user = db.GetUserById(iUserId);
+
+            this.Id = user.Id;
+            this.Email = user.Email;
+            this.Password = user.Password;
+            this.FirstName = user.FirstName;
+            this.LastName = user.LastName;
+            this.IsAdmin = user.IsAdmin;
+            this.IsActive = user.IsActive;
+        }
+
+        public int CheckLoginUser(string strEmail, string strPassword)
+        {
+            int iRequirements = RequirementsCheck(strEmail, strPassword);
+
+            int iCheckUser = CheckUser(strEmail, strPassword);
+
+            if (iCheckUser == 0 || iRequirements == 0)
+            {
+                return 0;
+            }
+            else if (iCheckUser == 1 || iRequirements == 1)
+            {
+                return 1;
+            }
+            else
+            {
+                return 2;
+            }
+        }
+
+        // Checks the database and:
+        // Returns 2 if email does not exist and both email and password requirements are met
+        // Returns 1 if password requirements are not met
+        // Returns 0 if email requirements are not met or email already exists in DB
+        public int CheckRegisterUser(string strEmail, string strPassword)
+        {
+            int iRequirements = RequirementsCheck(strEmail, strPassword);
+
+            int iCheckUser = CheckUser(strEmail, strPassword);
+
+            if (iRequirements == 0)
+            {
+                return 0;
+            }
+            else if (iRequirements == 1)
+            {
+
+                return 1;
+            }
+            else
+            {
+                if (iCheckUser == 2 || iCheckUser == 1)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 2;
+                }
+            }
+        }
+
+        private int CheckUser(string strEmail, string strPassword)
         {
             bool bCheckUserExists;
             string strDbPasswordHash;
 
+            // Check if the user exists in the DB
+            bCheckUserExists = UserExists(strEmail);
+
+            if (bCheckUserExists)
+            {
+                // Setup access to database
+                IUserDataAccess db = new UserDataAccess();
+
+                // Get the MD5 hash from DB
+                strDbPasswordHash = db.GetPasswordHash(strEmail);
+
+                // Verify entered password with DB
+                using (MD5 md5Hash = MD5.Create())
+                {
+                    // Both email and password match DB
+                    if (VerifyMd5Hash(md5Hash, strPassword, strDbPasswordHash))
+                    {
+                        return 2;
+                    }
+                    // Password doesn't match DB
+                    else
+                    {
+                        return 1;
+                    }
+                }
+            }
+            else
+            {
+                return 0;
+            }
+
+        }
+
+        // Double check user email and password is in the valid format using Regex
+        private int RequirementsCheck (string strEmail, string strPassword)
+        {
             Regex rxEmail = new Regex(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*");
             Regex rxPassword = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@!%*?&_#^])[A-Za-z\d$@!%*?&_#^]{8,}");
 
-            // Double check user email and password is in the valid format using Regex
             Match matchEmail = rxEmail.Match(strEmail);
             Match matchPassword = rxPassword.Match(strPassword);
 
-            // Setup access to database
-            IUserDataAccess db = new UserDataAccess();
-
-            if (matchEmail.Success && matchPassword.Success)
+            if (!matchEmail.Success)
             {
-                // Check if the user exists in the DB
-                bCheckUserExists = db.CheckUserExists(strEmail);
-
-                if (bCheckUserExists)
-                {
-                    // Get the MD5 hash from DB
-                    strDbPasswordHash = db.GetPasswordHash(strEmail);
-
-                    using (MD5 md5Hash = MD5.Create())
-                    {
-                        // Verify entered password with DB
-                        if (VerifyMd5Hash(md5Hash, strPassword, strDbPasswordHash))
-                        {
-                            return 2;
-                        }
-                        else
-                        {
-                            return 1;
-                        }
-                    }
-                }
-                else
-                {
-                    return 0;
-                }
+                return 0;
             }
             else if (matchEmail.Success && !matchPassword.Success)
             {
@@ -87,8 +178,28 @@ namespace INFT3050WebApp.BL
             }
             else
             {
-                return 0;
+                return 2;
             }
+        }
+
+        // Used to check if the user exists in the database using their email address
+        public bool UserExists (string strEmail)
+        {
+            // Setup access to database
+            IUserDataAccess db = new UserDataAccess();
+
+            // Check if the user exists in the DB
+            bool bUserExists = db.CheckUserExists(strEmail);
+
+            return bUserExists;
+        }
+
+        public void RegisterNewUser(User uNewUser)
+        {
+            // Setup access to database
+            IUserDataAccess db = new UserDataAccess();
+
+            int rowsAffected = db.RegisterUser(uNewUser);
         }
 
         // Get the MD5 Hash for a string. Used for the user password

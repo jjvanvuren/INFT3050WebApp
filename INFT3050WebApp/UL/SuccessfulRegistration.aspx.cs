@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
-using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp
 {
@@ -14,7 +13,7 @@ namespace INFT3050WebApp
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Check if user is logged in to use correct master page
-            if (Session["customerSession"] != null)
+            if (Session["userSession"] != null)
             {
                 Page.MasterPageFile = "~/UL/Customer.Master";
             }
@@ -33,14 +32,9 @@ namespace INFT3050WebApp
             UserSession query = (UserSession)Session[UserSession.SESSION_KEY];
             if (query != null)
             {
-                // Setup access to database
-                IUserDataAccess db = new UserDataAccess();
+                User currentUser = new User(query.SessionId);
 
-                User currentUser = db.GetUserById(query.SessionId);
-
-                string strUserName = currentUser.FirstName;
-
-                thanksMessageLabel.Text = String.Format(THANKS_FORMAT, strUserName);
+                thanksMessageLabel.Text = String.Format(THANKS_FORMAT, currentUser.FirstName);
             }
         }
     }

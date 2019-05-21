@@ -220,6 +220,15 @@ namespace INFT3050WebApp.UL.BackEnd {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revPasswordComplex;
         
         /// <summary>
+        /// lblInvalidPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblInvalidPassword;
+        
+        /// <summary>
         /// lblPasswordConfirm control.
         /// </summary>
         /// <remarks>

@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
-using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp.UL.BackEnd
 {
@@ -32,7 +31,7 @@ namespace INFT3050WebApp.UL.BackEnd
             bool bValid;
 
             User userVerify = new User();
-            int iCheckUser = userVerify.CheckUser(strEmail, strPassword);
+            int iCheckUser = userVerify.CheckLoginUser(strEmail, strPassword);
 
             if (iCheckUser == 0)
             {
@@ -62,18 +61,9 @@ namespace INFT3050WebApp.UL.BackEnd
             {
                 if (iCheckUser == 2)
                 {
-                    // Setup access to database
-                    IUserDataAccess db = new UserDataAccess();
-
-                    // Get the user from db using the GetUserByEmail method
-                    User user = db.GetUserByEmail(strEmail);
-
-                    UserSession currentUserSession = new UserSession()
-                    {
-                        SessionId = user.Id
-                    };
-
-                    Session["UserSession"] = currentUserSession;
+                    // Create a new session for the user
+                    UserSession usCurrent = new UserSession(strEmail);
+                    Session["userSession"] = usCurrent;
 
                     Response.Redirect("~/UL/Admin/AdminPortal.aspx");
                 }

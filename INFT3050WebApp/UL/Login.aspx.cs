@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
-using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp
 {
@@ -15,7 +14,7 @@ namespace INFT3050WebApp
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Check if user is logged in to use correct master page
-            if (Session["customerSession"] != null)
+            if (Session["userSession"] != null)
             {
                 Page.MasterPageFile = "~/UL/Customer.Master";
             }
@@ -43,7 +42,7 @@ namespace INFT3050WebApp
             bool bValid;
 
             User userVerify = new User();
-            int iCheckUser = userVerify.CheckUser(strEmail, strPassword);
+            int iCheckUser = userVerify.CheckLoginUser(strEmail, strPassword);
 
             if (iCheckUser == 0)
             {
@@ -73,18 +72,9 @@ namespace INFT3050WebApp
             {
                 if (iCheckUser == 2)
                 {
-                    // Setup access to database
-                    IUserDataAccess db = new UserDataAccess();
-
-                    // Get the user from db using the GetUserByEmail method
-                    User user = db.GetUserByEmail(strEmail);
-
-                    UserSession currentUserSession = new UserSession()
-                    {
-                        SessionId = user.Id
-                    };
-
-                    Session["userSession"] = currentUserSession;
+                    // Create a new session for the user
+                    UserSession usCurrent = new UserSession(strEmail);
+                    Session["userSession"] = usCurrent;
 
                     Response.Redirect("~/UL/Customer.aspx");
                 }

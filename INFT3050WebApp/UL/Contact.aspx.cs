@@ -13,7 +13,7 @@ namespace INFT3050WebApp
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Check if user is logged in to use correct master page
-            if (Session["customerSession"] != null)
+            if (Session["userSession"] != null)
             {
                 Page.MasterPageFile = "~/UL/Customer.Master";
             }
