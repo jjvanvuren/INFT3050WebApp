@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Net.Mail;
 using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp.BL
@@ -196,10 +197,31 @@ namespace INFT3050WebApp.BL
 
         public void RegisterNewUser(User uNewUser)
         {
+            const string EMAIL_FORMAT = "Hi {0} {1},\n\n You have successfuly registered as an administrator at UsedBooks.com.au!\n\n " +
+                "If this was not you, please contact us at support@usedbooksales.com.au.";
+
             // Setup access to database
             IUserDataAccess db = new UserDataAccess();
 
             int rowsAffected = db.RegisterUser(uNewUser);
+
+            string strSubject = "Used Books Website Administrator Confirmation";
+            string strBody = string.Format(EMAIL_FORMAT, uNewUser.FirstName, uNewUser.LastName);
+
+            SendEmail("donotreply@usedbooksales.com.au", "UsedBooks.com.au", uNewUser.Email, strSubject, strBody);
+        }
+
+        private void SendEmail(string strFromAddress, string strFromName, string strToAddress,
+            string strSubject, string strBody)
+        {
+            MailAddress fromAdd = new MailAddress(strFromAddress, strFromName);
+            MailAddress toAdd = new MailAddress(strToAddress);
+            MailMessage msg = new MailMessage(fromAdd, toAdd);
+            msg.Subject = strSubject;
+            msg.Body = strBody;
+
+            SmtpClient client = new SmtpClient();
+            client.Send(msg);
         }
 
         // Get the MD5 Hash for a string. Used for the user password
