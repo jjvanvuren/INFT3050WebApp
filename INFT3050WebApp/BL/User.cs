@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Net.Mail;
 using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp.BL
@@ -200,6 +201,48 @@ namespace INFT3050WebApp.BL
             IUserDataAccess db = new UserDataAccess();
 
             int rowsAffected = db.RegisterUser(uNewUser);
+        }
+
+        public void RegisterNewAdmin(User uNewUser)
+        {
+            const string strSubject = "Used Books Website Administrator Confirmation";
+            string strEmailFormat;
+            string strBody;
+
+            // Format the email body depending on if user has a lastname
+            if (uNewUser.LastName == "")
+            {
+                strEmailFormat = "Hi {0},\n\rYou have successfuly registered as an administrator at UsedBooks.com.au!\n\r" +
+                "If this was not you, please contact us at support@usedbooksales.com.au.";
+
+                strBody = string.Format(strEmailFormat, uNewUser.FirstName);
+            }
+            else
+            {
+                strEmailFormat = "Hi {0} {1},\n\rYou have successfuly registered as an administrator at UsedBooks.com.au!\n\r" +
+                "If this was not you, please contact us at support@usedbooksales.com.au.";
+
+                strBody = string.Format(strEmailFormat, uNewUser.FirstName, uNewUser.LastName);
+            }
+
+            // Add the admin user to the DB and send confirmation email
+            RegisterNewUser(uNewUser);
+            SendEmail("donotreply@usedbooksales.com.au", "UsedBooks.com.au", uNewUser.Email, strSubject, strBody);
+        }
+
+        
+
+        private void SendEmail(string strFromAddress, string strFromName, string strToAddress,
+            string strSubject, string strBody)
+        {
+            MailAddress fromAdd = new MailAddress(strFromAddress, strFromName);
+            MailAddress toAdd = new MailAddress(strToAddress);
+            MailMessage msg = new MailMessage(fromAdd, toAdd);
+            msg.Subject = strSubject;
+            msg.Body = strBody;
+
+            SmtpClient client = new SmtpClient();
+            client.Send(msg);
         }
 
         // Get the MD5 Hash for a string. Used for the user password
