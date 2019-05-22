@@ -197,19 +197,40 @@ namespace INFT3050WebApp.BL
 
         public void RegisterNewUser(User uNewUser)
         {
-            const string EMAIL_FORMAT = "Hi {0} {1},\n\n You have successfuly registered as an administrator at UsedBooks.com.au!\n\n " +
-                "If this was not you, please contact us at support@usedbooksales.com.au.";
-
             // Setup access to database
             IUserDataAccess db = new UserDataAccess();
 
             int rowsAffected = db.RegisterUser(uNewUser);
+        }
 
-            string strSubject = "Used Books Website Administrator Confirmation";
-            string strBody = string.Format(EMAIL_FORMAT, uNewUser.FirstName, uNewUser.LastName);
+        public void RegisterNewAdmin(User uNewUser)
+        {
+            const string strSubject = "Used Books Website Administrator Confirmation";
+            string strEmailFormat;
+            string strBody;
 
+            // Format the email body depending on if user has a lastname
+            if (uNewUser.LastName == "")
+            {
+                strEmailFormat = "Hi {0},\n\rYou have successfuly registered as an administrator at UsedBooks.com.au!\n\r" +
+                "If this was not you, please contact us at support@usedbooksales.com.au.";
+
+                strBody = string.Format(strEmailFormat, uNewUser.FirstName);
+            }
+            else
+            {
+                strEmailFormat = "Hi {0} {1},\n\rYou have successfuly registered as an administrator at UsedBooks.com.au!\n\r" +
+                "If this was not you, please contact us at support@usedbooksales.com.au.";
+
+                strBody = string.Format(strEmailFormat, uNewUser.FirstName, uNewUser.LastName);
+            }
+
+            // Add the admin user to the DB and send confirmation email
+            RegisterNewUser(uNewUser);
             SendEmail("donotreply@usedbooksales.com.au", "UsedBooks.com.au", uNewUser.Email, strSubject, strBody);
         }
+
+        
 
         private void SendEmail(string strFromAddress, string strFromName, string strToAddress,
             string strSubject, string strBody)

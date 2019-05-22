@@ -55,7 +55,7 @@ namespace INFT3050WebApp.UL.BackEnd
             {
                 User currentUser = new User();
 
-                currentUser.RegisterNewUser(registeredUser);
+                currentUser.RegisterNewAdmin(registeredUser);
 
                 User dbUser = new User(registeredUser.Email);
 
