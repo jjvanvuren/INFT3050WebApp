@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -161,6 +164,7 @@
     <Content Include="UL\Search.aspx" />
     <Content Include="UL\SuccessfulRegistration.aspx" />
     <Content Include="UL\css\UsedBooks.css" />
+    <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -176,6 +180,7 @@
     <Content Include="UL\Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BL\Address.cs" />
     <Compile Include="BL\Author.cs" />
     <Compile Include="BL\Book.cs" />
@@ -192,6 +197,13 @@
     <Compile Include="DAL\ICategoryDataAccess.cs" />
     <Compile Include="DAL\IUserDataAccess.cs" />
     <Compile Include="DAL\UserDataAccess.cs" />
+    <Compile Include="Site.Mobile.Master.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.designer.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
     <Compile Include="UL\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -379,6 +391,13 @@
     <Compile Include="UL\SuccessfulRegistration.aspx.designer.cs">
       <DependentUpon>SuccessfulRegistration.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ViewSwitcher.ascx.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.designer.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -386,6 +405,7 @@
     <Content Include="UL\Customer.Master" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Site.Mobile.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
