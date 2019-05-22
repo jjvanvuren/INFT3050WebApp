@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
-using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp
 {

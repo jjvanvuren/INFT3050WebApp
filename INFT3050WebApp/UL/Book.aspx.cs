@@ -29,17 +29,12 @@ namespace INFT3050WebApp.UL
         {
             // Get ID and try parse
             var idString = Request.QueryString["id"];
-            int id;
-            if (!string.IsNullOrEmpty(idString) && int.TryParse(idString, out id))
+            if (!string.IsNullOrEmpty(idString) && int.TryParse(idString, out int id))
             {
-                //// Create dummyDB
-                //DAL.IBookDataAccess db = new DAL.BookDataAccess();
 
                 if (!IsPostBack)
                 {
-                    //// get book from db using GetBookById method
-                    //var book = db.GetBookById(id);
-                    Book book = new Book(id);
+                    BL.Book book = new BL.Book(id);
                     if (book != null)
                     {
                         // Use data for page elements

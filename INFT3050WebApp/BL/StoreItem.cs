@@ -18,21 +18,5 @@ namespace INFT3050WebApp.BL
 
         public StoreItem() { }
 
-        public StoreItem(int iItemID)
-        {
-            // Set up access to database
-            IBookDataAccess db = new BookDataAccess();
-
-            // get book from db using GetBookById method
-            Book book = db.GetBookById(iItemID);
-
-            this.Id = book.Id;
-            this.Price = book.Price;
-            this.StockQuantity = book.StockQuantity;
-            this.ShortDescription = book.ShortDescription;
-            this.LongDescription = book.LongDescription;
-            this.ImagePath = book.ImagePath;
-            this.ThumbnailPath = book.ThumbnailPath;
-        }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using INFT3050WebApp.BL;
 
 namespace INFT3050WebApp.UL
 {
@@ -16,13 +17,10 @@ namespace INFT3050WebApp.UL
             int id;
             if (!string.IsNullOrEmpty(idString) && int.TryParse(idString, out id))
             {
-                // Create dummyDB
-                DAL.ICategoryDataAccess db = new DAL.CategoryDataAccess();
-
                 if (!IsPostBack)
                 {
-                    // get book from db using GetBookById method
-                    var category = db.GetCategoryById(id);
+                    Category category = new Category(id);
+
                     if (category != null)
                     {
                         // Use data for page elements
