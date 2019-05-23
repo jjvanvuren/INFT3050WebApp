@@ -10,13 +10,14 @@ namespace INFT3050WebApp
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            //var settings = new FriendlyUrlSettings();
-            //settings.AutoRedirectMode = RedirectMode.Permanent;
-            //routes.EnableFriendlyUrls(settings);
-            routes.EnableFriendlyUrls();
+            var settings = new FriendlyUrlSettings();
+            settings.AutoRedirectMode = RedirectMode.Permanent;
+            routes.EnableFriendlyUrls(settings);
 
-            routes.MapPageRoute("", "Default", "~/UL/Default.aspx");
-            routes.MapPageRoute("", "Search", "~/UL/Search.aspx");
+            //routes.EnableFriendlyUrls();
+
+            //routes.MapPageRoute("", "Default", "~/UL/Default.aspx");
+            //routes.MapPageRoute("", "Search", "~/UL/Search.aspx");
         }
     }
 }
