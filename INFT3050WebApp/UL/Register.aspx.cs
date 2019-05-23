@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -26,7 +27,12 @@ namespace INFT3050WebApp
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //Enable SSL
+            if (!Request.IsSecureConnection)
+            {
+                string url = ConfigurationManager.AppSettings["SecurePath"] + "UL/Register.aspx";
+                Response.Redirect(url);
+            }
         }
 
         protected void btnRegister_Click(object sender, EventArgs e)
