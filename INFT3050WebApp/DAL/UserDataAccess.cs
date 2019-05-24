@@ -20,8 +20,8 @@ namespace INFT3050WebApp.DAL
             }
         }
 
-        
-                
+
+        // Used to create a user from the attributes read by the SqlDataReader
         private static User CreateUser(SqlDataReader reader)
         {
             User user = new User();
@@ -36,10 +36,11 @@ namespace INFT3050WebApp.DAL
             return user;
         }
 
+        // Used to check if the user exists on the DB using their email address
         [DataObjectMethod(DataObjectMethodType.Select)]
         public bool CheckUserExists(string strEmail)
         {
-            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive] 
+            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive]
                 FROM[dbo].[webSiteUser] WHERE [email]=@strEmail";
 
             User checkUser = new User
@@ -62,6 +63,8 @@ namespace INFT3050WebApp.DAL
                         checkUser.IsActive = (bool)reader.GetSqlBoolean(6);
                     }
 
+                    // Check if the reader returned a valid Id
+                    // Also check if the user is marked as active in the DB
                     if (checkUser.Id != 0 && checkUser.IsActive)
                     {
                         return true;
@@ -74,10 +77,11 @@ namespace INFT3050WebApp.DAL
             }
         }
 
+        // Used to return a User object using their email address
         [DataObjectMethod(DataObjectMethodType.Select)]
         public User GetUserByEmail(string strEmail)
         {
-            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive] 
+            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive]
                 FROM[dbo].[webSiteUser] WHERE [email]=@Email";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
@@ -98,10 +102,11 @@ namespace INFT3050WebApp.DAL
             return null;
         }
 
+        // Used to return a User object using their Primary key ID
         [DataObjectMethod(DataObjectMethodType.Select)]
         public User GetUserById(int Id)
         {
-            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive] 
+            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive]
                 FROM[dbo].[webSiteUser] WHERE [userID]=@Id";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
@@ -123,12 +128,13 @@ namespace INFT3050WebApp.DAL
             return null;
         }
 
+        // Finds and returns the user's Hashed password using the user's email address
         [DataObjectMethod(DataObjectMethodType.Select)]
         public string GetPasswordHash(string strEmail)
         {
             string strPasswordHash;
 
-            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive] 
+            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive]
                 FROM[dbo].[webSiteUser] WHERE [email]=@Email";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
@@ -151,6 +157,7 @@ namespace INFT3050WebApp.DAL
             return null;
         }
 
+        // Creates a new user in the DB using a User object
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public int RegisterUser(User user)
         {

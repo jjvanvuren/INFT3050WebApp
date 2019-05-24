@@ -22,15 +22,17 @@ namespace INFT3050WebApp.BL
 
         public User() { }
 
+        // Constructor that hashes the password with MD5 before creating the User
         public User (string email, string password, string firstName, string lastName, bool isAdmin, bool status)
         {
+            // Hash the plain text password using md5Hash
             using (MD5 md5Hash = MD5.Create())
             {
                 string passwordHash = GetMd5Hash(md5Hash, password);
 
                 this.Password = passwordHash;
             }
-                
+
             this.Email = email;
             this.FirstName = firstName;
             this.LastName = lastName;
@@ -38,6 +40,7 @@ namespace INFT3050WebApp.BL
             this.IsActive = status;
         }
 
+        // Constructor that creates a user using data from DB using the user's email
         public User (string strEmail)
         {
             // Setup access to database
@@ -54,6 +57,8 @@ namespace INFT3050WebApp.BL
             this.IsActive = user.IsActive;
         }
 
+        // Constructor that creates a user using data from DB using the user's
+        // Primary Key ID
         public User(int iUserId)
         {
             // Setup access to database
@@ -70,20 +75,25 @@ namespace INFT3050WebApp.BL
             this.IsActive = user.IsActive;
         }
 
+        // Method that checks if the user's Email and password meets requirements
+        // and checks if the email and password match what's on the DB
         public int CheckLoginUser(string strEmail, string strPassword)
         {
             int iRequirements = RequirementsCheck(strEmail, strPassword);
 
             int iCheckUser = CheckUser(strEmail, strPassword);
 
+            // Return 0 if the email doesn't meet requirements or doesn't exist in DB
             if (iCheckUser == 0 || iRequirements == 0)
             {
                 return 0;
             }
+            // Return 1 if the email is correct but the password isn't
             else if (iCheckUser == 1 || iRequirements == 1)
             {
                 return 1;
             }
+            // Return 2 if both email and password is correct
             else
             {
                 return 2;
@@ -122,6 +132,8 @@ namespace INFT3050WebApp.BL
             }
         }
 
+        // Checks that a User exists on the DB and that the email and password
+        // matches strEmail and the MD5 hash of strPassword
         private int CheckUser(string strEmail, string strPassword)
         {
             bool bCheckUserExists;
@@ -203,6 +215,8 @@ namespace INFT3050WebApp.BL
             int rowsAffected = db.RegisterUser(uNewUser);
         }
 
+        // Method that creates a new admin in the DB and sends an email
+        // for verification
         public void RegisterNewAdmin(User uNewUser)
         {
             const string strSubject = "Used Books Website Administrator Confirmation";
@@ -230,8 +244,8 @@ namespace INFT3050WebApp.BL
             SendEmail("donotreply@usedbooksales.com.au", "UsedBooks.com.au", uNewUser.Email, strSubject, strBody);
         }
 
-        
 
+        // Method that sends an email
         private void SendEmail(string strFromAddress, string strFromName, string strToAddress,
             string strSubject, string strBody)
         {
@@ -256,7 +270,7 @@ namespace INFT3050WebApp.BL
             // and create a string.
             StringBuilder sBuilder = new StringBuilder();
 
-            // Loop through each byte of the hashed data 
+            // Loop through each byte of the hashed data
             // and format each one as a hexadecimal string.
             for (int i = 0; i < data.Length; i++)
             {
