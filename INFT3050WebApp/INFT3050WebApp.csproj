@@ -96,6 +96,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="UL\About.aspx" />
+    <Content Include="UL\Admin\AdminAddBookDetails.aspx" />
     <Content Include="UL\Admin\AdminPurchaseHistory.aspx" />
     <Content Include="UL\Admin\AdminUserAccounts.aspx" />
     <Content Include="UL\Admin\AdminPostageOptions.aspx" />
@@ -210,6 +211,13 @@
     </Compile>
     <Compile Include="UL\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminAddBookDetails.aspx.cs">
+      <DependentUpon>AdminAddBookDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminAddBookDetails.aspx.designer.cs">
+      <DependentUpon>AdminAddBookDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Admin\AdminPurchaseHistory.aspx.cs">
       <DependentUpon>AdminPurchaseHistory.aspx</DependentUpon>

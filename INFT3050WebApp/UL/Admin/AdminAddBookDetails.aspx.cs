@@ -13,5 +13,10 @@ namespace INFT3050WebApp.UL.Admin
         {
 
         }
+
+        protected void btnBookDetails_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/UL/Admin/AdminRegister.aspx");
+        }
     }
 }
