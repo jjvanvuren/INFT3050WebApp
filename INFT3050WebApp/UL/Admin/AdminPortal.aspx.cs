@@ -32,6 +32,7 @@ namespace INFT3050WebApp.UL.BackEnd
         //Button to add a new book to database: No functionality yet
         protected void btnAddBook_Click(object sender, EventArgs e)
         {
+            Response.Redirect("~/UL/Admin/AdminAddBookDetails.aspx");
         }
     }
 }

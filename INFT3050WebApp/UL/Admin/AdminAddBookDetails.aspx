@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <h1>Add Book</h1>
-    <h2>Book Details</h2>
+    <h4>Book Details</h4>
     <br />
     <br />
     <%-- Validation summary --%>

@@ -7,10 +7,14 @@ using System.Web.UI.WebControls;
 
 namespace INFT3050WebApp.UL.Admin
 {
-    public partial class AdminAddAuthorCategory : System.Web.UI.Page
+    public partial class AdminAddBookAuthorCategory : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //if (Session["UserSession"] == null)
+            //{
+            //    Response.Redirect("~/UL/Admin/AdminLogin.aspx");
+            //}
 
         }
     }

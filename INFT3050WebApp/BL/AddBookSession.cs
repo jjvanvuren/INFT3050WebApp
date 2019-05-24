@@ -61,6 +61,30 @@ namespace INFT3050WebApp.BL
 
         }
 
+        public Book createTempBook()
+        {
+            Book bookTemp = new Book();
+
+
+
+            bookTemp.Price = this.Price;
+            bookTemp.StockQuantity = this.StockQuantity;
+            bookTemp.ShortDescription = this.ShortDescription;
+            bookTemp.LongDescription = this.LongDescription;
+            bookTemp.ImagePath = this.ImagePath;
+            bookTemp.ThumbnailPath = this.ThumbnailPath;
+            bookTemp.Isbn = this.Isbn;
+            bookTemp.DatePublished = this.DatePublished;
+            bookTemp.Title = this.Title;
+            bookTemp.SecondaryTitle = this.SecondaryTitle;
+            bookTemp.Publisher = this.Publisher;
+            bookTemp.IsBestSeller = this.IsBestSeller;
+
+            return bookTemp;
+        }
+
+
+
         //public void RemoveAuthorID(int AuthorID)
         //{
         //    AuthorIDs.RemoveAt(AuthorIDs.FindIndex(AuthorIDs.Contains(AuthorID));

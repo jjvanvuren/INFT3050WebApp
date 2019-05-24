@@ -96,7 +96,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="UL\About.aspx" />
-    <Content Include="UL\Admin\AdminAddAuthorCategory.aspx" />
+    <Content Include="UL\Admin\AdminAddBookAuthorCategory.aspx" />
+    <Content Include="UL\Admin\AdminAddBookComfirmation.aspx" />
     <Content Include="UL\Admin\AdminAddBookDetails.aspx" />
     <Content Include="UL\Admin\AdminPurchaseHistory.aspx" />
     <Content Include="UL\Admin\AdminUserAccounts.aspx" />
@@ -214,12 +215,19 @@
     <Compile Include="UL\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UL\Admin\AdminAddAuthorCategory.aspx.cs">
-      <DependentUpon>AdminAddAuthorCategory.aspx</DependentUpon>
+    <Compile Include="UL\Admin\AdminAddBookAuthorCategory.aspx.cs">
+      <DependentUpon>AdminAddBookAuthorCategory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UL\Admin\AdminAddAuthorCategory.aspx.designer.cs">
-      <DependentUpon>AdminAddAuthorCategory.aspx</DependentUpon>
+    <Compile Include="UL\Admin\AdminAddBookAuthorCategory.aspx.designer.cs">
+      <DependentUpon>AdminAddBookAuthorCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminAddBookComfirmation.aspx.cs">
+      <DependentUpon>AdminAddBookComfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminAddBookComfirmation.aspx.designer.cs">
+      <DependentUpon>AdminAddBookComfirmation.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Admin\AdminAddBookDetails.aspx.cs">
       <DependentUpon>AdminAddBookDetails.aspx</DependentUpon>

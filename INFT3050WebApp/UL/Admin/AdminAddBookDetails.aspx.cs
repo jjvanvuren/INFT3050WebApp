@@ -12,6 +12,10 @@ namespace INFT3050WebApp.UL.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //if (Session["UserSession"] == null)
+            //{
+            //    Response.Redirect("~/UL/Admin/AdminLogin.aspx");
+            //}
 
         }
 
@@ -66,8 +70,9 @@ namespace INFT3050WebApp.UL.Admin
 
             AddBookSession newBook = new AddBookSession(newPrice, newStockQuantity, newShortDescription, newLongDescription, newImagePath, newThumbnailPath, newIsbn,
              newDatePublished, newTitle, newSecondaryTitle, newPublisher, newIsBestSeller);
-            Session["userSession"] = newBook;
-            Response.Redirect("~/UL/Admin/AddAuthorCategory.aspx");
+            Session["addBookSession"] = newBook;
+
+            Response.Redirect("~/UL/Admin/AdminAddBookComfirmation.aspx");
         }
     }
 }
