@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
+using System.Web.Routing;
+
 
 namespace INFT3050WebApp
 {
@@ -13,7 +15,7 @@ namespace INFT3050WebApp
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Check if user is logged in to use correct master page
-            if (Session["customerSession"] != null)
+            if (Session["userSession"] != null)
             {
                 Page.MasterPageFile = "~/UL/Customer.Master";
             }
@@ -29,9 +31,14 @@ namespace INFT3050WebApp
 
             if (!IsPostBack)
             {
-                // Create dummy database and pull all books from database
-                var db = new DAL.BookDataAccess();
-                var books = db.GetBooks();
+                //// Create dummy database and pull all books from database
+                //var db = new DAL.BookDataAccess();
+                //var books = db.GetBooks();
+                Book dbBook = new Book();
+
+                List<Book> books = new List<Book>();
+
+                books = dbBook.GetAllBooks();
 
                 // Create list of best sellers based on IsBestSeller property
                 List<Book> bestSellers = new List<Book>();

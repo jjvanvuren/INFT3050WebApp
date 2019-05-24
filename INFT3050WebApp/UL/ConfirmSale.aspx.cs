@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
-using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp.UL
 {
@@ -16,18 +16,20 @@ namespace INFT3050WebApp.UL
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Enable SSL
+            if (!Request.IsSecureConnection)
+            {
+                string url = ConfigurationManager.AppSettings["SecurePath"] + "UL/ConfirmSale.aspx";
+                Response.Redirect(url);
+            }
+
             // Use the customers name stored in session data to display the confirmation message
             UserSession query = (UserSession)Session[UserSession.SESSION_KEY];
             if (query != null)
             {
-                // Setup access to database
-                IUserDataAccess db = new UserDataAccess();
+                User currentUser = new User(query.SessionId);
 
-                User currentUser = db.GetUserById(query.SessionId);
-                string strEmail = currentUser.Email;
-                string strUserName = currentUser.FirstName;
-
-                confirmSaleMessageLabel.Text = String.Format(CONFIRM_SALE_FORMAT, strUserName, strEmail);
+                confirmSaleMessageLabel.Text = String.Format(CONFIRM_SALE_FORMAT, currentUser.FirstName, currentUser.Email);
             }
         }
     }

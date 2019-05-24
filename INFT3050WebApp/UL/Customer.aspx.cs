@@ -16,7 +16,7 @@ namespace INFT3050WebApp
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Check if user is logged in to use correct master page
-            if (Session["customerSession"] != null)
+            if (Session["userSession"] != null)
             {
                 Page.MasterPageFile = "~/UL/Customer.Master";
             }
@@ -34,21 +34,22 @@ namespace INFT3050WebApp
             UserSession query = (UserSession)Session[UserSession.SESSION_KEY];
             if (query != null)
             {
-                // Setup access to database
-                IUserDataAccess db = new UserDataAccess();
+                User currentUser = new User(query.SessionId);
 
-                User currentUser = db.GetUserById(query.SessionId);
-
-                string strUserName = currentUser.FirstName;
-
-                customerWelcome.Text = String.Format(WELCOME_FORMAT, strUserName);
+                customerWelcome.Text = String.Format(WELCOME_FORMAT, currentUser.FirstName);
             }
 
             if (!IsPostBack)
             {
-                // Create dummy database and pull all books from database
-                var db = new DAL.BookDataAccess();
-                var books = db.GetBooks();
+                //// Create dummy database and pull all books from database
+                //var db = new BookDataAccess();
+                //var books = db.GetBooks();
+
+                Book dbBook = new Book();
+
+                List<Book> books = new List<Book>();
+
+                books = dbBook.GetAllBooks();
 
                 // Create list of best sellers and display them
                 List<Book> bestSellers = new List<Book>();

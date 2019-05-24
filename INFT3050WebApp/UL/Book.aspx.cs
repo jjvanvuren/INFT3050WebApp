@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using INFT3050WebApp.BL;
 
 namespace INFT3050WebApp.UL
 {
@@ -13,7 +14,7 @@ namespace INFT3050WebApp.UL
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Check if user is logged in to use correct master page
-            if (Session["customerSession"] != null)
+            if (Session["userSession"] != null)
             {
                 Page.MasterPageFile = "~/UL/Customer.Master";
             }
@@ -28,16 +29,12 @@ namespace INFT3050WebApp.UL
         {
             // Get ID and try parse
             var idString = Request.QueryString["id"];
-            int id;
-            if (!string.IsNullOrEmpty(idString) && int.TryParse(idString, out id))
+            if (!string.IsNullOrEmpty(idString) && int.TryParse(idString, out int id))
             {
-                // Create dummyDB
-                DAL.IBookDataAccess db = new DAL.BookDataAccess();
 
                 if (!IsPostBack)
                 {
-                    // get book from db using GetBookById method
-                    var book = db.GetBookById(id);
+                    BL.Book book = new BL.Book(id);
                     if (book != null)
                     {
                         // Use data for page elements

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp.BL
 {
@@ -14,5 +15,8 @@ namespace INFT3050WebApp.BL
         public string LongDescription { get; set; }
         public string ImagePath { get; set; }
         public string ThumbnailPath { get; set; }
+
+        public StoreItem() { }
+
     }
 }

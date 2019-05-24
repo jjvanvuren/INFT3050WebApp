@@ -80,6 +80,10 @@
             ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@!%*?&_#^])[A-Za-z\d$@!%*?&_#^]{8,}"
             ErrorMessage="Password must meet complexity requirements">
                 Password must contain at least 8 characters at least 1 uppercase, 1 lowercase, 1 number and 1 special character</asp:RegularExpressionValidator>
+
+        <%-- Password field BL Validation --%>
+        <asp:Label ID="lblInvalidPassword" CssClass="text-danger" runat="server" Text="" Visible="False"></asp:Label>
+
     </div>
     <%-- Password Confirmation--%>
     <div class="form-group">

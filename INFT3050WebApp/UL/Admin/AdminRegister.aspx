@@ -21,7 +21,7 @@
         <%-- First Name field Validation is Reuired--%>
         <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" ControlToValidate="tbxFirstName" Text="Please enter your name" ErrorMessage="Name is a required field" CssClass="text-danger"></asp:RequiredFieldValidator>
         <%-- First Name field Validation is a valid Name--%>
-        <asp:RegularExpressionValidator ID="revFirstName" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid First Name" ValidationExpression="^[A-Za-z]+$" ControlToValidate="tbxFirstName">Valid First name required</asp:RegularExpressionValidator>
+        <asp:RegularExpressionValidator ID="revFirstName" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid First Name" ValidationExpression="^[a-zA-Z]+( [a-zA-Z]+)*$" ControlToValidate="tbxFirstName">Valid First name required</asp:RegularExpressionValidator>
     </div>
 
     <%-- Last Name --%>
@@ -30,7 +30,7 @@
         <asp:Label ID="lblLastName" runat="server" Text="Last Name"></asp:Label>
         <asp:TextBox ID="tbxLastName" runat="server" type="text" CssClass="form-control"></asp:TextBox>
         <%-- Last Name field Validation is a valid Name--%>
-        <asp:RegularExpressionValidator ID="revLastName" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid Last Name" ValidationExpression="^[A-Za-z]+$" ControlToValidate="tbxLastName">Valid Last name required</asp:RegularExpressionValidator>
+        <asp:RegularExpressionValidator ID="revLastName" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid Last Name" ValidationExpression="^[a-zA-Z]+( [a-zA-Z]+)*$" ControlToValidate="tbxLastName">Valid Last name required</asp:RegularExpressionValidator>
     </div>
 
 
@@ -93,6 +93,10 @@
             ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@!%*?&_#^])[A-Za-z\d$@!%*?&_#^]{8,}"
             ErrorMessage="Password must meet complexity requirements">
                 Password must contain at least 8 characters at least 1 uppercase, 1 lowercase, 1 number and 1 special character</asp:RegularExpressionValidator>
+
+        <%-- Password field BL Validation --%>
+        <asp:Label ID="lblInvalidPassword" CssClass="text-danger" runat="server" Text="" Visible="False"></asp:Label>
+
     </div>
     <%-- Password Confirmation--%>
     <div class="form-group">
