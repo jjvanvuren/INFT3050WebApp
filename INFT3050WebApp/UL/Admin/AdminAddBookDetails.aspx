@@ -21,13 +21,17 @@
         <%-- Check if title is presented --%>
         <asp:RequiredFieldValidator ID="rfvTitle" runat="server" CssClass="text-danger" ErrorMessage="Please enter a Title"
             ControlToValidate="tbxTitle">Title Reuired</asp:RequiredFieldValidator>
+        <br />
+        <%--Title field --%>
+        <asp:Label ID="lblSecondTitle" runat="server" Text="Secondary Title"></asp:Label>
+        <asp:TextBox ID="tbxSecondaryTitle" runat="server" type="SecondaryTitle" CssClass="form-control"></asp:TextBox>
 
         <br />
         <%--Short Description field --%>
         <asp:Label ID="lblShortDescription" runat="server" Text="Short Description"></asp:Label>
         <asp:TextBox ID="tbxShortDescription" runat="server" type="Short Description" CssClass="form-control"></asp:TextBox>
 
-        <%-- Check if title is presented --%>
+        <%-- Check if Short is presented --%>
         <asp:RequiredFieldValidator ID="rfvtbxShortDescription" runat="server" CssClass="text-danger" ErrorMessage="Please enter a Short Description"
             ControlToValidate="tbxShortDescription">Short Description Reuired</asp:RequiredFieldValidator>
 
@@ -35,7 +39,7 @@
         <br />
         <%--Long Description field --%>
         <asp:Label ID="lblLongDescription" runat="server" Text="Long Description"></asp:Label>
-        <asp:TextBox ID="btxLongDescription" runat="server" type="Long Description" CssClass="form-control"></asp:TextBox>
+        <asp:TextBox ID="tbxLongDescription" runat="server" type="Long Description" CssClass="form-control"></asp:TextBox>
 
 
         <br />
@@ -111,17 +115,17 @@
 
         <br />
         <%--Price StockonHand --%>
-        <asp:Label ID="Label1" runat="server" Text="Stock on Hand"></asp:Label>
-        <asp:TextBox ID="TextBox1" runat="server" type="Stock on Hand" CssClass="form-control"></asp:TextBox>
+        <asp:Label ID="lblStockonHand" runat="server" Text="Stock on Hand"></asp:Label>
+        <asp:TextBox ID="tbxStockonHand" runat="server" type="Stock on Hand" CssClass="form-control"></asp:TextBox>
 
         <%-- Check if StockonHand is presented --%>
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" CssClass="text-danger" ErrorMessage="Please enter a Stock on Hand"
-            ControlToValidate="tbxPrice">Stock on Hand is Required</asp:RequiredFieldValidator>
+        <asp:RequiredFieldValidator ID="rfvStockonHand" runat="server" CssClass="text-danger" ErrorMessage="Please enter a Stock on Hand"
+            ControlToValidate="tbxStockonHand">Stock on Hand is Required</asp:RequiredFieldValidator>
 
         <%-- Check that StockonHand is valid" --%>
-        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" CssClass="text-danger" ErrorMessage="Please enter a valid Stock on Hand"
+        <asp:RegularExpressionValidator ID="revStockonHand" runat="server" CssClass="text-danger" ErrorMessage="Please enter a valid Stock on Hand Quantity"
             ValidationExpression="^\d+$"
-            ControlToValidate="tbxPrice">Please enter a StockonHand</asp:RegularExpressionValidator>
+            ControlToValidate="tbxStockonHand">Please enter a Stock on Hand Quantity</asp:RegularExpressionValidator>
 
     </div>
 

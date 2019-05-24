@@ -96,6 +96,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="UL\About.aspx" />
+    <Content Include="UL\Admin\AdminAddAuthorCategory.aspx" />
     <Content Include="UL\Admin\AdminAddBookDetails.aspx" />
     <Content Include="UL\Admin\AdminPurchaseHistory.aspx" />
     <Content Include="UL\Admin\AdminUserAccounts.aspx" />
@@ -182,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BL\AddBookSession.cs" />
     <Compile Include="BL\Address.cs" />
     <Compile Include="BL\Author.cs" />
     <Compile Include="BL\Book.cs" />
@@ -211,6 +213,13 @@
     </Compile>
     <Compile Include="UL\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminAddAuthorCategory.aspx.cs">
+      <DependentUpon>AdminAddAuthorCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminAddAuthorCategory.aspx.designer.cs">
+      <DependentUpon>AdminAddAuthorCategory.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Admin\AdminAddBookDetails.aspx.cs">
       <DependentUpon>AdminAddBookDetails.aspx</DependentUpon>

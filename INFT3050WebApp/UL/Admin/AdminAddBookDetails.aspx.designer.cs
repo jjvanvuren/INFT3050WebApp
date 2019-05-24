@@ -49,6 +49,24 @@ namespace INFT3050WebApp.UL.Admin {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTitle;
         
         /// <summary>
+        /// lblSecondTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSecondTitle;
+        
+        /// <summary>
+        /// tbxSecondaryTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxSecondaryTitle;
+        
+        /// <summary>
         /// lblShortDescription control.
         /// </summary>
         /// <remarks>
@@ -85,13 +103,13 @@ namespace INFT3050WebApp.UL.Admin {
         protected global::System.Web.UI.WebControls.Label lblLongDescription;
         
         /// <summary>
-        /// btxLongDescription control.
+        /// tbxLongDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox btxLongDescription;
+        protected global::System.Web.UI.WebControls.TextBox tbxLongDescription;
         
         /// <summary>
         /// lblISBN control.
@@ -274,40 +292,40 @@ namespace INFT3050WebApp.UL.Admin {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revPrice;
         
         /// <summary>
-        /// Label1 control.
+        /// lblStockonHand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblStockonHand;
         
         /// <summary>
-        /// TextBox1 control.
+        /// tbxStockonHand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox tbxStockonHand;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// rfvStockonHand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvStockonHand;
         
         /// <summary>
-        /// RegularExpressionValidator1 control.
+        /// revStockonHand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revStockonHand;
         
         /// <summary>
         /// btnBookDetails control.
