@@ -172,6 +172,20 @@ CREATE TABLE customerAddress(
 	Foreign key(userID) references customer(userID)ON DELETE CASCADE ON UPDATE CASCADE
 )
 
+-- Create fulltext catalog to be used when creating a fulltext index
+CREATE FULLTEXT CATALOG fulltextCatalog AS DEFAULT; 
+
+-- Drop Fulltext index
+DROP FULLTEXT INDEX ON book;
+
+-- Create unique index
+CREATE UNIQUE INDEX PK_book_itemID ON Book(itemID)
+
+-- Create fulltext index on book.title
+CREATE FULLTEXT INDEX ON book(title) 
+KEY INDEX PK_book_itemID
+WITH STOPLIST = SYSTEM;
+
 --INSERT DATA INTO TABLES
 
 --Insert Users
@@ -341,21 +355,6 @@ INNER JOIN bookAuthor ON book.itemID = bookAuthor.itemID
 INNER JOIN author ON bookAuthor.authorID = author.authorID
 INNER JOIN bookCategory ON book.itemID = bookCategory.itemID
 INNER JOIN category ON bookCategory.categoryID = category.categoryID;
-
--- Create fulltext catalog to be used when creating a fulltext index
-CREATE FULLTEXT CATALOG fulltextCatalog AS DEFAULT; 
-
--- Drop Fulltext index
-DROP FULLTEXT INDEX ON book;
-
--- Create unique index
-CREATE UNIQUE INDEX PK_book_itemID ON Book(itemID)
-
--- Create fulltext index on book.title
-CREATE FULLTEXT INDEX ON book(title) 
-KEY INDEX PK_book_itemID
-WITH STOPLIST = SYSTEM;
-
 
 SELECT * FROM orders
 SELECT * FROM payment

@@ -14,5 +14,6 @@ namespace INFT3050WebApp.DAL
         bool CheckUserExists(string strEmail);
         User GetUserById(int Id);
         int RegisterUser(User user);
+        int VerifyUser(User user);
     }
 }

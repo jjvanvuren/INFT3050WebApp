@@ -48,11 +48,42 @@ namespace INFT3050WebApp.BL
             AuthorId = book.AuthorId;
             CategoryId = book.CategoryId;
         }
-
+        // Method to get all active books from database
         public List<Book> GetAllBooks()
         {
             var db = new BookDataAccess();
             var books = db.GetBooks();
+
+            List<Book> allBooks = new List<Book>();
+
+            foreach (Book book in books)
+            {
+                allBooks.Add(book);
+            }
+
+            return allBooks;
+        }
+        // Method to get books by their category ID
+        public List<Book> GetBooksByCategory(int CategoryId)
+        {
+            var db = new BookDataAccess();
+            var books = db.GetBooksByCategory(CategoryId);
+
+            List<Book> allBooks = new List<Book>();
+
+            foreach (Book book in books)
+            {
+                allBooks.Add(book);
+            }
+
+            return allBooks;
+        }
+
+        // Method to search books by their title
+        public List<Book> SearchBooksByTitle(string searchString)
+        {
+            var db = new BookDataAccess();
+            var books = db.SearchBooksByTitle(searchString);
 
             List<Book> allBooks = new List<Book>();
 
