@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Net.Mail;
 using INFT3050WebApp.DAL;
+using System.Configuration;
 
 namespace INFT3050WebApp.BL
 {
@@ -275,7 +276,7 @@ namespace INFT3050WebApp.BL
             const string strSubject = "Used Books Website Administrator Validation";
             string strEmailFormat;
             string strBody;
-            string strBaseUrl = "https://localhost:44350/UL/Admin/AdminVerified.aspx";
+            string strBaseUrl = ConfigurationManager.AppSettings["SecurePath"] + "UL/Admin/AdminVerified.aspx";
 
             // Generate the Validation Key
             uNewUser.GenValidationKey();

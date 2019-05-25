@@ -44,6 +44,8 @@
     </div>
 
     <%-- Buttons to login or cancel --%>
-    <asp:Button ID="btnLogin" type="submit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnLogin_Click" />
+    <asp:Button ID="btnLogin" type="submit" CssClass="btn btn-success" runat="server" Text="Submit" OnClick="btnLogin_Click" />
+    <asp:Button ID="btnReset" type="cancel" CssClass="btn btn-primary" runat="server" Text="Forgot Password" CausesValidation="false" OnClick="btnReset_Click" />
     <asp:Button ID="btnCancel" type="cancel" CssClass="btn btn-secondary" runat="server" Text="Cancel" CausesValidation="false" OnClick="btnCancel_Click" />
+    
 </asp:Content>

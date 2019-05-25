@@ -139,7 +139,10 @@
     <Content Include="UL\Login.aspx" />
     <Content Include="UL\Logout.aspx" />
     <Content Include="UL\CardPayment.aspx" />
+    <Content Include="UL\NewPassword.aspx" />
+    <Content Include="UL\PasswordRecovery.aspx" />
     <Content Include="UL\PurchaseHistory.aspx" />
+    <Content Include="UL\RecoveryEmailSent.aspx" />
     <Content Include="UL\Register.aspx" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
@@ -366,12 +369,33 @@
     <Compile Include="UL\CardPayment.aspx.designer.cs">
       <DependentUpon>CardPayment.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UL\NewPassword.aspx.cs">
+      <DependentUpon>NewPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\NewPassword.aspx.designer.cs">
+      <DependentUpon>NewPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\PasswordRecovery.aspx.cs">
+      <DependentUpon>PasswordRecovery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\PasswordRecovery.aspx.designer.cs">
+      <DependentUpon>PasswordRecovery.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UL\PurchaseHistory.aspx.cs">
       <DependentUpon>PurchaseHistory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UL\PurchaseHistory.aspx.designer.cs">
       <DependentUpon>PurchaseHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\RecoveryEmailSent.aspx.cs">
+      <DependentUpon>RecoveryEmailSent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\RecoveryEmailSent.aspx.designer.cs">
+      <DependentUpon>RecoveryEmailSent.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
