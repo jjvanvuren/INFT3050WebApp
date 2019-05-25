@@ -11,7 +11,8 @@ namespace INFT3050WebApp.UL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            string defaultString = "The page you are looking for does not exist. Please contact customer support for details on this issue.";
+            lblErrorText.Text = defaultString;
         }
     }
 }
