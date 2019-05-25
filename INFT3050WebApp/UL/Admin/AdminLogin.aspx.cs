@@ -57,6 +57,13 @@ namespace INFT3050WebApp.UL.BackEnd
 
                 bValid = false;
             }
+            else if (iCheckUser == 3)
+            {
+                lblUserExists.Text = "Email has not yet been verified. Please check your email inbox";
+                lblUserExists.Visible = true;
+
+                bValid = false;
+            }
             else
             {
                 lblUserExists.Visible = false;

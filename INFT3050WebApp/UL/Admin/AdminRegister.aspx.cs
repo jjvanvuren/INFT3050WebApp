@@ -33,7 +33,7 @@ namespace INFT3050WebApp.UL.BackEnd
             bool bValid;
 
             // Create a new user based on info entered
-            User registeredUser = new User(tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, true, true);
+            User registeredUser = new User(tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, true, true, "", false);
 
             int iRegistered = registeredUser.CheckRegisterUser(tbxEmail.Text, tbxPassword.Text);
 
@@ -75,7 +75,7 @@ namespace INFT3050WebApp.UL.BackEnd
 
                 Session["userSession"] = currentUserSession;
 
-                Response.Redirect("~/UL/Admin/AdminPortal.aspx");
+                Response.Redirect("~/UL/Admin/AdminLogin.aspx");
             }
         }
 

@@ -192,5 +192,23 @@ namespace INFT3050WebApp.DAL
                 }
             }
         }
+
+        // Sets the users isVerified to true
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public int VerifyUser(User user)
+        {
+            string sql = @"UPDATE webSiteUser SET isVerified = 1 WHERE email = @email";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("email", user.Email);
+
+                    con.Open();
+                    return command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

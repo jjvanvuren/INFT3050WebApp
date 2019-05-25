@@ -17,9 +17,9 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44395</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressSSLPort>44350</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -99,6 +99,7 @@
     <Content Include="UL\Admin\AdminPurchaseHistory.aspx" />
     <Content Include="UL\Admin\AdminUserAccounts.aspx" />
     <Content Include="UL\Admin\AdminPostageOptions.aspx" />
+    <Content Include="UL\Admin\AdminVerified.aspx" />
     <Content Include="UL\Book.aspx" />
     <Content Include="UL\Books.aspx" />
     <Content Include="UL\BooksByCategory.aspx" />
@@ -231,6 +232,13 @@
     </Compile>
     <Compile Include="UL\Admin\AdminPostageOptions.aspx.designer.cs">
       <DependentUpon>AdminPostageOptions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminVerified.aspx.cs">
+      <DependentUpon>AdminVerified.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminVerified.aspx.designer.cs">
+      <DependentUpon>AdminVerified.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Book.aspx.cs">
       <DependentUpon>Book.aspx</DependentUpon>
