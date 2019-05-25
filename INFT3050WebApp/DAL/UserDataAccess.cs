@@ -32,6 +32,8 @@ namespace INFT3050WebApp.DAL
             user.LastName = reader["lastName"].ToString();
             user.IsAdmin = (bool)reader.GetSqlBoolean(5);
             user.IsActive = (bool)reader.GetSqlBoolean(6);
+            user.ValidationKey = reader["validationKey"].ToString();
+            user.IsVerified = (bool)reader.GetSqlBoolean(8);
 
             return user;
         }
@@ -40,7 +42,7 @@ namespace INFT3050WebApp.DAL
         [DataObjectMethod(DataObjectMethodType.Select)]
         public bool CheckUserExists(string strEmail)
         {
-            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive]
+            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive], [validationKey], [isVerified]
                 FROM[dbo].[webSiteUser] WHERE [email]=@strEmail";
 
             User checkUser = new User
@@ -81,7 +83,7 @@ namespace INFT3050WebApp.DAL
         [DataObjectMethod(DataObjectMethodType.Select)]
         public User GetUserByEmail(string strEmail)
         {
-            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive]
+            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive], [validationKey], [isVerified]
                 FROM[dbo].[webSiteUser] WHERE [email]=@Email";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
@@ -106,7 +108,7 @@ namespace INFT3050WebApp.DAL
         [DataObjectMethod(DataObjectMethodType.Select)]
         public User GetUserById(int Id)
         {
-            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive]
+            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive], [validationKey], [isVerified]
                 FROM[dbo].[webSiteUser] WHERE [userID]=@Id";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
@@ -134,7 +136,7 @@ namespace INFT3050WebApp.DAL
         {
             string strPasswordHash;
 
-            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive]
+            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive], [validationKey], [isVerified]
                 FROM[dbo].[webSiteUser] WHERE [email]=@Email";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
@@ -161,7 +163,7 @@ namespace INFT3050WebApp.DAL
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public int RegisterUser(User user)
         {
-            string sql = @"INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES (@email, @password, @firstName, @lastName, @isAdmin, 1);";
+            string sql = @"INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES (@email, @password, @firstName, @lastName, @isAdmin, 1, @validationKey, 0);";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
@@ -183,6 +185,8 @@ namespace INFT3050WebApp.DAL
                     command.Parameters.AddWithValue("firstName", user.FirstName);
                     command.Parameters.AddWithValue("lastName", user.LastName);
                     command.Parameters.AddWithValue("isAdmin", iIsAdmin.ToString());
+                    command.Parameters.AddWithValue("validationKey", user.ValidationKey);
+
                     con.Open();
                     return command.ExecuteNonQuery();
                 }

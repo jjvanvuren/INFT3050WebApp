@@ -19,11 +19,13 @@ namespace INFT3050WebApp.BL
         public string LastName { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsActive { get; set; }
+        public string ValidationKey { get; set; }
+        public bool IsVerified { get; set; }
 
         public User() { }
 
         // Constructor that hashes the password with MD5 before creating the User
-        public User (string email, string password, string firstName, string lastName, bool isAdmin, bool status)
+        public User (string email, string password, string firstName, string lastName, bool isAdmin, bool isActive, string validationKey, bool isVerified)
         {
             // Hash the plain text password using md5Hash
             using (MD5 md5Hash = MD5.Create())
@@ -37,7 +39,9 @@ namespace INFT3050WebApp.BL
             this.FirstName = firstName;
             this.LastName = lastName;
             this.IsAdmin = isAdmin;
-            this.IsActive = status;
+            this.IsActive = isActive;
+            this.ValidationKey = validationKey;
+            this.IsVerified = isVerified;
         }
 
         // Constructor that creates a user using data from DB using the user's email
@@ -55,6 +59,8 @@ namespace INFT3050WebApp.BL
             this.LastName = user.LastName;
             this.IsAdmin = user.IsAdmin;
             this.IsActive = user.IsActive;
+            this.ValidationKey = user.ValidationKey;
+            this.IsVerified = user.IsVerified;
         }
 
         // Constructor that creates a user using data from DB using the user's
@@ -73,6 +79,33 @@ namespace INFT3050WebApp.BL
             this.LastName = user.LastName;
             this.IsAdmin = user.IsAdmin;
             this.IsActive = user.IsActive;
+            this.ValidationKey = user.ValidationKey;
+            this.IsVerified = user.IsVerified;
+        }
+
+        // Sets the value of IsVerified
+        public void SetVerified()
+        {
+            if (this.IsVerified)
+            {
+                this.IsVerified = false;
+            }
+            else
+            {
+                this.IsVerified = true;
+            }
+        }
+
+        // Generate a ValidationKey for the user
+        public void GenValidationKey()
+        {
+            // https://stackoverflow.com/questions/730268/unique-random-string-generation
+            Guid g = Guid.NewGuid();
+            string GuidString = Convert.ToBase64String(g.ToByteArray());
+            GuidString = GuidString.Replace("=", "");
+            GuidString = GuidString.Replace("+", "");
+
+            this.ValidationKey = GuidString;
         }
 
         // Method that checks if the user's Email and password meets requirements
