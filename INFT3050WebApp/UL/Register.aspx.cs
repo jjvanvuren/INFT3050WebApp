@@ -41,7 +41,7 @@ namespace INFT3050WebApp
             bool bValid;
 
             // Create a new user based on info entered
-            User registeredUser = new User(tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, false, true);
+            User registeredUser = new User(tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, false, true, "", true);
 
             
             int iRegistered = registeredUser.CheckRegisterUser(tbxEmail.Text, tbxPassword.Text);

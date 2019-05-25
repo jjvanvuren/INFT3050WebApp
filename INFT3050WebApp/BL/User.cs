@@ -19,11 +19,13 @@ namespace INFT3050WebApp.BL
         public string LastName { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsActive { get; set; }
+        public string ValidationKey { get; set; }
+        public bool IsVerified { get; set; }
 
         public User() { }
 
         // Constructor that hashes the password with MD5 before creating the User
-        public User (string email, string password, string firstName, string lastName, bool isAdmin, bool status)
+        public User (string email, string password, string firstName, string lastName, bool isAdmin, bool isActive, string validationKey, bool isVerified)
         {
             // Hash the plain text password using md5Hash
             using (MD5 md5Hash = MD5.Create())
@@ -37,7 +39,9 @@ namespace INFT3050WebApp.BL
             this.FirstName = firstName;
             this.LastName = lastName;
             this.IsAdmin = isAdmin;
-            this.IsActive = status;
+            this.IsActive = isActive;
+            this.ValidationKey = validationKey;
+            this.IsVerified = isVerified;
         }
 
         // Constructor that creates a user using data from DB using the user's email
@@ -55,6 +59,8 @@ namespace INFT3050WebApp.BL
             this.LastName = user.LastName;
             this.IsAdmin = user.IsAdmin;
             this.IsActive = user.IsActive;
+            this.ValidationKey = user.ValidationKey;
+            this.IsVerified = user.IsVerified;
         }
 
         // Constructor that creates a user using data from DB using the user's
@@ -73,6 +79,47 @@ namespace INFT3050WebApp.BL
             this.LastName = user.LastName;
             this.IsAdmin = user.IsAdmin;
             this.IsActive = user.IsActive;
+            this.ValidationKey = user.ValidationKey;
+            this.IsVerified = user.IsVerified;
+        }
+
+        // Verifies if user ValidationKey is a match
+        public bool Verify(string strEmail, string strKey)
+        {
+            User user = new User(strEmail);
+
+            if (user.Email == strEmail && user.ValidationKey == strKey)
+            {
+                // Setup access to database
+                IUserDataAccess db = new UserDataAccess();
+
+                int iVerified = db.VerifyUser(user);
+                
+                if (iVerified == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // Generate a ValidationKey for the user
+        public void GenValidationKey()
+        {
+            // https://stackoverflow.com/questions/730268/unique-random-string-generation
+            Guid g = Guid.NewGuid();
+            string GuidString = Convert.ToBase64String(g.ToByteArray());
+            GuidString = GuidString.Replace("=", "");
+            GuidString = GuidString.Replace("+", "");
+
+            this.ValidationKey = GuidString;
         }
 
         // Method that checks if the user's Email and password meets requirements
@@ -82,6 +129,7 @@ namespace INFT3050WebApp.BL
             int iRequirements = RequirementsCheck(strEmail, strPassword);
 
             int iCheckUser = CheckUser(strEmail, strPassword);
+            bool bVerified = AdminLoginVerify(strEmail);
 
             // Return 0 if the email doesn't meet requirements or doesn't exist in DB
             if (iCheckUser == 0 || iRequirements == 0)
@@ -92,6 +140,11 @@ namespace INFT3050WebApp.BL
             else if (iCheckUser == 1 || iRequirements == 1)
             {
                 return 1;
+            }
+            // if user isn't verified
+            else if (!bVerified)
+            {
+                return 3;
             }
             // Return 2 if both email and password is correct
             else
@@ -219,24 +272,31 @@ namespace INFT3050WebApp.BL
         // for verification
         public void RegisterNewAdmin(User uNewUser)
         {
-            const string strSubject = "Used Books Website Administrator Confirmation";
+            const string strSubject = "Used Books Website Administrator Validation";
             string strEmailFormat;
             string strBody;
+            string strBaseUrl = "https://localhost:44350/UL/Admin/AdminVerified.aspx";
+
+            // Generate the Validation Key
+            uNewUser.GenValidationKey();
+
+            // Create Validation URL
+            string strValidationUrl = strBaseUrl + "?email=" + uNewUser.Email + "&key=" + uNewUser.ValidationKey;
 
             // Format the email body depending on if user has a lastname
             if (uNewUser.LastName == "")
             {
                 strEmailFormat = "Hi {0},\n\rYou have successfuly registered as an administrator at UsedBooks.com.au!\n\r" +
-                "If this was not you, please contact us at support@usedbooksales.com.au.";
+                "Please click on the link below to verify your account.\n\r {1}";
 
-                strBody = string.Format(strEmailFormat, uNewUser.FirstName);
+                strBody = string.Format(strEmailFormat, uNewUser.FirstName, strValidationUrl);
             }
             else
             {
                 strEmailFormat = "Hi {0} {1},\n\rYou have successfuly registered as an administrator at UsedBooks.com.au!\n\r" +
-                "If this was not you, please contact us at support@usedbooksales.com.au.";
+                "Please click on the link below to verify your account.\n\r{2}";
 
-                strBody = string.Format(strEmailFormat, uNewUser.FirstName, uNewUser.LastName);
+                strBody = string.Format(strEmailFormat, uNewUser.FirstName, uNewUser.LastName, strValidationUrl);
             }
 
             // Add the admin user to the DB and send confirmation email
@@ -257,6 +317,23 @@ namespace INFT3050WebApp.BL
 
             SmtpClient client = new SmtpClient();
             client.Send(msg);
+        }
+
+        private bool AdminLoginVerify(string strEmail)
+        {
+            // Setup access to database
+            IUserDataAccess db = new UserDataAccess();
+
+            User user = new User(strEmail);
+
+            if (user.IsVerified)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         // Get the MD5 Hash for a string. Used for the user password
