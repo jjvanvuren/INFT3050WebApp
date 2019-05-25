@@ -34,18 +34,26 @@ namespace INFT3050WebApp.UL
 
                 if (!IsPostBack)
                 {
-                    BL.Book book = new BL.Book(id);
-                    if (book != null)
+                    try
                     {
-                        // Use data for page elements
-                        lblTitle.Text = book.Title;
-                        imgBook.ImageUrl = book.ImagePath;
-                        lblDescription.Text = book.LongDescription;
-                        lblPrice.Text = "Price: $" + book.Price.ToString();
-                        lblAuthor.Text = book.Author.FirstName + " " + book.Author.LastName;
-                        lblQuantity.Text = "In Stock: " + book.StockQuantity.ToString();
-                        lblPublisher.Text = "Published: " + book.Publisher;
-                        lblDatePublished.Text = book.DatePublished.ToShortDateString();
+                        BL.Book book = new BL.Book(id);
+                        if (book != null)
+                        {
+                            // Use data for page elements
+                            lblTitle.Text = book.Title;
+                            imgBook.ImageUrl = book.ImagePath;
+                            lblDescription.Text = book.LongDescription;
+                            lblPrice.Text = "Price: $" + book.Price.ToString();
+                            lblAuthor.Text = book.Author.FirstName + " " + book.Author.LastName;
+                            lblQuantity.Text = "In Stock: " + book.StockQuantity.ToString();
+                            lblPublisher.Text = "Published: " + book.Publisher;
+                            lblDatePublished.Text = book.DatePublished.ToShortDateString();
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        string exceptionString = "?error=" + exception.Message;
+                        Response.Redirect("DefaultError.aspx" + exceptionString);
                     }
                 }
             }

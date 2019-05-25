@@ -11,7 +11,8 @@ namespace INFT3050WebApp.UL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            string defaultString = "You are not authorized to access this page. Please contact customer support for details on this issue.";
+            lblErrorText.Text = defaultString;
         }
     }
 }

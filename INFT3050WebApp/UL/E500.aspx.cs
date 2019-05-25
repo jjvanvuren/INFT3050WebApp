@@ -11,7 +11,8 @@ namespace INFT3050WebApp.UL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            string defaultString = "An internal server error has occurred. Please contact customer support for details on this issue.";
+            lblErrorText.Text = defaultString;
         }
     }
 }

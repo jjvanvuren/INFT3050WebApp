@@ -5,6 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="alert alert-danger">
         <h1 class="alert-heading">Error 401: Unauthorized Request</h1>
+        <asp:Label runat="server" ID="lblErrorText"></asp:Label>
     </div>
 
 </asp:Content>

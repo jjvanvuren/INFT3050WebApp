@@ -4,7 +4,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="alert alert-danger">
-        <h1 class="alert-heading">Default Error</h1>
+        <h1 class="alert-heading">Application Error</h1>
+        <asp:Label runat="server" ID="lblErrorText"></asp:Label>
+        <br />
+        <asp:Label ID="lblErrorDetails" runat="server" />
     </div>
 
 </asp:Content>

@@ -19,16 +19,24 @@ namespace INFT3050WebApp.UL
             {
                 if (!IsPostBack)
                 {
-                    Category category = new Category(id);
-
-                    if (category != null)
+                    try
                     {
-                        // Use data for page elements
-                        lblCategoryName.Text = category.Name;
-                        lblCategoryDescription.Text = category.Description;
+                        Category category = new Category(id);
 
-                        bookDataSource.SelectParameters.Clear();
-                        bookDataSource.SelectParameters.Add("CategoryId", category.Id.ToString());
+                        if (category != null)
+                        {
+                            // Use data for page elements
+                            lblCategoryName.Text = category.Name;
+                            lblCategoryDescription.Text = category.Description;
+
+                            bookDataSource.SelectParameters.Clear();
+                            bookDataSource.SelectParameters.Add("CategoryId", category.Id.ToString());
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        string exceptionString = "?error=" + exception.Message;
+                        Response.Redirect("DefaultError.aspx" + exceptionString);
                     }
                 }
             }
