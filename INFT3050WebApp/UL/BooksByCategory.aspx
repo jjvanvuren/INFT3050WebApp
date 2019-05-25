@@ -15,7 +15,7 @@
     <br />
     <div class="container-flex">
         <%-- Get Data Source --%>
-        <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetBooksByCategory" TypeName="INFT3050WebApp.DAL.BookDataAccess">
+        <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetBooksByCategory" TypeName="INFT3050WebApp.BL.Book">
             <SelectParameters>
                 <asp:Parameter Name="CategoryId" Type="Int32" />
             </SelectParameters>

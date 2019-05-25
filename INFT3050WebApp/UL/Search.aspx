@@ -19,7 +19,7 @@
         <br />
         <div class="container-flex">
             <%-- Get Data Source --%>
-            <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="SearchBooksByTitle" TypeName="INFT3050WebApp.DAL.BookDataAccess">
+            <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="SearchBooksByTitle" TypeName="INFT3050WebApp.BL.Book">
                 <SelectParameters>
                     <asp:Parameter Name="searchString" Type="String" />
                 </SelectParameters>

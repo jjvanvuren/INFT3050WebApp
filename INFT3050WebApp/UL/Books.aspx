@@ -9,7 +9,7 @@
     <br />
     <div class="container-flex">
         <%-- Get Data Source --%>
-        <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetBooks" TypeName="INFT3050WebApp.DAL.BookDataAccess"></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetAllBooks" TypeName="INFT3050WebApp.BL.Book"></asp:ObjectDataSource>
         <%--Display all books using gridview--%>
         <asp:GridView ID="GridBooks" runat="server" AutoGenerateColumns="false" DataSourceID="bookDataSource" OnRowCommand="GridBooks_RowCommand" CssClass="table" GridLines="None" AllowPaging="True" PageSize="4">
             <Columns>
