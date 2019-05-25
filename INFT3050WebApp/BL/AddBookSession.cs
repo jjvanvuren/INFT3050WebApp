@@ -12,10 +12,9 @@ namespace INFT3050WebApp.BL
     {
         public const string SESSION_KEY = "addBookSession";
         public int SessionId { get; set; }
-        public List<int> AuthorIDs { get; set; }
-        public  List<int> CategoryIDs { get; set; }
+        public List<Author> Authors { get; set; }
+        public  List<Category> CategoryIDs { get; set; }
         public AddBookSession() { }
-
 
         public AddBookSession(double  newPrice, int  newStockQuantity, String newShortDescription, String newLongDescription, String newImagePath, String newThumbnailPath, String newIsbn, 
             DateTime newDatePublished, String newTitle, String newSecondaryTitle, String newPublisher, Boolean newIsBestSeller)
@@ -35,29 +34,29 @@ namespace INFT3050WebApp.BL
             IsBestSeller = newIsBestSeller;
         }
 
-        public void AddAuthorID(int AuthorID) {
+        public void AddAuthorID(Author AuthorID) {
 
-            if(AuthorIDs == null)
+            if(Authors == null)
             {
-                AuthorIDs = new List<int>();
+                Authors = new List<Author>();
             }
             int intDuplicate = 0;
-            foreach (int ID in AuthorIDs) {
-                if (ID == AuthorID)
+            foreach (Author ID in Authors) {
+                if (ID.Id == AuthorID.Id)
                 {
                     intDuplicate = 1;
                 }
             }
             if ( intDuplicate == 0)
             {
-                AuthorIDs.Add(AuthorID);
+                Authors.Add(AuthorID);
             }
         
         }
 
-        public void AddCategoryIDs(List<int> CategoryID)
+        public void AddCategoryIDs(List<Category> CategoryID)
         {
-            CategoryIDs = new List<int>(CategoryID);
+            CategoryIDs = new List<Category>(CategoryID);
 
         }
 
@@ -81,6 +80,11 @@ namespace INFT3050WebApp.BL
             bookTemp.IsBestSeller = this.IsBestSeller;
 
             return bookTemp;
+        }
+
+        public List<Author> addedAuthors()
+        {
+            return Authors;
         }
 
 

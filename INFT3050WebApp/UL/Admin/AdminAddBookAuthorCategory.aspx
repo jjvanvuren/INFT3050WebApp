@@ -10,7 +10,23 @@
     <br />
     <asp:Label ID="lblCurrentAuthors" runat="server" Text="Current Authors"></asp:Label>
     <br />
+       <div class="container-flex">
+        <%-- Get Data Source --%>
+        <asp:ObjectDataSource ID="addedAuthorsDataSource" runat="server" SelectMethod="addedAuthors" TypeName="INFT3050WebApp.BL.AddBookSession">
+        </asp:ObjectDataSource>
+        <%--Display all Authors that are added to the book using gridview--%>
+        <asp:GridView ID="GridAddedAuthors" runat="server" AutoGenerateColumns="false" DataSourceID="addedAuthorsDataSource" CssClass="table" GridLines="None" AllowPaging="True" PageSize="4">
+            <Columns>
+                <asp:BoundField DataField="id" HeaderText="ID" SortExpression="Title" />
+                <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
+                <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
+            </Columns>
+        </asp:GridView>
+    </div>
+
+
     <br />
+    <%--//Search Bar--%>
     <div class="input-group">
         <asp:TextBox ID="tbxFirstName" class="form-control" type="text" placeholder="First Name" aria-label="First Name" runat="server"></asp:TextBox>
         <asp:TextBox ID="tbxLastName" class="form-control" type="text" placeholder="Last Name" aria-label="Last Name" runat="server"></asp:TextBox>
@@ -43,7 +59,7 @@
     <%-- If no author is returned --%>
     <asp:Label ID="lblNoAuthor" runat="server" Text="No Author Found"></asp:Label>
     <br />
-    <asp:Button ID="btnNewAuthor" type="submit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnNewAuthor_Click" Visible="false"/>
+    <asp:Button ID="btnNewAuthor" type="submit" CssClass="btn btn-primary" runat="server" Text="Add Author" OnClick="btnNewAuthor_Click" Visible="false"/>
 
 
 
@@ -57,7 +73,7 @@
         <asp:ObjectDataSource ID="CategoryDataSource" runat="server" SelectMethod="getCategories" TypeName="INFT3050WebApp.BL.Category">
         </asp:ObjectDataSource>
         <%--Display all Categories using gridview--%>
-        <asp:GridView ID="gvCategory" runat="server" AutoGenerateColumns="false" DataSourceID="categoryDataSource" OnRowCommand="GridSearch_RowCommand" CssClass="table" GridLines="None" AllowPaging="True">
+        <asp:GridView ID="gvCategory" runat="server" AutoGenerateColumns="false" DataSourceID="categoryDataSource" CssClass="table" GridLines="None" AllowPaging="True">
             <Columns>
                 <asp:TemplateField HeaderText="Select">
                     <ItemTemplate>
@@ -72,5 +88,5 @@
         </asp:GridView>
     </div>
 
-    <asp:Button ID="btnBookDetails" type="submit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnSearchAuthor_Click" />
+    <asp:Button ID="btnBookDetails" type="submit" CssClass="btn btn-primary" runat="server" Text="Continue" OnClick="btnComfirmToContiue_Click" />
 </asp:Content>

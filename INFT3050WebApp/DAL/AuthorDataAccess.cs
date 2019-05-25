@@ -64,6 +64,53 @@ namespace INFT3050WebApp.DAL
         }
 
 
+
+        public void AddAuthor(string SearchFirstName, string SearchLastName, string newDecription)
+        {
+            string sql = @"INSERT INTO author (FirstName, LastName, description)
+                            VALUES (@FirstName, @LastName, @description)";
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.Add(new SqlParameter("FirstName", SearchFirstName));
+                    command.Parameters.Add(new SqlParameter("LastName", SearchLastName));
+                    command.Parameters.Add(new SqlParameter("description", newDecription));
+                    con.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Author Author = CreateAuthor(reader);
+
+                    }
+                }
+            }
+
+        }
+
+        public Author getAuthor(int ID)
+        {
+            string sql = @"SELECT *
+                            FROM [dbo].[author]
+                            WHERE[author].[authorID] = @ID";
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.Add(new SqlParameter("ID", ID));
+
+                    con.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Author Author = CreateAuthor(reader);
+                        return Author;
+                    }
+                }
+            }
+            return null;
+        }
+
         public Author getAuthor(string SearchFirstName, string SearchLastName)
         {
             string sql = @"SELECT *
@@ -85,28 +132,6 @@ namespace INFT3050WebApp.DAL
                 }
             }
             return null;
-        }
-
-        public void AddAuthor(int id, string SearchFirstName, string SearchLastName)
-        {
-            string sql = @"INSERT INTO author ([ID], City, Country)
-                            SELECT SupplierName, City, Country FROM Suppliers";
-            using (SqlConnection con = new SqlConnection(ConnectionString))
-            {
-                using (SqlCommand command = new SqlCommand(sql, con))
-                {
-                    command.Parameters.Add(new SqlParameter("FirstName", SearchFirstName));
-                    command.Parameters.Add(new SqlParameter("LastName", SearchLastName));
-                    con.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        Author Author = CreateAuthor(reader);
-                        
-                    }
-                }
-            }
-            
         }
         
 

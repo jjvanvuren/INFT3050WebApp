@@ -64,15 +64,12 @@ namespace INFT3050WebApp.UL.Admin
                 newIsBestSeller = true;
             }
 
-           
-
-
 
             AddBookSession newBook = new AddBookSession(newPrice, newStockQuantity, newShortDescription, newLongDescription, newImagePath, newThumbnailPath, newIsbn,
              newDatePublished, newTitle, newSecondaryTitle, newPublisher, newIsBestSeller);
             Session["addBookSession"] = newBook;
 
-            Response.Redirect("~/UL/Admin/AdminAddBookComfirmation.aspx");
+            Response.Redirect("~/UL/Admin/AdminAddBookAuthorCategory.aspx");
         }
     }
 }

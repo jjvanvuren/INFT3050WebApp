@@ -12,6 +12,7 @@ namespace INFT3050WebApp.UL.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            DataBind();
             //if (Session["UserSession"] == null)
             //{
             //    Response.Redirect("~/UL/Admin/AdminLogin.aspx");
@@ -22,10 +23,16 @@ namespace INFT3050WebApp.UL.Admin
         protected void GridSearch_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             // When clicking the View button take the user to the matching book's page
-            if (e.CommandName == "cmdView")
-            {
-                Response.Redirect("Book.aspx?id=" + e.CommandArgument);
-            }
+            //if (e.CommandName == "cmdAdd")
+            //{
+            //    BL.Author newAuthor = new BL.Author();
+            //    //Returning Created Author to Add to Session
+            //    //newAuthor = newAuthor.getAuthor(e.CommandArgument);
+
+            //    BL.AddBookSession AddAuthors = (BL.AddBookSession)Session["addBookSession"];
+            //    AddAuthors.AddAuthorID(newAuthor);
+            //    Response.Redirect("~/UL/Admin/AdminAddBookAuthorCategory.aspx");
+            //}
 
         }
         protected void btnSearchAuthor_Click(object sender, EventArgs e)
@@ -46,10 +53,26 @@ namespace INFT3050WebApp.UL.Admin
         {
            string NewAuthorFirstName = tbxFirstName.Text;
            string NewAuthorLastName = tbxLastName.Text;
-           
+            //Adding Author to Data base
+            BL.Author newAuthor = new BL.Author(tbxFirstName.Text, tbxLastName.Text);
+            //Returning Created Author to Add to Session
+            newAuthor = newAuthor.getAddAuthor(tbxFirstName.Text, tbxLastName.Text);
+      
+            BL.AddBookSession AddAuthors = (BL.AddBookSession)Session["addBookSession"];
+            AddAuthors.AddAuthorID(newAuthor);
+            Session["addBookSession"] = AddAuthors;
+            //Hiding Add Labels after add
+            lblNoAuthor.Visible = false;
+            btnNewAuthor.Visible = false;
+            Response.Redirect("~/UL/Admin/AdminAddBookAuthorCategory.aspx");
         }
 
-        
+        protected void btnComfirmToContiue_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
 
 
     }
