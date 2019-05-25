@@ -16,8 +16,10 @@ namespace INFT3050WebApp
 
             //routes.EnableFriendlyUrls();
 
-            //routes.MapPageRoute("", "Default", "~/UL/Default.aspx");
-            //routes.MapPageRoute("", "Search", "~/UL/Search.aspx");
+            //routes.Ignore("{resource}.axd/{*pathInfo}");
+
+            //routes.MapPageRoute("Default", "Default", "~/UL/Default.aspx");
+            //routes.MapPageRoute("Search", "Search", "~/UL/Search.aspx");
         }
     }
 }
