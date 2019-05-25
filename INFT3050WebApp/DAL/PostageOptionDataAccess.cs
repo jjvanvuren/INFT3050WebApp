@@ -27,7 +27,7 @@ namespace INFT3050WebApp.DAL
             PostageOption postageOption = new PostageOption();
             postageOption.Id = (int)reader["postageOptionID"];
             postageOption.Name = reader["postageOptionName"].ToString();
-            postageOption.Price = (double)reader["shippingCost"];
+            postageOption.Price = (double)reader.GetDecimal(2);
             postageOption.IsActive = (bool)reader.GetSqlBoolean(3);
 
             return postageOption;

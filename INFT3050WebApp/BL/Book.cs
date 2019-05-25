@@ -78,5 +78,21 @@ namespace INFT3050WebApp.BL
 
             return allBooks;
         }
+
+        // Method to search books by their title
+        public List<Book> SearchBooksByTitle(string searchString)
+        {
+            var db = new BookDataAccess();
+            var books = db.SearchBooksByTitle(searchString);
+
+            List<Book> allBooks = new List<Book>();
+
+            foreach (Book book in books)
+            {
+                allBooks.Add(book);
+            }
+
+            return allBooks;
+        }
     }
 }

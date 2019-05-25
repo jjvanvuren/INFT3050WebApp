@@ -7,7 +7,7 @@
 
     <h1>Postage Options</h1>
     <div class="container-flex">
-        <asp:ObjectDataSource ID="PostageOptionDataSource" runat="server" SelectMethod="GetPostageOptions" TypeName="INFT3050WebApp.DAL.PostageOptionDataAccess"></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="PostageOptionDataSource" runat="server" SelectMethod="GetPostageOptions" TypeName="INFT3050WebApp.BL.PostageOption"></asp:ObjectDataSource>
         <asp:GridView ID="PostageOptionManagement" runat="server" AutoGenerateColumns="false" DataSourceID="PostageOptionDataSource" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True">
             <Columns>
 
