@@ -196,7 +196,9 @@
     <Compile Include="DAL\CategoryDataAccess.cs" />
     <Compile Include="DAL\IBookDataAccess.cs" />
     <Compile Include="DAL\ICategoryDataAccess.cs" />
+    <Compile Include="DAL\IPostageOptionsDataAccess.cs" />
     <Compile Include="DAL\IUserDataAccess.cs" />
+    <Compile Include="DAL\PostageOptionDataAccess.cs" />
     <Compile Include="DAL\UserDataAccess.cs" />
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
