@@ -39,21 +39,21 @@ namespace INFT3050WebApp.UL.Admin
             catch(InvalidCastException)
             {
             }
-            String newShortDescription = tbxShortDescription.Text;
-            String newLongDescription = tbxLongDescription.Text;
-            String newImagePath = tbxImagePath.Text;
-            String newThumbnailPath = tbxThumbnailPath.Text;
-            String newIsbn = tbxISBN.Text;
+            String newShortDescription = tbxShortDescription.Text.Trim();
+            String newLongDescription = tbxLongDescription.Text.Trim();
+            String newImagePath = tbxImagePath.Text.Trim();
+            String newThumbnailPath = tbxThumbnailPath.Text.Trim();
+            String newIsbn = tbxISBN.Text.Trim();
             try
             {
-                newDatePublished = Convert.ToDateTime(tbxDatePublished.Text);
+                newDatePublished = Convert.ToDateTime(tbxDatePublished.Text.Trim());
             }
             catch(Exception)
             {
             }
-            String newTitle = tbxTitle.Text;
-            String newSecondaryTitle = tbxSecondaryTitle.Text;
-            String newPublisher = tbxPublisher.Text;
+            String newTitle = tbxTitle.Text.Trim();
+            String newSecondaryTitle = tbxSecondaryTitle.Text.Trim();
+            String newPublisher = tbxPublisher.Text.Trim();
             Boolean newIsBestSeller;
             if (ddlIsBestSeller.SelectedIndex == 0)
             {

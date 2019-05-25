@@ -20,6 +20,32 @@ namespace INFT3050WebApp.DAL
             }
         }
 
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Category> GetCategory()
+        {
+            List<Category> ListofCategory = new List<Category>();
+            string sql = @"SELECT [categoryID], [name], [description] 
+                            FROM [dbo].[category]";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Category newCategory = CreateCategory(reader);
+                        ListofCategory.Add(newCategory);
+                        
+                    }
+                    
+                }
+            }
+            return ListofCategory;
+        }
+
         // Method used to get a Category by ID
         [DataObjectMethod(DataObjectMethodType.Select)]
         public Category GetCategoryById(int Id)

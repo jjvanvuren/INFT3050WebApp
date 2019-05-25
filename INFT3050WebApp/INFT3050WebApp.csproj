@@ -195,6 +195,7 @@
     <Compile Include="BL\PostageOption.cs" />
     <Compile Include="BL\StoreItem.cs" />
     <Compile Include="BL\User.cs" />
+    <Compile Include="DAL\AuthorDataAccess.cs" />
     <Compile Include="DAL\BookDataAccess.cs" />
     <Compile Include="DAL\CategoryDataAccess.cs" />
     <Compile Include="DAL\IBookDataAccess.cs" />
