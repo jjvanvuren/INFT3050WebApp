@@ -70,6 +70,21 @@ namespace INFT3050WebApp
             }
         }
 
+        // Page Level Error Event Handler
+        private void Page_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError();
+
+            // Handle specific exception.
+            if (exception is HttpUnhandledException)
+            {
+                string exceptionString = "?error=" + exception.Message + "&source=" + exception.Source;
+                Server.Transfer("DefaultError.aspx" + exceptionString);
+            }
+            // Clear the error from the server.
+            Server.ClearError();
+        }
+
         protected void imgBestSeller_Command(object sender, CommandEventArgs e)
         {
             // When a book's image is clicked redirect to the book's details page
