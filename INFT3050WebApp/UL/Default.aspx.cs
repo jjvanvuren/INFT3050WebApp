@@ -28,8 +28,8 @@ namespace INFT3050WebApp
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            throw new Exception("Test exception");
-
+            //throw new InvalidOperationException("An InvalidOperationException " +
+            //"occurred in the Page_Load handler on the Default.aspx page.");
             if (!IsPostBack)
             {
                 //// Create dummy database and pull all books from database
@@ -41,6 +41,9 @@ namespace INFT3050WebApp
 
                 try
                 {
+                    //throw new InvalidOperationException("An InvalidOperationException " +
+                    //"occurred in the Page_Load handler on the Default.aspx page.");
+
                     books = dbBook.GetAllBooks();
 
                     // Create list of best sellers based on IsBestSeller property
@@ -59,7 +62,7 @@ namespace INFT3050WebApp
                 }
                 catch (Exception exception)
                 {
-                    string exceptionString = "?error=" + exception.Message;
+                    string exceptionString = "?error=" + exception.Message + "&source=" + exception.Source;
                     Response.Redirect("DefaultError.aspx" + exceptionString);
                 }
 

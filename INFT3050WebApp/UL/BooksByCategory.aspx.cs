@@ -35,7 +35,7 @@ namespace INFT3050WebApp.UL
                     }
                     catch (Exception exception)
                     {
-                        string exceptionString = "?error=" + exception.Message;
+                        string exceptionString = "?error=" + exception.Message + "&source=" + exception.Source;
                         Response.Redirect("DefaultError.aspx" + exceptionString);
                     }
                 }

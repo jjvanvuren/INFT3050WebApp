@@ -17,10 +17,14 @@ namespace INFT3050WebApp
 
             if (exc is HttpUnhandledException)
             {
-                string exceptionString = "?error=" + exc.Message;
-                // Pass the error on to the error page.
-                Server.Transfer("DefaultError.aspx" + exceptionString, true);
-
+                if (exc.InnerException != null)
+                {
+                    exc = new Exception(exc.InnerException.Message);
+                    string exceptionString = "?error=" + exc.Message;
+                    // Pass the error on to the error page.
+                    Server.Transfer("DefaultError.aspx" + exceptionString, true);
+                    Server.ClearError();
+                }
             }
         }
 

@@ -12,10 +12,13 @@ namespace INFT3050WebApp.UL
         protected void Page_Load(object sender, EventArgs e)
         {
             string errorMessage = Request.QueryString["error"];
+            string errorSource = Request.QueryString["source"];
             string defaultString = "An error has occured with the web application. Please contact customer support for details on this issue.";
 
             lblErrorText.Text = defaultString;
-            lblErrorDetails.Text = "Error Details: " + errorMessage;
+            lblErrorDetails.Text = errorMessage;
+            lblErrorSource.Text = errorSource;
+
         }
     }
 }
