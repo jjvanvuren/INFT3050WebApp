@@ -11,6 +11,19 @@ namespace INFT3050WebApp
 {
     public class Global : System.Web.HttpApplication
     {
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exc = Server.GetLastError();
+
+            if (exc is HttpUnhandledException)
+            {
+                string exceptionString = "?error=" + exc.Message;
+                // Pass the error on to the error page.
+                Server.Transfer("DefaultError.aspx" + exceptionString, true);
+
+            }
+        }
+
         protected void Application_Start(object sender, EventArgs e)
         {
             RouteConfig.RegisterRoutes(RouteTable.Routes);

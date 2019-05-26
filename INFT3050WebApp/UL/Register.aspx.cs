@@ -40,52 +40,61 @@ namespace INFT3050WebApp
             // Used for BL Validation
             bool bValid;
 
-            // Create a new user based on info entered
-            User registeredUser = new User(tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, false, true, "", true);
-
-            
-            int iRegistered = registeredUser.CheckRegisterUser(tbxEmail.Text, tbxPassword.Text);
-
-            if (iRegistered == 0)
+            try
             {
-                lblEmailExists.Text = "Is not a valid email or is already registered";
-                lblEmailExists.Visible = true;
+                // Create a new user based on info entered
+                User registeredUser = new User(tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, false, true, "", true);
 
-                bValid = false;
-            }
-            else if (iRegistered == 1)
-            {
-                lblInvalidPassword.Text = "Password must meet complexity requirements";
-                lblInvalidPassword.Visible = true;
 
-                bValid = false;
-            }
-            else
-            {
-                lblEmailExists.Visible = false;
-                lblInvalidPassword.Visible = false;
+                int iRegistered = registeredUser.CheckRegisterUser(tbxEmail.Text, tbxPassword.Text);
 
-                bValid = true;
-            }
-
-            if (IsValid && bValid)
-            {
-                User currentUser = new User();
-
-                currentUser.RegisterNewUser(registeredUser);
-
-                User dbUser = new User(registeredUser.Email);
-
-                // Data to be retained in session
-                UserSession currentUserSession = new UserSession
+                if (iRegistered == 0)
                 {
-                    SessionId = dbUser.Id
-                };
+                    lblEmailExists.Text = "Is not a valid email or is already registered";
+                    lblEmailExists.Visible = true;
 
-                Session["userSession"] = currentUserSession;
+                    bValid = false;
+                }
+                else if (iRegistered == 1)
+                {
+                    lblInvalidPassword.Text = "Password must meet complexity requirements";
+                    lblInvalidPassword.Visible = true;
 
-                Response.Redirect("~/UL/SuccessfulRegistration.aspx");
+                    bValid = false;
+                }
+                else
+                {
+                    lblEmailExists.Visible = false;
+                    lblInvalidPassword.Visible = false;
+
+                    bValid = true;
+                }
+
+                if (IsValid && bValid)
+                {
+                    User currentUser = new User();
+
+                    currentUser.RegisterNewUser(registeredUser);
+
+                    User dbUser = new User(registeredUser.Email);
+
+                    // Data to be retained in session
+                    UserSession currentUserSession = new UserSession
+                    {
+                        SessionId = dbUser.Id
+                    };
+
+                    Session["userSession"] = currentUserSession;
+
+                    Response.Redirect("~/UL/SuccessfulRegistration.aspx");
+                }
             }
+            catch (Exception exception)
+            {
+                string exceptionString = "?error=" + exception.Message;
+                Response.Redirect("DefaultError.aspx" + exceptionString);
+            }
+
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

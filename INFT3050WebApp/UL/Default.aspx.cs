@@ -28,6 +28,7 @@ namespace INFT3050WebApp
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            throw new Exception("Test exception");
 
             if (!IsPostBack)
             {
