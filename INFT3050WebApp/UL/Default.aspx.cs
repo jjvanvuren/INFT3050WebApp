@@ -38,21 +38,31 @@ namespace INFT3050WebApp
 
                 List<Book> books = new List<Book>();
 
-                books = dbBook.GetAllBooks();
-
-                // Create list of best sellers based on IsBestSeller property
-                List<Book> bestSellers = new List<Book>();
-                
-                foreach (Book book in books)
+                try
                 {
-                    if (book.IsBestSeller)
+                    books = dbBook.GetAllBooks();
+
+                    // Create list of best sellers based on IsBestSeller property
+                    List<Book> bestSellers = new List<Book>();
+
+                    foreach (Book book in books)
                     {
-                        bestSellers.Add(book);
+                        if (book.IsBestSeller)
+                        {
+                            bestSellers.Add(book);
+                        }
                     }
+                    // Use best seller list as data source for splash page
+                    ImageRepeater.DataSource = bestSellers;
+                    ImageRepeater.DataBind();
                 }
-                // Use best seller list as data source for splash page
-                ImageRepeater.DataSource = bestSellers;
-                ImageRepeater.DataBind();
+                catch (Exception exception)
+                {
+                    string exceptionString = "?error=" + exception.Message;
+                    Response.Redirect("DefaultError.aspx" + exceptionString);
+                }
+
+               
             }
         }
 
