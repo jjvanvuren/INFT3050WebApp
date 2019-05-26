@@ -68,7 +68,14 @@
     <asp:Label ID="lblStockonHand" runat="server" Text="Stock on Hand :"></asp:Label>
     <asp:Label ID="lblNewStockonHand" runat="server"></asp:Label>
 
-
+    <%--Display authors--%>
+    <asp:GridView ID="GridAuthors" runat="server" AutoGenerateColumns="false" CssClass="table" GridLines="None" AllowPaging="True" PageSize="4">
+        <Columns>
+            <asp:BoundField DataField="id" HeaderText="ID" SortExpression="Title" />
+            <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
+            <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
+        </Columns>
+    </asp:GridView>
 
     <%<asp:Button ID="btnBookDetails" type="submit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnSubmitBook_Click" />
 </asp:Content>

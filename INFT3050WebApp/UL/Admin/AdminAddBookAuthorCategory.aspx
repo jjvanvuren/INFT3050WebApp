@@ -6,16 +6,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Add Book</h1>
-    <h4>Comfirm Details</h4>
+    <h4>Author & Category for new book</h4>
     <br />
     <asp:Label ID="lblCurrentAuthors" runat="server" Text="Current Authors"></asp:Label>
     <br />
        <div class="container-flex">
-        <%-- Get Data Source --%>
-        <asp:ObjectDataSource ID="addedAuthorsDataSource" runat="server" SelectMethod="addedAuthors" TypeName="INFT3050WebApp.BL.AddBookSession">
-        </asp:ObjectDataSource>
         <%--Display all Authors that are added to the book using gridview--%>
-        <asp:GridView ID="GridAddedAuthors" runat="server" AutoGenerateColumns="false" DataSourceID="addedAuthorsDataSource" CssClass="table" GridLines="None" AllowPaging="True" PageSize="4">
+        <asp:GridView ID="GridAddedAuthors" runat="server" AutoGenerateColumns="false"  CssClass="table" GridLines="None" AllowPaging="True" PageSize="4">
             <Columns>
                 <asp:BoundField DataField="id" HeaderText="ID" SortExpression="Title" />
                 <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
@@ -43,7 +40,7 @@
         <%--Display all Authors using gridview--%>
         <asp:GridView ID="GridAuthors" runat="server" AutoGenerateColumns="false" DataSourceID="authorDataSource" OnRowCommand="GridSearch_RowCommand" CssClass="table" GridLines="None" AllowPaging="True" PageSize="4">
             <Columns>
-                <asp:BoundField DataField="id" HeaderText="ID" SortExpression="Title" />
+                <asp:BoundField DataField="Id" HeaderText="ID" SortExpression="Title" />
                 <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
                 <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
                 <asp:TemplateField ShowHeader="False">
@@ -57,7 +54,7 @@
     </div>
     <br />
     <%-- If no author is returned --%>
-    <asp:Label ID="lblNoAuthor" runat="server" Text="No Author Found"></asp:Label>
+    <asp:Label ID="lblNoAuthor" runat="server" Text="No Author Found" Visible="false"></asp:Label>
     <br />
     <asp:Button ID="btnNewAuthor" type="submit" CssClass="btn btn-primary" runat="server" Text="Add Author" OnClick="btnNewAuthor_Click" Visible="false"/>
 

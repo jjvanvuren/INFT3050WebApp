@@ -12,7 +12,10 @@ namespace INFT3050WebApp.UL.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            DataBind();
+
+            BL.AddBookSession populateGridView = (BL.AddBookSession)Session["addBookSession"];
+            GridAddedAuthors.DataSource = populateGridView.addedAuthors();
+            GridAddedAuthors.DataBind();
             //if (Session["UserSession"] == null)
             //{
             //    Response.Redirect("~/UL/Admin/AdminLogin.aspx");
@@ -22,17 +25,16 @@ namespace INFT3050WebApp.UL.Admin
 
         protected void GridSearch_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            // When clicking the View button take the user to the matching book's page
-            //if (e.CommandName == "cmdAdd")
-            //{
-            //    BL.Author newAuthor = new BL.Author();
-            //    //Returning Created Author to Add to Session
-            //    //newAuthor = newAuthor.getAuthor(e.CommandArgument);
+            //When clicking the add button Add the author to book session
+            if (e.CommandName == "cmdAdd")
+            {
+                BL.Author newAuthor = new BL.Author();
+                newAuthor = newAuthor.getAuthor(Int32.Parse(e.CommandArgument.ToString()));
 
-            //    BL.AddBookSession AddAuthors = (BL.AddBookSession)Session["addBookSession"];
-            //    AddAuthors.AddAuthorID(newAuthor);
-            //    Response.Redirect("~/UL/Admin/AdminAddBookAuthorCategory.aspx");
-            //}
+                BL.AddBookSession AddAuthors = (BL.AddBookSession)Session["addBookSession"];
+                AddAuthors.AddAuthorID(newAuthor);
+                Response.Redirect("~/UL/Admin/AdminAddBookAuthorCategory.aspx");
+            }
 
         }
         protected void btnSearchAuthor_Click(object sender, EventArgs e)
@@ -69,6 +71,24 @@ namespace INFT3050WebApp.UL.Admin
 
         protected void btnComfirmToContiue_Click(object sender, EventArgs e)
         {
+            BL.AddBookSession populateGridView = (BL.AddBookSession)Session["addBookSession"];
+
+            //add 
+            //foreach (GridViewRow row in GridView1.Rows)
+            //{
+            //    CheckBox chk = row.Cells[0].Controls[0] as CheckBox;
+            //    if (chk != null && chk.Checked)
+            //    {
+            //        // ...
+            //    }
+            //}
+
+
+
+            if (populateGridView.addedAuthors() == null || populateGridView.addedCategories()==null)
+            {
+                //do something - Will fire this out later
+            }
 
         }
 

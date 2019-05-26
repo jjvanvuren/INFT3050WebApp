@@ -229,6 +229,15 @@ namespace INFT3050WebApp.UL.Admin {
         protected global::System.Web.UI.WebControls.Label lblNewStockonHand;
         
         /// <summary>
+        /// GridAuthors control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridAuthors;
+        
+        /// <summary>
         /// btnBookDetails control.
         /// </summary>
         /// <remarks>

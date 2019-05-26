@@ -16,22 +16,87 @@ namespace INFT3050WebApp.BL
         public  List<Category> CategoryIDs { get; set; }
         public AddBookSession() { }
 
-        public AddBookSession(double  newPrice, int  newStockQuantity, String newShortDescription, String newLongDescription, String newImagePath, String newThumbnailPath, String newIsbn, 
+        public AddBookSession(double newPrice, int newStockQuantity, String newShortDescription, String newLongDescription, String newImagePath, String newThumbnailPath, String newIsbn,
             DateTime newDatePublished, String newTitle, String newSecondaryTitle, String newPublisher, Boolean newIsBestSeller)
         {
+  
 
             Price = newPrice;
             StockQuantity = newStockQuantity;
-            ShortDescription = newShortDescription;
-            LongDescription = newLongDescription;
-            ImagePath = newImagePath;
-            ThumbnailPath = newThumbnailPath;
-            Isbn = newIsbn;
             DatePublished = newDatePublished;
-            Title = newTitle;
-            SecondaryTitle = newSecondaryTitle;
-            Publisher = newPublisher;
             IsBestSeller = newIsBestSeller;
+            //All string trypes have checks around them to make sure Nulls are submitted to the data base
+            if (newShortDescription != null)
+            {
+                ShortDescription = newShortDescription;
+            } else
+            {
+                ShortDescription = "";
+            }
+
+            if (newLongDescription != null)
+            {
+                LongDescription = newLongDescription;
+            }
+            else
+            {
+                LongDescription = "";
+            }
+
+            if (newImagePath != null)
+            {
+                ImagePath = newImagePath;
+            }
+            else
+            {
+                ImagePath = "";
+            }
+
+            if (newThumbnailPath != null)
+            {
+                ThumbnailPath = newThumbnailPath;
+            }
+            else
+            {
+                ThumbnailPath = "";
+            }
+
+            if (newIsbn != null)
+            {
+                Isbn = newIsbn;
+            }
+            else
+            {
+                Isbn = "";
+            }
+
+            if (newTitle != null)
+            {
+                Title = newTitle;
+            }
+            else
+            {
+                Title = "";
+            }
+
+            if (newSecondaryTitle != null)
+            {
+                SecondaryTitle = newSecondaryTitle;
+            }
+            else
+            {
+                SecondaryTitle = "";
+            }
+
+            if (newPublisher != null)
+            {
+                Publisher = newPublisher;
+            }
+            else
+            {
+                Publisher = "";
+            }
+            
         }
 
         public void AddAuthorID(Author AuthorID) {
@@ -85,6 +150,10 @@ namespace INFT3050WebApp.BL
         public List<Author> addedAuthors()
         {
             return Authors;
+        }
+        public List<Category> addedCategories()
+        {
+            return CategoryIDs;
         }
 
 

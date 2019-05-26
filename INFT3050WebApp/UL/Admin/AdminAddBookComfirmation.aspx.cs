@@ -30,13 +30,15 @@ namespace INFT3050WebApp.UL.Admin
             lblNewThumbnailPath.Text = displayBook.ThumbnailPath;
             lblNewPrice.Text = displayBook.Price.ToString();
             lblNewStockonHand.Text = displayBook.StockQuantity.ToString();
-
+            GridAuthors.DataSource = displayBook.addedAuthors();
+            GridAuthors.DataBind();
 
 
 
         }
         protected void btnRegister_Click(object sender, EventArgs e)
         {
+
             
         }
     }
