@@ -47,6 +47,7 @@
 
     </div>
     <asp:button id="btnLogin" type="submit" cssclass="btn btn-primary" runat="server" text="Submit" onclick="btnLogin_Click" />
+    <asp:Button ID="btnReset" type="submit" CssClass="btn btn-primary" runat="server" Text="Forgot Password" CausesValidation="false" OnClick="btnReset_Click" />
     <asp:button id="btnRegister" type="cancel" cssclass="btn btn-secondary" runat="server" text="Register" causesvalidation="false" onclick="btnRegister_Click" />
 
 </asp:Content>

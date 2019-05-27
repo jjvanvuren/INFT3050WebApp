@@ -15,5 +15,7 @@ namespace INFT3050WebApp.DAL
         User GetUserById(int Id);
         int RegisterUser(User user);
         int VerifyUser(User user);
+        int UpdateKey(User user);
+        int UpdatePassword(User user);
     }
 }
