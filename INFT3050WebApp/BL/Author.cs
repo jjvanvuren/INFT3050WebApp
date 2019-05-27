@@ -19,8 +19,6 @@ namespace INFT3050WebApp.BL
             LastName = "";
             Description = "";
         }
-
-        public Author() { }
         public Author(string SearchFirstName, string SearchLastName)
         {
             var db = new AuthorDataAccess();
