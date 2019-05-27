@@ -29,8 +29,7 @@ namespace INFT3050WebApp
         protected void Page_Load(object sender, EventArgs e)
 
         {
-            //throw new InvalidOperationException("An InvalidOperationException " +
-            //"occurred in the Page_Load handler on the Default.aspx page.");
+
             if (!IsPostBack)
             {
                 //// Create dummy database and pull all books from database
@@ -42,8 +41,6 @@ namespace INFT3050WebApp
 
                 try
                 {
-                    //throw new InvalidOperationException("An InvalidOperationException " +
-                    //"occurred in the Page_Load handler on the Default.aspx page.");
 
                     books = dbBook.GetAllBooks();
 
@@ -61,7 +58,7 @@ namespace INFT3050WebApp
                     ImageRepeater.DataSource = bestSellers;
                     ImageRepeater.DataBind();
                 }
-                catch (Exception exc)
+                catch (Exception exception)
                 {
                     //string exceptionString = "?error=" + exception.Message;
 
@@ -87,19 +84,17 @@ namespace INFT3050WebApp
             }
         }
 
-        //// Page Level Error Event Handler
         //private void Page_Error(object sender, EventArgs e)
         //{
-        //    Exception exception = Server.GetLastError();
+        //    // Get last error from the server.
+        //    Exception exc = Server.GetLastError();
 
         //    // Handle specific exception.
-        //    if (exception is HttpUnhandledException)
+        //    if (exc is InvalidOperationException)
         //    {
-        //        string exceptionString = "?error=" + exception.Message + "&source=" + exception.Source;
-        //        Server.Transfer("DefaultError.aspx" + exceptionString);
+        //        // Pass the error on to the error page.
+        //        Server.Transfer("DefaultError.aspx?handler=Page_Error%20-%20Default.aspx", true);
         //    }
-        //    // Clear the error from the server.
-        //    Server.ClearError();
         //}
 
         protected void imgBestSeller_Command(object sender, CommandEventArgs e)
