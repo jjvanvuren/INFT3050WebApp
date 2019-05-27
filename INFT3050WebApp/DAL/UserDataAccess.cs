@@ -210,5 +210,43 @@ namespace INFT3050WebApp.DAL
                 }
             }
         }
+
+        // Sets the Users validationKey
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public int UpdateKey(User user)
+        {
+            string sql = @"UPDATE webSiteUser SET validationKey = @key WHERE email = @email";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("email", user.Email);
+                    command.Parameters.AddWithValue("key", user.ValidationKey);
+
+                    con.Open();
+                    return command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        // Sets the Users password
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public int UpdatePassword(User user)
+        {
+            string sql = @"UPDATE webSiteUser SET password = @password WHERE email = @email";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("email", user.Email);
+                    command.Parameters.AddWithValue("password", user.Password);
+
+                    con.Open();
+                    return command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

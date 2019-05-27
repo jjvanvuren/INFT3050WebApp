@@ -7,73 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace INFT3050WebApp.UL.BackEnd {
+namespace INFT3050WebApp.UL {
     
     
-    public partial class BackEndLogin {
+    public partial class NewPassword {
         
         /// <summary>
-        /// vsLogin control.
+        /// lblError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary vsLogin;
-        
-        /// <summary>
-        /// lblEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmail;
-        
-        /// <summary>
-        /// tbxEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbxEmail;
-        
-        /// <summary>
-        /// lblUserExists control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserExists;
-        
-        /// <summary>
-        /// rfvEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmail;
-        
-        /// <summary>
-        /// revEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator revEmail;
-        
-        /// <summary>
-        /// revEmailDomain control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator revEmailDomain;
+        protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
         /// lblPassword control.
@@ -94,15 +40,6 @@ namespace INFT3050WebApp.UL.BackEnd {
         protected global::System.Web.UI.WebControls.TextBox tbxPassword;
         
         /// <summary>
-        /// lblInvalidPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblInvalidPassword;
-        
-        /// <summary>
         /// rfvPassword control.
         /// </summary>
         /// <remarks>
@@ -112,13 +49,58 @@ namespace INFT3050WebApp.UL.BackEnd {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPassword;
         
         /// <summary>
-        /// btnLogin control.
+        /// revPasswordComplex control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogin;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revPasswordComplex;
+        
+        /// <summary>
+        /// lblInvalidPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblInvalidPassword;
+        
+        /// <summary>
+        /// lblPasswordConfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPasswordConfirm;
+        
+        /// <summary>
+        /// tbxPasswordConfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxPasswordConfirm;
+        
+        /// <summary>
+        /// rfvPasswordConfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPasswordConfirm;
+        
+        /// <summary>
+        /// cvPasswordConfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvPasswordConfirm;
         
         /// <summary>
         /// btnReset control.
@@ -130,24 +112,12 @@ namespace INFT3050WebApp.UL.BackEnd {
         protected global::System.Web.UI.WebControls.Button btnReset;
         
         /// <summary>
-        /// btnRegister control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegister;
-        
-        /// <summary>
-        /// Master property.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated property.
-        /// </remarks>
-        public new INFT3050WebApp.UL.BackEnd.BackEnd Master {
-            get {
-                return ((INFT3050WebApp.UL.BackEnd.BackEnd)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.WebControls.Button btnCancel;
     }
 }
