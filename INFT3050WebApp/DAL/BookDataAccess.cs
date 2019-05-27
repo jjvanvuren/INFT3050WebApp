@@ -224,6 +224,8 @@ namespace INFT3050WebApp.DAL
                             INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID]
                             WHERE [category].[categoryID]=@Id;";
 
+
+
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(sql, con))
@@ -290,5 +292,46 @@ namespace INFT3050WebApp.DAL
 
             return category;
         }
-    }
+        public int SubmitBook(Book newBook)
+        {
+            Int32 newId;
+            string sql = @"INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive)
+                                VALUES (@price, @stockQuantity, @longDescription, @shortDescription, @imagePath, @thumbnailPath, 1)
+                                SELECT CONVERT(int, SCOPE_IDENTITY())";
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.Add(new SqlParameter("price", newBook.Price));
+                    command.Parameters.Add(new SqlParameter("stockQuantity", newBook.StockQuantity));
+                    command.Parameters.Add(new SqlParameter("longDescription", newBook.LongDescription));
+                    command.Parameters.Add(new SqlParameter("shortDescription", newBook.ShortDescription));
+                    command.Parameters.Add(new SqlParameter("imagePath", newBook.ImagePath));
+                    command.Parameters.Add(new SqlParameter("thumbnailPath", newBook.ThumbnailPath));
+                    con.Open();
+                    newId = (Int32)command.ExecuteScalar();
+                }
+
+            }
+            sql = @"INSERT INTO book (ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher)
+                                VALUES (@ISBN, @title, @datePublished, @secondaryTitle, @isBestSeller, @publisher)";
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+
+                    command.Parameters.Add(new SqlParameter("ISBN", newBook.Isbn));
+                    command.Parameters.Add(new SqlParameter("title", newBook.Title));
+                    command.Parameters.Add(new SqlParameter("datePublished", newBook.DatePublished));
+                    command.Parameters.Add(new SqlParameter("secondaryTitle", newBook.SecondaryTitle));
+                    command.Parameters.Add(new SqlParameter("isBestSeller", newBook.IsBestSeller));
+                    command.Parameters.Add(new SqlParameter("publisher", newBook.Publisher));
+                    con.Open();
+                    command.ExecuteNonQuery();
+                    return newId;
+                }
+            }
+        }
+
+        }
 }

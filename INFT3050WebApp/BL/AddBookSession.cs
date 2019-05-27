@@ -177,6 +177,17 @@ namespace INFT3050WebApp.BL
             return CategoryIDs;
         }
 
+        public void submitBook()
+        {
+            
+            Book newBook = this.createTempBook();
+            DAL.BookDataAccess connect = new BookDataAccess();
+            newBook.Id = connect.SubmitBook(newBook);
+            
+
+
+        }
+
 
 
         //public void RemoveAuthorID(int AuthorID)

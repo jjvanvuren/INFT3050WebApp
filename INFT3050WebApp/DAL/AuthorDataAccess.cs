@@ -147,5 +147,38 @@ namespace INFT3050WebApp.DAL
 
             return author;
         }
+
+        public void ConnectBookAuthor(int BookID, List<Author> Authors)
+        {
+            string sql = @"INSERT INTO bookAuthor (itemID, authorID)
+                            VALUES(@itemID, @authorID)";
+            if (Authors.Count > 1) {
+                foreach (Author bookAuthors in Authors)
+                {
+                    sql = sql + ",(@itemID, @authorID)";
+                }
+            }
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    for (int i = 0; i < Authors.Count; ++i)
+                    {
+                        command.Parameters.Add(new SqlParameter("itemID", BookID));
+                        command.Parameters.Add(new SqlParameter("authorID", Authors[i].Id));
+                    }
+                    con.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Author Author = CreateAuthor(reader);
+
+                    }
+                }
+            }
+
+        }
+
+
     }
 }
