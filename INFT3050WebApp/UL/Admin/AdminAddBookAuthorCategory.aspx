@@ -7,12 +7,15 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Add Book</h1>
     <h4>Author & Category for new book</h4>
+    <div>
+        <asp:ValidationSummary ID="vsAddBookAuthorCategory" runat="server" CssClass="alert-danger" HeaderText="Please correct these issues" />
+    </div>
     <br />
     <asp:Label ID="lblCurrentAuthors" runat="server" Text="Current Authors"></asp:Label>
     <br />
-       <div class="container-flex">
+    <div class="container-flex">
         <%--Display all Authors that are added to the book using gridview--%>
-        <asp:GridView ID="GridAddedAuthors" runat="server" AutoGenerateColumns="false"  CssClass="table" GridLines="None" AllowPaging="True" PageSize="4">
+        <asp:GridView ID="GridAddedAuthors" runat="server" AutoGenerateColumns="false" CssClass="table" GridLines="None" AllowPaging="True">
             <Columns>
                 <asp:BoundField DataField="id" HeaderText="ID" SortExpression="Title" />
                 <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
@@ -74,13 +77,11 @@
             <Columns>
                 <asp:TemplateField HeaderText="Select">
                     <ItemTemplate>
-                        <asp:CheckBox ID="cbSelect"
-                            CssClass="gridCB" runat="server"></asp:CheckBox>
+                        <asp:CheckBox ID="Select" runat="server"></asp:CheckBox>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="Name" HeaderText="Category" SortExpression="Name" />
-
-
+                <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id"/>
             </Columns>
         </asp:GridView>
     </div>

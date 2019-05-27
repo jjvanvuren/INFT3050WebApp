@@ -32,11 +32,13 @@ namespace INFT3050WebApp.UL.Admin
             lblNewStockonHand.Text = displayBook.StockQuantity.ToString();
             GridAuthors.DataSource = displayBook.addedAuthors();
             GridAuthors.DataBind();
+            GridCategories.DataSource = displayBook.addedCategories();
+            GridCategories.DataBind();
 
 
 
         }
-        protected void btnRegister_Click(object sender, EventArgs e)
+        protected void btnSubmitBook_Click(object sender, EventArgs e)
         {
 
             

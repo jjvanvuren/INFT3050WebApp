@@ -229,6 +229,15 @@ namespace INFT3050WebApp.UL.Admin {
         protected global::System.Web.UI.WebControls.Label lblNewStockonHand;
         
         /// <summary>
+        /// Categories control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Categories;
+        
+        /// <summary>
         /// GridAuthors control.
         /// </summary>
         /// <remarks>
@@ -236,6 +245,24 @@ namespace INFT3050WebApp.UL.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridAuthors;
+        
+        /// <summary>
+        /// lblCategories control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCategories;
+        
+        /// <summary>
+        /// GridCategories control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridCategories;
         
         /// <summary>
         /// btnBookDetails control.

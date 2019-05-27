@@ -119,9 +119,30 @@ namespace INFT3050WebApp.BL
         
         }
 
-        public void AddCategoryIDs(List<Category> CategoryID)
+        public void AddCategoryIDs(List<int> Categories)
         {
-            CategoryIDs = new List<Category>(CategoryID);
+            CategoryIDs = new List<Category>();
+            Category newCategory = new Category();
+            List<Category> ListOfCategoires = newCategory.getCategories();
+            foreach (int CategoryID in Categories)
+            {
+                bool categoryFound = false;
+                while (categoryFound !=true)
+                {
+                    foreach (Category cat in ListOfCategoires)
+                    {
+                        if (cat.Id == CategoryID)
+                        {
+                            categoryFound = true;
+                            CategoryIDs.Add(cat);
+                        }
+                    }
+                }
+            }
+            
+            
+
+            CategoryIDs = new List<Category>();
 
         }
 

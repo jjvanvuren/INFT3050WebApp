@@ -13,6 +13,15 @@ namespace INFT3050WebApp.UL.Admin {
     public partial class AdminAddBookAuthorCategory {
         
         /// <summary>
+        /// vsAddBookAuthorCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary vsAddBookAuthorCategory;
+        
+        /// <summary>
         /// lblCurrentAuthors control.
         /// </summary>
         /// <remarks>

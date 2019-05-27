@@ -67,8 +67,10 @@
     <%--Price StockonHand --%>
     <asp:Label ID="lblStockonHand" runat="server" Text="Stock on Hand :"></asp:Label>
     <asp:Label ID="lblNewStockonHand" runat="server"></asp:Label>
-
+    <br />
+    <br />
     <%--Display authors--%>
+    <asp:Label ID="Categories" runat="server" Text="Authors :"></asp:Label>
     <asp:GridView ID="GridAuthors" runat="server" AutoGenerateColumns="false" CssClass="table" GridLines="None" AllowPaging="True" PageSize="4">
         <Columns>
             <asp:BoundField DataField="id" HeaderText="ID" SortExpression="Title" />
@@ -77,6 +79,17 @@
         </Columns>
     </asp:GridView>
 
-    <%<asp:Button ID="btnBookDetails" type="submit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnSubmitBook_Click" />
+    <br />
+    <br />
+    <%--Display Categories--%>
+    <asp:Label ID="lblCategories" runat="server" Text="Categories :"></asp:Label>
+    <asp:GridView ID="GridCategories" runat="server" AutoGenerateColumns="false" CssClass="table" GridLines="None" AllowPaging="True" >
+        <Columns>
+                <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id"/>
+                <asp:BoundField DataField="Name" HeaderText="Category" SortExpression="Name" />
+            </Columns>
+        </asp:GridView>
+
+    <asp:Button ID="btnBookDetails" type="submit" CssClass="btn btn-primary" runat="server" Text="Submit" OnClick="btnSubmitBook_Click" />
 </asp:Content>
 

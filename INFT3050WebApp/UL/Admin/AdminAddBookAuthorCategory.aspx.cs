@@ -53,13 +53,13 @@ namespace INFT3050WebApp.UL.Admin
 
         protected void btnNewAuthor_Click(object sender, EventArgs e)
         {
-           string NewAuthorFirstName = tbxFirstName.Text;
-           string NewAuthorLastName = tbxLastName.Text;
+            string NewAuthorFirstName = tbxFirstName.Text;
+            string NewAuthorLastName = tbxLastName.Text;
             //Adding Author to Data base
             BL.Author newAuthor = new BL.Author(tbxFirstName.Text, tbxLastName.Text);
             //Returning Created Author to Add to Session
             newAuthor = newAuthor.getAddAuthor(tbxFirstName.Text, tbxLastName.Text);
-      
+
             BL.AddBookSession AddAuthors = (BL.AddBookSession)Session["addBookSession"];
             AddAuthors.AddAuthorID(newAuthor);
             Session["addBookSession"] = AddAuthors;
@@ -72,28 +72,23 @@ namespace INFT3050WebApp.UL.Admin
         protected void btnComfirmToContiue_Click(object sender, EventArgs e)
         {
             BL.AddBookSession populateGridView = (BL.AddBookSession)Session["addBookSession"];
-
-            //add 
-            //foreach (GridViewRow row in GridView1.Rows)
-            //{
-            //    CheckBox chk = row.Cells[0].Controls[0] as CheckBox;
-            //    if (chk != null && chk.Checked)
-            //    {
-            //        // ...
-            //    }
-            //}
-
-
-
-            if (populateGridView.addedAuthors() == null || populateGridView.addedCategories()==null)
+            List<int> CategoryList = new List<int>();
+            //add check slected Category to the session.
+            foreach (GridViewRow gvrow in gvCategory.Rows)
             {
-                //do something - Will fire this out later
+                CheckBox chk = gvrow.FindControl("Select") as CheckBox;
+                if (chk != null && chk.Checked)
+                {
+                    CategoryList.Add(Int32.Parse(gvrow.Cells[2].Text));
+                }
             }
 
+            populateGridView.AddCategoryIDs(CategoryList);
+
+            if (populateGridView.addedAuthors() != null || populateGridView.addedCategories() != null)
+            {
+                Response.Redirect("~/UL/Admin/AdminAddBookComfirmation.aspx");
+            }
         }
-
-
-
-
     }
 }
