@@ -7,17 +7,29 @@
         <h1 class="alert-heading">Application Error</h1>
         <asp:Label runat="server" ID="lblErrorText"></asp:Label>
         <br />
-        <h4 class="alert-heading">Error Details</h4>
-        <p>
-            <asp:Label ID="lblErrorDetails" runat="server" />
-        </p>
-        
-        <br />
-        <h4 class="alert-heading">Error Source</h4>
-        <p>
-            <asp:Label ID="lblErrorSource" runat="server" />
-        </p>
-        
+
+        <asp:Panel ID="panErrorDetails" runat="server" Visible="false">
+
+            <h4>Error Handler:</h4>
+            <p>
+                <asp:Label ID="lblErrorHandler" runat="server" /><br />
+            </p>
+            <br />
+            <h4 class="alert-heading">Detailed Error</h4>
+            <p>
+                <asp:Label ID="lblErrorDetails" runat="server" />
+            </p>
+            <h4>Detailed Error Message</h4>
+            <p>
+                <asp:Label ID="lblInnerMessage" runat="server" /><br />
+            </p>
+            <p>
+                <asp:Label ID="lblInnerTrace" runat="server" />
+            </p>
+
+        </asp:Panel>
+
+
     </div>
 
 </asp:Content>

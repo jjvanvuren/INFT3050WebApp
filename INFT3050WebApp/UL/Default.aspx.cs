@@ -27,6 +27,7 @@ namespace INFT3050WebApp
         }
 
         protected void Page_Load(object sender, EventArgs e)
+
         {
             //throw new InvalidOperationException("An InvalidOperationException " +
             //"occurred in the Page_Load handler on the Default.aspx page.");
@@ -60,30 +61,46 @@ namespace INFT3050WebApp
                     ImageRepeater.DataSource = bestSellers;
                     ImageRepeater.DataBind();
                 }
-                catch (Exception exception)
+                catch (Exception exc)
                 {
-                    string exceptionString = "?error=" + exception.Message + "&source=" + exception.Source;
-                    Response.Redirect("DefaultError.aspx" + exceptionString);
+                    //string exceptionString = "?error=" + exception.Message;
+
+                    //if (exception.InnerException != null)
+                    //{
+                    //    exceptionString += "&innerex=" + exception.GetType().ToString() + "<br/>" + exception.InnerException.Message;
+                    //    exceptionString += "&stacktrace=" + exception.InnerException.StackTrace;
+                    //}
+                    //else
+                    //{
+                    //    exceptionString += "&innerex=" + exception.GetType().ToString();
+                    //    if (exception.StackTrace != null)
+                    //    {
+                    //        exceptionString += "&stacktrace=" + exception.StackTrace.ToString().TrimStart();
+                    //    }
+                    //}
+
+                    //Response.Redirect("DefaultError.aspx" + exceptionString);
+
+                    Server.Transfer("DefaultError.aspx", true);
+
                 }
-
-               
             }
         }
 
-        // Page Level Error Event Handler
-        private void Page_Error(object sender, EventArgs e)
-        {
-            Exception exception = Server.GetLastError();
+        //// Page Level Error Event Handler
+        //private void Page_Error(object sender, EventArgs e)
+        //{
+        //    Exception exception = Server.GetLastError();
 
-            // Handle specific exception.
-            if (exception is HttpUnhandledException)
-            {
-                string exceptionString = "?error=" + exception.Message + "&source=" + exception.Source;
-                Server.Transfer("DefaultError.aspx" + exceptionString);
-            }
-            // Clear the error from the server.
-            Server.ClearError();
-        }
+        //    // Handle specific exception.
+        //    if (exception is HttpUnhandledException)
+        //    {
+        //        string exceptionString = "?error=" + exception.Message + "&source=" + exception.Source;
+        //        Server.Transfer("DefaultError.aspx" + exceptionString);
+        //    }
+        //    // Clear the error from the server.
+        //    Server.ClearError();
+        //}
 
         protected void imgBestSeller_Command(object sender, CommandEventArgs e)
         {

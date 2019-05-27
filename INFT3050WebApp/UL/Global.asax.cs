@@ -6,6 +6,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Routing;
 using Microsoft.AspNet.FriendlyUrls;
+using System.Diagnostics;
 
 namespace INFT3050WebApp
 {
@@ -17,14 +18,8 @@ namespace INFT3050WebApp
 
             if (exc is HttpUnhandledException)
             {
-                if (exc.InnerException != null)
-                {
-                    exc = new Exception(exc.InnerException.Message);
-                    string exceptionString = "?error=" + exc.Message;
-                    // Pass the error on to the error page.
-                    Server.Transfer("DefaultError.aspx" + exceptionString, true);
-                    Server.ClearError();
-                }
+                // Pass the error on to the error page.
+                Server.Transfer("DefaultError.aspx?handler=Application_Error%20-%20Global.asax", true);
             }
         }
 
