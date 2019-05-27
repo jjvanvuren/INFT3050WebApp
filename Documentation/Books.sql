@@ -87,6 +87,8 @@ CREATE TABLE webSiteUser(
 	lastName VARCHAR(250),
 	isAdmin BIT, 
 	isActive BIT,
+	validationKey VARCHAR(MAX),
+	isVerified BIT,
 	Primary Key (userID)
 )
 
@@ -189,17 +191,17 @@ WITH STOPLIST = SYSTEM;
 --INSERT DATA INTO TABLES
 
 --Insert Users
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('joe@example.com', 'Password#1', 'Joe', '', 0, 1);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('james@example.com', 'Password#1', 'James', 'Smith', 0, 0);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('sara@example.com', 'Password#1', 'Sara', 'Headges', 0, 1);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('alex@usedbooksales.com.au', 'Password#1', 'Alex', 'Budwill', 1, 1);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('patrick@usedbooksales.com.au', 'Password#1', 'Patrick', 'Foley', 1, 1);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('derrick@example.com', 'Password#1', 'Derrick', 'Hardy', 0, 1);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('soli@example.com', 'Password#1', 'Soli', 'Soliman', 0, 1);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('chelsea@example.com', 'Password#1', 'Chelsea', 'Gordon', 0, 1);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('karl@usedbooksales.com.au', 'Password#1', 'Karl', 'Foley', 1, 1);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('jacques@usedbooksales.com.au', 'Password#1', 'Jacques', 'Janse van Vuren', 1, 1);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive) VALUES ('francois@usedbooksales.com.au', 'Password#1', 'Francois', 'Janse van Vuren', 1, 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('joe@example.com', 'Password#1', 'Joe', '', 0, 1, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('james@example.com', 'Password#1', 'James', 'Smith', 0, 0, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('sara@example.com', 'Password#1', 'Sara', 'Headges', 0, 1, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('alex@usedbooksales.com.au', 'Password#1', 'Alex', 'Budwill', 1, 1, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('patrick@usedbooksales.com.au', 'Password#1', 'Patrick', 'Foley', 1, 1, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('derrick@example.com', 'Password#1', 'Derrick', 'Hardy', 0, 1, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('soli@example.com', 'Password#1', 'Soli', 'Soliman', 0, 1, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('chelsea@example.com', 'Password#1', 'Chelsea', 'Gordon', 0, 1, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('karl@usedbooksales.com.au', 'Password#1', 'Karl', 'Foley', 1, 1, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('jacques@usedbooksales.com.au', 'Password#1', 'Jacques', 'Janse van Vuren', 1, 1, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('francois@usedbooksales.com.au', 'Password#1', 'Francois', 'Janse van Vuren', 1, 1, '', 1);
 
 --Insert Categories
 INSERT INTO category (Name, description) VALUES ('History', 'Category description goes here.');
@@ -304,24 +306,17 @@ INSERT INTO postageOption (postageOptionName, shippingCost) VALUES ('AusPost Exp
 INSERT INTO postageOption (postageOptionName, shippingCost) VALUES ('Startrack', 3.99);
 INSERT INTO postageOption (postageOptionName, shippingCost) VALUES ('Startrack Express', 7.99);
 
-
-
---Insert Payments
-INSERT INTO payment (datePayed, total) VALUES ('20190504', 4.99);
-INSERT INTO payment (datePayed, total) VALUES ('20190703', 14.99);
-INSERT INTO payment (datePayed, total) VALUES ('20190704', 4.99);
-INSERT INTO payment (datePayed, total) VALUES ('20191204', 20.99);
-INSERT INTO payment (datePayed, total) VALUES ('20190923', 31.99);
-INSERT INTO payment (datePayed, total) VALUES ('20190528', 2.99);
-INSERT INTO payment (datePayed, total) VALUES ('20190922', 5.99);
-INSERT INTO payment (datePayed, total) VALUES ('20191002', 6.99);
-INSERT INTO payment (datePayed, total) VALUES ('20190303', 8.99);
-INSERT INTO payment (datePayed, total) VALUES ('20190201', 7.99);
-
---Insert Orders
-INSERT INTO orders (userID, paymentID, orderStatus, GST, subTotal, );
-
-
+----Insert Payments
+--INSERT INTO payment (datePayed, total) VALUES ('20190504', 4.99);
+--INSERT INTO payment (datePayed, total) VALUES ('20190703', 14.99);
+--INSERT INTO payment (datePayed, total) VALUES ('20190704', 4.99);
+--INSERT INTO payment (datePayed, total) VALUES ('20191204', 20.99);
+--INSERT INTO payment (datePayed, total) VALUES ('20190923', 31.99);
+--INSERT INTO payment (datePayed, total) VALUES ('20190528', 2.99);
+--INSERT INTO payment (datePayed, total) VALUES ('20190922', 5.99);
+--INSERT INTO payment (datePayed, total) VALUES ('20191002', 6.99);
+--INSERT INTO payment (datePayed, total) VALUES ('20190303', 8.99);
+--INSERT INTO payment (datePayed, total) VALUES ('20190201', 7.99);
 
 --Select all book information
 SELECT item.itemID, price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, 
@@ -346,7 +341,6 @@ INNER JOIN bookCategory ON book.itemID = bookCategory.itemID
 INNER JOIN category ON bookCategory.categoryID = category.categoryID
 WHERE category.Name = 'category';
 
-
 --Select all book information
 SELECT item.itemID, title, price
 FROM item 
@@ -355,6 +349,3 @@ INNER JOIN bookAuthor ON book.itemID = bookAuthor.itemID
 INNER JOIN author ON bookAuthor.authorID = author.authorID
 INNER JOIN bookCategory ON book.itemID = bookCategory.itemID
 INNER JOIN category ON bookCategory.categoryID = category.categoryID;
-
-SELECT * FROM orders
-SELECT * FROM payment

@@ -30,13 +30,39 @@ namespace INFT3050WebApp
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
             UserSession query = (UserSession)Session[UserSession.SESSION_KEY];
             if (query != null)
             {
-                User currentUser = new User(query.SessionId);
+                try
+                {
+                    User currentUser = new User(query.SessionId);
 
-                customerWelcome.Text = String.Format(WELCOME_FORMAT, currentUser.FirstName);
+                    customerWelcome.Text = String.Format(WELCOME_FORMAT, currentUser.FirstName);
+                }
+                catch (Exception exception)
+                {
+                    //string exceptionString = "?error=" + exception.Message;
+
+                    //if (exception.InnerException != null)
+                    //{
+                    //    exceptionString += "&innerex=" + exception.GetType().ToString() + "<br/>" + exception.InnerException.Message;
+                    //    exceptionString += "&stacktrace=" + exception.InnerException.StackTrace;
+                    //}
+                    //else
+                    //{
+                    //    exceptionString += "&innerex=" + exception.GetType().ToString();
+                    //    if (exception.StackTrace != null)
+                    //    {
+                    //        exceptionString += "&stacktrace=" + exception.StackTrace.ToString().TrimStart();
+                    //    }
+                    //}
+
+                    //Response.Redirect("DefaultError.aspx" + exceptionString);
+
+                    Server.Transfer("DefaultError.aspx?handler=Customer.aspx", true);
+                }
+
+
             }
 
             if (!IsPostBack)
@@ -49,21 +75,47 @@ namespace INFT3050WebApp
 
                 List<Book> books = new List<Book>();
 
-                books = dbBook.GetAllBooks();
-
-                // Create list of best sellers and display them
-                List<Book> bestSellers = new List<Book>();
-
-                foreach (Book book in books)
+                try
                 {
-                    if (book.IsBestSeller)
+                    books = dbBook.GetAllBooks();
+
+                    // Create list of best sellers and display them
+                    List<Book> bestSellers = new List<Book>();
+
+                    foreach (Book book in books)
                     {
-                        bestSellers.Add(book);
+                        if (book.IsBestSeller)
+                        {
+                            bestSellers.Add(book);
+                        }
                     }
+
+                    ImageRepeater.DataSource = bestSellers;
+                    ImageRepeater.DataBind();
+                }
+                catch (Exception exception)
+                {
+                    //string exceptionString = "?error=" + exception.Message;
+
+                    //if (exception.InnerException != null)
+                    //{
+                    //    exceptionString += "&innerex=" + exception.GetType().ToString() + "<br/>" + exception.InnerException.Message;
+                    //    exceptionString += "&stacktrace=" + exception.InnerException.StackTrace;
+                    //}
+                    //else
+                    //{
+                    //    exceptionString += "&innerex=" + exception.GetType().ToString();
+                    //    if (exception.StackTrace != null)
+                    //    {
+                    //        exceptionString += "&stacktrace=" + exception.StackTrace.ToString().TrimStart();
+                    //    }
+                    //}
+
+                    //Response.Redirect("DefaultError.aspx" + exceptionString);
+
+                    Server.Transfer("DefaultError.aspx?handler=Customer.aspx", true);
                 }
 
-                ImageRepeater.DataSource = bestSellers;
-                ImageRepeater.DataBind();
             }
         }
 

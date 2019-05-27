@@ -20,7 +20,21 @@ namespace INFT3050WebApp.BL
         public int AuthorId { get; set; }
         public int CategoryId { get; set; }
 
-        public Book() { }
+        public Book()
+        {
+            //Set default values
+            Price = 0.00;
+            StockQuantity = 0;
+            ShortDescription = "";
+            LongDescription = "";
+            ImagePath = "";
+            ThumbnailPath = "";
+            Isbn = "";
+            Title = "";
+            SecondaryTitle = "";
+            Publisher = "";
+            IsBestSeller = false;
+        }
 
         public Book (int iItemID)
         {

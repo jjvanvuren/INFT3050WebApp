@@ -10,60 +10,60 @@
 namespace INFT3050WebApp.UL {
     
     
-    public partial class DefaultError {
+    public partial class PasswordRecovery {
         
         /// <summary>
-        /// lblErrorText control.
+        /// lblEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorText;
+        protected global::System.Web.UI.WebControls.Label lblEmail;
         
         /// <summary>
-        /// panErrorDetails control.
+        /// tbxEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel panErrorDetails;
+        protected global::System.Web.UI.WebControls.TextBox tbxEmail;
         
         /// <summary>
-        /// lblErrorHandler control.
+        /// lblUserExists control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorHandler;
+        protected global::System.Web.UI.WebControls.Label lblUserExists;
         
         /// <summary>
-        /// lblErrorDetails control.
+        /// rfvEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorDetails;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmail;
         
         /// <summary>
-        /// lblInnerMessage control.
+        /// revEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblInnerMessage;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revEmail;
         
         /// <summary>
-        /// lblInnerTrace control.
+        /// btnReset control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblInnerTrace;
+        protected global::System.Web.UI.WebControls.Button btnReset;
     }
 }

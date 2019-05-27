@@ -27,6 +27,7 @@ namespace INFT3050WebApp
         }
 
         protected void Page_Load(object sender, EventArgs e)
+
         {
 
             if (!IsPostBack)
@@ -40,6 +41,7 @@ namespace INFT3050WebApp
 
                 try
                 {
+
                     books = dbBook.GetAllBooks();
 
                     // Create list of best sellers based on IsBestSeller property
@@ -58,13 +60,42 @@ namespace INFT3050WebApp
                 }
                 catch (Exception exception)
                 {
-                    string exceptionString = "?error=" + exception.Message;
-                    Response.Redirect("DefaultError.aspx" + exceptionString);
-                }
+                    //string exceptionString = "?error=" + exception.Message;
 
-               
+                    //if (exception.InnerException != null)
+                    //{
+                    //    exceptionString += "&innerex=" + exception.GetType().ToString() + "<br/>" + exception.InnerException.Message;
+                    //    exceptionString += "&stacktrace=" + exception.InnerException.StackTrace;
+                    //}
+                    //else
+                    //{
+                    //    exceptionString += "&innerex=" + exception.GetType().ToString();
+                    //    if (exception.StackTrace != null)
+                    //    {
+                    //        exceptionString += "&stacktrace=" + exception.StackTrace.ToString().TrimStart();
+                    //    }
+                    //}
+
+                    //Response.Redirect("DefaultError.aspx" + exceptionString);
+
+                    Server.Transfer("DefaultError.aspx?handler=Default.aspx", true);
+
+                }
             }
         }
+
+        //private void Page_Error(object sender, EventArgs e)
+        //{
+        //    // Get last error from the server.
+        //    Exception exc = Server.GetLastError();
+
+        //    // Handle specific exception.
+        //    if (exc is InvalidOperationException)
+        //    {
+        //        // Pass the error on to the error page.
+        //        Server.Transfer("DefaultError.aspx?handler=Page_Error%20-%20Default.aspx", true);
+        //    }
+        //}
 
         protected void imgBestSeller_Command(object sender, CommandEventArgs e)
         {

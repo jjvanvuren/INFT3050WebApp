@@ -13,6 +13,13 @@ namespace INFT3050WebApp.BL
         public string LastName { get; set; }
         public string Description { get; set; }
 
+        public Author()
+        {
+            FirstName = "";
+            LastName = "";
+            Description = "";
+        }
+
         public Author() { }
         public Author(string SearchFirstName, string SearchLastName)
         {

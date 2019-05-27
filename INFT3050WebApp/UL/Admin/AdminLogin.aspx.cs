@@ -84,6 +84,11 @@ namespace INFT3050WebApp.UL.BackEnd
                 }
             }
         }
+        // Redirects to the Password Recovery Page
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/UL/PasswordRecovery.aspx");
+        }
 
         //On click handler for Register button - Sends to AdminRegister.aspx
         protected void btnRegister_Click(object sender, EventArgs e)
