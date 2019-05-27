@@ -59,7 +59,7 @@ namespace INFT3050WebApp
 
                     //Response.Redirect("DefaultError.aspx" + exceptionString);
 
-                    Server.Transfer("DefaultError.aspx", true);
+                    Server.Transfer("DefaultError.aspx?handler=Customer.aspx", true);
                 }
 
 
@@ -113,7 +113,7 @@ namespace INFT3050WebApp
 
                     //Response.Redirect("DefaultError.aspx" + exceptionString);
 
-                    Server.Transfer("DefaultError.aspx", true);
+                    Server.Transfer("DefaultError.aspx?handler=Customer.aspx", true);
                 }
 
             }

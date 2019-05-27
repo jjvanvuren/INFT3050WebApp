@@ -53,7 +53,7 @@ namespace INFT3050WebApp.UL
 
                         //Response.Redirect("DefaultError.aspx" + exceptionString);
 
-                        Server.Transfer("DefaultError.aspx", true);
+                        Server.Transfer("DefaultError.aspx?handler=BooksByCategory.aspx", true);
                     }
                 }
             }

@@ -109,7 +109,7 @@ namespace INFT3050WebApp
 
                 //Response.Redirect("DefaultError.aspx" + exceptionString);
 
-                Server.Transfer("DefaultError.aspx", true);
+                Server.Transfer("DefaultError.aspx?handler=Register.aspx", true);
             }
 
         }
