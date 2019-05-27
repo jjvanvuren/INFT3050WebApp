@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using INFT3050WebApp.BL;
 
 namespace INFT3050WebApp.UL
 {
@@ -23,7 +24,29 @@ namespace INFT3050WebApp.UL
         // Redirects to the Password Recovery Page
         protected void btnReset_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/UL/RecoveryEmailSent.aspx");
+            // Clear the session incase still logged in
+            Session.Clear();
+
+            User userVerify = new User();
+
+            // Check if the user exists on the DB
+            bool bUserExists = userVerify.UserExists(tbxEmail.Text);
+
+            if (IsValid)
+            {
+                // If the email exists
+                if (bUserExists)
+                {
+                    // Send recovery email
+                    userVerify.SendResetPassword(tbxEmail.Text);
+                    Response.Redirect("~/UL/RecoveryEmailSent.aspx");
+                }
+                else
+                {
+                    lblUserExists.Text = "Email not registered or account has been disabled";
+                    lblUserExists.Visible = true;
+                }
+            }
         }
     }
 }

@@ -166,6 +166,7 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="UL\Search.aspx" />
+    <Content Include="UL\SuccessfulPasswordRecovery.aspx" />
     <Content Include="UL\SuccessfulRegistration.aspx" />
     <Content Include="UL\css\UsedBooks.css" />
     <Content Include="ViewSwitcher.ascx" />
@@ -417,6 +418,13 @@
     </Compile>
     <Compile Include="UL\Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UL\SuccessfulPasswordRecovery.aspx.cs">
+      <DependentUpon>SuccessfulPasswordRecovery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\SuccessfulPasswordRecovery.aspx.designer.cs">
+      <DependentUpon>SuccessfulPasswordRecovery.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\SuccessfulRegistration.aspx.cs">
       <DependentUpon>SuccessfulRegistration.aspx</DependentUpon>

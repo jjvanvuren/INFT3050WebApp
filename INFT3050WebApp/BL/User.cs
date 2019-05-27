@@ -305,7 +305,6 @@ namespace INFT3050WebApp.BL
             SendEmail("donotreply@usedbooksales.com.au", "UsedBooks.com.au", uNewUser.Email, strSubject, strBody);
         }
 
-
         // Method that sends an email
         private void SendEmail(string strFromAddress, string strFromName, string strToAddress,
             string strSubject, string strBody)
@@ -335,6 +334,68 @@ namespace INFT3050WebApp.BL
             {
                 return false;
             }
+        }
+
+        //
+        public void SendResetPassword(string strEmail)
+        {
+            User updateUser = new User();
+
+            // Setup access to database
+            IUserDataAccess db = new UserDataAccess();
+
+            updateUser.Email = strEmail;
+
+            updateUser.GenValidationKey();
+
+            db.UpdateKey(updateUser);
+
+            User user = new User(strEmail);
+
+            const string strSubject = "Used Books Password Recovery";
+            string strEmailFormat;
+            string strBody;
+            string strBaseUrl = ConfigurationManager.AppSettings["SecurePath"] + "UL/NewPassword.aspx";
+
+            // Create Validation URL
+            string strResetUrl = strBaseUrl + "?email=" + user.Email + "&key=" + user.ValidationKey;
+
+            // Format the email body depending on if user has a lastname
+            if (user.LastName == "")
+            {
+                strEmailFormat = "Hi {0},\n\rPlease click on the link below to reset your password.\n\r{1}";
+
+                strBody = string.Format(strEmailFormat, user.FirstName, strResetUrl);
+            }
+            else
+            {
+                strEmailFormat = "Hi {0} {1},\n\rPlease click on the link below to reset your password.\n\r{2}";
+
+                strBody = string.Format(strEmailFormat, user.FirstName, user.LastName, strResetUrl);
+            }
+
+            // Send password recovery email
+            SendEmail("donotreply@usedbooksales.com.au", "UsedBooks.com.au", user.Email, strSubject, strBody);
+        }
+
+        public void ResetPassword()
+        {
+            User user = new User(this.Email);
+
+            // Hash the plain text password using md5Hash
+            using (MD5 md5Hash = MD5.Create())
+            {
+                string passwordHash = GetMd5Hash(md5Hash, this.Password);
+
+                this.Password = passwordHash;
+            }
+
+            user.Password = this.Password;
+
+            // Setup access to database
+            IUserDataAccess db = new UserDataAccess();
+
+            int iUpdatePassword = db.UpdatePassword(user);
         }
 
         // Get the MD5 Hash for a string. Used for the user password
