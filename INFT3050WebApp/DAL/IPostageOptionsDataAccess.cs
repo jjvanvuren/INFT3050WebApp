@@ -10,5 +10,7 @@ namespace INFT3050WebApp.DAL
     interface IPostageOptionsDataAccess
     {
         IEnumerable <PostageOption> GetPostageOptions();
+        int DeletePostageOptionById(int Id);
+        int UpdatePostageOptionById(int Id, double price, string name);
     }
 }
