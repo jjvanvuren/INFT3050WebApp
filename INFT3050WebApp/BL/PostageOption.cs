@@ -30,5 +30,15 @@ namespace INFT3050WebApp.BL
 
             return allPostageOptions;
         }
+
+        public int DeletePostageOption(int Id)
+        {
+            
+            var db = new PostageOptionDataAccess();
+
+            int rowsAffected = db.DeletePostageOptionById(Id);
+
+            return rowsAffected;
+        }
     }
 }

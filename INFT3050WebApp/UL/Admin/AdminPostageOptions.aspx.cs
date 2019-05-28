@@ -29,5 +29,35 @@ namespace INFT3050WebApp.UL.Admin
                 Response.Redirect(url);
             }
         }
+
+        protected void PostageOptionManagement_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            // If delete button was selected change status to inactive
+            if (e.CommandName == "cmdDelete")
+            {
+                try
+                {
+                    string comString = e.CommandArgument.ToString();
+
+                    if (!string.IsNullOrEmpty(comString) && int.TryParse(comString, out int id))
+                    {
+                        PostageOption postage = new PostageOption();
+
+                        postage.DeletePostageOption(id);
+                    }
+
+
+                }
+                catch (Exception exception)
+                {
+                    Server.Transfer("~/UL/DefaultError.aspx?handler=AdminPostageOptions.aspx", true);
+                }
+                finally
+                {
+                    this.PostageOptionManagement.DataBind();
+                }
+
+            }
+        }
     }
 }

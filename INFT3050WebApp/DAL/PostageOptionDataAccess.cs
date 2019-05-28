@@ -57,5 +57,23 @@ namespace INFT3050WebApp.DAL
             }
             return postageOptions;
         }
+
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public int DeletePostageOptionById(int Id)
+        {
+            string sql = @"UPDATE dbo.[postageOption] SET [isActive] = 0
+                            WHERE [postageOptionID]=@Id;";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("Id", Id);
+                    con.Open();
+                    return command.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }
