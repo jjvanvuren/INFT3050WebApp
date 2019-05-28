@@ -75,5 +75,24 @@ namespace INFT3050WebApp.DAL
             }
         }
 
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public int UpdatePostageOptionById(int Id, double price, string name)
+        {
+            string sql = @"UPDATE dbo.[postageOption] SET [shippingCost] = @price, [postageOptionName] = @name
+                            WHERE [postageOptionID]=@Id;";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("Id", Id);
+                    command.Parameters.AddWithValue("price", price);
+                    command.Parameters.AddWithValue("name", name);
+                    con.Open();
+                    return command.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }

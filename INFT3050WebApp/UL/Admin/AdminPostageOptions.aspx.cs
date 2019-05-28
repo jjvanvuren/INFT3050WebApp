@@ -22,11 +22,14 @@ namespace INFT3050WebApp.UL.Admin
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Enable SSL
-            if (!Request.IsSecureConnection)
+            if (!IsPostBack)
             {
-                string url = ConfigurationManager.AppSettings["SecurePath"] + "UL/Admin/AdminPostageOptions.aspx";
-                Response.Redirect(url);
+                //Enable SSL
+                if (!Request.IsSecureConnection)
+                {
+                    string url = ConfigurationManager.AppSettings["SecurePath"] + "UL/Admin/AdminPostageOptions.aspx";
+                    Response.Redirect(url);
+                }
             }
         }
 
@@ -57,6 +60,33 @@ namespace INFT3050WebApp.UL.Admin
                     this.PostageOptionManagement.DataBind();
                 }
 
+            }
+        }
+
+        protected void PostageOptionManagement_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            try
+            {
+                GridViewRow row = PostageOptionManagement.Rows[e.RowIndex];
+                string sID = row.Cells[0].Text;
+                string updatedName = ((TextBox)row.Cells[1].FindControl("txtGridName")).Text;
+                string updatedPrice = ((TextBox)row.Cells[2].FindControl("txtGridPrice")).Text;
+
+
+                if (int.TryParse(sID, out int iID) && double.TryParse(updatedPrice, out double dPrice))
+                {
+                    PostageOption postage = new PostageOption();
+
+                    int rowsAffected = postage.UpdatePostageOptionById(iID, dPrice, updatedName);
+                }
+            }
+            catch (Exception)
+            {
+                Server.Transfer("~/UL/DefaultError.aspx?handler=AdminPostageOptions.aspx", true);
+            }
+            finally
+            {
+                Response.Redirect("~/UL/Admin/AdminPostageOptions.aspx");
             }
         }
     }

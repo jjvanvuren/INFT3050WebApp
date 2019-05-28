@@ -40,5 +40,14 @@ namespace INFT3050WebApp.BL
 
             return rowsAffected;
         }
+
+        public int UpdatePostageOptionById(int Id, double price, string name)
+        {
+            var db = new PostageOptionDataAccess();
+
+            int rowsAffected = db.UpdatePostageOptionById(Id, price, name);
+
+            return rowsAffected;
+        }
     }
 }
