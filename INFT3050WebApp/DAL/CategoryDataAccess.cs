@@ -82,5 +82,34 @@ namespace INFT3050WebApp.DAL
 
             return category;
         }
+
+
+        [DataObjectMethod(DataObjectMethodType.Insert)]
+        public void ConnectBookCategory(int BookID, List<Category> Category)
+        {
+            string sql = @"INSERT INTO bookCategory (itemID, CategoryID)
+                            VALUES(@itemID, @CategoryID)";
+            if (Category.Count > 1)
+            {
+                foreach (Category bookAuthors in Category)
+                {
+                    sql = sql + ",(@itemID, @CategoryID)";
+                }
+            }
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    for (int i = 0; i < Category.Count; ++i)
+                    {
+                        command.Parameters.Add(new SqlParameter("itemID", BookID));
+                        command.Parameters.Add(new SqlParameter("CategoryID", Category[i].Id));
+                    }
+                    con.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
+        }
     }
 }

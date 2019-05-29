@@ -297,9 +297,10 @@ namespace INFT3050WebApp.DAL
         public int SubmitBook(Book newBook)
         {
             Int32 newId;
+
             string sql = @"INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive)
                                 VALUES (@price, @stockQuantity, @longDescription, @shortDescription, @imagePath, @thumbnailPath, 1)
-                                SELECT item.ID";
+                                SELECT SCOPE_IDENTITY()";
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(sql, con))
@@ -311,17 +312,17 @@ namespace INFT3050WebApp.DAL
                     command.Parameters.Add(new SqlParameter("imagePath", newBook.ImagePath));
                     command.Parameters.Add(new SqlParameter("thumbnailPath", newBook.ThumbnailPath));
                     con.Open();
-                    newId = (Int32)command.ExecuteScalar();
+                    newId = Convert.ToInt32((object)command.ExecuteScalar());
                 }
 
             }
-            sql = @"INSERT INTO book (ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher)
-                                VALUES (@ISBN, @title, @datePublished, @secondaryTitle, @isBestSeller, @publisher)";
+            sql = @"INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher)
+                                VALUES (@itemID, @ISBN, @title, @datePublished, @secondaryTitle, @isBestSeller, @publisher)";
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(sql, con))
                 {
-
+                    command.Parameters.Add(new SqlParameter("itemID", newId));
                     command.Parameters.Add(new SqlParameter("ISBN", newBook.Isbn));
                     command.Parameters.Add(new SqlParameter("title", newBook.Title));
                     command.Parameters.Add(new SqlParameter("datePublished", newBook.DatePublished));

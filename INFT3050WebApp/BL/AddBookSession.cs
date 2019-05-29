@@ -139,10 +139,6 @@ namespace INFT3050WebApp.BL
                     }
                 }
             }
-            
-            
-
-            CategoryIDs = new List<Category>();
 
         }
 
@@ -183,8 +179,10 @@ namespace INFT3050WebApp.BL
             Book newBook = this.createTempBook();
             DAL.BookDataAccess connect = new BookDataAccess();
             newBook.Id = connect.SubmitBook(newBook);
-            
-
+            DAL.AuthorDataAccess connectAuthor = new AuthorDataAccess();
+            connectAuthor.ConnectBookAuthor(newBook.Id, Authors);
+            DAL.CategoryDataAccess connectCategory = new CategoryDataAccess();
+            connectCategory.ConnectBookCategory(newBook.Id, CategoryIDs);
 
         }
 

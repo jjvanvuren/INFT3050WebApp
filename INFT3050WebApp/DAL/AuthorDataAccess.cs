@@ -64,7 +64,7 @@ namespace INFT3050WebApp.DAL
         }
 
 
-
+        [DataObjectMethod(DataObjectMethodType.Insert)]
         public void AddAuthor(string SearchFirstName, string SearchLastName, string newDecription)
         {
             string sql = @"INSERT INTO author (FirstName, LastName, description)
@@ -88,6 +88,7 @@ namespace INFT3050WebApp.DAL
 
         }
 
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public Author getAuthor(int ID)
         {
             string sql = @"SELECT *
@@ -111,6 +112,7 @@ namespace INFT3050WebApp.DAL
             return null;
         }
 
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public Author getAuthor(string SearchFirstName, string SearchLastName)
         {
             string sql = @"SELECT *
@@ -148,6 +150,7 @@ namespace INFT3050WebApp.DAL
             return author;
         }
 
+        [DataObjectMethod(DataObjectMethodType.Insert)]
         public void ConnectBookAuthor(int BookID, List<Author> Authors)
         {
             string sql = @"INSERT INTO bookAuthor (itemID, authorID)
@@ -168,12 +171,7 @@ namespace INFT3050WebApp.DAL
                         command.Parameters.Add(new SqlParameter("authorID", Authors[i].Id));
                     }
                     con.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        Author Author = CreateAuthor(reader);
-
-                    }
+                    command.ExecuteNonQuery();
                 }
             }
 
