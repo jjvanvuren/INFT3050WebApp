@@ -22,11 +22,18 @@ namespace INFT3050WebApp.UL.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Enable SSL
-            if (!Request.IsSecureConnection)
+            if(!IsPostBack)
             {
-                string url = ConfigurationManager.AppSettings["SecurePath"] + "UL/Admin/AdminPurchaseHistory.aspx";
-                Response.Redirect(url);
+                //Enable SSL
+                if (!Request.IsSecureConnection)
+                {
+                    string url = ConfigurationManager.AppSettings["SecurePath"] + "UL/Admin/AdminPurchaseHistory.aspx";
+                    Response.Redirect(url);
+                }
+
+                string UserID = Request.QueryString["Id"];
+
+                Orders.DataSource = ;
             }
         }
     }
