@@ -20,6 +20,32 @@ namespace INFT3050WebApp.DAL
             }
         }
 
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Category> GetCategory()
+        {
+            List<Category> ListofCategory = new List<Category>();
+            string sql = @"SELECT [categoryID], [name], [description] 
+                            FROM [dbo].[category]";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Category newCategory = CreateCategory(reader);
+                        ListofCategory.Add(newCategory);
+                        
+                    }
+                    
+                }
+            }
+            return ListofCategory;
+        }
+
         // Method used to get a Category by ID
         [DataObjectMethod(DataObjectMethodType.Select)]
         public Category GetCategoryById(int Id)
@@ -55,6 +81,35 @@ namespace INFT3050WebApp.DAL
             category.Description = reader["description"].ToString();
 
             return category;
+        }
+
+
+        [DataObjectMethod(DataObjectMethodType.Insert)]
+        public void ConnectBookCategory(int BookID, List<Category> Category)
+        {
+            string sql = @"INSERT INTO bookCategory (itemID, CategoryID)
+                            VALUES(@itemID, @CategoryID)";
+            if (Category.Count > 1)
+            {
+                foreach (Category bookAuthors in Category)
+                {
+                    sql = sql + ",(@itemID, @CategoryID)";
+                }
+            }
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    for (int i = 0; i < Category.Count; ++i)
+                    {
+                        command.Parameters.Add(new SqlParameter("itemID", BookID));
+                        command.Parameters.Add(new SqlParameter("CategoryID", Category[i].Id));
+                    }
+                    con.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
         }
     }
 }

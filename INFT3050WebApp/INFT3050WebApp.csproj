@@ -96,6 +96,9 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="UL\About.aspx" />
+    <Content Include="UL\Admin\AdminAddBookAuthorCategory.aspx" />
+    <Content Include="UL\Admin\AdminAddBookComfirmation.aspx" />
+    <Content Include="UL\Admin\AdminAddBookDetails.aspx" />
     <Content Include="UL\Admin\AdminPurchaseHistory.aspx" />
     <Content Include="UL\Admin\AdminUserAccounts.aspx" />
     <Content Include="UL\Admin\AdminPostageOptions.aspx" />
@@ -191,6 +194,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BL\AddBookSession.cs" />
     <Compile Include="BL\Address.cs" />
     <Compile Include="BL\Author.cs" />
     <Compile Include="BL\Book.cs" />
@@ -201,6 +205,7 @@
     <Compile Include="BL\PostageOption.cs" />
     <Compile Include="BL\StoreItem.cs" />
     <Compile Include="BL\User.cs" />
+    <Compile Include="DAL\AuthorDataAccess.cs" />
     <Compile Include="DAL\BookDataAccess.cs" />
     <Compile Include="DAL\CategoryDataAccess.cs" />
     <Compile Include="DAL\IBookDataAccess.cs" />
@@ -222,6 +227,27 @@
     </Compile>
     <Compile Include="UL\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminAddBookAuthorCategory.aspx.cs">
+      <DependentUpon>AdminAddBookAuthorCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminAddBookAuthorCategory.aspx.designer.cs">
+      <DependentUpon>AdminAddBookAuthorCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminAddBookComfirmation.aspx.cs">
+      <DependentUpon>AdminAddBookComfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminAddBookComfirmation.aspx.designer.cs">
+      <DependentUpon>AdminAddBookComfirmation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminAddBookDetails.aspx.cs">
+      <DependentUpon>AdminAddBookDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminAddBookDetails.aspx.designer.cs">
+      <DependentUpon>AdminAddBookDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Admin\AdminPurchaseHistory.aspx.cs">
       <DependentUpon>AdminPurchaseHistory.aspx</DependentUpon>
