@@ -292,12 +292,14 @@ namespace INFT3050WebApp.DAL
 
             return category;
         }
+
+        [DataObjectMethod(DataObjectMethodType.Insert)]
         public int SubmitBook(Book newBook)
         {
             Int32 newId;
             string sql = @"INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive)
                                 VALUES (@price, @stockQuantity, @longDescription, @shortDescription, @imagePath, @thumbnailPath, 1)
-                                SELECT CONVERT(int, SCOPE_IDENTITY())";
+                                SELECT item.ID";
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(sql, con))
