@@ -89,7 +89,7 @@ namespace INFT3050WebApp
                     Response.Redirect("~/UL/SuccessfulRegistration.aspx");
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 //string exceptionString = "?error=" + exception.Message;
 

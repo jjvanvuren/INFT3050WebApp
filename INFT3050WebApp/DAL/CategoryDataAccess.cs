@@ -77,8 +77,8 @@ namespace INFT3050WebApp.DAL
         {
             Category category = new Category();
             category.Id = (int)reader["categoryID"];
-            category.Name = reader["name"].ToString();
-            category.Description = reader["description"].ToString();
+            category.Name = (string)reader.GetSqlString(1);
+            category.Description = (string)reader.GetSqlString(2);
 
             return category;
         }
@@ -110,6 +110,32 @@ namespace INFT3050WebApp.DAL
                 }
             }
 
+        }
+
+        //getting a list of authors by Book ID
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Category> getCategories(int BookID)
+        {
+            List<Category> listofCategories = new List<Category>();
+            string sql = @"SELECT [category].[categoryID], [category].[Name],[category].[description]
+                            FROM [dbo].[bookCategory]                   
+                            INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID]
+                            WHERE[bookCategory].[itemID] = @itemID ";
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.Add(new SqlParameter("itemID", BookID));
+                    con.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Category catergory = CreateCategory(reader);
+                        listofCategories.Add(catergory);
+                    }
+                    return listofCategories;
+                }
+            }
         }
     }
 }

@@ -39,7 +39,7 @@ namespace INFT3050WebApp
 
                     customerWelcome.Text = String.Format(WELCOME_FORMAT, currentUser.FirstName);
                 }
-                catch (Exception exception)
+                catch (Exception)
                 {
                     //string exceptionString = "?error=" + exception.Message;
 
@@ -93,7 +93,7 @@ namespace INFT3050WebApp
                     ImageRepeater.DataSource = bestSellers;
                     ImageRepeater.DataBind();
                 }
-                catch (Exception exception)
+                catch (Exception)
                 {
                     //string exceptionString = "?error=" + exception.Message;
 

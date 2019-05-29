@@ -26,14 +26,9 @@ namespace INFT3050WebApp.DAL
         {
             List<Book> books = new List<Book>();
                 string sql = @"SELECT [item].[itemID], [price], [stockQuantity], [longDescription], [shortDescription], [imagePath], [thumbnailPath], 
-                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher], [author].[firstName], [author].[lastName], [author].[description], 
-                            [category].[name], [category].[description], [author].[authorID], [category].[categoryID]
+                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher]
                             FROM [dbo].[item] 
                             INNER JOIN [book] ON [item].[itemID] = [book].[itemID]
-                            INNER JOIN [bookAuthor] ON [book].[itemID] = [bookAuthor].[itemID]
-                            INNER JOIN [author] ON [bookAuthor].[authorID] = [author].[authorID]
-                            INNER JOIN [bookCategory] ON [book].[itemID] = [bookCategory].[itemID]
-                            INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID]
                             WHERE isActive = 1;";
 
                 using (SqlConnection con = new SqlConnection(ConnectionString))
@@ -43,14 +38,15 @@ namespace INFT3050WebApp.DAL
                         con.Open();
                         SqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())
-                        {
-                            Author newAuthor = CreateAuthor(reader);
-                            Category newCategory = CreateCategory(reader);
+                        { 
                             Book newBook = CreateBook(reader);
-                            newBook.Author = newAuthor;
-                            newBook.Category = newCategory;
+                            AuthorDataAccess newAuthor = new AuthorDataAccess();
+                            newBook.Authors = newAuthor.getAuthors(newBook.Id);
+                            CategoryDataAccess newCategory = new CategoryDataAccess();
+                            newBook.Categories = newCategory.getCategories(newBook.Id);
                             books.Add(newBook);
                         }
+
                     }
                 }
                 return books;
@@ -58,36 +54,31 @@ namespace INFT3050WebApp.DAL
 
         // Method used to get books by their ID
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public Book GetBookById(int Id)
+        public Book GetBookById(int bookID)
         {
             string sql = @"SELECT [item].[itemID], [price], [stockQuantity], [longDescription], [shortDescription], [imagePath], [thumbnailPath], 
-                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher], [author].[firstName], [author].[lastName], [author].[description], 
-                            [category].[name], [category].[description], [author].[authorID], [category].[categoryID]
+                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher]
                             FROM [dbo].[item] 
                             INNER JOIN [book] ON [item].[itemID] = [book].[itemID]
-                            INNER JOIN [bookAuthor] ON [book].[itemID] = [bookAuthor].[itemID]
-                            INNER JOIN [author] ON [bookAuthor].[authorID] = [author].[authorID]
-                            INNER JOIN [bookCategory] ON [book].[itemID] = [bookCategory].[itemID]
-                            INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID]
                             WHERE [item].[itemID]=@Id;";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(sql, con))
                 {
-                    command.Parameters.Add(new SqlParameter("Id", Id));
+                    command.Parameters.Add(new SqlParameter("Id", bookID));
                     con.Open();
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        Author newAuthor = CreateAuthor(reader);
-                        Category newCategory = CreateCategory(reader);
                         Book newBook = CreateBook(reader);
-                        newBook.Author = newAuthor;
-                        newBook.Category = newCategory;
-
+                        AuthorDataAccess newAuthor = new AuthorDataAccess();
+                        newBook.Authors = newAuthor.getAuthors(newBook.Id);
+                        CategoryDataAccess newCategory = new CategoryDataAccess();
+                        newBook.Categories = newCategory.getCategories(newBook.Id);
                         return newBook;
                     }
+
                 }
             }
             return null;
@@ -169,16 +160,10 @@ namespace INFT3050WebApp.DAL
         {
             List<Book> books = new List<Book>();
             string sql = @"SELECT [item].[itemID], [price], [stockQuantity], [longDescription], [shortDescription], [imagePath], [thumbnailPath], 
-                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher], [author].[firstName], [author].[lastName], [author].[description], 
-                            [category].[name], [category].[description], [author].[authorID], [category].[categoryID]
+                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher]
                             FROM [dbo].[item] 
                             INNER JOIN [book] ON [item].[itemID] = [book].[itemID]
-                            INNER JOIN [bookAuthor] ON [book].[itemID] = [bookAuthor].[itemID]
-                            INNER JOIN [author] ON [bookAuthor].[authorID] = [author].[authorID]
-                            INNER JOIN [bookCategory] ON [book].[itemID] = [bookCategory].[itemID]
-                            INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID]
-                            WHERE isActive = 1 AND CONTAINS (title, @searchString);";
-
+                            WHERE isActive = 1 AND CONTAINS (title, @searchString;";
             if (searchString == null)
             {
                 return GetBooks();
@@ -194,18 +179,19 @@ namespace INFT3050WebApp.DAL
                         SqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
-                            Author newAuthor = CreateAuthor(reader);
-                            Category newCategory = CreateCategory(reader);
                             Book newBook = CreateBook(reader);
-                            newBook.Author = newAuthor;
-                            newBook.Category = newCategory;
+                            con.Close();
+                            AuthorDataAccess newAuthor = new AuthorDataAccess();
+                            newBook.Authors = newAuthor.getAuthors(newBook.Id);
+                            CategoryDataAccess newCategory = new CategoryDataAccess();
+                            newBook.Categories = newCategory.getCategories(newBook.Id);
                             books.Add(newBook);
                         }
+
                     }
                 }
                 return books;
             }
-
         }
 
         // Method used to get books by their Category
@@ -214,18 +200,10 @@ namespace INFT3050WebApp.DAL
         {
             List<Book> books = new List<Book>();
             string sql = @"SELECT [item].[itemID], [price], [stockQuantity], [longDescription], [shortDescription], [imagePath], [thumbnailPath], 
-                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher], [author].[firstName], [author].[lastName], [author].[description], 
-                            [category].[name], [category].[description], [author].[authorID], [category].[categoryID]
+                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher]
                             FROM [dbo].[item] 
                             INNER JOIN [book] ON [item].[itemID] = [book].[itemID]
-                            INNER JOIN [bookAuthor] ON [book].[itemID] = [bookAuthor].[itemID]
-                            INNER JOIN [author] ON [bookAuthor].[authorID] = [author].[authorID]
-                            INNER JOIN [bookCategory] ON [book].[itemID] = [bookCategory].[itemID]
-                            INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID]
                             WHERE [category].[categoryID]=@Id;";
-
-
-
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(sql, con))
@@ -233,18 +211,22 @@ namespace INFT3050WebApp.DAL
                     command.Parameters.Add(new SqlParameter("Id", CategoryId));
                     con.Open();
                     SqlDataReader reader = command.ExecuteReader();
+                    con.Close();
                     while (reader.Read())
                     {
-                        Author newAuthor = CreateAuthor(reader);
-                        Category newCategory = CreateCategory(reader);
                         Book newBook = CreateBook(reader);
-                        newBook.Author = newAuthor;
-                        newBook.Category = newCategory;
+                        con.Close();
+                        AuthorDataAccess newAuthor = new AuthorDataAccess();
+                        newBook.Authors = newAuthor.getAuthors(newBook.Id);
+                        CategoryDataAccess newCategory = new CategoryDataAccess();
+                        newBook.Categories = newCategory.getCategories(newBook.Id);
                         books.Add(newBook);
                     }
+
                 }
+
+                return books;
             }
-            return books;
         }
 
         // Method used to create a book object from the reader
@@ -264,8 +246,6 @@ namespace INFT3050WebApp.DAL
             book.SecondaryTitle = reader["secondaryTitle"].ToString();
             book.IsBestSeller = (bool)reader.GetSqlBoolean(11);
             book.Publisher = reader["publisher"].ToString();
-            book.AuthorId = (int)reader["authorID"];
-            book.CategoryId = (int)reader["categoryID"];
 
             return book;
         }
@@ -314,7 +294,6 @@ namespace INFT3050WebApp.DAL
                     con.Open();
                     newId = Convert.ToInt32((object)command.ExecuteScalar());
                 }
-
             }
             sql = @"INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher)
                                 VALUES (@itemID, @ISBN, @title, @datePublished, @secondaryTitle, @isBestSeller, @publisher)";

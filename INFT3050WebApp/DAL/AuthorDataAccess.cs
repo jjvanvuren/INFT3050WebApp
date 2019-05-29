@@ -18,6 +18,7 @@ namespace INFT3050WebApp.DAL
                 return ConfigurationManager.ConnectionStrings["UsedBooksConnectionString"].ConnectionString;
             }
         }
+
         // Method used to get Authors by name
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Author> GetAuthors(string SearchFirstName, string SearchLastName)
@@ -63,7 +64,7 @@ namespace INFT3050WebApp.DAL
             return ListofAuthors;
         }
 
-
+        //Adding an Author to the database
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public void AddAuthor(string SearchFirstName, string SearchLastName, string newDecription)
         {
@@ -88,6 +89,8 @@ namespace INFT3050WebApp.DAL
 
         }
 
+
+        //getting an Author by ID
         [DataObjectMethod(DataObjectMethodType.Select)]
         public Author getAuthor(int ID)
         {
@@ -111,7 +114,35 @@ namespace INFT3050WebApp.DAL
             }
             return null;
         }
+        
+        //getting a list of authors by Book ID
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Author> getAuthors(int BookID)
+        {
+            List<Author> listofAuthors = new List<Author>();
+            string sql = @"SELECT [author].[authorID], [author].[firstName], [author].[lastName],[author].[description]
+                            FROM [dbo].[bookAuthor]
+                            INNER JOIN [author] ON [bookAuthor].[authorID] = [author].[authorID]
+                            WHERE[bookAuthor].[itemID] = @itemID ";
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.Add(new SqlParameter("itemID", BookID));
+                    con.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Author Author = CreateAuthor(reader);
+                        listofAuthors.Add(Author);
+                    }
+                    return listofAuthors;
+                }
+            } 
+        }
 
+
+        //get an author by Name (might delete this one)(use of this was sloppy)
         [DataObjectMethod(DataObjectMethodType.Select)]
         public Author getAuthor(string SearchFirstName, string SearchLastName)
         {
@@ -135,20 +166,7 @@ namespace INFT3050WebApp.DAL
             }
             return null;
         }
-        
-
-
-        // Method used to create Author object from the reader
-        private static Author CreateAuthor(SqlDataReader reader)
-        {
-            Author author = new Author();
-            author.Id = (int)reader["authorID"];
-            author.Description = (string)reader.GetSqlString(3);
-            author.FirstName = (string)reader.GetSqlString(1);
-            author.LastName = (string)reader.GetSqlString(2);
-
-            return author;
-        }
+       
 
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public void ConnectBookAuthor(int BookID, List<Author> Authors)
@@ -177,6 +195,17 @@ namespace INFT3050WebApp.DAL
 
         }
 
+        // Method used to create Author object from the reader
+        private static Author CreateAuthor(SqlDataReader reader)
+        {
+            Author author = new Author();
+            author.Id = (int)reader["authorID"];
+            author.Description = (string)reader.GetSqlString(3);
+            author.FirstName = (string)reader.GetSqlString(1);
+            author.LastName = (string)reader.GetSqlString(2);
+
+            return author;
+        }
 
     }
 }

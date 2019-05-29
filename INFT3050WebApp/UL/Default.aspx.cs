@@ -58,7 +58,7 @@ namespace INFT3050WebApp
                     ImageRepeater.DataSource = bestSellers;
                     ImageRepeater.DataBind();
                 }
-                catch (Exception exception)
+                catch (Exception)
                 {
                     //string exceptionString = "?error=" + exception.Message;
 

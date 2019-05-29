@@ -32,7 +32,7 @@ namespace INFT3050WebApp.UL.Admin
                 newAuthor = newAuthor.getAuthor(Int32.Parse(e.CommandArgument.ToString()));
 
                 BL.AddBookSession AddAuthors = (BL.AddBookSession)Session["addBookSession"];
-                AddAuthors.AddAuthorID(newAuthor);
+                AddAuthors.AddAuthorToBook(newAuthor);
                 Response.Redirect("~/UL/Admin/AdminAddBookAuthorCategory.aspx");
             }
 
@@ -61,7 +61,7 @@ namespace INFT3050WebApp.UL.Admin
             newAuthor = newAuthor.getAddAuthor(tbxFirstName.Text, tbxLastName.Text);
 
             BL.AddBookSession AddAuthors = (BL.AddBookSession)Session["addBookSession"];
-            AddAuthors.AddAuthorID(newAuthor);
+            AddAuthors.AddAuthorToBook(newAuthor);
             Session["addBookSession"] = AddAuthors;
             //Hiding Add Labels after add
             lblNoAuthor.Visible = false;
@@ -83,7 +83,7 @@ namespace INFT3050WebApp.UL.Admin
                 }
             }
 
-            populateGridView.AddCategoryIDs(CategoryList);
+            populateGridView.AddCategoryToBook(CategoryList);
 
             if (populateGridView.addedAuthors() != null || populateGridView.addedCategories() != null)
             {
