@@ -27,7 +27,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <%--logo link set as a hyperlink to AdminPortal.aspx--%>
-                    <asp:HyperLink CssClass="navbar-brand" href="AdminPortal.aspx" Text="Home Page" runat="server"><img src="../Images/768px-Books_Flat_Icon_Vector.png" alt="Used Book Store Logo" height="56" width="56" />Used Book Store - Admin</asp:HyperLink>
+                    <asp:HyperLink CssClass="navbar-brand" href="AdminPortal.aspx" Text="Home Page" runat="server"><img src="/UL/Images/768px-Books_Flat_Icon_Vector.png" alt="Used Book Store Logo" height="56" width="56" />Used Book Store - Admin</asp:HyperLink>
                     <div class="navbar-collapse collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav mr-auto" id="AdminSites" runat="server">
                             <%--drop down for access to other sites--%>
