@@ -127,10 +127,22 @@ namespace INFT3050WebApp.BL
         // and checks if the email and password match what's on the DB
         public int CheckLoginUser(string strEmail, string strPassword)
         {
+            bool bVerified;
             int iRequirements = RequirementsCheck(strEmail, strPassword);
 
             int iCheckUser = CheckUser(strEmail, strPassword);
-            bool bVerified = AdminLoginVerify(strEmail);
+
+            
+            if (iCheckUser == 0)
+            {
+                // No need to check if user is verified if they don't exist
+                bVerified = false;
+            }
+            else
+            {
+                // If the user exists, check if they are verified
+                bVerified = LoginVerify(strEmail);
+            }
 
             // Return 0 if the email doesn't meet requirements or doesn't exist in DB
             if (iCheckUser == 0 || iRequirements == 0)
@@ -319,7 +331,8 @@ namespace INFT3050WebApp.BL
             client.Send(msg);
         }
 
-        private bool AdminLoginVerify(string strEmail)
+        //Checks if user has verified via email
+        private bool LoginVerify(string strEmail)
         {
             // Setup access to database
             IUserDataAccess db = new UserDataAccess();
