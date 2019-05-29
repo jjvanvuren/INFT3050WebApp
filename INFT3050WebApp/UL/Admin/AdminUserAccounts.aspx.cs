@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using INFT3050WebApp.BL;
 
 namespace INFT3050WebApp.UL.Admin
 {
@@ -34,6 +35,63 @@ namespace INFT3050WebApp.UL.Admin
             if (e.CommandName == "cmdView")
             {
                 Response.Redirect("~/UL/Admin/AdminPurchaseHistory.aspx");
+            }
+
+            else if (e.CommandName == "cmdActivate")
+            {
+                try
+                {
+                    int index = Convert.ToInt32(e.CommandArgument);
+
+                    GridViewRow row = UserManagement.Rows[index];
+
+                    string sID = Server.HtmlDecode(row.Cells[0].Text);
+
+                    if (!string.IsNullOrEmpty(sID) && int.TryParse(sID, out int id))
+                    {
+                        User user = new User();
+
+                        user.ActivateUserById(id);
+                    }
+
+                }
+                catch (Exception exception)
+                {
+                    Server.Transfer("~/UL/DefaultError.aspx?handler=AdminUserAccounts.aspx", true);
+                }
+                finally
+                {
+                    this.UserManagement.DataBind();
+                }
+            }
+
+            else if (e.CommandName == "cmdDeactivate")
+            {
+                try
+                {
+                    int index = Convert.ToInt32(e.CommandArgument);
+
+                    GridViewRow row = UserManagement.Rows[index];
+
+                    string sID = Server.HtmlDecode(row.Cells[0].Text);
+
+                    if (!string.IsNullOrEmpty(sID) && int.TryParse(sID, out int id))
+                    {
+                        User user = new User();
+
+                        user.DeactivateUserById(id);
+                    }
+
+
+                }
+                catch (Exception exception)
+                {
+                    Server.Transfer("~/UL/DefaultError.aspx?handler=AdminUserAccounts.aspx", true);
+                }
+                finally
+                {
+                    this.UserManagement.DataBind();
+                }
             }
 
         }

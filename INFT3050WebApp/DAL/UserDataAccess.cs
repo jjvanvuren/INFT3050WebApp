@@ -38,6 +38,66 @@ namespace INFT3050WebApp.DAL
             return user;
         }
 
+        // Method used to get all users
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public IEnumerable<User> GetUsers()
+        {
+            List<User> users = new List<User>();
+            string sql = @"SELECT [userID], [email], [password], [firstName], [lastName], [isAdmin], [isActive], [validationKey], [isVerified]
+                FROM[dbo].[webSiteUser]";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        User newUser = CreateUser(reader);
+                        users.Add(newUser);
+                    }
+                }
+            }
+            return users;
+        }
+
+        // Deactivate user by user ID
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public int DeactivateUserById(int Id)
+        {
+            string sql = @"UPDATE dbo.[webSiteUser] SET [isActive] = 0
+                            WHERE [userID]=@Id;";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("Id", Id);
+                    con.Open();
+                    return command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        // DActivate user by user ID
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public int ActivateUserById(int Id)
+        {
+            string sql = @"UPDATE dbo.[webSiteUser] SET [isActive] = 1
+                            WHERE [userID]=@Id;";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("Id", Id);
+                    con.Open();
+                    return command.ExecuteNonQuery();
+                }
+            }
+        }
+
         // Used to check if the user exists on the DB using their email address
         [DataObjectMethod(DataObjectMethodType.Select)]
         public bool CheckUserExists(string strEmail)

@@ -17,5 +17,9 @@ namespace INFT3050WebApp.DAL
         int VerifyUser(User user);
         int UpdateKey(User user);
         int UpdatePassword(User user);
+        IEnumerable<User> GetUsers();
+        int DeactivateUserById(int Id);
+        int ActivateUserById(int Id);
+
     }
 }
