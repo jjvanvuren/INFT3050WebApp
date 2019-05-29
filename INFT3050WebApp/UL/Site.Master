@@ -27,7 +27,7 @@
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <asp:HyperLink CssClass="navbar-brand" href="Default.aspx" Text="Home Page" runat="server"><img src="Images/768px-Books_Flat_Icon_Vector.png" alt="Used Book Store Logo" height="56" width="56" />Used Book Store</asp:HyperLink>
+                    <asp:HyperLink CssClass="navbar-brand" href="Default.aspx" Text="Home Page" runat="server"><img src="/UL/Images/768px-Books_Flat_Icon_Vector.png" alt="Used Book Store Logo" height="56" width="56" />Used Book Store</asp:HyperLink>
                     <div class="navbar-collapse collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav mr-auto">
 
