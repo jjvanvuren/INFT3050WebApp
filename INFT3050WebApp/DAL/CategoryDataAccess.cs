@@ -87,30 +87,37 @@ namespace INFT3050WebApp.DAL
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public void ConnectBookCategory(int BookID, List<Category> Categories)
         {
-            string sql = @"INSERT INTO bookCategory (itemID, CategoryID)
-                            VALUES(@itemID, @CategoryID)";
-            if (Categories.Count > 1)
+            string sql = @"INSERT INTO bookCategory ([itemID], [categoryID]) VALUES";
+            int i = 0;
+            foreach (Category category in Categories)
             {
-                foreach (Category bookCategory in Categories)
+                sql = sql + "(@itemID" + i.ToString() + ", @CategoryID" + i.ToString() + ")";
+                if (Categories.Count == 1 || Categories.IndexOf(category) == Categories.Count - 1)
                 {
-                    sql = sql + ",(@itemID, @CategoryID)";
+
                 }
+                else
+                {
+                    sql += ", ";
+                }
+                i++;
             }
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(sql, con))
                 {
                     con.Open();
-                    foreach (Category bookCategory in Categories)
+                    int j = 0;
+                    foreach (Category category in Categories)
                     {
-                        command.Parameters.Add(new SqlParameter("itemID", BookID));
-                        command.Parameters.Add(new SqlParameter("CategoryID", bookCategory.Id));
+                        command.CommandText = sql;
+                        command.Parameters.AddWithValue("itemID" + j.ToString(), BookID);
+                        command.Parameters.AddWithValue("CategoryID" + j.ToString(), category.Id);
+                        j++;
                     }
-                    
                     command.ExecuteNonQuery();
                 }
             }
-
         }
 
         //getting a list of authors by Book ID

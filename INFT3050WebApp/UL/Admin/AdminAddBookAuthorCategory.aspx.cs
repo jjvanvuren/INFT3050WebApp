@@ -85,7 +85,7 @@ namespace INFT3050WebApp.UL.Admin
 
             populateGridView.AddCategoryToBook(CategoryList);
 
-            if (populateGridView.addedAuthors() != null || populateGridView.addedCategories() != null)
+            if (populateGridView.Authors.Count >0 && populateGridView.Categories.Count > 0)
             {
                 Response.Redirect("~/UL/Admin/AdminAddBookComfirmation.aspx");
             }

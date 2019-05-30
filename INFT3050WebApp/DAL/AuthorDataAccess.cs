@@ -171,24 +171,34 @@ namespace INFT3050WebApp.DAL
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public void ConnectBookAuthor(int BookID, List<Author> Authors)
         {
-            string sql = @"INSERT INTO bookAuthor ([itemID], [authorID])
-                            VALUES(@itemID, @authorID)";
-            if (Authors.Count > 1) {
-                foreach (Author bookAuthors in Authors)
+            string sql = @"INSERT INTO bookAuthor ([itemID], [authorID]) VALUES";
+            int i = 0;
+            foreach(Author author in Authors)
+            {
+                sql = sql + "(@itemID"+ i.ToString() +", @authorID"+ i.ToString() +")";
+                if (Authors.Count == 1 || Authors.IndexOf(author) == Authors.Count - 1)
                 {
-                    sql = sql + ",(@itemID, @authorID)";
+
                 }
+                else
+                {
+                    sql += ", ";
+                }
+                i++;
             }
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(sql, con))
                 {
-                    for (int i = 0; i < Authors.Count; ++i)
-                    {
-                        command.Parameters.Add(new SqlParameter("itemID", BookID));
-                        command.Parameters.Add(new SqlParameter("authorID", Authors[i].Id));
-                    }
                     con.Open();
+                    int j = 0;
+                    foreach (Author author in Authors)
+                    {
+                        command.CommandText = sql;
+                        command.Parameters.AddWithValue("itemID"+j.ToString(), BookID);
+                        command.Parameters.AddWithValue("authorID"+j.ToString(), author.Id);
+                        j++;
+                    }
                     command.ExecuteNonQuery();
                 }
             }

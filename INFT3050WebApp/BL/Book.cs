@@ -32,6 +32,7 @@ namespace INFT3050WebApp.BL
             SecondaryTitle = "";
             Publisher = "";
             IsBestSeller = false;
+
         }
 
         public Book(int iItemID)

@@ -23,6 +23,8 @@ namespace INFT3050WebApp.BL
             StockQuantity = newStockQuantity;
             DatePublished = newDatePublished;
             IsBestSeller = newIsBestSeller;
+            Authors = new List<Author>();
+            Categories = new List<Category>();
             //All string trypes have checks around them to make sure Nulls are submitted to the data base
             if (newShortDescription != null)
             {
@@ -123,7 +125,6 @@ namespace INFT3050WebApp.BL
         //Used to added categories selected to the book
         public void AddCategoryToBook(List<int> newCategories)
         {
-            Categories = new List<Category>();
             Category newCategory = new Category();
             List<Category> ListOfCategoires = newCategory.getCategories();
             foreach (int CategoryID in newCategories)
