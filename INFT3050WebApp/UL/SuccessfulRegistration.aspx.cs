@@ -13,7 +13,7 @@ namespace INFT3050WebApp
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Check if user is logged in to use correct master page
-            if (Session["customerSession"] != null)
+            if (Session["userSession"] != null)
             {
                 Page.MasterPageFile = "~/UL/Customer.Master";
             }
@@ -24,15 +24,17 @@ namespace INFT3050WebApp
 
         }
 
-        const string THANKS_FORMAT = "Thank you for registering with us {0}, please login using the link located in the top right of this page.";
+        const string THANKS_FORMAT = "Thank you for registering with us {0}.";
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            CustomerSession query = (CustomerSession)Session[CustomerSession.SESSION_KEY];
+            UserSession query = (UserSession)Session[UserSession.SESSION_KEY];
             if (query != null)
             {
-                thanksMessageLabel.Text = String.Format(THANKS_FORMAT, query.Name);
+                User currentUser = new User(query.SessionId);
+
+                thanksMessageLabel.Text = String.Format(THANKS_FORMAT, currentUser.FirstName);
             }
         }
     }

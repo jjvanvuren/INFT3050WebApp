@@ -22,13 +22,13 @@ namespace INFT3050WebApp.UL.Admin {
         protected global::System.Web.UI.WebControls.ObjectDataSource UserDataSource;
         
         /// <summary>
-        /// UserManagment control.
+        /// UserManagement control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView UserManagment;
+        protected global::System.Web.UI.WebControls.GridView UserManagement;
         
         /// <summary>
         /// ValidationSummary1 control.

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Contact Us" Language="C#" MasterPageFile="~/UL/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="INFT3050WebApp.Contact" %>
+
 <%@ MasterType VirtualPath="~/UL/Site.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">

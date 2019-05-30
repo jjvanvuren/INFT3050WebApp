@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,6 +13,13 @@ namespace INFT3050WebApp.UL.BackEnd
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Enable SSL
+            if (!Request.IsSecureConnection)
+            {
+                string url = ConfigurationManager.AppSettings["SecurePath"] + "UL/Admin/AdminRegister.aspx";
+                Response.Redirect(url);
+            }
+
             // Hide and disable the "Logout" link and links to other pages from master
             Master.ToolsVisible = false;
             Master.LogoutLinkEnabled = false;
@@ -21,20 +29,53 @@ namespace INFT3050WebApp.UL.BackEnd
         //If registration is valid, send user to AdminPortal.aspx and create a session for login.
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            if (IsValid)
-            {
-                Session.Clear();
+            // Used for BL Validation
+            bool bValid;
 
-                UserSession currentUserSession = new UserSession()
+            // Create a new user based on info entered
+            User registeredUser = new User(tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, true, true, "", false);
+
+            int iRegistered = registeredUser.CheckRegisterUser(tbxEmail.Text, tbxPassword.Text);
+
+            if (iRegistered == 0)
+            {
+                lblEmailExists.Text = "Is not a valid email or is already registered";
+                lblEmailExists.Visible = true;
+
+                bValid = false;
+            }
+            else if (iRegistered == 1)
+            {
+                lblInvalidPassword.Text = "Password must meet complexity requirements";
+                lblInvalidPassword.Visible = true;
+
+                bValid = false;
+            }
+            else
+            {
+                lblEmailExists.Visible = false;
+                lblInvalidPassword.Visible = false;
+
+                bValid = true;
+            }
+
+            if (IsValid && bValid)
+            {
+                User currentUser = new User();
+
+                currentUser.RegisterNewAdmin(registeredUser);
+
+                User dbUser = new User(registeredUser.Email);
+
+                // Data to be retained in session
+                UserSession currentUserSession = new UserSession
                 {
-                    Email = tbxEmail.Text,
-                    Name = "Joe Smith",
-                    LoggedIn = true
+                    SessionId = dbUser.Id
                 };
 
-                Session["UserSession"] = currentUserSession;
+                Session["userSession"] = currentUserSession;
 
-                Response.Redirect("~/UL/Admin/AdminPortal.aspx");
+                Response.Redirect("~/UL/Admin/AdminLogin.aspx");
             }
         }
 

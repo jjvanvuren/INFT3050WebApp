@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,10 +11,11 @@ namespace INFT3050WebApp
 {
     public partial class Login : System.Web.UI.Page
     {
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Check if user is logged in to use correct master page
-            if (Session["customerSession"] != null)
+            if (Session["userSession"] != null)
             {
                 Page.MasterPageFile = "~/UL/Customer.Master";
             }
@@ -26,57 +28,79 @@ namespace INFT3050WebApp
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //Enable SSL
+            if (!Request.IsSecureConnection)
+            {
+                string url = ConfigurationManager.AppSettings["SecurePath"] + "UL/Login.aspx";
+                Response.Redirect(url);
+            }
         }
 
         // Validate email and password. If successful redirect to Customer.aspx
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            if (IsValid)
-            {
-                Session.Clear();
+            Session.Clear();
 
-                CustomerSession currentCustomerSession = new CustomerSession()
+            string strEmail = tbxEmail.Text;
+            string strPassword = tbxPassword.Text;
+
+            // Used for BL Validation
+            bool bValid;
+
+            User userVerify = new User();
+            int iCheckUser = userVerify.CheckLoginUser(strEmail, strPassword);
+
+            if (iCheckUser == 0)
+            {
+                lblUserExists.Text = "Email not registered or account has been disabled";
+                lblUserExists.Visible = true;
+
+                bValid = false;
+            }
+            else if (iCheckUser == 1)
+            {
+                lblUserExists.Visible = false;
+
+                lblInvalidPassword.Text = "Password incorrect";
+                lblInvalidPassword.Visible = true;
+
+                bValid = false;
+            }
+            else if (iCheckUser == 3)
+            {
+                lblUserExists.Text = "Email has not yet been verified. Please check your email inbox";
+                lblUserExists.Visible = true;
+
+                bValid = false;
+            }
+            else
+            {
+                lblUserExists.Visible = false;
+                lblInvalidPassword.Visible = false;
+
+                bValid = true;
+            }
+
+            if (IsValid && bValid)
+            {
+                if (iCheckUser == 2)
                 {
-                    Email = tbxEmail.Text,
-                    Name = "Joe Smith",
-                    LoggedIn = true
-                };
+                    // Create a new session for the user
+                    UserSession usCurrent = new UserSession(strEmail);
+                    Session["userSession"] = usCurrent;
 
-                Session["customerSession"] = currentCustomerSession;
-
-                Response.Redirect("~/UL/Customer.aspx");
+                    Response.Redirect("~/UL/Customer.aspx");
+                }
             }
         }
 
-        // Checks if customer email exists
-        // This is only temporary. Will change in next assignment
-        protected void customerRegistered(object source, ServerValidateEventArgs args)
+        // Redirects to the Password Recovery Page
+        protected void btnReset_Click(object sender, EventArgs e)
         {
-            if (tbxEmail.Text == "joe@example.com")
-            {
-                args.IsValid = true;
-            }
-            else
-            {
-                args.IsValid = false;
-            }
+            Response.Redirect("~/UL/PasswordRecovery.aspx");
         }
 
-        // Checks if customer password is correct
-        // This is only temporary. Will change in next assignment
-        protected void passwordCorrect(object source, ServerValidateEventArgs args)
-        {
-            if (tbxPassword.Text == "password")
-            {
-                args.IsValid = true;
-            }
-            else
-            {
-                args.IsValid = false;
-            }
-        }
-
+        // Redirects to the Website home page
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/UL/Default.aspx");

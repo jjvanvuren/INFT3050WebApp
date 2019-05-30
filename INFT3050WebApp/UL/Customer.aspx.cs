@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
+using INFT3050WebApp.DAL;
 
 namespace INFT3050WebApp
 {
@@ -15,7 +16,7 @@ namespace INFT3050WebApp
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Check if user is logged in to use correct master page
-            if (Session["customerSession"] != null)
+            if (Session["userSession"] != null)
             {
                 Page.MasterPageFile = "~/UL/Customer.Master";
             }
@@ -29,30 +30,92 @@ namespace INFT3050WebApp
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            CustomerSession query = (CustomerSession)Session[CustomerSession.SESSION_KEY];
+            UserSession query = (UserSession)Session[UserSession.SESSION_KEY];
             if (query != null)
             {
-                customerWelcome.Text = String.Format(WELCOME_FORMAT, query.Name);
+                try
+                {
+                    User currentUser = new User(query.SessionId);
+
+                    customerWelcome.Text = String.Format(WELCOME_FORMAT, currentUser.FirstName);
+                }
+                catch (Exception exception)
+                {
+                    //string exceptionString = "?error=" + exception.Message;
+
+                    //if (exception.InnerException != null)
+                    //{
+                    //    exceptionString += "&innerex=" + exception.GetType().ToString() + "<br/>" + exception.InnerException.Message;
+                    //    exceptionString += "&stacktrace=" + exception.InnerException.StackTrace;
+                    //}
+                    //else
+                    //{
+                    //    exceptionString += "&innerex=" + exception.GetType().ToString();
+                    //    if (exception.StackTrace != null)
+                    //    {
+                    //        exceptionString += "&stacktrace=" + exception.StackTrace.ToString().TrimStart();
+                    //    }
+                    //}
+
+                    //Response.Redirect("DefaultError.aspx" + exceptionString);
+
+                    Server.Transfer("DefaultError.aspx?handler=Customer.aspx", true);
+                }
+
+
             }
 
             if (!IsPostBack)
             {
-                var db = new DAL.DummyDB();
-                var books = db.GetBooks();
+                //// Create dummy database and pull all books from database
+                //var db = new BookDataAccess();
+                //var books = db.GetBooks();
 
-                // Create list of best sellers and display them
-                List<Book> bestSellers = new List<Book>();
+                Book dbBook = new Book();
 
-                foreach (Book book in books)
+                List<Book> books = new List<Book>();
+
+                try
                 {
-                    if (book.IsBestSeller)
+                    books = dbBook.GetAllBooks();
+
+                    // Create list of best sellers and display them
+                    List<Book> bestSellers = new List<Book>();
+
+                    foreach (Book book in books)
                     {
-                        bestSellers.Add(book);
+                        if (book.IsBestSeller)
+                        {
+                            bestSellers.Add(book);
+                        }
                     }
+
+                    ImageRepeater.DataSource = bestSellers;
+                    ImageRepeater.DataBind();
+                }
+                catch (Exception exception)
+                {
+                    //string exceptionString = "?error=" + exception.Message;
+
+                    //if (exception.InnerException != null)
+                    //{
+                    //    exceptionString += "&innerex=" + exception.GetType().ToString() + "<br/>" + exception.InnerException.Message;
+                    //    exceptionString += "&stacktrace=" + exception.InnerException.StackTrace;
+                    //}
+                    //else
+                    //{
+                    //    exceptionString += "&innerex=" + exception.GetType().ToString();
+                    //    if (exception.StackTrace != null)
+                    //    {
+                    //        exceptionString += "&stacktrace=" + exception.StackTrace.ToString().TrimStart();
+                    //    }
+                    //}
+
+                    //Response.Redirect("DefaultError.aspx" + exceptionString);
+
+                    Server.Transfer("DefaultError.aspx?handler=Customer.aspx", true);
                 }
 
-                ImageRepeater.DataSource = bestSellers;
-                ImageRepeater.DataBind();
             }
         }
 

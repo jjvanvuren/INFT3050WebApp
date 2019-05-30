@@ -17,9 +17,11 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressSSLPort>44369</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>
+    </IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>
+    </IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -45,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -87,17 +92,22 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="UL\About.aspx" />
+    <Content Include="UL\Admin\AdminAddBookAuthorCategory.aspx" />
+    <Content Include="UL\Admin\AdminAddBookComfirmation.aspx" />
+    <Content Include="UL\Admin\AdminAddBookDetails.aspx" />
     <Content Include="UL\Admin\AdminPurchaseHistory.aspx" />
     <Content Include="UL\Admin\AdminUserAccounts.aspx" />
     <Content Include="UL\Admin\AdminPostageOptions.aspx" />
+    <Content Include="UL\Admin\AdminVerified.aspx" />
     <Content Include="UL\Book.aspx" />
     <Content Include="UL\Books.aspx" />
+    <Content Include="UL\BooksByCategory.aspx" />
     <Content Include="UL\Cart.aspx" />
     <Content Include="UL\Admin\AdminPortal.aspx" />
     <Content Include="UL\Admin\AdminLogin.aspx" />
@@ -106,12 +116,17 @@
     <Content Include="UL\ConfirmSale.aspx" />
     <Content Include="UL\Contact.aspx" />
     <Content Include="Content\bootstrapDarkly.min.css" />
-    <Content Include="Content\bootstrapFlatly.min.css" />
+    <Content Include="UL\css\bootstrapFlatly.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="UL\Customer.aspx" />
     <Content Include="UL\Default.aspx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="UL\DefaultError.aspx" />
+    <Content Include="UL\E401.aspx" />
+    <Content Include="UL\E403.aspx" />
+    <Content Include="UL\E404.aspx" />
+    <Content Include="UL\E500.aspx" />
     <Content Include="UL\Global.asax" />
     <Content Include="UL\Images\768px-Books_Flat_Icon_Vector.png" />
     <Content Include="UL\Images\9780008152406.jpg" />
@@ -130,10 +145,14 @@
     <Content Include="UL\Images\9781784751173_thumb.jpg" />
     <Content Include="UL\Images\9781786812445.jpg" />
     <Content Include="UL\Images\9781786812445_thumb.jpg" />
+    <Content Include="UL\Images\favicon.ico" />
     <Content Include="UL\Login.aspx" />
     <Content Include="UL\Logout.aspx" />
     <Content Include="UL\CardPayment.aspx" />
+    <Content Include="UL\NewPassword.aspx" />
+    <Content Include="UL\PasswordRecovery.aspx" />
     <Content Include="UL\PurchaseHistory.aspx" />
+    <Content Include="UL\RecoveryEmailSent.aspx" />
     <Content Include="UL\Register.aspx" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
@@ -157,9 +176,13 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="UL\Search.aspx" />
+    <Content Include="UL\SuccessfulPasswordRecovery.aspx" />
     <Content Include="UL\SuccessfulRegistration.aspx" />
-    <Content Include="Content\UsedBooks.css" />
-    <Content Include="Web.config" />
+    <Content Include="UL\css\UsedBooks.css" />
+    <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -172,6 +195,8 @@
     <Content Include="UL\Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BL\AddBookSession.cs" />
     <Compile Include="BL\Address.cs" />
     <Compile Include="BL\Author.cs" />
     <Compile Include="BL\Book.cs" />
@@ -179,16 +204,54 @@
     <Compile Include="BL\Order.cs" />
     <Compile Include="BL\UserSession.cs" />
     <Compile Include="BL\Customer.cs" />
-    <Compile Include="BL\CustomerSession.cs" />
     <Compile Include="BL\PostageOption.cs" />
     <Compile Include="BL\StoreItem.cs" />
     <Compile Include="BL\User.cs" />
+    <Compile Include="DAL\AuthorDataAccess.cs" />
+    <Compile Include="DAL\BookDataAccess.cs" />
+    <Compile Include="DAL\CategoryDataAccess.cs" />
+    <Compile Include="DAL\IBookDataAccess.cs" />
+    <Compile Include="DAL\ICategoryDataAccess.cs" />
+    <Compile Include="DAL\IOrderDataAccess.cs" />
+    <Compile Include="DAL\IPostageOptionsDataAccess.cs" />
+    <Compile Include="DAL\IUserDataAccess.cs" />
+    <Compile Include="DAL\OrderDataAccess.cs" />
+    <Compile Include="DAL\PostageOptionDataAccess.cs" />
+    <Compile Include="DAL\UserDataAccess.cs" />
+    <Compile Include="Site.Mobile.Master.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.designer.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
     <Compile Include="UL\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UL\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminAddBookAuthorCategory.aspx.cs">
+      <DependentUpon>AdminAddBookAuthorCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminAddBookAuthorCategory.aspx.designer.cs">
+      <DependentUpon>AdminAddBookAuthorCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminAddBookComfirmation.aspx.cs">
+      <DependentUpon>AdminAddBookComfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminAddBookComfirmation.aspx.designer.cs">
+      <DependentUpon>AdminAddBookComfirmation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Admin\AdminAddBookDetails.aspx.cs">
+      <DependentUpon>AdminAddBookDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminAddBookDetails.aspx.designer.cs">
+      <DependentUpon>AdminAddBookDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Admin\AdminPurchaseHistory.aspx.cs">
       <DependentUpon>AdminPurchaseHistory.aspx</DependentUpon>
@@ -211,6 +274,13 @@
     <Compile Include="UL\Admin\AdminPostageOptions.aspx.designer.cs">
       <DependentUpon>AdminPostageOptions.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UL\Admin\AdminVerified.aspx.cs">
+      <DependentUpon>AdminVerified.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Admin\AdminVerified.aspx.designer.cs">
+      <DependentUpon>AdminVerified.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UL\Book.aspx.cs">
       <DependentUpon>Book.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -224,6 +294,13 @@
     </Compile>
     <Compile Include="UL\Books.aspx.designer.cs">
       <DependentUpon>Books.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\BooksByCategory.aspx.cs">
+      <DependentUpon>BooksByCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\BooksByCategory.aspx.designer.cs">
+      <DependentUpon>BooksByCategory.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Cart.aspx.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
@@ -288,7 +365,6 @@
     <Compile Include="UL\Customer.aspx.designer.cs">
       <DependentUpon>Customer.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DAL\DummyDB.cs" />
     <Compile Include="UL\Customer.Master.cs">
       <DependentUpon>Customer.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -302,6 +378,41 @@
     </Compile>
     <Compile Include="UL\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\DefaultError.aspx.cs">
+      <DependentUpon>DefaultError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\DefaultError.aspx.designer.cs">
+      <DependentUpon>DefaultError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\E401.aspx.cs">
+      <DependentUpon>E401.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\E401.aspx.designer.cs">
+      <DependentUpon>E401.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\E403.aspx.cs">
+      <DependentUpon>E403.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\E403.aspx.designer.cs">
+      <DependentUpon>E403.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\E404.aspx.cs">
+      <DependentUpon>E404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\E404.aspx.designer.cs">
+      <DependentUpon>E404.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\E500.aspx.cs">
+      <DependentUpon>E500.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\E500.aspx.designer.cs">
+      <DependentUpon>E500.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -328,12 +439,33 @@
     <Compile Include="UL\CardPayment.aspx.designer.cs">
       <DependentUpon>CardPayment.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UL\NewPassword.aspx.cs">
+      <DependentUpon>NewPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\NewPassword.aspx.designer.cs">
+      <DependentUpon>NewPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\PasswordRecovery.aspx.cs">
+      <DependentUpon>PasswordRecovery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\PasswordRecovery.aspx.designer.cs">
+      <DependentUpon>PasswordRecovery.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UL\PurchaseHistory.aspx.cs">
       <DependentUpon>PurchaseHistory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UL\PurchaseHistory.aspx.designer.cs">
       <DependentUpon>PurchaseHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\RecoveryEmailSent.aspx.cs">
+      <DependentUpon>RecoveryEmailSent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\RecoveryEmailSent.aspx.designer.cs">
+      <DependentUpon>RecoveryEmailSent.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
@@ -356,6 +488,13 @@
     <Compile Include="UL\Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="UL\SuccessfulPasswordRecovery.aspx.cs">
+      <DependentUpon>SuccessfulPasswordRecovery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\SuccessfulPasswordRecovery.aspx.designer.cs">
+      <DependentUpon>SuccessfulPasswordRecovery.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UL\SuccessfulRegistration.aspx.cs">
       <DependentUpon>SuccessfulRegistration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -363,13 +502,21 @@
     <Compile Include="UL\SuccessfulRegistration.aspx.designer.cs">
       <DependentUpon>SuccessfulRegistration.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ViewSwitcher.ascx.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.designer.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="UL\Admin\Admin.Master" />
     <Content Include="UL\Customer.Master" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Site.Mobile.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

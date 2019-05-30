@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
+using System.Web.Routing;
+
 
 namespace INFT3050WebApp
 {
@@ -13,7 +15,7 @@ namespace INFT3050WebApp
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Check if user is logged in to use correct master page
-            if (Session["customerSession"] != null)
+            if (Session["userSession"] != null)
             {
                 Page.MasterPageFile = "~/UL/Customer.Master";
             }
@@ -25,29 +27,75 @@ namespace INFT3050WebApp
         }
 
         protected void Page_Load(object sender, EventArgs e)
+
         {
 
             if (!IsPostBack)
             {
-                // Create dummy database and pull all books from database
-                var db = new DAL.DummyDB();
-                var books = db.GetBooks();
+                //// Create dummy database and pull all books from database
+                //var db = new DAL.BookDataAccess();
+                //var books = db.GetBooks();
+                Book dbBook = new Book();
 
-                // Create list of best sellers based on IsBestSeller property
-                List<Book> bestSellers = new List<Book>();
-                
-                foreach (Book book in books)
+                List<Book> books = new List<Book>();
+
+                try
                 {
-                    if (book.IsBestSeller)
+
+                    books = dbBook.GetAllBooks();
+
+                    // Create list of best sellers based on IsBestSeller property
+                    List<Book> bestSellers = new List<Book>();
+
+                    foreach (Book book in books)
                     {
-                        bestSellers.Add(book);
+                        if (book.IsBestSeller)
+                        {
+                            bestSellers.Add(book);
+                        }
                     }
+                    // Use best seller list as data source for splash page
+                    ImageRepeater.DataSource = bestSellers;
+                    ImageRepeater.DataBind();
                 }
-                // Use best seller list as data source for splash page
-                ImageRepeater.DataSource = bestSellers;
-                ImageRepeater.DataBind();
+                catch (Exception exception)
+                {
+                    //string exceptionString = "?error=" + exception.Message;
+
+                    //if (exception.InnerException != null)
+                    //{
+                    //    exceptionString += "&innerex=" + exception.GetType().ToString() + "<br/>" + exception.InnerException.Message;
+                    //    exceptionString += "&stacktrace=" + exception.InnerException.StackTrace;
+                    //}
+                    //else
+                    //{
+                    //    exceptionString += "&innerex=" + exception.GetType().ToString();
+                    //    if (exception.StackTrace != null)
+                    //    {
+                    //        exceptionString += "&stacktrace=" + exception.StackTrace.ToString().TrimStart();
+                    //    }
+                    //}
+
+                    //Response.Redirect("DefaultError.aspx" + exceptionString);
+
+                    Server.Transfer("DefaultError.aspx?handler=Default.aspx", true);
+
+                }
             }
         }
+
+        //private void Page_Error(object sender, EventArgs e)
+        //{
+        //    // Get last error from the server.
+        //    Exception exc = Server.GetLastError();
+
+        //    // Handle specific exception.
+        //    if (exc is InvalidOperationException)
+        //    {
+        //        // Pass the error on to the error page.
+        //        Server.Transfer("DefaultError.aspx?handler=Page_Error%20-%20Default.aspx", true);
+        //    }
+        //}
 
         protected void imgBestSeller_Command(object sender, CommandEventArgs e)
         {

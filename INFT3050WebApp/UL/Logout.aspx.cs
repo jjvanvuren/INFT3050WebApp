@@ -10,12 +10,14 @@ namespace INFT3050WebApp
 {
     public partial class Logout : System.Web.UI.Page
     {
+
+        // Logout message format
         const string LOGOUT_FORMAT = "Thank you for shopping with us {0}.";
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Check if user is logged in to use correct master page
-            if (Session["customerSession"] != null)
+            if (Session["userSession"] != null)
             {
                 Page.MasterPageFile = "~/UL/Customer.Master";
             }
@@ -28,10 +30,13 @@ namespace INFT3050WebApp
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            CustomerSession query = (CustomerSession)Session[CustomerSession.SESSION_KEY];
+            // Use the customers name stored in session data to display the logout message
+            UserSession query = (UserSession)Session[UserSession.SESSION_KEY];
             if (query != null)
             {
-                lblLogoutMessage.Text = String.Format(LOGOUT_FORMAT, query.Name);
+                User currentUser = new User(query.SessionId);
+
+                lblLogoutMessage.Text = String.Format(LOGOUT_FORMAT, currentUser.FirstName);
             }
 
             // Clear all session data once user has logged out

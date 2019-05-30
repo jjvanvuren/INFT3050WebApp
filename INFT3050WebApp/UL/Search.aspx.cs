@@ -13,7 +13,7 @@ namespace INFT3050WebApp
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Check if user is logged in to use correct master page
-            if (Session["customerSession"] != null)
+            if (Session["userSession"] != null)
             {
                 Page.MasterPageFile = "~/UL/Customer.Master";
             }
@@ -41,7 +41,27 @@ namespace INFT3050WebApp
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            //Button doesnt do anything yet, need database connection to make this work with queries
+            string[] split = tbxSearch.Text.Split(null);
+            string searchString = "";
+
+            // Add each seperate inputed word to search string seperated by OR
+            for (int i = 0; i < split.Length; i++)
+            {
+                if (i == split.Length - 1)
+                {
+                    searchString = searchString + split[i];
+                }
+                else
+                {
+                    searchString = searchString + split[i] + " OR ";
+                }
+            }
+
+            bookDataSource.SelectParameters.Clear();
+            bookDataSource.SelectParameters.Add("searchString", searchString);
+
+            this.GridBooks.DataBind();
+
         }
     }
 }
