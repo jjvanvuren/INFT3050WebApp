@@ -34,7 +34,13 @@ namespace INFT3050WebApp.UL.Admin
         {
             if (e.CommandName == "cmdView")
             {
-                Response.Redirect("~/UL/Admin/AdminPurchaseHistory.aspx");
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                GridViewRow row = UserManagement.Rows[index];
+
+                string sID = Server.HtmlDecode(row.Cells[0].Text);
+
+                Response.Redirect("~/UL/Admin/AdminPurchaseHistory.aspx?Id=" + sID);
             }
 
             else if (e.CommandName == "cmdActivate")

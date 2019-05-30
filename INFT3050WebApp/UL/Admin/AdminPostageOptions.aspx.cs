@@ -89,5 +89,30 @@ namespace INFT3050WebApp.UL.Admin
                 Response.Redirect("~/UL/Admin/AdminPostageOptions.aspx");
             }
         }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string newName = txtAddName.Text;
+                string newPrice = txtAddPrice.Text;
+
+
+                if (double.TryParse(newPrice, out double dPrice))
+                {
+                    PostageOption postage = new PostageOption();
+
+                    int rowsAffected = postage.AddPostageOption(newName, dPrice);
+                }
+            }
+            catch (Exception)
+            {
+                Server.Transfer("~/UL/DefaultError.aspx?handler=AdminPostageOptions.aspx", true);
+            }
+            finally
+            {
+                Response.Redirect("~/UL/Admin/AdminPostageOptions.aspx");
+            }
+        }
     }
 }
