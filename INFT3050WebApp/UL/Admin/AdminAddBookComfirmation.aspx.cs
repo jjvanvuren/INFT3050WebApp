@@ -40,9 +40,10 @@ namespace INFT3050WebApp.UL.Admin
         }
         protected void btnSubmitBook_Click(object sender, EventArgs e)
         {
+
             BL.AddBookSession connect = (BL.AddBookSession)Session["addBookSession"];
             connect.submitBook();
-
+            Response.Redirect("~/UL/Admin/AdminPortal.aspx");
         }
     }
 }

@@ -16,6 +16,8 @@ namespace INFT3050WebApp.BL
         public string ImagePath { get; set; }
         public string ThumbnailPath { get; set; }
 
+        public Boolean IsActive { get; set;}
+
         public StoreItem() { }
 
     }

@@ -33,7 +33,7 @@ namespace INFT3050WebApp.UL
                             bookDataSource.SelectParameters.Add("CategoryId", category.Id.ToString());
                         }
                     }
-                    catch (Exception exception)
+                    catch (Exception)
                     {
                         //string exceptionString = "?error=" + exception.Message;
 

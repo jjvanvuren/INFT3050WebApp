@@ -12,8 +12,6 @@ namespace INFT3050WebApp.BL
     {
         public const string SESSION_KEY = "addBookSession";
         public int SessionId { get; set; }
-        public List<Author> Authors { get; set; }
-        public  List<Category> CategoryIDs { get; set; }
         public AddBookSession() { }
 
         public AddBookSession(double newPrice, int newStockQuantity, String newShortDescription, String newLongDescription, String newImagePath, String newThumbnailPath, String newIsbn,
@@ -25,6 +23,8 @@ namespace INFT3050WebApp.BL
             StockQuantity = newStockQuantity;
             DatePublished = newDatePublished;
             IsBestSeller = newIsBestSeller;
+            Authors = new List<Author>();
+            Categories = new List<Category>();
             //All string trypes have checks around them to make sure Nulls are submitted to the data base
             if (newShortDescription != null)
             {
@@ -99,7 +99,9 @@ namespace INFT3050WebApp.BL
             
         }
 
-        public void AddAuthorID(Author AuthorID) {
+
+        //Used to added authors selected to the book
+        public void AddAuthorToBook(Author newAuthor) {
 
             if(Authors == null)
             {
@@ -107,24 +109,25 @@ namespace INFT3050WebApp.BL
             }
             int intDuplicate = 0;
             foreach (Author ID in Authors) {
-                if (ID.Id == AuthorID.Id)
+                if (ID.Id == newAuthor.Id)
                 {
                     intDuplicate = 1;
                 }
             }
             if ( intDuplicate == 0)
             {
-                Authors.Add(AuthorID);
+                Authors.Add(newAuthor);
             }
         
         }
 
-        public void AddCategoryIDs(List<int> Categories)
+
+        //Used to added categories selected to the book
+        public void AddCategoryToBook(List<int> newCategories)
         {
-            CategoryIDs = new List<Category>();
             Category newCategory = new Category();
             List<Category> ListOfCategoires = newCategory.getCategories();
-            foreach (int CategoryID in Categories)
+            foreach (int CategoryID in newCategories)
             {
                 bool categoryFound = false;
                 while (categoryFound !=true)
@@ -134,7 +137,7 @@ namespace INFT3050WebApp.BL
                         if (cat.Id == CategoryID)
                         {
                             categoryFound = true;
-                            CategoryIDs.Add(cat);
+                            Categories.Add(cat);
                         }
                     }
                 }
@@ -170,7 +173,7 @@ namespace INFT3050WebApp.BL
         }
         public List<Category> addedCategories()
         {
-            return CategoryIDs;
+            return Categories;
         }
 
         public void submitBook()
@@ -182,7 +185,7 @@ namespace INFT3050WebApp.BL
             DAL.AuthorDataAccess connectAuthor = new AuthorDataAccess();
             connectAuthor.ConnectBookAuthor(newBook.Id, Authors);
             DAL.CategoryDataAccess connectCategory = new CategoryDataAccess();
-            connectCategory.ConnectBookCategory(newBook.Id, CategoryIDs);
+            connectCategory.ConnectBookCategory(newBook.Id, Categories);
 
         }
 

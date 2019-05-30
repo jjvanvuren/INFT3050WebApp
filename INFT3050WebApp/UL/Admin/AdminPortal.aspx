@@ -8,11 +8,15 @@
     <h1>Inventory Managment</h1>
     <div class="container-flex">
         <%--Setting data source to be used for display of data in gridview --%>
-        <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetBooks" TypeName="INFT3050WebApp.DAL.BookDataAccess"></asp:ObjectDataSource>
-        <asp:GridView ID="ItemManagment" runat="server" AutoGenerateColumns="false" DataSourceID="bookDataSource" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True" PageSize="5">
+        <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetAdminBooks" TypeName="INFT3050WebApp.DAL.BookDataAccess"></asp:ObjectDataSource>
+        <asp:GridView ID="ItemManagment" runat="server" AutoGenerateColumns="false" DataSourceID="bookDataSource" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True" PageSize="5" OnRowUpdating="ItemManagment_RowUpdating" OnRowDeleting="ItemManagment_RowDeleting">
             <Columns>
                 <%--Item iD displayed--%>
                 <asp:BoundField DataField="Id" HeaderText="ID" ReadOnly="True" SortExpression="Id">
+                    <ItemStyle CssClass="col-xs-1" />
+                </asp:BoundField>
+                <%--Item iD displayed--%>
+                <asp:BoundField DataField="IsActive" HeaderText="Active" ReadOnly="True" SortExpression="Id">
                     <ItemStyle CssClass="col-xs-1" />
                 </asp:BoundField>
 
@@ -47,17 +51,43 @@
                     <ItemTemplate>
                         <asp:Label ID="lblGridStockQuantity" runat="server" Text='<%# Bind("StockQuantity") %>'></asp:Label>
                     </ItemTemplate>
+                    <ItemStyle CssClass="col-xs-5" />
+                </asp:TemplateField>
+
+                 <%--ImagePath of item--%>
+                <asp:TemplateField HeaderText="Image Path">
+                    <%-- ImagePath field during Edit--%>
+                    <EditItemTemplate>
+                        <div class="col-xs-11 col-edit">
+                            <asp:TextBox ID="txtGridImagePath" runat="server" MaxLength="45" CssClass="form-control" Text='<%# Bind("ImagePath") %>'></asp:TextBox>
+                        </div>
+                        <%-- ImagePath field validation--%>
+                    </EditItemTemplate>
+                    <%-- ImagePath field normal--%>
+                    <ItemTemplate>
+                        <asp:Label ID="lblImagePath" runat="server" Text='<%# Bind("ImagePath") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle CssClass="col-xs-5" />
+                </asp:TemplateField>
+
+                
+                 <%--ThumbnailPath of item--%>
+                <asp:TemplateField HeaderText="Thumbnail Path">
+                    <%-- ImagePath field during Edit--%>
+                    <EditItemTemplate>
+                        <div class="col-xs-11 col-edit">
+                            <asp:TextBox ID="txtGridThumbnailPath" runat="server" MaxLength="45" CssClass="form-control" Text='<%# Bind("ThumbnailPath") %>'></asp:TextBox>
+                        </div>
+                        <%-- ThumbnailPath field validation--%>
+                    </EditItemTemplate>
+                    <%-- ThumbnailPath field normal--%>
+                    <ItemTemplate>
+                        <asp:Label ID="lblThumbnailPath" runat="server" Text='<%# Bind("ThumbnailPath") %>'></asp:Label>
+                    </ItemTemplate>
                     <ItemStyle CssClass="col-xs-2" />
                 </asp:TemplateField>
 
-                <%--Item imagePath displayed--%>
-                <asp:BoundField DataField="ImagePath" HeaderText="Image Path">
-                    <ItemStyle CssClass="col-xs-3" />
-                </asp:BoundField>
-                <%--Item ThumbnailPath displayed--%>
-                <asp:BoundField DataField="ThumbnailPath" HeaderText="Thumbnail Image Path">
-                    <ItemStyle CssClass="col-xs-3" />
-                </asp:BoundField>
+
 
                 <%--Item Price displayed--%>
                 <asp:TemplateField HeaderText="Price">
@@ -82,7 +112,7 @@
                 </asp:CommandField>
 
                 <%--Delete Buttons--%>
-                <asp:CommandField ShowDeleteButton="True">
+                <asp:CommandField ShowDeleteButton="True" DeleteText="Change Status" >
                     <ItemStyle CssClass="col-xs-2" />
                 </asp:CommandField>
 

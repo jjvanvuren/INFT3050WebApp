@@ -44,7 +44,21 @@ namespace INFT3050WebApp.UL
                             imgBook.ImageUrl = book.ImagePath;
                             lblDescription.Text = book.LongDescription;
                             lblPrice.Text = "Price: $" + book.Price.ToString();
-                            lblAuthor.Text = book.Author.FirstName + " " + book.Author.LastName;
+                            string listOfAuthorsDisplay = "Writen by: ";
+                            foreach (Author author in book.Authors)
+                            {
+                                listOfAuthorsDisplay += author.FirstName + " " + author.LastName;
+                                if (book.Authors.Count == 1 || book.Authors.IndexOf(author) == book.Authors.Count - 1)
+                                {
+
+                                }
+                                else
+                                {
+                                    listOfAuthorsDisplay += ", ";
+                                }
+                            }
+
+                            lblAuthor.Text = listOfAuthorsDisplay;
                             lblQuantity.Text = "In Stock: " + book.StockQuantity.ToString();
                             lblPublisher.Text = "Published: " + book.Publisher;
                             lblDatePublished.Text = book.DatePublished.ToShortDateString();
@@ -52,23 +66,23 @@ namespace INFT3050WebApp.UL
                     }
                     catch (Exception exception)
                     {
-                        //string exceptionString = "?error=" + exception.Message;
+                        string exceptionString = "?error=" + exception.Message;
 
-                        //if (exception.InnerException != null)
-                        //{
-                        //    exceptionString += "&innerex=" + exception.GetType().ToString() + "<br/>" + exception.InnerException.Message;
-                        //    exceptionString += "&stacktrace=" + exception.InnerException.StackTrace;
-                        //}
-                        //else
-                        //{
-                        //    exceptionString += "&innerex=" + exception.GetType().ToString();
-                        //    if (exception.StackTrace != null)
-                        //    {
-                        //        exceptionString += "&stacktrace=" + exception.StackTrace.ToString().TrimStart();
-                        //    }
-                        //}
+                        if (exception.InnerException != null)
+                        {
+                            exceptionString += "&innerex=" + exception.GetType().ToString() + "<br/>" + exception.InnerException.Message;
+                            exceptionString += "&stacktrace=" + exception.InnerException.StackTrace;
+                        }
+                        else
+                        {
+                            exceptionString += "&innerex=" + exception.GetType().ToString();
+                            if (exception.StackTrace != null)
+                            {
+                                exceptionString += "&stacktrace=" + exception.StackTrace.ToString().TrimStart();
+                            }
+                        }
 
-                        //Response.Redirect("DefaultError.aspx" + exceptionString);
+                        Response.Redirect("DefaultError.aspx" + exceptionString);
 
                         Server.Transfer("DefaultError.aspx?handler=Book.aspx", true);
                     }
@@ -77,3 +91,4 @@ namespace INFT3050WebApp.UL
         }
     }
 }
+
