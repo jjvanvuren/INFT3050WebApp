@@ -85,13 +85,13 @@ namespace INFT3050WebApp.DAL
 
 
         [DataObjectMethod(DataObjectMethodType.Insert)]
-        public void ConnectBookCategory(int BookID, List<Category> Category)
+        public void ConnectBookCategory(int BookID, List<Category> Categories)
         {
             string sql = @"INSERT INTO bookCategory (itemID, CategoryID)
                             VALUES(@itemID, @CategoryID)";
-            if (Category.Count > 1)
+            if (Categories.Count > 1)
             {
-                foreach (Category bookAuthors in Category)
+                foreach (Category bookCategory in Categories)
                 {
                     sql = sql + ",(@itemID, @CategoryID)";
                 }
@@ -100,12 +100,13 @@ namespace INFT3050WebApp.DAL
             {
                 using (SqlCommand command = new SqlCommand(sql, con))
                 {
-                    for (int i = 0; i < Category.Count; ++i)
+                    con.Open();
+                    foreach (Category bookCategory in Categories)
                     {
                         command.Parameters.Add(new SqlParameter("itemID", BookID));
-                        command.Parameters.Add(new SqlParameter("CategoryID", Category[i].Id));
+                        command.Parameters.Add(new SqlParameter("CategoryID", bookCategory.Id));
                     }
-                    con.Open();
+                    
                     command.ExecuteNonQuery();
                 }
             }

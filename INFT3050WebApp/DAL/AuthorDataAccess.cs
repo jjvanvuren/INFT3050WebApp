@@ -171,7 +171,7 @@ namespace INFT3050WebApp.DAL
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public void ConnectBookAuthor(int BookID, List<Author> Authors)
         {
-            string sql = @"INSERT INTO bookAuthor (itemID, authorID)
+            string sql = @"INSERT INTO bookAuthor ([itemID], [authorID])
                             VALUES(@itemID, @authorID)";
             if (Authors.Count > 1) {
                 foreach (Author bookAuthors in Authors)

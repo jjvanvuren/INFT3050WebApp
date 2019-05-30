@@ -55,7 +55,7 @@ namespace INFT3050WebApp.UL.Admin
                     }
 
                 }
-                catch (Exception exception)
+                catch (Exception)//exception)
                 {
                     Server.Transfer("~/UL/DefaultError.aspx?handler=AdminUserAccounts.aspx", true);
                 }
@@ -84,7 +84,7 @@ namespace INFT3050WebApp.UL.Admin
 
 
                 }
-                catch (Exception exception)
+                catch (Exception )//exception)
                 {
                     Server.Transfer("~/UL/DefaultError.aspx?handler=AdminUserAccounts.aspx", true);
                 }

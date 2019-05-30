@@ -34,7 +34,7 @@ namespace INFT3050WebApp.BL
             IsBestSeller = false;
         }
 
-        public Book (int iItemID)
+        public Book(int iItemID)
         {
             // Set up access to database
             IBookDataAccess db = new BookDataAccess();
@@ -104,5 +104,18 @@ namespace INFT3050WebApp.BL
 
             return allBooks;
         }
+
+        public int UpdateBookbyID(Book UpdatedBook)
+        {
+            DAL.BookDataAccess connect = new BookDataAccess();
+            return connect.UpdateBookById(UpdatedBook);
+        }
+
+        public int DeleteBookbyID(int BookId, Boolean ActiveStatus)
+        {
+            DAL.BookDataAccess connect = new BookDataAccess();
+            return connect.DeleteItemById(BookId, ActiveStatus);
+        }
+
     }
 }

@@ -26,7 +26,7 @@ namespace INFT3050WebApp.DAL
         {
             List<Book> books = new List<Book>();
                 string sql = @"SELECT [item].[itemID], [price], [stockQuantity], [longDescription], [shortDescription], [imagePath], [thumbnailPath], 
-                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher]
+                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher], [isActive]
                             FROM [dbo].[item] 
                             INNER JOIN [book] ON [item].[itemID] = [book].[itemID]
                             WHERE isActive = 1;";
@@ -51,13 +51,43 @@ namespace INFT3050WebApp.DAL
                 }
                 return books;
         }
+        // Method used to get all books for admin use
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public IEnumerable<Book> GetAdminBooks()
+        {
+            List<Book> books = new List<Book>();
+            string sql = @"SELECT [item].[itemID], [price], [stockQuantity], [longDescription], [shortDescription], [imagePath], [thumbnailPath], 
+                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher],[isActive]
+                            FROM [dbo].[item] 
+                            INNER JOIN [book] ON [item].[itemID] = [book].[itemID]";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Book newBook = CreateBook(reader);
+                        AuthorDataAccess newAuthor = new AuthorDataAccess();
+                        newBook.Authors = newAuthor.getAuthors(newBook.Id);
+                        CategoryDataAccess newCategory = new CategoryDataAccess();
+                        newBook.Categories = newCategory.getCategories(newBook.Id);
+                        books.Add(newBook);
+                    }
+
+                }
+            }
+            return books;
+        }
 
         // Method used to get books by their ID
         [DataObjectMethod(DataObjectMethodType.Select)]
         public Book GetBookById(int bookID)
         {
             string sql = @"SELECT [item].[itemID], [price], [stockQuantity], [longDescription], [shortDescription], [imagePath], [thumbnailPath], 
-                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher]
+                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher], [isActive]
                             FROM [dbo].[item] 
                             INNER JOIN [book] ON [item].[itemID] = [book].[itemID]
                             WHERE [item].[itemID]=@Id;";
@@ -96,7 +126,7 @@ namespace INFT3050WebApp.DAL
                             WHERE [itemID]=@Id;";
 
             string sql2 = @"UPDATE dbo.book SET [title] = @title
-                            WHERE [itemID]=@Id;";
+                            WHERE [book].itemID=@Id;";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
@@ -109,6 +139,7 @@ namespace INFT3050WebApp.DAL
                     command.Parameters.AddWithValue("thumbnailPath", bookUpdate.ThumbnailPath);
                     con.Open();
                     firstRowsEffected = command.ExecuteNonQuery();
+                    con.Close();
                 }
 
                 using (SqlCommand command = new SqlCommand(sql2, con))
@@ -117,19 +148,50 @@ namespace INFT3050WebApp.DAL
                     command.Parameters.AddWithValue("Title", bookUpdate.Title);
                     con.Open();
                     secondRowsEffected = command.ExecuteNonQuery();
+                    con.Close();
                 }
+                
             }
 
             return firstRowsEffected - secondRowsEffected;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public int Updatebook(Book newBook)
+        {
+            Int32 newId;
+
+            string sql = @"UPDATE item 
+                            SET [Book].title =@title, price= @price, stockQuantity=  @stockQuantity, imagePath= @imagePath, thumbnailPath=@thumbnailPath
+                            FROM item                                
+                            INNER JOIN [book] ON [item].[itemID] = [book].[itemID]
+                                WHERE [item].[itemID]=@Id; ";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.Add(new SqlParameter("Id", newBook.Id));
+                    command.Parameters.Add(new SqlParameter("title", newBook.Price));
+                    command.Parameters.Add(new SqlParameter("price", newBook.Price));
+                    command.Parameters.Add(new SqlParameter("stockQuantity", newBook.StockQuantity));
+                    command.Parameters.Add(new SqlParameter("imagePath", newBook.ImagePath));
+                    command.Parameters.Add(new SqlParameter("thumbnailPath", newBook.ThumbnailPath));
+                    con.Open();
+                    newId = Convert.ToInt32((object)command.ExecuteNonQuery());
+                    return 0;
+                }
+            }
+
         }
 
         // Method to "delete" item by setting status flag to 0
         // returns the number of rows effected (should be 1)
         // Untested
         [DataObjectMethod(DataObjectMethodType.Update)]
-        public int DeleteItemById(int itemId)
+        public int DeleteItemById(int itemId, Boolean ActiveStatus)
         {
-            string sql = @"UPDATE dbo.item SET [isActive] = 0
+            string sql = @"UPDATE dbo.item SET [isActive] = @isActive
                             WHERE [itemID]=@Id;";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
@@ -137,6 +199,7 @@ namespace INFT3050WebApp.DAL
                 using (SqlCommand command = new SqlCommand(sql, con))
                 {
                     command.Parameters.AddWithValue("Id", itemId);
+                    command.Parameters.AddWithValue("isActive", ActiveStatus);
                     con.Open();
                     return command.ExecuteNonQuery();
                 }
@@ -160,7 +223,7 @@ namespace INFT3050WebApp.DAL
         {
             List<Book> books = new List<Book>();
             string sql = @"SELECT [item].[itemID], [price], [stockQuantity], [longDescription], [shortDescription], [imagePath], [thumbnailPath], 
-                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher]
+                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher], [isActive]
                             FROM [dbo].[item] 
                             INNER JOIN [book] ON [item].[itemID] = [book].[itemID]
                             WHERE isActive = 1 AND CONTAINS (title, @searchString;";
@@ -200,10 +263,11 @@ namespace INFT3050WebApp.DAL
         {
             List<Book> books = new List<Book>();
             string sql = @"SELECT [item].[itemID], [price], [stockQuantity], [longDescription], [shortDescription], [imagePath], [thumbnailPath], 
-                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher]
+                            [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher], [isActive]
                             FROM [dbo].[item] 
                             INNER JOIN [book] ON [item].[itemID] = [book].[itemID]
-                            WHERE [category].[categoryID]=@Id;";
+                            INNER JOIN [bookCategory] ON [book].[itemID] = [bookCategory].[itemID]
+                            WHERE [bookCategory].[categoryID]=@Id;";
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(sql, con))
@@ -211,11 +275,9 @@ namespace INFT3050WebApp.DAL
                     command.Parameters.Add(new SqlParameter("Id", CategoryId));
                     con.Open();
                     SqlDataReader reader = command.ExecuteReader();
-                    con.Close();
                     while (reader.Read())
                     {
                         Book newBook = CreateBook(reader);
-                        con.Close();
                         AuthorDataAccess newAuthor = new AuthorDataAccess();
                         newBook.Authors = newAuthor.getAuthors(newBook.Id);
                         CategoryDataAccess newCategory = new CategoryDataAccess();
@@ -246,6 +308,7 @@ namespace INFT3050WebApp.DAL
             book.SecondaryTitle = reader["secondaryTitle"].ToString();
             book.IsBestSeller = (bool)reader.GetSqlBoolean(11);
             book.Publisher = reader["publisher"].ToString();
+            book.IsActive = (bool)reader.GetSqlBoolean(13);
 
             return book;
         }
@@ -315,5 +378,5 @@ namespace INFT3050WebApp.DAL
             }
         }
 
-        }
+    }
 }
