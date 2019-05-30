@@ -51,7 +51,7 @@ namespace INFT3050WebApp.UL.Admin
 
 
                 }
-                catch (Exception exception)
+                catch (Exception)
                 {
                     Server.Transfer("~/UL/DefaultError.aspx?handler=AdminPostageOptions.aspx", true);
                 }
