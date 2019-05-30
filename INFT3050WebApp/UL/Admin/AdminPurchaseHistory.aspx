@@ -8,14 +8,13 @@
     <h1>Purchase History</h1>
     <div class="container-flex">
         <%--Setting data source to be used for display of data in gridview --%>
-        <asp:ObjectDataSource ID="OrderDataSource" runat="server" SelectMethod="GetOrders" TypeName="INFT3050WebApp.DAL.DummyDB"></asp:ObjectDataSource>
-        <asp:GridView ID="Orders" runat="server" AutoGenerateColumns="false" DataSourceID="OrderDataSource" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True">
+        <asp:GridView ID="Orders" runat="server" AutoGenerateColumns="false" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True">
             <%--Display of selected attributes of a order - no validation --%>
             <Columns>
                 <asp:BoundField DataField="orderId" HeaderText="Order ID" SortExpression="orderId" />
-                <asp:BoundField DataField="purchaseId" HeaderText="Purchase ID" SortExpression="purchaseId" />
+                <asp:BoundField DataField="paymentId" HeaderText="Payment ID" SortExpression="paymentId" />
                 <asp:BoundField DataField="Total" HeaderText="Total Cost" SortExpression="Total" />
-                <asp:BoundField DataField="dateOrdered" HeaderText="Date Ordered" SortExpression="dateOrderd" />
+                <asp:BoundField DataField="dateOrdered" HeaderText="Date Ordered" SortExpression="dateOrdered" />
             </Columns>
         </asp:GridView>
     </div>

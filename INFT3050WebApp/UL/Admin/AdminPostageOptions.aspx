@@ -6,6 +6,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <h1>Postage Options</h1>
+            <%-- Validation Summary --%>
+        <asp:ValidationSummary ID="ValidationSummaryAdd" runat="server" HeaderText="Please correct the following errors:" ValidationGroup="Add" CssClass="text-danger" />
+    <h4>Update/Delete</h4>
     <div class="container-flex">
         <asp:ObjectDataSource ID="PostageOptionDataSource" runat="server" SelectMethod="GetPostageOptions" TypeName="INFT3050WebApp.BL.PostageOption"></asp:ObjectDataSource>
         <asp:GridView ID="PostageOptionManagement" runat="server" AutoGenerateColumns="false" DataSourceID="PostageOptionDataSource" AllowSorting="true" 
@@ -64,8 +67,24 @@
             <EditRowStyle CssClass="warning" />
         </asp:GridView>
 
+        <h4>Add New</h4>
+        <%-- Add Name Field --%>
+        <asp:Label ID="lblAddName" Text="Name:" runat="server" />
+        <asp:TextBox ID="txtAddName" runat="server" />
+        <asp:RequiredFieldValidator ID="rfvAddName" runat="server" ControlToValidate="txtAddName" Text="*" ValidationGroup="Add" ErrorMessage="Name is a required field" CssClass="text-danger"></asp:RequiredFieldValidator>
+        <br />
+        <br />
+        <%-- Add Price Field --%>
+        <asp:Label ID="lblAddPrice" Text="Price:" runat="server" />
+        <asp:TextBox ID="txtAddPrice" runat="server" />
+        <asp:RequiredFieldValidator ID="rfvAddPrice" runat="server" ControlToValidate="txtAddPrice" Text="*" ValidationGroup="Add" ErrorMessage="Price is a required field" CssClass="text-danger"></asp:RequiredFieldValidator>
+        <br />
+        <br />
+        <%-- Add Button Field --%>
+        <asp:Button ID="btnAdd" Text="Add" runat="server" CssClass="btn btn-success" CausesValidation="true" ValidationGroup="Add" OnClick="btnAdd_Click"/>
+
         <%-- Validation Summary --%>
-        <asp:ValidationSummary ID="ValidationSummary1" runat="server" HeaderText="Please correct the following errors:" ValidationGroup="Edit" CssClass="text-danger" />
+        <asp:ValidationSummary ID="ValidationEdit" runat="server" HeaderText="Please correct the following errors:" ValidationGroup="Edit" CssClass="text-danger" />
     </div>
 
 </asp:Content>

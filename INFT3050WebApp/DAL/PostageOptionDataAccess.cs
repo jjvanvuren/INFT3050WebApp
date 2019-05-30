@@ -58,6 +58,24 @@ namespace INFT3050WebApp.DAL
             return postageOptions;
         }
 
+        //Method used to add a new postage option to the database
+        [DataObjectMethod(DataObjectMethodType.Insert)]
+        public int AddPostageOption(string Name, double Price)
+        {
+            string sql = @"INSERT INTO  dbo.[postageOption] VALUES (@Name, 0.00, @Price, 1);";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("Name", Name);
+                    command.Parameters.AddWithValue("Price", Price);
+                    con.Open();
+                    return command.ExecuteNonQuery();
+                }
+            }
+        }
+
         [DataObjectMethod(DataObjectMethodType.Update)]
         public int DeletePostageOptionById(int Id)
         {
