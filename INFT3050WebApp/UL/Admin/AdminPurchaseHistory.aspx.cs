@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using INFT3050WebApp.BL;
 
 namespace INFT3050WebApp.UL.Admin
 {
@@ -33,7 +34,21 @@ namespace INFT3050WebApp.UL.Admin
 
                 string UserID = Request.QueryString["Id"];
 
-                Orders.DataSource = ;
+                if (!string.IsNullOrEmpty(UserID) && int.TryParse(UserID, out int id))
+                {
+                    try
+                    {
+                        Order order = new Order();
+
+                        Orders.DataSource = order.GetOrdersByUserID(id);
+
+                        Orders.DataBind();
+                    }
+                    catch (Exception exc)
+                    {
+                        Server.Transfer("~/UL/DefaultError.aspx?handler=AdminPurchaseHistory.aspx", true);
+                    }
+                }
             }
         }
     }
