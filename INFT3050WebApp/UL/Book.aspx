@@ -42,7 +42,7 @@
                 <asp:Label ID="lblPrice" runat="server" Text="Price"></asp:Label>
             </p>
             <%--Button to add book to cart--%>
-            <asp:Button Text="Add To Cart" runat="server" CssClass="btn btn-success" />
+            <asp:Button Text="Add To Cart" runat="server" CssClass="btn btn-success" OnClick="btnAddCart_Click" />
 
         </div>
     </div>

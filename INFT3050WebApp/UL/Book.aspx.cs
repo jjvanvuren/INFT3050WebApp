@@ -75,5 +75,22 @@ namespace INFT3050WebApp.UL
                 }
             }
         }
+
+        protected void btnAddCart_Click(object sender, EventArgs e)
+        {
+            if (Session["cartSession"] != null)
+            {
+                // Add to existing cart
+            }
+            else
+            {
+                // Create a new cart
+                CartSession csCart = new CartSession();
+                Session["cartSession"] = csCart;
+
+                CartItem cartItem = new CartItem();
+            }
+            
+        }
     }
 }
