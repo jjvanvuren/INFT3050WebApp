@@ -42,7 +42,7 @@ namespace INFT3050WebApp.UL.Admin
                 }
                 catch (Exception)
                 {
-                    Server.Transfer("~/UL/DefaultError.aspx?handler=.aspx", true);
+                    Server.Transfer("~/UL/DefaultError.aspx?handler=AdminAddBookAuthorCategory.aspx", true);
                 }
 
             }
@@ -111,17 +111,3 @@ namespace INFT3050WebApp.UL.Admin
         }
     }
 }
-
- try
-                {
-
-
-                }
-                catch (Exception)
-                {
-                    Server.Transfer("~/UL/DefaultError.aspx?handler=AdminPostageOptions.aspx", true);
-                }
-                finally
-                {
-                    this.PostageOptionManagement.DataBind();
-                }
