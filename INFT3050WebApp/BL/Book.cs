@@ -18,6 +18,7 @@ namespace INFT3050WebApp.BL
         public string Publisher { get; set; }
         public bool IsBestSeller { get; set; }
 
+        // Default constructor
         public Book()
         {
             //Set default values
@@ -35,6 +36,7 @@ namespace INFT3050WebApp.BL
 
         }
 
+        // Constructor to used to access the DAL and create a book based on bookID
         public Book(int iItemID)
         {
             // Set up access to database
@@ -106,12 +108,14 @@ namespace INFT3050WebApp.BL
             return allBooks;
         }
 
+        // Method to call the UpdateBookbyId method in the DAL
         public int UpdateBookbyID(Book UpdatedBook)
         {
             DAL.BookDataAccess connect = new BookDataAccess();
             return connect.UpdateBookById(UpdatedBook);
         }
 
+        // Method to call the DeleteItembyId method in the DAL
         public int DeleteBookbyID(int BookId, Boolean ActiveStatus)
         {
             DAL.BookDataAccess connect = new BookDataAccess();
