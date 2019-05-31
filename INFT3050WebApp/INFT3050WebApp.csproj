@@ -17,7 +17,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44369</IISExpressSSLPort>
+    <IISExpressSSLPort>44395</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>
     </IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>
@@ -176,6 +176,7 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="UL\Search.aspx" />
+    <Content Include="UL\SessionExpired.aspx" />
     <Content Include="UL\SuccessfulPasswordRecovery.aspx" />
     <Content Include="UL\SuccessfulRegistration.aspx" />
     <Content Include="UL\css\UsedBooks.css" />
@@ -480,6 +481,13 @@
     </Compile>
     <Compile Include="UL\Search.aspx.designer.cs">
       <DependentUpon>Search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\SessionExpired.aspx.cs">
+      <DependentUpon>SessionExpired.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\SessionExpired.aspx.designer.cs">
+      <DependentUpon>SessionExpired.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

@@ -226,7 +226,7 @@ namespace INFT3050WebApp.DAL
                             [ISBN], [title], [datePublished], [secondaryTitle], [isBestSeller], [publisher], [isActive]
                             FROM [dbo].[item] 
                             INNER JOIN [book] ON [item].[itemID] = [book].[itemID]
-                            WHERE isActive = 1 AND CONTAINS (title, @searchString;";
+                            WHERE isActive = 1 AND CONTAINS (title, @searchString);";
             if (searchString == null)
             {
                 return GetBooks();
@@ -243,14 +243,13 @@ namespace INFT3050WebApp.DAL
                         while (reader.Read())
                         {
                             Book newBook = CreateBook(reader);
-                            con.Close();
                             AuthorDataAccess newAuthor = new AuthorDataAccess();
                             newBook.Authors = newAuthor.getAuthors(newBook.Id);
                             CategoryDataAccess newCategory = new CategoryDataAccess();
                             newBook.Categories = newCategory.getCategories(newBook.Id);
                             books.Add(newBook);
                         }
-
+                        con.Close();
                     }
                 }
                 return books;

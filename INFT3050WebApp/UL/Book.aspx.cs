@@ -69,27 +69,9 @@ namespace INFT3050WebApp.UL
                             lblDatePublished.Text = book.DatePublished.ToShortDateString();
                         }
                     }
-                    catch (Exception exception)
+                    catch (Exception exc)
                     {
-                        //string exceptionString = "?error=" + exception.Message;
-
-                        //if (exception.InnerException != null)
-                        //{
-                        //    exceptionString += "&innerex=" + exception.GetType().ToString() + "<br/>" + exception.InnerException.Message;
-                        //    exceptionString += "&stacktrace=" + exception.InnerException.StackTrace;
-                        //}
-                        //else
-                        //{
-                        //    exceptionString += "&innerex=" + exception.GetType().ToString();
-                        //    if (exception.StackTrace != null)
-                        //    {
-                        //        exceptionString += "&stacktrace=" + exception.StackTrace.ToString().TrimStart();
-                        //    }
-                        //}
-
-                        //Response.Redirect("DefaultError.aspx" + exceptionString);
-
-                        Server.Transfer("DefaultError.aspx?handler=Book.aspx", true);
+                        throw exc;
                     }
                 }
             }

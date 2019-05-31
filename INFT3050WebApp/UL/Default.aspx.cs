@@ -39,7 +39,6 @@ namespace INFT3050WebApp
 
                 try
                 {
-
                     books = dbBook.GetAllBooks();
 
                     // Create list of best sellers based on IsBestSeller property
@@ -56,44 +55,12 @@ namespace INFT3050WebApp
                     ImageRepeater.DataSource = bestSellers;
                     ImageRepeater.DataBind();
                 }
-                catch (Exception)
+                catch (Exception exc)
                 {
-                    //string exceptionString = "?error=" + exception.Message;
-
-                    //if (exception.InnerException != null)
-                    //{
-                    //    exceptionString += "&innerex=" + exception.GetType().ToString() + "<br/>" + exception.InnerException.Message;
-                    //    exceptionString += "&stacktrace=" + exception.InnerException.StackTrace;
-                    //}
-                    //else
-                    //{
-                    //    exceptionString += "&innerex=" + exception.GetType().ToString();
-                    //    if (exception.StackTrace != null)
-                    //    {
-                    //        exceptionString += "&stacktrace=" + exception.StackTrace.ToString().TrimStart();
-                    //    }
-                    //}
-
-                    //Response.Redirect("DefaultError.aspx" + exceptionString);
-
-                    //Server.Transfer("/UL/DefaultError.aspx?handler=Default.aspx", true);
-
+                    throw exc;
                 }
             }
         }
-
-        //private void Page_Error(object sender, EventArgs e)
-        //{
-        //    // Get last error from the server.
-        //    Exception exc = Server.GetLastError();
-
-        //    // Handle specific exception.
-        //    if (exc is InvalidOperationException)
-        //    {
-        //        // Pass the error on to the error page.
-        //        Server.Transfer("DefaultError.aspx?handler=Page_Error%20-%20Default.aspx", true);
-        //    }
-        //}
 
         protected void imgBestSeller_Command(object sender, CommandEventArgs e)
         {
@@ -104,8 +71,6 @@ namespace INFT3050WebApp
             var url = FriendlyUrl.Href("~/UL/Book", idString);
 
             Response.Redirect(url);
-
-            //Response.Redirect("Book.aspx?id=" + e.CommandArgument);
         }
     }
 }
