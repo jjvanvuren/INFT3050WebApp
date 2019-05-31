@@ -76,6 +76,7 @@ namespace INFT3050WebApp.DAL
             }
         }
 
+        // Method to "delete" a postage option in the database by changing isActive's value to 0
         [DataObjectMethod(DataObjectMethodType.Update)]
         public int DeletePostageOptionById(int Id)
         {
@@ -93,6 +94,7 @@ namespace INFT3050WebApp.DAL
             }
         }
 
+        // Method to update a postage option in the database by Id
         [DataObjectMethod(DataObjectMethodType.Update)]
         public int UpdatePostageOptionById(int Id, double price, string name)
         {

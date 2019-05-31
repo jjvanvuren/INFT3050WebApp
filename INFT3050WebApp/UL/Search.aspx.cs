@@ -44,7 +44,7 @@ namespace INFT3050WebApp
             string[] split = tbxSearch.Text.Split(null);
             string searchString = "";
 
-            // Add each seperate inputed word to search string seperated by OR
+            // Add each separate inputed word to search string separated by OR
             for (int i = 0; i < split.Length; i++)
             {
                 if (i == split.Length - 1)

@@ -63,6 +63,7 @@ namespace INFT3050WebApp.UL.Admin
             }
         }
 
+        // Method used to update the books in the database with the entered values, when user clicks the update button/link
         protected void PostageOptionManagement_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             try
@@ -90,6 +91,7 @@ namespace INFT3050WebApp.UL.Admin
             }
         }
 
+        // OnClick Event handler for the Add button, adds a new book to the database with the entered values
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             try

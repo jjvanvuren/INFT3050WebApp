@@ -34,6 +34,7 @@ namespace INFT3050WebApp.UL.Admin
 
                 string UserID = Request.QueryString["Id"];
 
+                // Display the users purchase history based on the Id passed by the query string
                 if (!string.IsNullOrEmpty(UserID) && int.TryParse(UserID, out int id))
                 {
                     try

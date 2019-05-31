@@ -12,20 +12,20 @@ namespace INFT3050WebApp.UL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Get ID and try parse
+            // Get caregory ID and tryparse the ID to an integer
             var idString = Request.QueryString["id"];
-            int id;
-            if (!string.IsNullOrEmpty(idString) && int.TryParse(idString, out id))
+
+            if (!string.IsNullOrEmpty(idString) && int.TryParse(idString, out int id))
             {
                 if (!IsPostBack)
                 {
+                    // Get and display category information
                     try
                     {
                         Category category = new Category(id);
 
                         if (category != null)
                         {
-                            // Use data for page elements
                             lblCategoryName.Text = category.Name;
                             lblCategoryDescription.Text = category.Description;
 

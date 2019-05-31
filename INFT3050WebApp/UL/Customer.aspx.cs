@@ -67,10 +67,6 @@ namespace INFT3050WebApp
 
             if (!IsPostBack)
             {
-                //// Create dummy database and pull all books from database
-                //var db = new BookDataAccess();
-                //var books = db.GetBooks();
-
                 Book dbBook = new Book();
 
                 List<Book> books = new List<Book>();
