@@ -6,10 +6,9 @@
 
     <h1>Shopping Cart</h1>
     <br />
-    <%--This table is only to show desired layout 
-            Will be replaced in assignment 2--%>
-        <asp:GridView ID="gridCart" runat="server" AutoGenerateColumns="false" AllowSorting="true" CssClass="table" 
-            GridLines="None" AllowPaging="True" OnRowDeleting="gridCart_RowDeleting" ShowHeaderWhenEmpty="true" DataKeyNames="ID"  OnRowCommand="gridCart_RowCommand1">
+
+       <asp:GridView ID="gridCart" runat="server" AutoGenerateColumns="false" AllowSorting="true" CssClass="table" 
+        GridLines="None" AllowPaging="True" OnRowDeleting="gridCart_RowDeleting" ShowHeaderWhenEmpty="true" DataKeyNames="ID"  >
             <Columns>
                 <%--Item ID--%>
                 <asp:BoundField DataField="ID"  ReadOnly="True" Visible="false" >
@@ -28,14 +27,16 @@
 
                     <%-- Quantity field during Edit--%>    
 
-<%--                <asp:BoundField DataField="Quantity" HeaderText="Quantity"  SortExpression="Quantity">
+                <asp:BoundField DataField="Quantity" HeaderText="Quantity"  SortExpression="Quantity">
                     <ItemStyle CssClass="col-xs-1" />
-                </asp:BoundField>--%>
-                <asp:TemplateField HeaderText ="Quantity">
+                </asp:BoundField>
+
+
+<%--                <asp:TemplateField HeaderText ="Quantity Up">
                     <ItemTemplate>
-                        <asp:TextBox ID="txtQuantity" runat="server" MaxLength="5" CssClass="form-control" Text='<%# Bind("Quantity") %>'><ItemStyle CssClass="col-xs-1" /></asp:TextBox>
+                        <asp:TextBox ID="txtQuantity" runat="server" ></asp:TextBox>
                     </ItemTemplate>
-                </asp:TemplateField>
+                </asp:TemplateField>--%>
 
 
                 <asp:BoundField DataField="Price" HeaderText="Price" ReadOnly="True">
@@ -43,14 +44,6 @@
                 </asp:BoundField>
 
 
-                <%-- Edit Quantity --%>
-                <asp:TemplateField>
-                    <ItemTemplate>
-                        <asp:Button ID="btnUpdateQuantity" Text="Update Quantity" runat="server" CommandName="cmdUpdate" CommandArgument='<%# Eval("ID") %>'/>
-                    </ItemTemplate>
-                </asp:TemplateField>
-
-                <%--Delete Buttons--%>
                 <asp:CommandField ShowDeleteButton="True" DeleteText="Remove Item" >
                     <ItemStyle CssClass="col-xs-2" />
                 </asp:CommandField>
@@ -70,6 +63,7 @@
     <br />
 
     <%-- Button for customer to proceed to checkout --%>
+<%--    <asp:Button ID="UpdateQuantity" CssClass="btn btn-success" runat="server" Text="Update Quantity" OnClick="UpdateQuantity_Click" />--%>
     <asp:Button ID="btnCheckout" CssClass="btn btn-success" runat="server" Text="Checkout" OnClick="btnCheckout_Click" />
 
 </asp:Content>

@@ -8,7 +8,7 @@
     <h1>Inventory Managment</h1>
     <div class="container-flex">
         <%--Setting data source to be used for display of data in gridview --%>
-        <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetAdminBooks" TypeName="INFT3050WebApp.DAL.BookDataAccess"></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetAdminBooks" TypeName="INFT3050WebApp.BL.Book"></asp:ObjectDataSource>
         <asp:GridView ID="ItemManagment" runat="server" AutoGenerateColumns="false" DataSourceID="bookDataSource" AllowSorting="true" CssClass="table" GridLines="None"
             AllowPaging="True" PageSize="5" OnRowUpdating="ItemManagment_RowUpdating" OnRowDeleting="ItemManagment_RowDeleting">
             <Columns>

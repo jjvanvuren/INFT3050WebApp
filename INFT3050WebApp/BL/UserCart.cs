@@ -86,12 +86,12 @@ namespace INFT3050WebApp.BL
             totalPrice = 0;
             foreach (CartItem item in Cart)
             {   
-                totalPrice = +item.Price*item.Quantity;
+                totalPrice += item.Price*item.Quantity;
             }
         }
 
         //Methord of getting the cart
-        public List<CartItem> GetCart()
+        public IEnumerable<CartItem> GetCart()
         {
             if (Cart == null)
             {
