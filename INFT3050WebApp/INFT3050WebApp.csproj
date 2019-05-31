@@ -201,6 +201,9 @@
     <Compile Include="BL\Address.cs" />
     <Compile Include="BL\Author.cs" />
     <Compile Include="BL\Book.cs" />
+    <Compile Include="BL\UserCart.cs" />
+    <Compile Include="BL\CartItem.cs" />
+    <Compile Include="BL\CartSession.cs" />
     <Compile Include="BL\Category.cs" />
     <Compile Include="BL\Order.cs" />
     <Compile Include="BL\UserSession.cs" />

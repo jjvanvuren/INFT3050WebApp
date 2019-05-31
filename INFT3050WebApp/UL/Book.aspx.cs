@@ -73,9 +73,46 @@ namespace INFT3050WebApp.UL
                     {
                         throw exc;
                     }
+
+                }
+
+            }
+
+        }
+        protected void btnAddCart_Click(object sender, EventArgs e)
+        {
+            // Get ID and try parse
+            var segments = Request.GetFriendlyUrlSegments();
+            int count = segments.Count;
+            string idString = segments[0];
+            if (!string.IsNullOrEmpty(idString) && int.TryParse(idString, out int id))
+            {
+
+                //if (!IsPostBack)
+                //{
+                try
+                {
+                    BL.Book book = new BL.Book(id);
+
+                    if (Session["cartSession"] == null)
+                    {
+                        BL.CartSession cartCurrent = new BL.CartSession();
+                        Session["cartSession"] = cartCurrent;
+                    }
+
+                    CartSession csCart = (CartSession)Session["cartSession"];
+                    CartItem cartItem = new CartItem(book.Id, 1);
+
+                    csCart.AddItem(cartItem);
+                    Response.Redirect("~/UL/Cart.aspx");
+                }
+                catch (Exception exc)
+                {
+                    throw exc;
                 }
             }
         }
-    }
-}
 
+    }
+
+}

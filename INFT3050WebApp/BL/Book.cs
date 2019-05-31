@@ -122,5 +122,11 @@ namespace INFT3050WebApp.BL
             return connect.DeleteItemById(BookId, ActiveStatus);
         }
 
+        public IEnumerable<Book> GetAdminBooks()
+        {
+            DAL.BookDataAccess connect = new BookDataAccess();
+            return connect.GetAdminBooks();
+        }
+
     }
 }
