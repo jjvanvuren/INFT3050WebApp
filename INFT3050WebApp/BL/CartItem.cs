@@ -9,5 +9,13 @@ namespace INFT3050WebApp.BL
     {
         public int Id { get; set; }
         public int Quantity { get; set; }
+
+        public CartItem() { }
+
+        public CartItem(int iId, int iQuantity)
+        {
+            this.Id = iId;
+            this.Quantity = iQuantity;
+        }
     }
 }

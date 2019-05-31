@@ -66,23 +66,23 @@ namespace INFT3050WebApp.UL
                     }
                     catch (Exception exception)
                     {
-                        string exceptionString = "?error=" + exception.Message;
+                        //string exceptionString = "?error=" + exception.Message;
 
-                        if (exception.InnerException != null)
-                        {
-                            exceptionString += "&innerex=" + exception.GetType().ToString() + "<br/>" + exception.InnerException.Message;
-                            exceptionString += "&stacktrace=" + exception.InnerException.StackTrace;
-                        }
-                        else
-                        {
-                            exceptionString += "&innerex=" + exception.GetType().ToString();
-                            if (exception.StackTrace != null)
-                            {
-                                exceptionString += "&stacktrace=" + exception.StackTrace.ToString().TrimStart();
-                            }
-                        }
+                        //if (exception.InnerException != null)
+                        //{
+                        //    exceptionString += "&innerex=" + exception.GetType().ToString() + "<br/>" + exception.InnerException.Message;
+                        //    exceptionString += "&stacktrace=" + exception.InnerException.StackTrace;
+                        //}
+                        //else
+                        //{
+                        //    exceptionString += "&innerex=" + exception.GetType().ToString();
+                        //    if (exception.StackTrace != null)
+                        //    {
+                        //        exceptionString += "&stacktrace=" + exception.StackTrace.ToString().TrimStart();
+                        //    }
+                        //}
 
-                        Response.Redirect("DefaultError.aspx" + exceptionString);
+                        //Response.Redirect("DefaultError.aspx" + exceptionString);
 
                         Server.Transfer("DefaultError.aspx?handler=Book.aspx", true);
                     }
@@ -92,20 +92,48 @@ namespace INFT3050WebApp.UL
 
         protected void btnAddCart_Click(object sender, EventArgs e)
         {
-            if (Session["cartSession"] != null)
+            // Get ID and try parse
+            var idString = Request.QueryString["id"];
+            if (!string.IsNullOrEmpty(idString) && int.TryParse(idString, out int id))
             {
-                // Add to existing cart
-            }
-            else
-            {
-                // Create a new cart
-                CartSession csCart = new CartSession();
-                Session["cartSession"] = csCart;
 
-                CartItem cartItem = new CartItem();
+                if (!IsPostBack)
+                {
+                    try
+                    {
+                        BL.Book book = new BL.Book(id);
+
+                        if (Session["cartSession"] != null)
+                        {
+                            // Add to existing cart
+                            CartSession csCart = (CartSession)Session["cartSession"];
+
+                            CartItem cartItem = new CartItem(book.Id, 1);
+
+                            csCart.AddItem(cartItem);
+
+                            Session["cartSession"] = csCart;
+
+                        }
+                        else
+                        {
+                            // Create a new cart
+                            CartSession csCart = new CartSession();
+                            
+                            CartItem cartItem = new CartItem(book.Id, 1);
+
+                            csCart.AddItem(cartItem);
+
+                            Session["cartSession"] = csCart;
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        Server.Transfer("DefaultError.aspx?handler=Book.aspx", true);
+                    }
+
+                    
+                }
             }
-            
         }
     }
-}
-
