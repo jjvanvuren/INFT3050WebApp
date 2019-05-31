@@ -17,7 +17,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44395</IISExpressSSLPort>
+    <IISExpressSSLPort>44369</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>
     </IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>
@@ -127,7 +127,7 @@
     <Content Include="UL\E403.aspx" />
     <Content Include="UL\E404.aspx" />
     <Content Include="UL\E500.aspx" />
-    <Content Include="UL\Global.asax" />
+    <Content Include="Global.asax" />
     <Content Include="UL\Images\768px-Books_Flat_Icon_Vector.png" />
     <Content Include="UL\Images\9780008152406.jpg" />
     <Content Include="UL\Images\9780008152406_thumb.jpg" />
@@ -414,7 +414,7 @@
     <Compile Include="UL\E500.aspx.designer.cs">
       <DependentUpon>E500.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UL\Global.asax.cs">
+    <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="UL\Login.aspx.cs">

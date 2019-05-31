@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
 using System.Web.Routing;
+using Microsoft.AspNet.FriendlyUrls;
 
 
 namespace INFT3050WebApp
@@ -29,9 +30,9 @@ namespace INFT3050WebApp
         protected void Page_Load(object sender, EventArgs e)
 
         {
-
             if (!IsPostBack)
             {
+
                 Book dbBook = new Book();
 
                 List<Book> books = new List<Book>();
@@ -75,7 +76,7 @@ namespace INFT3050WebApp
 
                     //Response.Redirect("DefaultError.aspx" + exceptionString);
 
-                    Server.Transfer("DefaultError.aspx?handler=Default.aspx", true);
+                    //Server.Transfer("/UL/DefaultError.aspx?handler=Default.aspx", true);
 
                 }
             }
@@ -97,7 +98,14 @@ namespace INFT3050WebApp
         protected void imgBestSeller_Command(object sender, CommandEventArgs e)
         {
             // When a book's image is clicked redirect to the book's details page
-            Response.Redirect("Book.aspx?id=" + e.CommandArgument);
+
+            string idString = e.CommandArgument.ToString();
+
+            var url = FriendlyUrl.Href("~/UL/Book", idString);
+
+            Response.Redirect(url);
+
+            //Response.Redirect("Book.aspx?id=" + e.CommandArgument);
         }
     }
 }

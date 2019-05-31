@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
+using Microsoft.AspNet.FriendlyUrls;
 
 namespace INFT3050WebApp.UL
 {
@@ -27,8 +28,12 @@ namespace INFT3050WebApp.UL
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var segments = Request.GetFriendlyUrlSegments();
+            int count = segments.Count;
+            string idString = segments[0];
+
             // Get ID and try parse
-            var idString = Request.QueryString["id"];
+            //var idString = Request.QueryString["id"];
             if (!string.IsNullOrEmpty(idString) && int.TryParse(idString, out int id))
             {
 
