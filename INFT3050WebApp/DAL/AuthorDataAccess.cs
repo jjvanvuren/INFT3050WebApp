@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace INFT3050WebApp.DAL
 {
-    public class AuthorDataAccess
+    public class AuthorDataAccess : IAuthorDataAccess
     {
         private string ConnectionString
         {
@@ -19,11 +19,12 @@ namespace INFT3050WebApp.DAL
             }
         }
 
-        // Method used to get Authors by name
+        // Method used to get Authors by name be that just first, last or a combination of the 2
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Author> GetAuthors(string SearchFirstName, string SearchLastName)
         {
-
+            //each of these cases allows for searching for an author by
+            //a different methord. 
             List<Author> ListofAuthors = new List<Author>();
             string sql = @"SELECT *
                             FROM [dbo].[author]";
@@ -39,15 +40,16 @@ namespace INFT3050WebApp.DAL
             {
                 sql = sql + " WHERE[author].[LastName] = @LastName";
             }
-
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(sql, con))
                 {
+                    //check if first Name needs to be added
                     if (SearchFirstName != null)
                     {
                         command.Parameters.Add(new SqlParameter("FirstName", SearchFirstName));
                     }
+                    //check if last Name needs to be added
                     if (SearchLastName != null)
                     {
                         command.Parameters.Add(new SqlParameter("LastName", SearchLastName));
@@ -167,12 +169,13 @@ namespace INFT3050WebApp.DAL
             return null;
         }
        
-
+        //Methord adding one or multiple authors to  bookAuthor Table at once in the data base
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public void ConnectBookAuthor(int BookID, List<Author> Authors)
         {
             string sql = @"INSERT INTO bookAuthor ([itemID], [authorID]) VALUES";
             int i = 0;
+            //Creating a Values section for each instance of Author with unquie IDs for inserting. 
             foreach(Author author in Authors)
             {
                 sql = sql + "(@itemID"+ i.ToString() +", @authorID"+ i.ToString() +")";
@@ -191,6 +194,7 @@ namespace INFT3050WebApp.DAL
                 using (SqlCommand command = new SqlCommand(sql, con))
                 {
                     con.Open();
+                    //adding both Item ID and AuthorID  to each unquie ID in the SQL string for inserting.
                     int j = 0;
                     foreach (Author author in Authors)
                     {

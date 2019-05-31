@@ -10,5 +10,8 @@ namespace INFT3050WebApp.DAL
     interface ICategoryDataAccess
     {
         Category GetCategoryById(int categoryID);
+        List<Category> GetCategory();
+        void ConnectBookCategory(int BookID, List<Category> Categories);
+        List<Category> getCategories(int BookID);
     }
 }

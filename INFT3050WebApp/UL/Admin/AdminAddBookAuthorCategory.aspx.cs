@@ -16,34 +16,51 @@ namespace INFT3050WebApp.UL.Admin
             BL.AddBookSession populateGridView = (BL.AddBookSession)Session["addBookSession"];
             GridAddedAuthors.DataSource = populateGridView.addedAuthors();
             GridAddedAuthors.DataBind();
-            //if (Session["UserSession"] == null)
-            //{
-            //    Response.Redirect("~/UL/Admin/AdminLogin.aspx");
-            //}
+            if (Session["UserSession"] == null)
+            {
+                Response.Redirect("~/UL/Admin/AdminLogin.aspx");
+            }
 
         }
 
+        //Used when Add Button is prested to add the Author to the List of Authors in Session Data.
+        //Calls the session to handle the add
         protected void GridSearch_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             //When clicking the add button Add the author to book session
             if (e.CommandName == "cmdAdd")
             {
-                BL.Author newAuthor = new BL.Author();
-                newAuthor = newAuthor.getAuthor(Int32.Parse(e.CommandArgument.ToString()));
+                try
+                {
+                    BL.Author newAuthor = new BL.Author();
+                    newAuthor = newAuthor.getAuthor(Int32.Parse(e.CommandArgument.ToString()));
 
-                BL.AddBookSession AddAuthors = (BL.AddBookSession)Session["addBookSession"];
-                AddAuthors.AddAuthorToBook(newAuthor);
-                Response.Redirect("~/UL/Admin/AdminAddBookAuthorCategory.aspx");
+                    BL.AddBookSession AddAuthors = (BL.AddBookSession)Session["addBookSession"];
+                    AddAuthors.AddAuthorToBook(newAuthor);
+                    Response.Redirect("~/UL/Admin/AdminAddBookAuthorCategory.aspx");
+
+                }
+                catch (Exception)
+                {
+                    Server.Transfer("~/UL/DefaultError.aspx?handler=.aspx", true);
+                }
+
             }
 
         }
+
+        //Search Button Adding Parameters to the GridView source and if not found shows a button.
         protected void btnSearchAuthor_Click(object sender, EventArgs e)
         {
-            authorDataSource.SelectParameters.Clear();
+            authorDataSource.SelectParameters.Clear();AdminAddBookAuthorCategory
+            //Stops from adding of an Author that is already in the Database.
+            lblNoAuthor.Visible = false;
+            btnNewAuthor.Visible = false;
             authorDataSource.SelectParameters.Add("SearchFirstName", tbxFirstName.Text);
             authorDataSource.SelectParameters.Add("SearchLastName", tbxLastName.Text);
 
             this.GridAuthors.DataBind();
+            //If no Authors were found will show add Author button to Add the Author.
             if (GridAuthors.Rows.Count == 0)
             {
                 lblNoAuthor.Visible = true;
@@ -51,6 +68,7 @@ namespace INFT3050WebApp.UL.Admin
             }
         }
 
+        //FIX NEEDED
         protected void btnNewAuthor_Click(object sender, EventArgs e)
         {
             string NewAuthorFirstName = tbxFirstName.Text;
@@ -69,6 +87,7 @@ namespace INFT3050WebApp.UL.Admin
             Response.Redirect("~/UL/Admin/AdminAddBookAuthorCategory.aspx");
         }
 
+        //Continue button will Grab the checked Categories and Add them to the list.
         protected void btnComfirmToContiue_Click(object sender, EventArgs e)
         {
             BL.AddBookSession populateGridView = (BL.AddBookSession)Session["addBookSession"];
@@ -92,3 +111,17 @@ namespace INFT3050WebApp.UL.Admin
         }
     }
 }
+
+ try
+                {
+
+
+                }
+                catch (Exception)
+                {
+                    Server.Transfer("~/UL/DefaultError.aspx?handler=AdminPostageOptions.aspx", true);
+                }
+                finally
+                {
+                    this.PostageOptionManagement.DataBind();
+                }

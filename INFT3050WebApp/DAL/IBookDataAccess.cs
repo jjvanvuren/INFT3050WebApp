@@ -15,6 +15,7 @@ namespace INFT3050WebApp.DAL
         IEnumerable<Book> SearchBooksByTitle(string searchString);
         int UpdateBookById(Book bookUpdate);
         int DeleteItemById(int itemId, Boolean ActiveStatus);
-
+        int SubmitBook(Book newBook);
+        IEnumerable<Book> GetAdminBooks();
     }
 }

@@ -156,35 +156,6 @@ namespace INFT3050WebApp.DAL
             return firstRowsEffected - secondRowsEffected;
         }
 
-        [DataObjectMethod(DataObjectMethodType.Update)]
-        public int Updatebook(Book newBook)
-        {
-            Int32 newId;
-
-            string sql = @"UPDATE item 
-                            SET [Book].title =@title, price= @price, stockQuantity=  @stockQuantity, imagePath= @imagePath, thumbnailPath=@thumbnailPath
-                            FROM item                                
-                            INNER JOIN [book] ON [item].[itemID] = [book].[itemID]
-                                WHERE [item].[itemID]=@Id; ";
-
-            using (SqlConnection con = new SqlConnection(ConnectionString))
-            {
-                using (SqlCommand command = new SqlCommand(sql, con))
-                {
-                    command.Parameters.Add(new SqlParameter("Id", newBook.Id));
-                    command.Parameters.Add(new SqlParameter("title", newBook.Price));
-                    command.Parameters.Add(new SqlParameter("price", newBook.Price));
-                    command.Parameters.Add(new SqlParameter("stockQuantity", newBook.StockQuantity));
-                    command.Parameters.Add(new SqlParameter("imagePath", newBook.ImagePath));
-                    command.Parameters.Add(new SqlParameter("thumbnailPath", newBook.ThumbnailPath));
-                    con.Open();
-                    newId = Convert.ToInt32((object)command.ExecuteNonQuery());
-                    return 0;
-                }
-            }
-
-        }
-
         // Method to "delete" item by setting status flag to 0
         // returns the number of rows effected (should be 1)
         // Untested
@@ -205,16 +176,6 @@ namespace INFT3050WebApp.DAL
                 }
             }
         }
-
-        //[DataObjectMethod(DataObjectMethodType.Insert)]
-        //public int AddBook(Book book)
-        //{
-        //    string sql = @"INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive)
-        //                   VALUES (@price, @stockQuantity, @longDescription, @shortDescription, @imagePath, @thumbnailPalth, 1); ";
-        //    string sql2 = @"INSERT INTO book (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive)
-        //                   VALUES (@price, @stockQuantity, @longDescription, @shortDescription, @imagePath, @thumbnailPalth, 1); ";
-
-        //}
 
 
         // Method used to get books by their Category
@@ -313,34 +274,12 @@ namespace INFT3050WebApp.DAL
             return book;
         }
 
-        // Method used to create Author object from the reader
-        private static Author CreateAuthor(SqlDataReader reader)
-        {
-            Author author = new Author();
-            author.Id = (int)reader["authorID"];
-            author.Description = (string)reader.GetSqlString(15);
-            author.FirstName = (string)reader.GetSqlString(13);
-            author.LastName = (string)reader.GetSqlString(14);
-
-            return author;
-        }
-
-        // Method used to create Category object from the reader
-        private static Category CreateCategory(SqlDataReader reader)
-        {
-            Category category = new Category();
-            category.Id = (int)reader["categoryID"];
-            category.Name = (string)reader.GetSqlString(16);
-            category.Description = (string)reader.GetSqlString(17);
-
-            return category;
-        }
-
+        //Methord used to create the book in the data base and returns the Book ID which was created
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public int SubmitBook(Book newBook)
         {
             Int32 newId;
-
+            //Inserting into Item
             string sql = @"INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive)
                                 VALUES (@price, @stockQuantity, @longDescription, @shortDescription, @imagePath, @thumbnailPath, 1)
                                 SELECT SCOPE_IDENTITY()";
@@ -355,9 +294,11 @@ namespace INFT3050WebApp.DAL
                     command.Parameters.Add(new SqlParameter("imagePath", newBook.ImagePath));
                     command.Parameters.Add(new SqlParameter("thumbnailPath", newBook.ThumbnailPath));
                     con.Open();
+                    //getting Book ID on create
                     newId = Convert.ToInt32((object)command.ExecuteScalar());
                 }
             }
+            //Inserting into Book
             sql = @"INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher)
                                 VALUES (@itemID, @ISBN, @title, @datePublished, @secondaryTitle, @isBestSeller, @publisher)";
             using (SqlConnection con = new SqlConnection(ConnectionString))

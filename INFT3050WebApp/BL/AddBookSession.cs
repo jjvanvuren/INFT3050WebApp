@@ -14,6 +14,8 @@ namespace INFT3050WebApp.BL
         public int SessionId { get; set; }
         public AddBookSession() { }
 
+
+        //Methord used to save book information to the session and start Lists for author and Categories
         public AddBookSession(double newPrice, int newStockQuantity, String newShortDescription, String newLongDescription, String newImagePath, String newThumbnailPath, String newIsbn,
             DateTime newDatePublished, String newTitle, String newSecondaryTitle, String newPublisher, Boolean newIsBestSeller)
         {
@@ -25,7 +27,7 @@ namespace INFT3050WebApp.BL
             IsBestSeller = newIsBestSeller;
             Authors = new List<Author>();
             Categories = new List<Category>();
-            //All string trypes have checks around them to make sure Nulls are submitted to the data base
+            //All string types have checks around them to make sure Nulls are submitted to the data base
             if (newShortDescription != null)
             {
                 ShortDescription = newShortDescription;
@@ -100,9 +102,9 @@ namespace INFT3050WebApp.BL
         }
 
 
-        //Used to added authors selected to the book
+        //Used to added authors selected to the book session
         public void AddAuthorToBook(Author newAuthor) {
-
+            //Make sure that the list has been started
             if(Authors == null)
             {
                 Authors = new List<Author>();
@@ -122,14 +124,28 @@ namespace INFT3050WebApp.BL
         }
 
 
-        //Used to added categories selected to the book
+        //Used to added categories selected to the book takes a list of ints and matches those as IDs to a list of categories
         public void AddCategoryToBook(List<int> newCategories)
-        {
+        {   //Make sure that the list for categories has been started
+            if (Categories == null)
+            {
+                Categories = new List<Category>();
+            }
             Category newCategory = new Category();
+            //Connecting to the data base to get categories
             List<Category> ListOfCategoires = newCategory.getCategories();
             foreach (int CategoryID in newCategories)
             {
                 bool categoryFound = false;
+                //Stop from the same Category been added twice to the session List.
+                foreach (Category cat in Categories)
+                {
+                    if (cat.Id == CategoryID)
+                    {
+                        categoryFound = true;
+                    }
+                }
+                //Only iterating though till its found then moves onto the next one in the list
                 while (categoryFound !=true)
                 {
                     foreach (Category cat in ListOfCategoires)
@@ -145,6 +161,9 @@ namespace INFT3050WebApp.BL
 
         }
 
+        //used to create a book from the session data does not take lists for author and category
+        //because those are not needed to be passed to the book data access layer, they are passed
+        //to their corisponding data access layer.
         public Book createTempBook()
         {
             Book bookTemp = new Book();
@@ -167,15 +186,19 @@ namespace INFT3050WebApp.BL
             return bookTemp;
         }
 
+        //Methord returns the list of added authors. 
         public List<Author> addedAuthors()
         {
             return Authors;
         }
+        //Methord returns the list of added categories. 
         public List<Category> addedCategories()
         {
             return Categories;
         }
 
+
+        //used to submit the book off to the Data access layers to create the book.
         public void submitBook()
         {
             
@@ -185,16 +208,7 @@ namespace INFT3050WebApp.BL
             DAL.AuthorDataAccess connectAuthor = new AuthorDataAccess();
             connectAuthor.ConnectBookAuthor(newBook.Id, Authors);
             DAL.CategoryDataAccess connectCategory = new CategoryDataAccess();
-            connectCategory.ConnectBookCategory(newBook.Id, Categories);
-
+            connectCategory.ConnectBookCategory(newBook.Id, Categories); 
         }
-
-
-
-        //public void RemoveAuthorID(int AuthorID)
-        //{
-        //    AuthorIDs.RemoveAt(AuthorIDs.FindIndex(AuthorIDs.Contains(AuthorID));
-        //}
-
     }
 }

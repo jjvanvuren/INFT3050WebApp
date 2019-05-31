@@ -20,7 +20,18 @@ namespace INFT3050WebApp.DAL
             }
         }
 
+        // Method used to create Category object from the reader
+        private static Category CreateCategory(SqlDataReader reader)
+        {
+            Category category = new Category();
+            category.Id = (int)reader["categoryID"];
+            category.Name = (string)reader.GetSqlString(1);
+            category.Description = (string)reader.GetSqlString(2);
 
+            return category;
+        }
+
+        //Gets a list of all categories
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Category> GetCategory()
         {
@@ -72,22 +83,12 @@ namespace INFT3050WebApp.DAL
             return null;
         }
 
-        // Method used to create Category object from the reader
-        private static Category CreateCategory(SqlDataReader reader)
-        {
-            Category category = new Category();
-            category.Id = (int)reader["categoryID"];
-            category.Name = (string)reader.GetSqlString(1);
-            category.Description = (string)reader.GetSqlString(2);
-
-            return category;
-        }
-
-
+        //Methord adding one or multiple authors to  bookCategory Table at once in the data base
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public void ConnectBookCategory(int BookID, List<Category> Categories)
         {
             string sql = @"INSERT INTO bookCategory ([itemID], [categoryID]) VALUES";
+            //Creating a Values section for each instance of Categories with unquie IDs for inserting.
             int i = 0;
             foreach (Category category in Categories)
             {
@@ -107,6 +108,7 @@ namespace INFT3050WebApp.DAL
                 using (SqlCommand command = new SqlCommand(sql, con))
                 {
                     con.Open();
+                    //adding both Item ID and categoryID to each unquie ID in the SQL string for inserting.
                     int j = 0;
                     foreach (Category category in Categories)
                     {
