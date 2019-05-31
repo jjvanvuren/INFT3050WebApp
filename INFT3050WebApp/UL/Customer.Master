@@ -31,29 +31,33 @@
                     <div class="navbar-collapse collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav mr-auto">
 
-                            <%-- Dropdown list to display all books and individual categories --%>
-                            <li class="dropdown">
-                                <a  class="nav-link btn dropdown-toggle" data-toggle="dropdown" role="button">Books</a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <asp:LinkButton CssClass="dropdown-item" ID="lnkAllBooks" OnClick="lnkAllBooks_Click" Text="All Books" runat="server" CausesValidation="false" /></li>
-                                    <li>
-                                        <asp:LinkButton CssClass="dropdown-item" ID="lnkHistory" OnClick="lnkHistory_Click" Text="History" runat="server" CausesValidation="false" /></li>
-                                    <li>
-                                        <asp:LinkButton CssClass="dropdown-item" ID="lnkThriller" OnClick="lnkThriller_Click" Text="Thriller" runat="server" CausesValidation="false" /></li>
-                                    <li>
-                                        <asp:LinkButton CssClass="dropdown-item" ID="lnkSciFi" OnClick="lnkSciFi_Click" Text="Sci-Fi" runat="server" CausesValidation="false" /></li>
-                                    <li>
-                                        <asp:LinkButton CssClass="dropdown-item" ID="lnkHorror" OnClick="lnkHorror_Click" Text="Horror" runat="server" CausesValidation="false" /></li>
-                                    <li>
-                                        <asp:LinkButton CssClass="dropdown-item" ID="lnkCrime" OnClick="lnkCrime_Click" Text="Crime" runat="server" CausesValidation="false" /></li>
-                                    <li>
-                                        <asp:LinkButton CssClass="dropdown-item" ID="lnkFantasy" OnClick="lnkFantasy_Click" Text="Fantasy" runat="server" CausesValidation="false" /></li>
-                                    <li>
-                                        <asp:LinkButton CssClass="dropdown-item" ID="lnkArt" OnClick="lnkArt_Click" Text="Art" runat="server" CausesValidation="false" /></li>
-                                    <li>
-                                        <asp:LinkButton CssClass="dropdown-item" ID="lnkTechnology" OnClick="lnkTechnology_Click" Text="Technology" runat="server" CausesValidation="false" /></li>
-                                </ul>
+                            <%-- Categories --%>
+                            <li>
+                                <asp:HyperLink CssClass="nav-link" ID="hypAllBooks" NavigateUrl="~/UL/Books" runat="server" Text="All Books" />
+                            </li>
+                            <li>
+                                <asp:HyperLink CssClass="nav-link" ID="hypHistory" NavigateUrl="~/UL/BooksByCategory/1" runat="server" Text="History" />
+                            </li>
+                            <li>
+                                <asp:HyperLink CssClass="nav-link" ID="hypThriller" NavigateUrl="~/UL/BooksByCategory/2" runat="server" Text="Thriller" />
+                            </li>
+                            <li>
+                                <asp:HyperLink CssClass="nav-link" ID="hypSciFi" NavigateUrl="~/UL/BooksByCategory/3" runat="server" Text="Sci-Fi" />
+                            </li>
+                            <li>
+                                <asp:HyperLink CssClass="nav-link" ID="hypHorror" NavigateUrl="~/UL/BooksByCategory/4" runat="server" Text="Horror" />
+                            </li>
+                            <li>
+                                <asp:HyperLink CssClass="nav-link" ID="hypCrime" NavigateUrl="~/UL/BooksByCategory/5" runat="server" Text="Crime" />
+                            </li>
+                            <li>
+                                <asp:HyperLink CssClass="nav-link" ID="hypFantasy" NavigateUrl="~/UL/BooksByCategory/6" runat="server" Text="Fantasy" />
+                            </li>
+                            <li>
+                                <asp:HyperLink CssClass="nav-link" ID="hypArt" NavigateUrl="~/UL/BooksByCategory/7" runat="server" Text="Art" />
+                            </li>
+                            <li>
+                                <asp:HyperLink CssClass="nav-link" ID="hypTechnology" NavigateUrl="~/UL/BooksByCategory/8" runat="server" Text="Technology" />
                             </li>
                         </ul>
 
