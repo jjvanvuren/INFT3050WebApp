@@ -22,85 +22,85 @@ namespace INFT3050WebApp {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
-        /// lnkAllBooks control.
+        /// hypAllBooks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkAllBooks;
+        protected global::System.Web.UI.WebControls.HyperLink hypAllBooks;
         
         /// <summary>
-        /// lnkHistory control.
+        /// hypHistory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkHistory;
+        protected global::System.Web.UI.WebControls.HyperLink hypHistory;
         
         /// <summary>
-        /// lnkThriller control.
+        /// hypThriller control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkThriller;
+        protected global::System.Web.UI.WebControls.HyperLink hypThriller;
         
         /// <summary>
-        /// lnkSciFi control.
+        /// hypSciFi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkSciFi;
+        protected global::System.Web.UI.WebControls.HyperLink hypSciFi;
         
         /// <summary>
-        /// lnkHorror control.
+        /// hypHorror control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkHorror;
+        protected global::System.Web.UI.WebControls.HyperLink hypHorror;
         
         /// <summary>
-        /// lnkCrime control.
+        /// hypCrime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkCrime;
+        protected global::System.Web.UI.WebControls.HyperLink hypCrime;
         
         /// <summary>
-        /// lnkFantasy control.
+        /// hypFantasy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkFantasy;
+        protected global::System.Web.UI.WebControls.HyperLink hypFantasy;
         
         /// <summary>
-        /// lnkArt control.
+        /// hypArt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkArt;
+        protected global::System.Web.UI.WebControls.HyperLink hypArt;
         
         /// <summary>
-        /// lnkTechnology control.
+        /// hypTechnology control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkTechnology;
+        protected global::System.Web.UI.WebControls.HyperLink hypTechnology;
         
         /// <summary>
         /// searchLink control.
