@@ -39,9 +39,43 @@ namespace INFT3050WebApp.BL
         }
 
         // Remove an item from cart
-        public void RemoveItem(CartItem cartItem)
+        public void RemoveItem(int iID)
         {
-            this.Cart.Remove(cartItem);
+            int index = -1;
+            foreach(CartItem item in Cart)
+            {
+                if(item.Id == iID)
+                {
+                    index= Cart.IndexOf(item);
+                }
+            }
+            //Make sure that it found an index
+            if (index != -1)
+            {
+                this.Cart.RemoveAt(index);
+            }
+            SetCartPrice();
+        }
+
+        public void UpdateItem(int iID, int iNewquantity)
+        {
+            int iIndex = -1;
+            foreach (CartItem item in Cart)
+            {
+                if (item.Id == iID)
+                {
+                    iIndex = Cart.IndexOf(item);
+                }
+            }
+            //Make sure that it found an index
+            if (iIndex != -1)
+            {
+                this.Cart[iIndex].Quantity= iNewquantity;
+                if (Cart[iIndex].Quantity == 0)
+                {
+                    RemoveItem(Cart[iIndex].Id);
+                }
+            }
             SetCartPrice();
         }
 

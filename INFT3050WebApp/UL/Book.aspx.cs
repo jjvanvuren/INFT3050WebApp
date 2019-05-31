@@ -102,30 +102,18 @@ namespace INFT3050WebApp.UL
                     try
                     {
                         BL.Book book = new BL.Book(id);
+
+                        if (Session["cartSession"] == null)
+                        {
+                            BL.CartSession cartCurrent = new BL.CartSession();
+                            Session["cartSession"] = cartCurrent;
+                        }
+
                         CartSession csCart = (CartSession)Session["cartSession"];
-                        if (Session["cartSession"] != null)
-                        {
-                            // Add to existing cart
-
-                            CartItem cartItem = new CartItem(book.Id, 1);
-
-                            csCart.AddItem(cartItem);
-
-                            //Session["cartSession"] = csCart;
-                            Response.Redirect("~/UL/Cart.aspx");
-
-                        }
-                        else
-                        {
-                            // Create a new cart
-                            //CartSession csCart = new CartSession();
-
-                            CartItem cartItem = new CartItem(book.Id, 1);
+                        CartItem cartItem = new CartItem(book.Id, 1);
 
                             csCart.AddItem(cartItem);
                             Response.Redirect("~/UL/Cart.aspx");
-                            //Session["cartSession"] = csCart;
-                        }
                     }
                     catch (Exception exception)
                     {

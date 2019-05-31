@@ -51,13 +51,68 @@ namespace INFT3050WebApp.UL
             Response.Redirect("~/UL/Checkout.aspx");
         }
 
-        protected void ItemManagment_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void gridCart_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            
+            try
+            {
+                string sID = gridCart.DataKeys[e.RowIndex].Value.ToString();
+                if (int.TryParse(sID, out int iID))
+                {
+                    BL.CartSession sessionInstance = (BL.CartSession)Session["cartSession"];
+                    sessionInstance.RemoveItem(iID);
+                }
+
+            }
+            catch (Exception exc)
+            {
+                Server.Transfer("~/UL/DefaultError.aspx?handler=Cart.aspx", true);
+            }
+            finally
+            {
+                Response.Redirect("~/UL/Cart.aspx");
+            }
+        }
+        protected void gridCart_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            // If delete button was selected change status to inactive
+            if (e.CommandName == "cmdUpdate")
+            {
+                try
+                {
+                    string comString = e.CommandArgument.ToString();
+
+                    if (!string.IsNullOrEmpty(comString) && int.TryParse(comString, out int iID))
+                    {
+                            BL.CartSession sessionInstance = (BL.CartSession)Session["cartSession"];
+                            sessionInstance.RemoveItem(iID);
+                    }
+
+
+                }
+                catch (Exception exc)
+                {
+                    Server.Transfer("~/UL/DefaultError.aspx?handler=Cart.aspx", true);
+                }
+                finally
+                {
+                    Response.Redirect("~/UL/Cart.aspx");
+                }
+
+            }
         }
 
-        protected void ItemManagment_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        protected void gridCart_RowCommand1(object sender, GridViewCommandEventArgs e)
         {
+            if (e.CommandName == "cmdUpdate")
+            {
+                string comString = e.CommandArgument.ToString();
+
+                if (!string.IsNullOrEmpty(comString) && int.TryParse(comString, out int iID))
+                {
+                    BL.CartSession sessionInstance = (BL.CartSession)Session["cartSession"];
+                    sessionInstance.RemoveItem(iID);
+                }
+            }
 
         }
     }
