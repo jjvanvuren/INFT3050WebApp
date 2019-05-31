@@ -97,34 +97,34 @@ namespace INFT3050WebApp.UL
             if (!string.IsNullOrEmpty(idString) && int.TryParse(idString, out int id))
             {
 
-                if (!IsPostBack)
-                {
+                //if (!IsPostBack)
+                //{
                     try
                     {
                         BL.Book book = new BL.Book(id);
-
+                        CartSession csCart = (CartSession)Session["cartSession"];
                         if (Session["cartSession"] != null)
                         {
                             // Add to existing cart
-                            CartSession csCart = (CartSession)Session["cartSession"];
 
                             CartItem cartItem = new CartItem(book.Id, 1);
 
                             csCart.AddItem(cartItem);
 
-                            Session["cartSession"] = csCart;
+                            //Session["cartSession"] = csCart;
+                            Response.Redirect("~/UL/Cart.aspx");
 
                         }
                         else
                         {
                             // Create a new cart
-                            CartSession csCart = new CartSession();
-                            
+                            //CartSession csCart = new CartSession();
+
                             CartItem cartItem = new CartItem(book.Id, 1);
 
                             csCart.AddItem(cartItem);
-
-                            Session["cartSession"] = csCart;
+                            Response.Redirect("~/UL/Cart.aspx");
+                            //Session["cartSession"] = csCart;
                         }
                     }
                     catch (Exception exception)
@@ -132,8 +132,9 @@ namespace INFT3050WebApp.UL
                         Server.Transfer("DefaultError.aspx?handler=Book.aspx", true);
                     }
 
-                    
-                }
+
+               // }
             }
         }
     }
+}

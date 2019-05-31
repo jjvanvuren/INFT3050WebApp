@@ -13,7 +13,7 @@ namespace INFT3050WebApp.UL
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
-            // Check if user is logged in to use correct master page
+            //Check if user is logged in to use correct master page
             if (Session["userSession"] != null)
             {
                 Page.MasterPageFile = "~/UL/Customer.Master";
@@ -22,6 +22,7 @@ namespace INFT3050WebApp.UL
             {
                 Page.MasterPageFile = "~/UL/Site.Master";
             }
+
 
         }
 
@@ -33,12 +34,31 @@ namespace INFT3050WebApp.UL
                 string url = ConfigurationManager.AppSettings["SecurePath"] + "UL/Cart.aspx";
                 Response.Redirect(url);
             }
+            if (Session["cartSession"] == null)
+            {
+                BL.CartSession cartCurrent = new BL.CartSession();
+                Session["cartSession"] = cartCurrent;
+            }
+            BL.CartSession populateGridView = (BL.CartSession)Session["cartSession"];
+            gridCart.DataSource = populateGridView.GetCart();
+            gridCart.DataBind();
+            lblTheTotalPrice.Text = populateGridView.totalPrice.ToString();
         }
 
         // If the cancel button is clicked go back to Checkout
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/UL/Checkout.aspx");
+        }
+
+        protected void ItemManagment_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            
+        }
+
+        protected void ItemManagment_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+
         }
     }
 }

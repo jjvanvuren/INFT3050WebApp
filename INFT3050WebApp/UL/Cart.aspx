@@ -8,56 +8,60 @@
     <br />
     <%--This table is only to show desired layout 
             Will be replaced in assignment 2--%>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">ISBN</th>
-                <th scope="col">Title</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Price</th>
-                <th scope="col">Remove Items</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>9780813056173</td>
-                <td>Picturing Apollo 11</td>
-                <td>1</td>
-                <td>&#36;45.92</td>
-                <td>
-                    <button class="btn btn-warning">Remove</button></td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>9781786812445</td>
-                <td>The Mistake</td>
-                <td>1</td>
-                <td>&#36;16.49</td>
-                <td>
-                    <button class="btn btn-warning">Remove</button></td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>9781503903265</td>
-                <td>One Word Kill</td>
-                <td>2</td>
-                <td>&#36;22.99</td>
-                <td>
-                    <button class="btn btn-warning">Remove</button></td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-                <td class="font-weight-bold">Total:</td>
-                <td class="font-weight-bold">&#36;108.39</td>
-                <td>
-                    <button class="btn btn-warning">Clear</button></td>
-            </tr>
-        </tbody>
-    </table>
+
+        <asp:GridView ID="gridCart" runat="server" AutoGenerateColumns="false" AllowSorting="true" CssClass="table" 
+            GridLines="None" AllowPaging="True" OnRowUpdating="ItemManagment_RowUpdating" OnRowDeleting="ItemManagment_RowDeleting" ShowHeaderWhenEmpty="true">
+            <Columns>
+                <%--Item ISBN displayed--%>
+                <asp:BoundField DataField="ISBN" HeaderText="ISBN" ReadOnly="True" SortExpression="ISBN">
+                    <ItemStyle CssClass="col-xs-1" />
+                </asp:BoundField>
+                <%--Item Title displayed--%>
+                <asp:BoundField DataField="Title" HeaderText="Title" ReadOnly="True" SortExpression="Title">
+                    <ItemStyle CssClass="col-xs-1" />
+                </asp:BoundField>
+
+                <%--Quantity of item--%>
+
+                    <%-- Quantity field during Edit--%>    
+
+                <asp:BoundField DataField="Quantity" HeaderText="Quantity"  SortExpression="Quantity">
+                    <ItemStyle CssClass="col-xs-1" />
+                </asp:BoundField>
+<%--                            <asp:regular ID="revStockonHand" runat="server" CssClass="text-danger" ErrorMessage="Please enter a valid quantity"
+                                        ValidationExpression="^\d+$"
+                                        ControlToValidate="txtGridQuantity">Please enter a valid quantity</asp:regular>--%>
+                        <%-- Quantity field validation--%>
+
+
+
+
+                <asp:BoundField DataField="Price" HeaderText="Price" ReadOnly="True" SortExpression="Price">
+                    <ItemStyle CssClass="col-xs-1" />
+                </asp:BoundField>
+
+                <%--Edit Buttons--%>
+                <asp:CommandField CausesValidation="True" ShowEditButton="True" ValidationGroup="Edit">
+                    <ItemStyle CssClass="col-xs-2" />
+                </asp:CommandField>
+
+                <%--Delete Buttons--%>
+                <asp:CommandField ShowDeleteButton="True" DeleteText="Change Status" >
+                    <ItemStyle CssClass="col-xs-2" />
+                </asp:CommandField>
+
+            </Columns>
+            <EditRowStyle CssClass="warning" />
+        </asp:GridView>
+
+
+
+
+
+    <asp:Label ID="lblTotalPrice" runat="server" Text="Total Price : $"></asp:Label>
+    <asp:Label ID="lblTheTotalPrice" runat="server"></asp:Label>
+
+
     <br />
 
     <%-- Button for customer to proceed to checkout --%>

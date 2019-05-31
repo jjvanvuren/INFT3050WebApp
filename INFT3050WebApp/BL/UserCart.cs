@@ -8,7 +8,7 @@ namespace INFT3050WebApp.BL
     public class UserCart
     {
         public List<CartItem> Cart { get; set; }
-
+        public double totalPrice;
         public UserCart () { }
 
         public UserCart (CartItem cartItem)
@@ -26,8 +26,8 @@ namespace INFT3050WebApp.BL
                 if (item.Id == cartItem.Id)
                 {
                     item.Quantity++;
-
                     bDuplicate = true;
+
                 }
             }
             
@@ -35,13 +35,35 @@ namespace INFT3050WebApp.BL
             {
                 this.Cart.Add(cartItem);
             }
-            
+            SetCartPrice();
         }
 
         // Remove an item from cart
         public void RemoveItem(CartItem cartItem)
         {
             this.Cart.Remove(cartItem);
+            SetCartPrice();
+        }
+
+
+        //Methord to get total Price of Items in cart
+        public void SetCartPrice()
+        {
+            totalPrice = 0;
+            foreach (CartItem item in Cart)
+            {   
+                totalPrice = +item.Price*item.Quantity;
+            }
+        }
+
+        //Methord of getting the cart
+        public List<CartItem> GetCart()
+        {
+            if (Cart == null)
+            {
+                Cart = new List<CartItem>();
+            }
+            return Cart;
         }
     }
 }

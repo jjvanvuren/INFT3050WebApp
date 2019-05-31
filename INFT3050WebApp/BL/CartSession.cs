@@ -9,6 +9,10 @@ namespace INFT3050WebApp.BL
     {
         public const string SESSION_KEY = "cartSession";
 
-        public CartSession() { }
+        public CartSession()
+        {
+            Cart = new List<CartItem>();
+        }
+
     }
 }
