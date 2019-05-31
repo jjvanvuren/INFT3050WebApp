@@ -28,30 +28,35 @@
     <h3>2. Enter your billing details</h3>
 
     <div class="form-group">
-        <%--Address Line 1 field--%>
-        <asp:Label ID="lblAddress1" runat="server" Text="Address Line 1"></asp:Label>
-        <asp:TextBox ID="tbxAddress1" class="form-control" type="text" runat="server"></asp:TextBox>
+        <%--Street Number field--%>
+        <asp:Label ID="lblStreetNumber" runat="server" Text="Street Number"></asp:Label>
+        <asp:TextBox ID="tbxStreetNumber" class="form-control" type="text" runat="server"></asp:TextBox>
 
-        <%--Address Line 1 is required--%>
-        <asp:RequiredFieldValidator ID="rfvAddress1" runat="server" CssClass="text-danger" ErrorMessage="Please enter your address"
-            ControlToValidate="tbxAddress1">Address line 1 required</asp:RequiredFieldValidator>
+        <%--Street Number is required--%>
+        <asp:RequiredFieldValidator ID="rfvStreetNumber" runat="server" CssClass="text-danger" ErrorMessage="Please enter your Street Number"
+            ControlToValidate="tbxStreetNumber">Street Number required</asp:RequiredFieldValidator>
 
-        <%--Checks for invalid symbols in Address Line 1--%>
-        <asp:RegularExpressionValidator ID="revAddress1" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid Address"
+        <%--Checks for invalid symbols in Street Number--%>
+        <asp:RegularExpressionValidator ID="revStreetNumber" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid Street Number"
             ValidationExpression="^[A-Za-z0-9'\.\-\s\,]+$"
-            ControlToValidate="tbxAddress1">Illegal characters included in field</asp:RegularExpressionValidator>
+            ControlToValidate="tbxStreetNumber">Illegal characters included in field</asp:RegularExpressionValidator>
     </div>
 
     <div class="form-group">
-        <%--Address Line 2 field--%>
-        <asp:Label ID="lblAddress2" runat="server" Text="Address Line 2"></asp:Label>
-        <asp:TextBox ID="tbxAddress2" class="form-control" type="text" runat="server"></asp:TextBox>
+        <%--Street Name field--%>
+        <asp:Label ID="lblStreetName" runat="server" Text="Street Name"></asp:Label>
+        <asp:TextBox ID="tbxStreetName" class="form-control" type="text" runat="server"></asp:TextBox>
 
-        <%--Checks for invalid symbols in Address Line 2--%>
-        <asp:RegularExpressionValidator ID="revAddress2" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid Address"
+        <%--Street Name is required--%>
+        <asp:RequiredFieldValidator ID="rfvAddress1" runat="server" CssClass="text-danger" ErrorMessage="Please enter your address"
+            ControlToValidate="tbxStreetName">Street Name required</asp:RequiredFieldValidator>
+
+        <%--Checks for invalid symbols in Street Name--%>
+        <asp:RegularExpressionValidator ID="revAddress1" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid StreetName"
             ValidationExpression="^[A-Za-z0-9'\.\-\s\,]+$"
-            ControlToValidate="tbxAddress2">Illegal characters included in field</asp:RegularExpressionValidator>
+            ControlToValidate="tbxStreetName">Illegal characters included in field</asp:RegularExpressionValidator>
     </div>
+
 
     <div class="form-group">
         <%--City/Suburb field--%>
@@ -111,25 +116,25 @@
     <p class="text-danger font-weight-bold">If you do not enter shipping details below, the order will be shipped to the billing address.</p>
 
     <div class="form-group">
-        <%--Shipping Address Line 1 field--%>
-        <asp:Label ID="lblAdress1Ship" runat="server" Text="Address Line 1"></asp:Label>
-        <asp:TextBox ID="tbxAddress1Ship" class="form-control" type="text" runat="server"></asp:TextBox>
+        <%--Shipping Street Number field--%>
+        <asp:Label ID="lblStreetNumberShip" runat="server" Text="Street Number"></asp:Label>
+        <asp:TextBox ID="tbxStreetNumberShip" class="form-control" type="text" runat="server"></asp:TextBox>
 
         <%--Checks for invalid symbols in Address Line 1--%>
-        <asp:RegularExpressionValidator ID="revAddress1Ship" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid shipping address"
+        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid Street Number"
             ValidationExpression="^[A-Za-z0-9'\.\-\s\,]+$"
-            ControlToValidate="tbxAddress1Ship">Illegal characters included in field</asp:RegularExpressionValidator>
+            ControlToValidate="tbxStreetNumberShip">Illegal characters included in field</asp:RegularExpressionValidator>
     </div>
 
     <div class="form-group">
-        <%--Shipping Address Line 2 field--%>
-        <asp:Label ID="lblAdress2Ship" runat="server" Text="Address Line 2"></asp:Label>
-        <asp:TextBox ID="tbxAddress2Ship" class="form-control" type="text" runat="server"></asp:TextBox>
+        <%--Shipping Street Name field--%>
+        <asp:Label ID="lblStreetNameShip" runat="server" Text="Street Name"></asp:Label>
+        <asp:TextBox ID="tbxStreetNameShip" class="form-control" type="text" runat="server"></asp:TextBox>
 
-        <%--Checks for invalid symbols in Address Line 2--%>
-        <asp:RegularExpressionValidator ID="revAddress2Ship" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid shipping address"
+        <%--Checks for invalid symbols in Name field--%>
+        <asp:RegularExpressionValidator ID="revStreetNameShip" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid shipping Street Name"
             ValidationExpression="^[A-Za-z0-9'\.\-\s\,]+$"
-            ControlToValidate="tbxAddress2Ship">Illegal characters included in field</asp:RegularExpressionValidator>
+            ControlToValidate="tbxStreetNameShip">Illegal characters included in field</asp:RegularExpressionValidator>
     </div>
 
     <div class="form-group">

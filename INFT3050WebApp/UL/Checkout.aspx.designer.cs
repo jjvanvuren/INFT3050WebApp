@@ -31,22 +31,58 @@ namespace INFT3050WebApp.UL {
         protected global::System.Web.UI.WebControls.RadioButtonList rblPostage;
         
         /// <summary>
-        /// lblAddress1 control.
+        /// lblStreetNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAddress1;
+        protected global::System.Web.UI.WebControls.Label lblStreetNumber;
         
         /// <summary>
-        /// tbxAddress1 control.
+        /// tbxStreetNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbxAddress1;
+        protected global::System.Web.UI.WebControls.TextBox tbxStreetNumber;
+        
+        /// <summary>
+        /// rfvStreetNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvStreetNumber;
+        
+        /// <summary>
+        /// revStreetNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revStreetNumber;
+        
+        /// <summary>
+        /// lblStreetName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStreetName;
+        
+        /// <summary>
+        /// tbxStreetName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxStreetName;
         
         /// <summary>
         /// rfvAddress1 control.
@@ -65,33 +101,6 @@ namespace INFT3050WebApp.UL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revAddress1;
-        
-        /// <summary>
-        /// lblAddress2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAddress2;
-        
-        /// <summary>
-        /// tbxAddress2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbxAddress2;
-        
-        /// <summary>
-        /// revAddress2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator revAddress2;
         
         /// <summary>
         /// lblCity control.
@@ -193,58 +202,58 @@ namespace INFT3050WebApp.UL {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvState;
         
         /// <summary>
-        /// lblAdress1Ship control.
+        /// lblStreetNumberShip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAdress1Ship;
+        protected global::System.Web.UI.WebControls.Label lblStreetNumberShip;
         
         /// <summary>
-        /// tbxAddress1Ship control.
+        /// tbxStreetNumberShip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbxAddress1Ship;
+        protected global::System.Web.UI.WebControls.TextBox tbxStreetNumberShip;
         
         /// <summary>
-        /// revAddress1Ship control.
+        /// RegularExpressionValidator2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator revAddress1Ship;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
         
         /// <summary>
-        /// lblAdress2Ship control.
+        /// lblStreetNameShip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAdress2Ship;
+        protected global::System.Web.UI.WebControls.Label lblStreetNameShip;
         
         /// <summary>
-        /// tbxAddress2Ship control.
+        /// tbxStreetNameShip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbxAddress2Ship;
+        protected global::System.Web.UI.WebControls.TextBox tbxStreetNameShip;
         
         /// <summary>
-        /// revAddress2Ship control.
+        /// revStreetNameShip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator revAddress2Ship;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revStreetNameShip;
         
         /// <summary>
         /// lblCityShip control.

@@ -12,10 +12,10 @@ namespace INFT3050WebApp.UL.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["UserSession"] == null)
-            //{
-            //    Response.Redirect("~/UL/Admin/AdminLogin.aspx");
-            //}
+            if (Session["UserSession"] == null)
+            {
+                Response.Redirect("~/UL/Admin/AdminLogin.aspx");
+            }
 
         }
 

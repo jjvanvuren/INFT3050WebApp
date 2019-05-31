@@ -36,8 +36,75 @@ namespace INFT3050WebApp.UL
 
         protected void btnPlaceOrder_Click(object sender, EventArgs e)
         {
+            BL.Address shippingAddress = new BL.Address();
+            //street Number
+            if (tbxStreetNumberShip == null)
+            {
+                shippingAddress.StreetNumber = tbxStreetNumber.Text.Trim();
+            }
+            else
+            {
+                shippingAddress.StreetNumber = tbxStreetNumberShip.Text.Trim();
+            }
+
+            //street Name
+            if (tbxStreetNameShip == null)
+            {
+                shippingAddress.StreetName = tbxStreetName.Text.Trim();
+            }
+            else
+            {
+                shippingAddress.StreetName = tbxStreetNameShip.Text.Trim();
+            }
+            //Street City
+            if ( tbxCityShip   == null)
+            {
+                shippingAddress.City = tbxCity.Text.Trim();
+            }
+            else
+            {
+                shippingAddress.City = tbxCityShip.Text.Trim();
+            }
+
+            //Street City
+            try
+            {
+                if (tbxPostCodeShip == null)
+                {
+                    int.TryParse(tbxPostCode.Text.Trim(), out int PostCode);
+                    shippingAddress.postCode = PostCode;
+                }
+                else
+                {
+                    int.TryParse(tbxPostCodeShip.Text.Trim(), out int PostCode);
+                    shippingAddress.postCode = PostCode;
+                }
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
+            //Address State
+            if (ddlStateShip.SelectedIndex == 0)
+            {
+                shippingAddress.State = ddlState.SelectedItem.Text;
+            }
+            else
+            {
+                shippingAddress.State = ddlStateShip.SelectedItem.Text;
+            }
+
+           String shippingType = ddlShippingMethod.SelectedItem.Text;
+
+
+            //this should receive a payment valid
             if (IsValid)
             {
+                BL.CartSession sessionInstanceCart = (BL.CartSession)Session["cartSession"];
+                BL.UserSession sessionInstanceUser = (BL.UserSession)Session["userSession"];
+
+                sessionInstanceCart.submitCart(sessionInstanceUser.SessionId, shippingAddress, shippingType)
+                ;
                 Response.Redirect("~/UL/CardPayment.aspx");
             }
             
