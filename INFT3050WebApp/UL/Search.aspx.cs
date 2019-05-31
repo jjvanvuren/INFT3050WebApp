@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.FriendlyUrls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -34,7 +35,11 @@ namespace INFT3050WebApp
             // When clicking the View button take the user to the matching book's page
             if (e.CommandName == "cmdView")
             {
-                Response.Redirect("Book.aspx?id=" + e.CommandArgument);
+                string idString = e.CommandArgument.ToString();
+
+                var url = FriendlyUrl.Href("~/UL/Book", idString);
+
+                Response.Redirect(url);
             }
 
         }

@@ -47,7 +47,7 @@ namespace INFT3050WebApp.UL.Admin
                     }
                     catch (Exception exc)
                     {
-                        Server.Transfer("~/UL/DefaultError.aspx?handler=AdminPurchaseHistory.aspx", true);
+                        throw exc;
                     }
                 }
             }

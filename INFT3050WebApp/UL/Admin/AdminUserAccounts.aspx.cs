@@ -16,7 +16,7 @@ namespace INFT3050WebApp.UL.Admin
         {
             if (Session["UserSession"] == null)
             {
-               Response.Redirect("~/UL/Admin/AdminLogin.aspx");
+               Response.Redirect("~/UL/Admin/AdminLogin");
             }
 
         }
@@ -32,6 +32,7 @@ namespace INFT3050WebApp.UL.Admin
 
         protected void UserManagement_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            // when clicking view redirect to the selected users purchase history
             if (e.CommandName == "cmdView")
             {
                 int index = Convert.ToInt32(e.CommandArgument);
@@ -45,6 +46,7 @@ namespace INFT3050WebApp.UL.Admin
 
             else if (e.CommandName == "cmdActivate")
             {
+                // when clicking activate, user account is set to active
                 try
                 {
                     int index = Convert.ToInt32(e.CommandArgument);
@@ -61,9 +63,9 @@ namespace INFT3050WebApp.UL.Admin
                     }
 
                 }
-                catch (Exception)//exception)
+                catch (Exception exc)
                 {
-                    Server.Transfer("~/UL/DefaultError.aspx?handler=AdminUserAccounts.aspx", true);
+                    throw exc;
                 }
                 finally
                 {
@@ -71,6 +73,7 @@ namespace INFT3050WebApp.UL.Admin
                 }
             }
 
+            // when clicking deactivate, user account is deactivated
             else if (e.CommandName == "cmdDeactivate")
             {
                 try
@@ -90,9 +93,9 @@ namespace INFT3050WebApp.UL.Admin
 
 
                 }
-                catch (Exception )//exception)
+                catch (Exception exc)
                 {
-                    Server.Transfer("~/UL/DefaultError.aspx?handler=AdminUserAccounts.aspx", true);
+                    throw exc;
                 }
                 finally
                 {

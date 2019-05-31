@@ -51,9 +51,9 @@ namespace INFT3050WebApp.UL.Admin
 
 
                 }
-                catch (Exception)
+                catch (Exception exc)
                 {
-                    Server.Transfer("~/UL/DefaultError.aspx?handler=AdminPostageOptions.aspx", true);
+                    throw exc;
                 }
                 finally
                 {
@@ -81,9 +81,9 @@ namespace INFT3050WebApp.UL.Admin
                     int rowsAffected = postage.UpdatePostageOptionById(iID, dPrice, updatedName);
                 }
             }
-            catch (Exception)
+            catch (Exception exc)
             {
-                Server.Transfer("~/UL/DefaultError.aspx?handler=AdminPostageOptions.aspx", true);
+                throw exc;
             }
             finally
             {
@@ -107,9 +107,9 @@ namespace INFT3050WebApp.UL.Admin
                     int rowsAffected = postage.AddPostageOption(newName, dPrice);
                 }
             }
-            catch (Exception)
+            catch (Exception exc)
             {
-                Server.Transfer("~/UL/DefaultError.aspx?handler=AdminPostageOptions.aspx", true);
+                throw exc;
             }
             finally
             {

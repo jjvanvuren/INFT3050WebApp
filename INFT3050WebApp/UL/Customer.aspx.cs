@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
 using INFT3050WebApp.DAL;
+using Microsoft.AspNet.FriendlyUrls;
 
 namespace INFT3050WebApp
 {
@@ -39,27 +40,9 @@ namespace INFT3050WebApp
 
                     customerWelcome.Text = String.Format(WELCOME_FORMAT, currentUser.FirstName);
                 }
-                catch (Exception)
+                catch (Exception exc)
                 {
-                    //string exceptionString = "?error=" + exception.Message;
-
-                    //if (exception.InnerException != null)
-                    //{
-                    //    exceptionString += "&innerex=" + exception.GetType().ToString() + "<br/>" + exception.InnerException.Message;
-                    //    exceptionString += "&stacktrace=" + exception.InnerException.StackTrace;
-                    //}
-                    //else
-                    //{
-                    //    exceptionString += "&innerex=" + exception.GetType().ToString();
-                    //    if (exception.StackTrace != null)
-                    //    {
-                    //        exceptionString += "&stacktrace=" + exception.StackTrace.ToString().TrimStart();
-                    //    }
-                    //}
-
-                    //Response.Redirect("DefaultError.aspx" + exceptionString);
-
-                    Server.Transfer("DefaultError.aspx?handler=Customer.aspx", true);
+                    throw exc;
                 }
 
 
@@ -89,27 +72,9 @@ namespace INFT3050WebApp
                     ImageRepeater.DataSource = bestSellers;
                     ImageRepeater.DataBind();
                 }
-                catch (Exception)
+                catch (Exception exc)
                 {
-                    //string exceptionString = "?error=" + exception.Message;
-
-                    //if (exception.InnerException != null)
-                    //{
-                    //    exceptionString += "&innerex=" + exception.GetType().ToString() + "<br/>" + exception.InnerException.Message;
-                    //    exceptionString += "&stacktrace=" + exception.InnerException.StackTrace;
-                    //}
-                    //else
-                    //{
-                    //    exceptionString += "&innerex=" + exception.GetType().ToString();
-                    //    if (exception.StackTrace != null)
-                    //    {
-                    //        exceptionString += "&stacktrace=" + exception.StackTrace.ToString().TrimStart();
-                    //    }
-                    //}
-
-                    //Response.Redirect("DefaultError.aspx" + exceptionString);
-
-                    Server.Transfer("DefaultError.aspx?handler=Customer.aspx", true);
+                    throw exc;
                 }
 
             }
@@ -117,7 +82,13 @@ namespace INFT3050WebApp
 
         protected void imgBestSeller_Command(object sender, CommandEventArgs e)
         {
-            Response.Redirect("Book.aspx?id=" + e.CommandArgument);
+            // When a book's image is clicked redirect to the book's details page
+
+            string idString = e.CommandArgument.ToString();
+
+            var url = FriendlyUrl.Href("~/UL/Book", idString);
+
+            Response.Redirect(url);
         }
     }
 }

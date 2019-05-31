@@ -54,7 +54,7 @@ namespace INFT3050WebApp.UL
                     }
                     catch (Exception exc)
                     {
-                        Server.Transfer("~/UL/DefaultError.aspx?handler=PurchaseHistory.aspx", true);
+                        throw exc;
                     }
 
                 }     
