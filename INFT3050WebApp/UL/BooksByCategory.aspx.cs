@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
+using Microsoft.AspNet.FriendlyUrls;
 
 namespace INFT3050WebApp.UL
 {
@@ -12,20 +13,22 @@ namespace INFT3050WebApp.UL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Get ID and try parse
-            var idString = Request.QueryString["id"];
-            int id;
-            if (!string.IsNullOrEmpty(idString) && int.TryParse(idString, out id))
+            // Get category ID and tryparse the ID to an integer
+            var segments = Request.GetFriendlyUrlSegments();
+            int count = segments.Count;
+            string idString = segments[0];
+
+            if (!string.IsNullOrEmpty(idString) && int.TryParse(idString, out int id))
             {
                 if (!IsPostBack)
                 {
+                    // Get and display category information
                     try
                     {
                         Category category = new Category(id);
 
                         if (category != null)
                         {
-                            // Use data for page elements
                             lblCategoryName.Text = category.Name;
                             lblCategoryDescription.Text = category.Description;
 
@@ -33,27 +36,9 @@ namespace INFT3050WebApp.UL
                             bookDataSource.SelectParameters.Add("CategoryId", category.Id.ToString());
                         }
                     }
-                    catch (Exception)
+                    catch (Exception exception)
                     {
-                        //string exceptionString = "?error=" + exception.Message;
-
-                        //if (exception.InnerException != null)
-                        //{
-                        //    exceptionString += "&innerex=" + exception.GetType().ToString() + "<br/>" + exception.InnerException.Message;
-                        //    exceptionString += "&stacktrace=" + exception.InnerException.StackTrace;
-                        //}
-                        //else
-                        //{
-                        //    exceptionString += "&innerex=" + exception.GetType().ToString();
-                        //    if (exception.StackTrace != null)
-                        //    {
-                        //        exceptionString += "&stacktrace=" + exception.StackTrace.ToString().TrimStart();
-                        //    }
-                        //}
-
-                        //Response.Redirect("DefaultError.aspx" + exceptionString);
-
-                        Server.Transfer("DefaultError.aspx?handler=BooksByCategory.aspx", true);
+                        throw exception;
                     }
                 }
             }
@@ -64,7 +49,11 @@ namespace INFT3050WebApp.UL
             // When clicking the View button take the user to the matching book's page
             if (e.CommandName == "cmdView")
             {
-                Response.Redirect("Book.aspx?id=" + e.CommandArgument);
+                string idString = e.CommandArgument.ToString();
+
+                var url = FriendlyUrl.Href("~/UL/Book", idString);
+
+                Response.Redirect(url);
             }
 
         }

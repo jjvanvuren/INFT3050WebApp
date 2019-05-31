@@ -36,6 +36,7 @@ namespace INFT3050WebApp.UL
                     Response.Redirect(url);
                 }
 
+                // Get the current users ID and use the ID to get and display the users purchase history 
                 UserSession query = (UserSession)Session[UserSession.SESSION_KEY];
                 if (query != null)
                 {
@@ -53,7 +54,7 @@ namespace INFT3050WebApp.UL
                     }
                     catch (Exception exc)
                     {
-                        Server.Transfer("~/UL/DefaultError.aspx?handler=PurchaseHistory.aspx", true);
+                        throw exc;
                     }
 
                 }     
