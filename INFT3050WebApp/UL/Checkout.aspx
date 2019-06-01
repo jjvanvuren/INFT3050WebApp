@@ -11,21 +11,8 @@
         <asp:ValidationSummary ID="vsBilling" runat="server" CssClass="alert-danger" HeaderText="Please correct these issues" />
     </div>
     <br />
-
-    <h3>1. Select delivery or pick up</h3>
-
-    <div class="form-group">
-
-        <%--Radio button list for selecting pick up or delivery--%>
-        <asp:RadioButtonList ID="rblPostage" runat="server">
-            <asp:ListItem Selected="True">&nbsp;&nbsp; Pick up in store</asp:ListItem>
-            <asp:ListItem>&nbsp;&nbsp; I would like to have my order delivered</asp:ListItem>
-        </asp:RadioButtonList>
-    </div>
-    <hr>
-
-    <%--Area for customer to provide billing details--%>
-    <h3>2. Enter your billing details</h3>
+    <%--Area for customer to provide Shipping/Bills details--%>
+    <h3>1. Enter your billing details</h3>
 
     <div class="form-group">
         <%--Street Number field--%>
@@ -110,75 +97,9 @@
     </div>
     <hr>
 
-    <%--Area for customer to provide shipping details--%>
-    <h3>3. Enter your shipping details</h3>
-
-    <p class="text-danger font-weight-bold">If you do not enter shipping details below, the order will be shipped to the billing address.</p>
-
-    <div class="form-group">
-        <%--Shipping Street Number field--%>
-        <asp:Label ID="lblStreetNumberShip" runat="server" Text="Street Number"></asp:Label>
-        <asp:TextBox ID="tbxStreetNumberShip" class="form-control" type="text" runat="server"></asp:TextBox>
-
-        <%--Checks for invalid symbols in Address Line 1--%>
-        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid Street Number"
-            ValidationExpression="^[A-Za-z0-9'\.\-\s\,]+$"
-            ControlToValidate="tbxStreetNumberShip">Illegal characters included in field</asp:RegularExpressionValidator>
-    </div>
-
-    <div class="form-group">
-        <%--Shipping Street Name field--%>
-        <asp:Label ID="lblStreetNameShip" runat="server" Text="Street Name"></asp:Label>
-        <asp:TextBox ID="tbxStreetNameShip" class="form-control" type="text" runat="server"></asp:TextBox>
-
-        <%--Checks for invalid symbols in Name field--%>
-        <asp:RegularExpressionValidator ID="revStreetNameShip" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid shipping Street Name"
-            ValidationExpression="^[A-Za-z0-9'\.\-\s\,]+$"
-            ControlToValidate="tbxStreetNameShip">Illegal characters included in field</asp:RegularExpressionValidator>
-    </div>
-
-    <div class="form-group">
-        <%--Shipping City/Suburb field--%>
-        <asp:Label ID="lblCityShip" runat="server" Text="City"></asp:Label>
-        <asp:TextBox ID="tbxCityShip" class="form-control" type="text" runat="server"></asp:TextBox>
-
-        <%--Checks that City/Suburb only contains either upper/lower case letters, spaces or "-"--%>
-        <asp:RegularExpressionValidator ID="revCityShip" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid city or suburb"
-            ValidationExpression="^[A-Za-z\-\s]+$"
-            ControlToValidate="tbxCityShip">Valid city or suburb required</asp:RegularExpressionValidator>
-    </div>
-
-    <div class="form-group">
-        <%--Shipping Post Code field--%>
-        <asp:Label ID="lblPostCodeShip" runat="server" Text="Post Code"></asp:Label>
-        <asp:TextBox ID="tbxPostCodeShip" class="form-control" type="text" runat="server"></asp:TextBox>
-
-        <%--Checks for a valid Australian post code--%>
-        <asp:RegularExpressionValidator ID="revPostCodeShip" runat="server" CssClass="text-danger" ErrorMessage="Please provide a valid Australian post code"
-            ValidationExpression="/^(0[289][0-9]{2})|([1345689][0-9]{3})|(2[0-8][0-9]{2})|(290[0-9])|(291[0-4])|(7[0-4][0-9]{2})|(7[8-9][0-9]{2})$/"
-            ControlToValidate="tbxPostCodeShip">Valid post code required</asp:RegularExpressionValidator>
-    </div>
-
-    <div class="form-group">
-        <%--Dropdown to select a shipping state--%>
-        <asp:Label ID="lblStateShip" runat="server" Text="Select State:"></asp:Label>
-        <br />
-        <asp:DropDownList ID="ddlStateShip" runat="server">
-            <asp:ListItem>--Select--</asp:ListItem>
-            <asp:ListItem>NSW</asp:ListItem>
-            <asp:ListItem>VIC</asp:ListItem>
-            <asp:ListItem>QLD</asp:ListItem>
-            <asp:ListItem>WA</asp:ListItem>
-            <asp:ListItem>SA</asp:ListItem>
-            <asp:ListItem>TAS</asp:ListItem>
-            <asp:ListItem>NT</asp:ListItem>
-            <asp:ListItem>ACT</asp:ListItem>
-        </asp:DropDownList>
-    </div>
-    <hr />
 
     <%--Area for customer to select a shipping method--%>
-    <h3>4. Select a shipping method</h3>
+    <h3>2. Select a shipping method</h3>
 
     <div class="form-group">
         <%--Dropdown list of shipping options--%>
@@ -199,7 +120,7 @@
     <hr />
 
     <%-- Area for customer to enter payment details --%>
-    <h3>5. Enter Payment Details</h3>
+    <h3>3. Enter Payment Details</h3>
 
     <%--Validation summary for Card payment--%>
     <div>

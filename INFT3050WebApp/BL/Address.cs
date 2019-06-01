@@ -23,5 +23,29 @@ namespace INFT3050WebApp.BL
             this.State = strState;
             this.postCode = iPostCode;
         } 
+        //Methord checks to see if state and state have a postcode in the DB
+        //if it doesn't will enter it into the DB
+        //With out implementing a full list of all postcodes with state and city
+        //enters the postcode
+        public void CheckPostCode()
+        {
+            DAL.OrderDataAccess connect = new DAL.OrderDataAccess();
+            List<Address> listOfPostcodes = new List<Address>();
+            listOfPostcodes = connect.GetPostCodes();
+            Boolean postcodeFount = false;
+            int i = 0;
+            while (i<listOfPostcodes.Count() && !postcodeFount)
+            {
+                if(listOfPostcodes[i].State.Equals(State)&& listOfPostcodes[i].City.Equals(City))
+                {
+                    postcodeFount = true;
+                }
+                i++;
+            }
+            if (!postcodeFount)
+            {
+                connect.AddPostCode(City, State, postCode);
+            }
+        }
     }
 }

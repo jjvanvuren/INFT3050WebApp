@@ -67,7 +67,7 @@ namespace INFT3050WebApp.DAL
 
         //methord for adding order to the database
         [DataObjectMethod(DataObjectMethodType.Insert)]
-        public void submitCart(int userID, Address userAddress, int ipostageOptionID, List<CartItem> Cart,double dTotalPrice, DateTime PurchaseTime)
+        public int submitCart(int userID, Address userAddress, int ipostageOptionID, List<CartItem> Cart,double dTotalPrice, DateTime PurchaseTime)
         {   //this should be in a StoredProcedure didnt have time to do this
             //submitting the payment  details
             string sql = @"INSERT INTO payment ([datePayed], [total])
@@ -86,24 +86,24 @@ namespace INFT3050WebApp.DAL
 
                 }
             }
-            ////submitting the address details
-            //int iAddressID;
-            //sql = @"INSERT INTO shippingAddress ([streetNumber], [streetName], [city], [AddressState])
-            //                VALUES (@streetNumber, @streetName, @city, @AddressState)
-            //                SELECT SCOPE_IDENTITY()";
-            //using (SqlConnection con = new SqlConnection(ConnectionString))
-            //{
-            //    using (SqlCommand command = new SqlCommand(sql, con))
-            //    {
-            //        command.Parameters.Add(new SqlParameter("streetNumber", userAddress.StreetNumber));
-            //        command.Parameters.Add(new SqlParameter("streetName", userAddress.StreetName));
-            //        command.Parameters.Add(new SqlParameter("city", userAddress.City));
-            //        command.Parameters.Add(new SqlParameter("AddressState", userAddress.State));
-            //        con.Open();
-            //        iAddressID = Convert.ToInt32((object)command.ExecuteScalar());
+            //submitting the address details
+            int iAddressID;
+            sql = @"INSERT INTO shippingAddress ([streetNumber], [streetName], [city], [AddressState])
+                            VALUES (@streetNumber, @streetName, @city, @AddressState)
+                            SELECT SCOPE_IDENTITY()";
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.Add(new SqlParameter("streetNumber", userAddress.StreetNumber));
+                    command.Parameters.Add(new SqlParameter("streetName", userAddress.StreetName));
+                    command.Parameters.Add(new SqlParameter("city", userAddress.City));
+                    command.Parameters.Add(new SqlParameter("AddressState", userAddress.State));
+                    con.Open();
+                    iAddressID = Convert.ToInt32((object)command.ExecuteScalar());
 
-            //    }
-            //}
+                }
+            }
 
             //submitting the order details
             int iOrderID;
@@ -133,6 +133,8 @@ namespace INFT3050WebApp.DAL
             //submitting the items from the Order
             sql = @"INSERT INTO orderItem ([orderID], [itemID], [quantity]) VALUES";
            int i = 0;
+
+            //Creating a Value input of all items
            foreach (CartItem item in Cart)
            {
                sql = sql + "(@orderID" + i.ToString() + ", @itemID" + i.ToString() + ", @quantity" + i.ToString() +")";
@@ -162,7 +164,63 @@ namespace INFT3050WebApp.DAL
                     }
                     command.ExecuteNonQuery();
                 }
-            }    
+            }
+            return iOrderID;
+        }
+        //
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Address> GetPostCodes() 
+        {
+            List<Address> Postcodes = new List<Address>();
+            string sql = @"SELECT *
+                        FROM[dbo].[postCode]";
+
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        Address newPostCode = CreatePostcode(reader);
+                        Postcodes.Add(newPostCode);
+                    }
+                }
+            }
+            return Postcodes;
+        }
+        [DataObjectMethod(DataObjectMethodType.Insert)]
+        public void AddPostCode(string City, string State, int postCode)
+        {
+            string sql = @"INSERT INTO postCode ([city], [addressState], [postCode] )
+                            VALUES (@city, @addressState, @postCode)";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.Add(new SqlParameter("city", City));
+                    command.Parameters.Add(new SqlParameter("addressState", State));
+                    command.Parameters.Add(new SqlParameter("postCode", postCode));
+                    con.Open();
+                    command.ExecuteNonQuery();
+
+                }
+            }
+
+        }
+
+        private static Address CreatePostcode(SqlDataReader reader)
+        {
+            Address postcode = new Address();
+            postcode.State = (string)reader["city"];
+            postcode.City = (string)reader["addressState"];
+            postcode.postCode = (int)reader["postCode"];
+
+            return postcode;
         }
     }
 }
