@@ -95,7 +95,7 @@ namespace INFT3050WebApp.DAL
 
         //methord for adding order to the database
         [DataObjectMethod(DataObjectMethodType.Insert)]
-        public int submitCart(int userID, Address userAddress, int ipostageOptionID, List<CartItem> Cart,double dTotalPrice, DateTime PurchaseTime)
+        public int submitCart(int userID, Address userAddress, int ipostageOptionID, List<CartItem> Cart, double dTotalPrice, double dsubPrice, DateTime PurchaseTime)
         {   //this should be in a StoredProcedure didnt have time to do this
             //submitting the payment  details
             string sql = @"INSERT INTO payment ([datePayed], [total])
@@ -150,7 +150,7 @@ namespace INFT3050WebApp.DAL
                     command.Parameters.Add(new SqlParameter("postageOptionID", ipostageOptionID));
                     command.Parameters.Add(new SqlParameter("orderStatus", orderStatus));
                     command.Parameters.Add(new SqlParameter("GST", iGST));
-                    command.Parameters.Add(new SqlParameter("subTotal", dTotalPrice));
+                    command.Parameters.Add(new SqlParameter("subTotal", dsubPrice));
                     command.Parameters.Add(new SqlParameter("dateOrdered", PurchaseTime));
                     command.Parameters.Add(new SqlParameter("shippingAddressID", 1));
                     con.Open();
@@ -193,7 +193,7 @@ namespace INFT3050WebApp.DAL
                     command.ExecuteNonQuery();
                 }
             }
-            return iOrderID;
+            return iPaymentID;
         }
 
         //Selecting a list of postcodes in a Address object 

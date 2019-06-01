@@ -13,5 +13,6 @@ namespace INFT3050WebApp.DAL
         int DeletePostageOptionById(int Id);
         int UpdatePostageOptionById(int Id, double price, string name);
         int AddPostageOption(string Name, double Price);
+        PostageOption GetPostageOptions(int PostageID);
     }
 }
