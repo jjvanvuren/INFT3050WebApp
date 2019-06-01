@@ -195,7 +195,8 @@ namespace INFT3050WebApp.DAL
             }
             return iOrderID;
         }
-        //
+
+        //Selecting a list of postcodes in a Address object 
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Address> GetPostCodes() 
         {
@@ -220,6 +221,8 @@ namespace INFT3050WebApp.DAL
             }
             return Postcodes;
         }
+
+        //Inserting a postcode
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public void AddPostCode(string City, string State, int postCode)
         {
@@ -240,7 +243,7 @@ namespace INFT3050WebApp.DAL
             }
 
         }
-
+        //setting a Post code on address object
         private static Address CreatePostcode(SqlDataReader reader)
         {
             Address postcode = new Address();
