@@ -45,6 +45,7 @@ namespace INFT3050WebApp.UL
             {
                 lblProcessing.Visible = true;
                 lblProcessing.Text = "Processing Payment...";
+                lblProcessing.CssClass = "text-info";
 
                 UserSession userSession = (UserSession)Session["userSession"];
                 CartSession cartSession = (CartSession)Session["cartSession"];
@@ -81,9 +82,9 @@ namespace INFT3050WebApp.UL
                     // Wait for payment to be processed
                     task.Wait();
 
-                    lblProcessing.Visible = false;
+                    string tResult = task.Result.TransactionResult.ToString();
 
-                    if (task.IsCompleted)
+                    if (task.IsCompleted && tResult == "Approved")
                     {
                         Address customerAddress = new Address(tbxStreetNumber.Text, tbxStreetName.Text, tbxCity.Text, ddlState.SelectedValue, iPostCode);
 
@@ -95,7 +96,23 @@ namespace INFT3050WebApp.UL
                         // Send payment confirmation email to customer
                         user.SendPaymentEmail(user.Id, iPaymentId);
 
-                        var checkoutUrl = FriendlyUrl.Href("~/UL/ConfirmSale", task.Result.ToString());
+                        var checkoutUrl = FriendlyUrl.Href("~/UL/ConfirmSale", tResult);
+                        Response.Redirect(checkoutUrl);
+                    }
+                    else if (task.IsCompleted && tResult == "Declined")
+                    {
+                        //lblProcessing.Text = "Transaction Declined";
+                        //lblProcessing.CssClass = "text-danger";
+
+                        var checkoutUrl = FriendlyUrl.Href("~/UL/ConfirmSale", tResult);
+                        Response.Redirect(checkoutUrl);
+                    }
+                    else if (task.IsCompleted && tResult == "Timeout")
+                    {
+                        //lblProcessing.Text = "Transaction timed out";
+                        //lblProcessing.CssClass = "text-danger";
+
+                        var checkoutUrl = FriendlyUrl.Href("~/UL/ConfirmSale", tResult);
                         Response.Redirect(checkoutUrl);
                     }
                 }

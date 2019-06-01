@@ -397,7 +397,7 @@ namespace INFT3050WebApp.BL
             IOrderDataAccess db = new OrderDataAccess();
 
             // Get the newly created order details
-            Order order = db.GetOrder(iUserId, iPaymentId);
+            Order order = db.GetOrder(iPaymentId);
 
 
             const string strSubject = "Used Books Payment Confirmation";
