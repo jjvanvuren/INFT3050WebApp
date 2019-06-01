@@ -447,6 +447,11 @@ namespace INFT3050WebApp.BL
             IUserDataAccess db = new UserDataAccess();
 
             int iUpdatePassword = db.UpdatePassword(user);
+
+            // Blank out ValidationKey so that same
+            // Password reset link cannot be used again
+            user.ValidationKey = "";
+            db.UpdateKey(user);
         }
 
         // Get the MD5 Hash for a string. Used for the user password

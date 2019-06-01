@@ -48,6 +48,11 @@ namespace INFT3050WebApp.UL
         // If the cancel button is clicked go back to Checkout
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
+            if (Session["userSession"] == null)
+            {
+                Response.Redirect("SessionExpired.aspx");
+            }
+
             Response.Redirect("~/UL/Checkout.aspx");
         }
 
