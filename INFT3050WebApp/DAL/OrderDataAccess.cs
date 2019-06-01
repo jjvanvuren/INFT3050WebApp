@@ -66,20 +66,19 @@ namespace INFT3050WebApp.DAL
 
         // Method used to get an order by user ID & payment ID
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public Order GetOrder(int iPaymentId, int iUserId)
+        public Order GetOrder(int iPaymentId)
         {
             Order order = new Order();
 
             string sql = @"SELECT [orderID], [userID], [paymentID], [postageOptionID], [orderStatus], [GST], [subTotal], [dateOrdered]
                 FROM[dbo].[orders]
-                WHERE [userID] = @uId AND [paymentID] = @pId;";
+                WHERE [paymentID] = @Id;";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(sql, con))
                 {
-                    command.Parameters.AddWithValue("uId", iUserId);
-                    command.Parameters.AddWithValue("pId", iPaymentId);
+                    command.Parameters.AddWithValue("Id", iPaymentId);
                     con.Open();
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
