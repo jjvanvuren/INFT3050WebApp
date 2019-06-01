@@ -146,7 +146,6 @@
     <Content Include="UL\Images\favicon.ico" />
     <Content Include="UL\Login.aspx" />
     <Content Include="UL\Logout.aspx" />
-    <Content Include="UL\CardPayment.aspx" />
     <Content Include="UL\NewPassword.aspx" />
     <Content Include="UL\PasswordRecovery.aspx" />
     <Content Include="UL\PurchaseHistory.aspx" />
@@ -438,13 +437,6 @@
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UL\CardPayment.aspx.cs">
-      <DependentUpon>CardPayment.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UL\CardPayment.aspx.designer.cs">
-      <DependentUpon>CardPayment.aspx</DependentUpon>
-    </Compile>
     <Compile Include="UL\NewPassword.aspx.cs">
       <DependentUpon>NewPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
