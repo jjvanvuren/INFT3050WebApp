@@ -72,7 +72,7 @@ namespace INFT3050WebApp.DAL
 
             string sql = @"SELECT [orderID], [userID], [paymentID], [postageOptionID], [orderStatus], [GST], [subTotal], [dateOrdered]
                 FROM[dbo].[orders]
-                WHERE [userID] = @uId & [paymentID] = @pId;";
+                WHERE [userID] = @uId AND [paymentID] = @pId;";
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
