@@ -36,7 +36,7 @@ namespace INFT3050WebApp.BL
             int i = 0;
             while (i<listOfPostcodes.Count() && !postcodeFount)
             {
-                if(listOfPostcodes[i].State.Equals(State)&& listOfPostcodes[i].City.Equals(City))
+                if(listOfPostcodes[i].State.Equals(State, StringComparison.InvariantCultureIgnoreCase) && listOfPostcodes[i].City.Equals(City, StringComparison.InvariantCultureIgnoreCase))
                 {
                     postcodeFount = true;
                 }

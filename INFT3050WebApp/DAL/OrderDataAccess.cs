@@ -247,8 +247,8 @@ namespace INFT3050WebApp.DAL
         private static Address CreatePostcode(SqlDataReader reader)
         {
             Address postcode = new Address();
-            postcode.State = (string)reader["city"];
-            postcode.City = (string)reader["addressState"];
+            postcode.City = (string)reader["city"];
+            postcode.State = (string)reader["addressState"];
             postcode.postCode = (int)reader["postCode"];
 
             return postcode;
