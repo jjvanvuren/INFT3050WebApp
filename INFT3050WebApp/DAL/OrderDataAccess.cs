@@ -86,24 +86,24 @@ namespace INFT3050WebApp.DAL
 
                 }
             }
-            //submitting the address details
-            int iAddressID;
-            sql = @"INSERT INTO shippingAddress ([streetNumber], [streetName], [city], [AddressState])
-                            VALUES (@streetNumber, @streetName, @city, @AddressState)
-                            SELECT SCOPE_IDENTITY()";
-            using (SqlConnection con = new SqlConnection(ConnectionString))
-            {
-                using (SqlCommand command = new SqlCommand(sql, con))
-                {
-                    command.Parameters.Add(new SqlParameter("streetNumber", userAddress.StreetNumber));
-                    command.Parameters.Add(new SqlParameter("streetName", userAddress.StreetName));
-                    command.Parameters.Add(new SqlParameter("city", userAddress.City));
-                    command.Parameters.Add(new SqlParameter("AddressState", userAddress.State));
-                    con.Open();
-                    iAddressID = Convert.ToInt32((object)command.ExecuteScalar());
+            ////submitting the address details
+            //int iAddressID;
+            //sql = @"INSERT INTO shippingAddress ([streetNumber], [streetName], [city], [AddressState])
+            //                VALUES (@streetNumber, @streetName, @city, @AddressState)
+            //                SELECT SCOPE_IDENTITY()";
+            //using (SqlConnection con = new SqlConnection(ConnectionString))
+            //{
+            //    using (SqlCommand command = new SqlCommand(sql, con))
+            //    {
+            //        command.Parameters.Add(new SqlParameter("streetNumber", userAddress.StreetNumber));
+            //        command.Parameters.Add(new SqlParameter("streetName", userAddress.StreetName));
+            //        command.Parameters.Add(new SqlParameter("city", userAddress.City));
+            //        command.Parameters.Add(new SqlParameter("AddressState", userAddress.State));
+            //        con.Open();
+            //        iAddressID = Convert.ToInt32((object)command.ExecuteScalar());
 
-                }
-            }
+            //    }
+            //}
 
             //submitting the order details
             int iOrderID;
@@ -124,7 +124,7 @@ namespace INFT3050WebApp.DAL
                     command.Parameters.Add(new SqlParameter("GST", iGST));
                     command.Parameters.Add(new SqlParameter("subTotal", dTotalPrice));
                     command.Parameters.Add(new SqlParameter("dateOrdered", PurchaseTime));
-                    command.Parameters.Add(new SqlParameter("shippingAddressID", iAddressID));
+                    command.Parameters.Add(new SqlParameter("shippingAddressID", 1));
                     con.Open();
                     iOrderID = Convert.ToInt32((object)command.ExecuteScalar());
 

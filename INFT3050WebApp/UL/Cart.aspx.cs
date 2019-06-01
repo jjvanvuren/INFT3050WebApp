@@ -47,14 +47,13 @@ namespace INFT3050WebApp.UL
 
         // If the cancel button is clicked go back to Checkout
         protected void btnCheckout_Click(object sender, EventArgs e)
-        {   if (Session["userSession"] != null)
+        {
+            if (Session["userSession"] == null)
             {
-                Response.Redirect("~/UL/Login.aspx");
+                Response.Redirect("SessionExpired.aspx");
             }
-            else
-            {
-                Response.Redirect("~/UL/Checkout.aspx");
-            }
+
+            Response.Redirect("~/UL/Checkout.aspx");
         }
 
         protected void gridCart_RowDeleting(object sender, GridViewDeleteEventArgs e)

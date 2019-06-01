@@ -186,10 +186,10 @@
         <br />
         <asp:DropDownList ID="ddlShippingMethod" runat="server">
             <asp:ListItem>--Select--</asp:ListItem>
-            <asp:ListItem>Auspost &#36;5.99</asp:ListItem>
-            <asp:ListItem>Auspost Express &#36;9.99</asp:ListItem>
-            <asp:ListItem>StarTrack &#36;3.99</asp:ListItem>
-            <asp:ListItem>StarTrack Express &#36;7.99</asp:ListItem>
+            <asp:ListItem Value ="8">Auspost &#36;5.99</asp:ListItem>
+            <asp:ListItem Value ="9">Auspost Express &#36;9.99</asp:ListItem>
+            <asp:ListItem Value ="10">StarTrack &#36;3.99</asp:ListItem>
+            <asp:ListItem Value ="11">StarTrack Express &#36;7.99</asp:ListItem>
         </asp:DropDownList>
 
         <%--Check if user selected a shipping method--%>
@@ -199,21 +199,13 @@
     <hr />
 
     <%-- Area for customer to select a payment method --%>
-    <h3>5. Select a payment method</h3>
-
-    <div class="form-group">
-        <%-- Radio button list for selecting payment method --%>
-        <asp:RadioButtonList ID="rblPaymentMethod" runat="server">
-            <asp:ListItem Selected="True">&nbsp;&nbsp; Paypal</asp:ListItem>
-            <asp:ListItem>&nbsp;&nbsp; Credit Card</asp:ListItem>
-        </asp:RadioButtonList>
-    </div>
+    <h3>5. Proceed to payment</h3>
 
     <div class="form-group">
         <%-- Buttons to place or cancel order --%>
         <asp:Button ID="btnPlaceOrder" CssClass="btn btn-success" runat="server" Text="Confirm" OnClick="btnPlaceOrder_Click" />
         &nbsp;&nbsp;
-            <asp:Button ID="btnCancelOrder" CssClass="btn btn-danger" runat="server" Text="Cancel" OnClick="btnCancelOrder_Click" />
+        <asp:Button ID="btnCancelOrder" CssClass="btn btn-danger" runat="server" Text="Cancel" OnClick="btnCancelOrder_Click" CausesValidation="False" />
     </div>
     <br />
 </asp:Content>

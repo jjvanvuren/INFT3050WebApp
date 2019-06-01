@@ -5,6 +5,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using INFT3050WebApp.BL;
+using Microsoft.AspNet.FriendlyUrls;
+using INFT3050.PaymentSystem;
 
 namespace INFT3050WebApp.UL
 {
@@ -100,12 +103,54 @@ namespace INFT3050WebApp.UL
             //this should receive a payment valid
             if (IsValid)
             {
+                UserSession userSession = (UserSession)Session["userSession"];
+                CartSession cartSession = (CartSession)Session["cartSession"];
+
+                try
+                {
+                    int iPostCode = Int32.Parse(tbxPostCode.Text);
+                    int iShippingId = Int32.Parse(ddlShippingMethod.SelectedValue);
+                    int iCVC = Int32.Parse(tbxSecurityCode.Text);
+
+
+                    IPaymentSystem paymentSystem = INFT3050PaymentFactory.Create();
+                    PaymentRequest payment = new PaymentRequest
+                    {
+                        CardName = tbxCardName.Text,
+                        CardNumber = tbxCardNumber.Text,
+                        CVC = iCVC,
+                        Expiry = new DateTime(2020, 11, 1),
+                        Amount = 200,
+                        Description = "test"
+                    };
+
+
+                    var task = paymentSystem.MakePayment(payment);
+
+                    if (task.IsCompleted)
+
+                    {
+                        Address customerAddress = new Address(tbxAddress1.Text, tbxAddress2.Text, tbxCity.Text, ddlState.SelectedValue, iPostCode);
+
+                        cartSession.submitCart(userSession.SessionId, customerAddress, iShippingId);
+
+                        //Email for payment goes here
+
+                        var checkoutUrl = FriendlyUrl.Href("~/UL/ConfirmSale", task.Result.ToString());
+                        Response.Redirect(checkoutUrl);
+                    }
+
+                    
+                }
+                catch (Exception exc)
+                {
+                    throw exc;
+                }
                 BL.CartSession sessionInstanceCart = (BL.CartSession)Session["cartSession"];
                 BL.UserSession sessionInstanceUser = (BL.UserSession)Session["userSession"];
 
                 sessionInstanceCart.submitCart(sessionInstanceUser.SessionId, shippingAddress, shippingType)
                 ;
-                Response.Redirect("~/UL/CardPayment.aspx");
             }
             
         }

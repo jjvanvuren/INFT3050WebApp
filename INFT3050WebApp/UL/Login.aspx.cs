@@ -39,11 +39,6 @@ namespace INFT3050WebApp
         // Validate email and password. If successful redirect to Customer.aspx
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            //if some how log in is already logged in.
-            if (Session["userSession"] != null)
-            {
-                Session.Clear();
-            }
             string strEmail = tbxEmail.Text;
             string strPassword = tbxPassword.Text;
 
