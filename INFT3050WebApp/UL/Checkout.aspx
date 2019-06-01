@@ -164,33 +164,33 @@
         <asp:Label ID="lblExpiry" runat="server" Text="Expiry Date:&nbsp;&nbsp;"></asp:Label>
         <asp:DropDownList ID="ddlMonth" runat="server">
             <asp:ListItem>--Month--</asp:ListItem>
-            <asp:ListItem>01</asp:ListItem>
-            <asp:ListItem>02</asp:ListItem>
-            <asp:ListItem>03</asp:ListItem>
-            <asp:ListItem>04</asp:ListItem>
-            <asp:ListItem>05</asp:ListItem>
-            <asp:ListItem>06</asp:ListItem>
-            <asp:ListItem>07</asp:ListItem>
-            <asp:ListItem>08</asp:ListItem>
-            <asp:ListItem>09</asp:ListItem>
-            <asp:ListItem>10</asp:ListItem>
-            <asp:ListItem>11</asp:ListItem>
-            <asp:ListItem>12</asp:ListItem>
+            <asp:ListItem Value="01">01</asp:ListItem>
+            <asp:ListItem Value="02">02</asp:ListItem>
+            <asp:ListItem Value="03">03</asp:ListItem>
+            <asp:ListItem Value="04">04</asp:ListItem>
+            <asp:ListItem Value="05">05</asp:ListItem>
+            <asp:ListItem Value="06">06</asp:ListItem>
+            <asp:ListItem Value="07">07</asp:ListItem>
+            <asp:ListItem Value="08">08</asp:ListItem>
+            <asp:ListItem Value="09">09</asp:ListItem>
+            <asp:ListItem Value="10">10</asp:ListItem>
+            <asp:ListItem Value="11">11</asp:ListItem>
+            <asp:ListItem Value="12">12</asp:ListItem>
         </asp:DropDownList>
 
         <%-- Dropdown list for selecting card expiry year --%>
         <asp:DropDownList ID="ddlYear" runat="server">
             <asp:ListItem>--Year--</asp:ListItem>
-            <asp:ListItem>2019</asp:ListItem>
-            <asp:ListItem>2020</asp:ListItem>
-            <asp:ListItem>2021</asp:ListItem>
-            <asp:ListItem>2022</asp:ListItem>
-            <asp:ListItem>2023</asp:ListItem>
-            <asp:ListItem>2024</asp:ListItem>
-            <asp:ListItem>2025</asp:ListItem>
-            <asp:ListItem>2026</asp:ListItem>
-            <asp:ListItem>2027</asp:ListItem>
-            <asp:ListItem>2028</asp:ListItem>
+            <asp:ListItem Value="2019">2019</asp:ListItem>
+            <asp:ListItem Value="2020">2020</asp:ListItem>
+            <asp:ListItem Value="2021">2021</asp:ListItem>
+            <asp:ListItem Value="2022">2022</asp:ListItem>
+            <asp:ListItem Value="2023">2023</asp:ListItem>
+            <asp:ListItem Value="2024">2024</asp:ListItem>
+            <asp:ListItem Value="2025">2025</asp:ListItem>
+            <asp:ListItem Value="2026">2026</asp:ListItem>
+            <asp:ListItem Value="2027">2027</asp:ListItem>
+            <asp:ListItem Value="2028">2028</asp:ListItem>
         </asp:DropDownList>
 
         <br />
@@ -205,6 +205,11 @@
     </div>
 
     <div class="form-group">
+
+        <div>
+            <asp:Label ID="lblProcessing" runat="server" Text="" Visible="false"></asp:Label>
+        </div>
+        
         <%-- Buttons to place or cancel order --%>
         <asp:Button ID="btnPlaceOrder" CssClass="btn btn-success" runat="server" Text="Confirm" OnClick="btnPlaceOrder_Click" />
         &nbsp;&nbsp;

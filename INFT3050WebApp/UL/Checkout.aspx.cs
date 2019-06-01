@@ -43,6 +43,9 @@ namespace INFT3050WebApp.UL
             //this should receive a payment valid
             if (IsValid)
             {
+                lblProcessing.Visible = true;
+                lblProcessing.Text = "Processing Payment...";
+
                 UserSession userSession = (UserSession)Session["userSession"];
                 CartSession cartSession = (CartSession)Session["cartSession"];
 
@@ -50,42 +53,51 @@ namespace INFT3050WebApp.UL
                 {
                     int iPostCode = Int32.Parse(tbxPostCode.Text);
                     int iShippingId = Int32.Parse(ddlShippingMethod.SelectedValue);
-                    //int iCVC = Int32.Parse(tbxSecurityCode.Text);
+
+                    // Values to be used by PaymentSystem
+                    int iCVC = Int32.Parse(tbxSecurityCode.Text);
+                    int iDateYear = Int32.Parse(ddlYear.SelectedValue);
+                    int iDateMonth = Int32.Parse(ddlMonth.SelectedValue);
+                    decimal dAmount = (decimal)cartSession.totalPrice;
+
+                    string strDescriptionFormat = "Used Books Store Purchase: {0}/{1}/{2}";
 
                     User user = new User(userSession.SessionId);
 
                     IPaymentSystem paymentSystem = INFT3050PaymentFactory.Create();
                     PaymentRequest payment = new PaymentRequest
                     {
-                       // CardName = tbxCardName.Text,
-                       // CardNumber = tbxCardNumber.Text,
-                        //CVC = iCVC,
-                        Expiry = new DateTime(2020, 11, 1),
-                        Amount = 200,
-                        Description = "test"
+                        CardName = tbxCardName.Text,
+                        CardNumber = tbxCardNumber.Text,
+                        CVC = iCVC,
+                        Expiry = new DateTime(iDateYear, iDateMonth, 1),
+                        Amount = dAmount,
+                        Description = string.Format(strDescriptionFormat, DateTime.Now.Day.ToString(), DateTime.Now.Month.ToString(), DateTime.Now.Year.ToString())
                     };
 
 
                     var task = paymentSystem.MakePayment(payment);
 
-                    if (task.IsCompleted)
+                    // Wait for payment to be processed
+                    task.Wait();
 
+                    lblProcessing.Visible = false;
+
+                    if (task.IsCompleted)
                     {
                         Address customerAddress = new Address(tbxStreetNumber.Text, tbxStreetName.Text, tbxCity.Text, ddlState.SelectedValue, iPostCode);
 
                         cartSession.submitCart(user.Id, customerAddress, iShippingId);
 
-                        // Need to get the payment Id somehow.
+                        // Submit the order details to the db
                         int iPaymentId= cartSession.submitCart(user.Id, customerAddress, iShippingId); ;
 
-                        //Email for payment goes here
+                        // Send payment confirmation email to customer
                         user.SendPaymentEmail(user.Id, iPaymentId);
 
                         var checkoutUrl = FriendlyUrl.Href("~/UL/ConfirmSale", task.Result.ToString());
                         Response.Redirect(checkoutUrl);
                     }
-
-                    
                 }
                 catch (Exception exc)
                 {
