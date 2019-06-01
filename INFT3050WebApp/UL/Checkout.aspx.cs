@@ -76,7 +76,7 @@ namespace INFT3050WebApp.UL
                         cartSession.submitCart(user.Id, customerAddress, iShippingId);
 
                         // Need to get the payment Id somehow.
-                        int iPaymentId;
+                        int iPaymentId= cartSession.submitCart(user.Id, customerAddress, iShippingId); ;
 
                         //Email for payment goes here
                         user.SendPaymentEmail(user.Id, iPaymentId);
