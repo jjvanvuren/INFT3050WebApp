@@ -52,6 +52,7 @@ namespace INFT3050WebApp.UL
                     int iShippingId = Int32.Parse(ddlShippingMethod.SelectedValue);
                     //int iCVC = Int32.Parse(tbxSecurityCode.Text);
 
+                    User user = new User(userSession.SessionId);
 
                     IPaymentSystem paymentSystem = INFT3050PaymentFactory.Create();
                     PaymentRequest payment = new PaymentRequest
@@ -72,9 +73,13 @@ namespace INFT3050WebApp.UL
                     {
                         Address customerAddress = new Address(tbxStreetNumber.Text, tbxStreetName.Text, tbxCity.Text, ddlState.SelectedValue, iPostCode);
 
-                        cartSession.submitCart(userSession.SessionId, customerAddress, iShippingId);
+                        cartSession.submitCart(user.Id, customerAddress, iShippingId);
+
+                        // Need to get the payment Id somehow.
+                        int iPaymentId;
 
                         //Email for payment goes here
+                        user.SendPaymentEmail(user.Id, iPaymentId);
 
                         var checkoutUrl = FriendlyUrl.Href("~/UL/ConfirmSale", task.Result.ToString());
                         Response.Redirect(checkoutUrl);

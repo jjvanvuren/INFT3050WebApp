@@ -387,7 +387,45 @@ namespace INFT3050WebApp.BL
             }
         }
 
-        //
+        // Send payment confirmation
+        public void SendPaymentEmail(int iUserId, int iPaymentId)
+        {
+            //Get user by their ID
+            User user = new User(iUserId);
+
+            // Setup access to database
+            IOrderDataAccess db = new OrderDataAccess();
+
+            // Get the newly created order details
+            Order order = db.GetOrder(iUserId, iPaymentId);
+
+
+            const string strSubject = "Used Books Payment Confirmation";
+            string strEmailFormat;
+            string strBody;
+
+            // Format the email body depending on if user has a lastname
+            if (user.LastName == "")
+            {
+                strEmailFormat = "Hi {0},\n\rThank you for shopping with us! Your payment of ${1} has been accepted.\n\r" +
+                    "Your order number is: {2}. You will receive another email containing tracking information once your order has been shipped.";
+
+                strBody = string.Format(strEmailFormat, user.FirstName, order.Total.ToString(), order.orderId.ToString());
+            }
+            else
+            {
+                strEmailFormat = "Hi {0} {1},\n\rThank you for shopping with us! Your payment of ${2} has been accepted.\n\r" +
+                    "Your order number is: {3}. You will receive another email containing tracking information once your order has been shipped.";
+
+                strBody = string.Format(strEmailFormat, user.FirstName, user.LastName, order.Total.ToString(), order.orderId.ToString());
+            }
+
+            // Send payment confirmation email
+            SendEmail("donotreply@usedbooksales.com.au", "UsedBooks.com.au", user.Email, strSubject, strBody);
+        }
+
+
+        // Send the password reset email to the user.
         public void SendResetPassword(string strEmail)
         {
             User updateUser = new User();

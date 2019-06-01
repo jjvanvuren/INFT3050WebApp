@@ -64,6 +64,34 @@ namespace INFT3050WebApp.DAL
             return orders;
         }
 
+        // Method used to get an order by user ID & payment ID
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public Order GetOrder(int iPaymentId, int iUserId)
+        {
+            Order order = new Order();
+
+            string sql = @"SELECT [orderID], [userID], [paymentID], [postageOptionID], [orderStatus], [GST], [subTotal], [dateOrdered]
+                FROM[dbo].[orders]
+                WHERE [userID] = @uId & [paymentID] = @pId;";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("uId", iUserId);
+                    command.Parameters.AddWithValue("pId", iPaymentId);
+                    con.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        order = CreateOrder(reader);
+                    }
+                }
+            }
+            return order;
+        }
+
 
         //methord for adding order to the database
         [DataObjectMethod(DataObjectMethodType.Insert)]
