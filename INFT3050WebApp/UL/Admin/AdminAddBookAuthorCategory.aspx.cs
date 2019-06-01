@@ -16,10 +16,10 @@ namespace INFT3050WebApp.UL.Admin
             BL.AddBookSession populateGridView = (BL.AddBookSession)Session["addBookSession"];
             GridAddedAuthors.DataSource = populateGridView.addedAuthors();
             GridAddedAuthors.DataBind();
-            //if (Session["UserSession"] == null)
-            //{
-            //    Response.Redirect("~/UL/Admin/AdminLogin.aspx");
-            //}
+            if (Session["UserSession"] == null)
+            {
+                Response.Redirect("~/UL/Admin/AdminLogin.aspx");
+            }
 
         }
 

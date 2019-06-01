@@ -14,11 +14,14 @@ namespace INFT3050WebApp.BL
             Cart = new List<CartItem>();
         }
 
-        public void submitCart(int userID, Address userAddress, int postageOptionID)
+        public int submitCart(int userID, Address userAddress, int postageOption)
         {
             DAL.OrderDataAccess connect = new DAL.OrderDataAccess();
+            DAL.PostageOptionDataAccess postageConnect = new DAL.PostageOptionDataAccess();
+            userAddress.CheckPostCode();
             DateTime currentDate = DateTime.Now;
-            connect.submitCart(userID, userAddress, postageOptionID, Cart, totalPrice, currentDate);
+            int OrderID = connect.submitCart(userID, userAddress, postageOption, Cart, totalPrice, currentDate);
+            return OrderID;
         }
 
     }

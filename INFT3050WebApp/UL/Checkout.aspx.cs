@@ -39,6 +39,8 @@ namespace INFT3050WebApp.UL
 
         protected void btnPlaceOrder_Click(object sender, EventArgs e)
         {
+
+            //this should receive a payment valid
             if (IsValid)
             {
                 UserSession userSession = (UserSession)Session["userSession"];
@@ -48,16 +50,16 @@ namespace INFT3050WebApp.UL
                 {
                     int iPostCode = Int32.Parse(tbxPostCode.Text);
                     int iShippingId = Int32.Parse(ddlShippingMethod.SelectedValue);
-                    int iCVC = Int32.Parse(tbxSecurityCode.Text);
+                    //int iCVC = Int32.Parse(tbxSecurityCode.Text);
 
                     User user = new User(userSession.SessionId);
 
                     IPaymentSystem paymentSystem = INFT3050PaymentFactory.Create();
                     PaymentRequest payment = new PaymentRequest
                     {
-                        CardName = tbxCardName.Text,
-                        CardNumber = tbxCardNumber.Text,
-                        CVC = iCVC,
+                       // CardName = tbxCardName.Text,
+                       // CardNumber = tbxCardNumber.Text,
+                        //CVC = iCVC,
                         Expiry = new DateTime(2020, 11, 1),
                         Amount = 200,
                         Description = "test"
@@ -69,12 +71,12 @@ namespace INFT3050WebApp.UL
                     if (task.IsCompleted)
 
                     {
-                        Address customerAddress = new Address(tbxAddress1.Text, tbxAddress2.Text, tbxCity.Text, ddlState.SelectedValue, iPostCode);
+                        Address customerAddress = new Address(tbxStreetNumber.Text, tbxStreetName.Text, tbxCity.Text, ddlState.SelectedValue, iPostCode);
 
                         cartSession.submitCart(user.Id, customerAddress, iShippingId);
 
                         // Need to get the payment Id somehow.
-                        int iPaymentId;
+                        int iPaymentId= cartSession.submitCart(user.Id, customerAddress, iShippingId); ;
 
                         //Email for payment goes here
                         user.SendPaymentEmail(user.Id, iPaymentId);
