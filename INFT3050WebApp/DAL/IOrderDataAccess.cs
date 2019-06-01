@@ -11,5 +11,6 @@ namespace INFT3050WebApp.DAL
     {
         IEnumerable<Order> GetOrdersByUserID(int Id);
         void submitCart(int userID, Address userAddress, int ipostageOptionID, List<CartItem> Cart, double dTotalPrice, DateTime PurchaseTime);
+        Order GetOrder(int iPaymentId, int iUserId);
     }
 }
