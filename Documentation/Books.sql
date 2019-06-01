@@ -1,9 +1,7 @@
-DROP TABLE customerAddress
 DROP TABLE orderItem
 DROP TABLE orders
-DROP Table postageOption
+DROP TABLE postageOption
 DROP TABLE payment
-DROP TABLE customer
 DROP TABLE webSiteUser
 DROP TABLE bookCategory
 DROP TABLE bookAuthor
@@ -11,15 +9,16 @@ DROP TABLE category
 DROP TABLE author
 DROP TABLE book
 DROP TABLE item
-DROP TABLE userAddress
+DROP TABLE shippingAddress
 DROP TABLE postCode
 
 /* Create Database Login */
 CREATE LOGIN Admin WITH PASSWORD = 'Password#1';
 
 /* Create Item Table */
-CREATE TABLE item(
-	itemID INTEGER IDENTITY(1,1), 
+CREATE TABLE item
+(
+	itemID INTEGER IDENTITY(1,1),
 	price DECIMAL(7,2) NOT NULL DEFAULT 0.0,
 	stockQuantity INTEGER DEFAULT 0,
 	longDescription VARCHAR(MAX),
@@ -27,155 +26,151 @@ CREATE TABLE item(
 	imagePath VARCHAR(100),
 	thumbnailPath VARCHAR(100),
 	isActive BIT,
-	Primary Key (itemID)
+	PRIMARY KEY (itemID)
 )
 
 /* Create Book Table */
-CREATE TABLE book(
-	itemID INTEGER, 
-	ISBN VARCHAR(30) NOT NULL, 
+CREATE TABLE book
+(
+	itemID INTEGER,
+	ISBN VARCHAR(30) NOT NULL,
 	title VARCHAR(MAX) NOT NULL,
 	datePublished Date NOT NULL,
-	secondaryTitle VARCHAR(MAX), 
+	secondaryTitle VARCHAR(MAX),
 	isBestSeller BIT,
-	publisher VARCHAR(MAX)
-	Primary Key (itemID)
-	Foreign Key (itemID) references item(itemID)ON DELETE CASCADE ON UPDATE CASCADE
+	publisher VARCHAR(MAX),
+	PRIMARY KEY (itemID),
+	FOREIGN KEY (itemID) REFERENCES item(itemID) ON DELETE CASCADE ON UPDATE CASCADE
 )
 
 /* Create Author Table */
-CREATE TABLE author(
-	authorID INTEGER IDENTITY(1,1), 
-	firstName VARCHAR(MAX) NOT NULL, 
-	lastName VARCHAR(MAX), 
-	description VARCHAR(MAX)
-	Primary Key (authorID)
+CREATE TABLE author
+(
+	authorID INTEGER IDENTITY(1,1),
+	firstName VARCHAR(MAX) NOT NULL,
+	lastName VARCHAR(MAX),
+	description VARCHAR(MAX),
+	PRIMARY KEY (authorID)
 )
 
 /* Create Category Table */
-CREATE TABLE category(
-	categoryID INTEGER IDENTITY(1,1), 
-	Name VARCHAR(MAX) NOT NULL, 
-	description VARCHAR(MAX)
-	Primary Key (categoryID)
+CREATE TABLE category
+(
+	categoryID INTEGER IDENTITY(1,1),
+	Name VARCHAR(MAX) NOT NULL,
+	description VARCHAR(MAX),
+	PRIMARY KEY (categoryID)
 )
 
 /* Create BookAuthor Table */
-CREATE TABLE bookAuthor(
+CREATE TABLE bookAuthor
+(
 	itemID INTEGER,
 	authorID INTEGER,
-	Primary Key (itemID, authorID),
-	Foreign Key (itemID) references book (itemID)ON DELETE CASCADE ON UPDATE CASCADE,
-	Foreign Key (authorID) references author (authorID)ON DELETE NO ACTION ON UPDATE NO ACTION
+	PRIMARY KEY (itemID, authorID),
+	FOREIGN KEY (itemID) REFERENCES book (itemID)ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (authorID) REFERENCES author (authorID)ON DELETE NO ACTION ON UPDATE NO ACTION
 )
 
 /* Create BookCategory Table */
-CREATE TABLE bookCategory(
+CREATE TABLE bookCategory
+(
 	itemID INTEGER,
 	categoryID INTEGER,
-	Primary Key (itemID, categoryID),
-	Foreign Key (itemID) references book (itemID)ON DELETE CASCADE ON UPDATE CASCADE,
-	Foreign Key (categoryID) references category (categoryID)ON DELETE NO ACTION ON UPDATE NO ACTION
+	PRIMARY KEY (itemID, categoryID),
+	FOREIGN KEY (itemID) REFERENCES book (itemID)ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (categoryID) REFERENCES category (categoryID)ON DELETE NO ACTION ON UPDATE NO ACTION
 )
 
 /* Create WebSiteUser Table*/
-CREATE TABLE webSiteUser(
-	userID INTEGER IDENTITY(1,1), 
+CREATE TABLE webSiteUser
+(
+	userID INTEGER IDENTITY(1,1),
 	email VARCHAR(45) NOT NULL,
 	password VARCHAR(250) NOT NULL,
-	firstName VARCHAR(250) NOT NULL, 
+	firstName VARCHAR(250) NOT NULL,
 	lastName VARCHAR(250),
-	isAdmin BIT, 
+	isAdmin BIT,
 	isActive BIT,
 	validationKey VARCHAR(MAX),
 	isVerified BIT,
-	Primary Key (userID)
-)
-
-/* Create Customer Table */
-CREATE TABLE customer(
-	userID INTEGER, 
-	phoneNumber VARCHAR(15)
-	Primary Key (userID)
-	Foreign Key (userID) references webSiteUser(userID)ON DELETE CASCADE ON UPDATE CASCADE
+	PRIMARY KEY (userID)
 )
 
 /* Create Payment Table*/
-CREATE TABLE payment(
+CREATE TABLE payment
+(
 	paymentID INTEGER IDENTITY(1,1),
 	datePayed Date,
-	total DECIMAL(7,2) DEFAULT 0.0
-	Primary key (paymentID)
+	total DECIMAL(7,2) DEFAULT 0.0,
+	PRIMARY KEY (paymentID)
 )
 
 /* Create Postage Option Table*/
-CREATE TABLE postageOption(
+CREATE TABLE postageOption
+(
 	postageOptionID INTEGER IDENTITY(1,1),
 	postageOptionName VARCHAR(30),
 	amountOfDaysToDeliver DECIMAL(7,2) DEFAULT 0.0,
 	shippingCost DECIMAL(7,2) DEFAULT 0.0,
 	isActive BIT,
-	Primary key (postageOptionID) 
+	PRIMARY KEY (postageOptionID)
 )
 
 /* Create Orders Table */
-CREATE TABLE orders(
+CREATE TABLE orders
+(
 	orderID INTEGER IDENTITY(1,1),
 	userID INTEGER,
 	paymentID INTEGER,
 	postageOptionID INTEGER,
-	orderStatus VARCHAR(30) NOT NULL,
+	orderStatus VARCHAR(30),
 	GST INTEGER,
-	subTotal DECIMAL(7,2) NOT NULL DEFAULT 0.0,
-	dateOrderd Date,
-	Primary key (orderID),
-	Foreign key(userID) references customer(userID)ON DELETE NO ACTION ON UPDATE CASCADE,
-	Foreign key(paymentID) references payment(paymentID)ON DELETE NO ACTION ON UPDATE CASCADE,
-	Foreign key(postageOptionID) references postageOption(postageOptionID)ON DELETE NO ACTION ON UPDATE CASCADE
+	subTotal DECIMAL(7,2) DEFAULT 0.0,
+	dateOrdered Date,
+	shippingAddressID INTEGER,
+	PRIMARY KEY (orderID),
+	FOREIGN KEY(userID) REFERENCES webSiteUser(userID)ON DELETE NO ACTION ON UPDATE CASCADE,
+	FOREIGN KEY(paymentID) REFERENCES payment(paymentID)ON DELETE NO ACTION ON UPDATE CASCADE,
+	FOREIGN KEY(postageOptionID) REFERENCES postageOption(postageOptionID)ON DELETE NO ACTION ON UPDATE CASCADE,
+	FOREIGN KEY(shippingAddressID) REFERENCES shippingAddress(addressID)ON DELETE NO ACTION ON UPDATE CASCADE
 
 )
 
 /* Create OrderItem Table */
-CREATE TABLE orderItem(
+CREATE TABLE orderItem
+(
 	orderID INTEGER,
 	itemID INTEGER,
 	quantity INTEGER ,
-	Primary key (orderID, itemID),
-	Foreign key(orderID) references orders(orderID)ON DELETE CASCADE ON UPDATE CASCADE,
-	Foreign key(itemID) references item(itemID)ON DELETE NO ACTION 
+	PRIMARY KEY (orderID, itemID),
+	FOREIGN KEY(orderID) REFERENCES orders(orderID)ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(itemID) REFERENCES item(itemID)ON DELETE NO ACTION
 )
 
 
 /* Create PostCode Table*/
-CREATE TABLE postCode(
-	city VARCHAR(15) NOT NULL, 
-	adressStates CHAR(3)NOT NULL,
+CREATE TABLE postCode
+(
+	city VARCHAR(15) NOT NULL,
+	addressState CHAR(3)NOT NULL,
 	postCode INTEGER,
-	Primary Key(city,adressStates)
+	PRIMARY KEY(city,addressState)
 )
 /* Create User Address Table */
-CREATE TABLE userAddress(
+CREATE TABLE shippingAddress
+(
 	addressID INTEGER IDENTITY(1,1),
-	streetNumber VARCHAR(6)NOT NULL, 
-	streetName VARCHAR(15)NOT NULL, 
-	city VARCHAR(15)NOT NULL, 
-	adressStates CHAR(3) NOT NULL,
-	Primary key (addressID),
-	Foreign key(city,adressStates) references postCode(city,adressStates)ON DELETE NO ACTION ON UPDATE CASCADE
-)
-
-/* Create Customer Address Table*/
-CREATE TABLE customerAddress(
-	addressID INTEGER,
-	userID INTEGER,
-	addressType VARCHAR(50),
-	Primary key (addressID,userID),
-	Foreign key(addressID) references userAddress(addressID)ON DELETE CASCADE ON UPDATE CASCADE,
-	Foreign key(userID) references customer(userID)ON DELETE CASCADE ON UPDATE CASCADE
+	streetNumber VARCHAR(6)NOT NULL,
+	streetName VARCHAR(15)NOT NULL,
+	city VARCHAR(15)NOT NULL,
+	addressState CHAR(3) NOT NULL,
+	PRIMARY KEY (addressID),
+	FOREIGN KEY(city,addressState) REFERENCES postCode(city,addressState)ON DELETE NO ACTION ON UPDATE CASCADE
 )
 
 -- Create fulltext catalog to be used when creating a fulltext index
-CREATE FULLTEXT CATALOG fulltextCatalog AS DEFAULT; 
+CREATE FULLTEXT CATALOG fulltextCatalog AS DEFAULT;
 
 -- Drop Fulltext index
 DROP FULLTEXT INDEX ON book;
@@ -184,24 +179,35 @@ DROP FULLTEXT INDEX ON book;
 CREATE UNIQUE INDEX PK_book_itemID ON Book(itemID)
 
 -- Create fulltext index on book.title
-CREATE FULLTEXT INDEX ON book(title) 
+CREATE FULLTEXT INDEX ON book(title)
 KEY INDEX PK_book_itemID
 WITH STOPLIST = SYSTEM;
 
 --INSERT DATA INTO TABLES
 
 --Insert Users
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('joe@example.com', 'Password#1', 'Joe', '', 0, 1, '', 1);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('james@example.com', 'Password#1', 'James', 'Smith', 0, 0, '', 1);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('sara@example.com', 'Password#1', 'Sara', 'Headges', 0, 1, '', 1);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('alex@usedbooksales.com.au', 'Password#1', 'Alex', 'Budwill', 1, 1, '', 1);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('patrick@usedbooksales.com.au', 'Password#1', 'Patrick', 'Foley', 1, 1, '', 1);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('derrick@example.com', 'Password#1', 'Derrick', 'Hardy', 0, 1, '', 1);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('soli@example.com', 'Password#1', 'Soli', 'Soliman', 0, 1, '', 1);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('chelsea@example.com', 'Password#1', 'Chelsea', 'Gordon', 0, 1, '', 1);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('karl@usedbooksales.com.au', 'Password#1', 'Karl', 'Foley', 1, 1, '', 1);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('jacques@usedbooksales.com.au', 'Password#1', 'Jacques', 'Janse van Vuren', 1, 1, '', 1);
-INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified) VALUES ('francois@usedbooksales.com.au', 'Password#1', 'Francois', 'Janse van Vuren', 1, 1, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
+VALUES ('joe@example.com', 'Password#1', 'Joe', '', 0, 1, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
+VALUES ('james@example.com', 'Password#1', 'James', 'Smith', 0, 0, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
+VALUES ('sara@example.com', 'Password#1', 'Sara', 'Headges', 0, 1, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
+VALUES ('alex@usedbooksales.com.au', 'Password#1', 'Alex', 'Budwill', 1, 1, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
+VALUES ('patrick@usedbooksales.com.au', 'Password#1', 'Patrick', 'Foley', 1, 1, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
+VALUES ('derrick@example.com', 'Password#1', 'Derrick', 'Hardy', 0, 1, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
+VALUES ('soli@example.com', 'Password#1', 'Soli', 'Soliman', 0, 1, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
+VALUES ('chelsea@example.com', 'Password#1', 'Chelsea', 'Gordon', 0, 1, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
+VALUES ('karl@usedbooksales.com.au', 'Password#1', 'Karl', 'Foley', 1, 1, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
+VALUES ('jacques@usedbooksales.com.au', 'Password#1', 'Jacques', 'Janse van Vuren', 1, 1, '', 1);
+INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
+VALUES ('francois@usedbooksales.com.au', 'Password#1', 'Francois', 'Janse van Vuren', 1, 1, '', 1);
 
 --Insert Categories
 INSERT INTO category (Name, description) VALUES ('History', 'Category description goes here.');
@@ -223,61 +229,77 @@ INSERT INTO author (firstName, lastName, description) VALUES ('Metropolitan Muse
 INSERT INTO author (firstName, lastName, description) VALUES ('Ashlee', 'Vance', 'Author description goes here.');
 
 --Insert item and book tables
-INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive) VALUES (45.92, 20, 
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, 
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive)
+VALUES (45.92, 20,
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
 fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9780813056173.jpg', '/UL/Images/9780813056173_thumb.jpg', 1);
-INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher) VALUES (1, '9780813056173', 'Picturing Apollo 11', '20190430', '', 1, 'Univ Pr of Florida');
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9780813056173.jpg', '/UL/Images/9780813056173_thumb.jpg', 1);
+INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher)
+VALUES (1, '9780813056173', 'Picturing Apollo 11', '20190430', '', 1, 'Univ Pr of Florida');
 
-INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive) VALUES (16.49, 20, 
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, 
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive)
+VALUES (16.49, 20,
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
 fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9781786812445.jpg', '/UL/Images/9781786812445_thumb.jpg', 1);
-INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher) VALUES (2, '9781786812445', 'The Mistake', '20171004', '', 1, 'Bookouture');
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9781786812445.jpg', '/UL/Images/9781786812445_thumb.jpg', 1);
+INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher)
+VALUES (2, '9781786812445', 'The Mistake', '20171004', '', 1, 'Bookouture');
 
-INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive) VALUES (22.99, 20, 
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, 
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive)
+VALUES (22.99, 20,
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
 fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9781503903265.jpg', '/UL/Images/9781503903265_thumb.jpg', 1);
-INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher) VALUES (3, '9781503903265', 'One Word Kill', '20190501', '', 1, '47 North');
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9781503903265.jpg', '/UL/Images/9781503903265_thumb.jpg', 1);
+INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher)
+VALUES (3, '9781503903265', 'One Word Kill', '20190501', '', 1, '47 North');
 
-INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive) VALUES (16.81, 20, 
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, 
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive)
+VALUES (16.81, 20,
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
 fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9781473635487.jpg', '/UL/Images/9781473635487_thumb.jpg', 1);
-INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher) VALUES (4, '9781473635487', 'The Keeper of Lost Things', '20170810', '', 1, 'Hodder & Stoughton General Division');
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9781473635487.jpg', '/UL/Images/9781473635487_thumb.jpg', 1);
+INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher)
+VALUES (4, '9781473635487', 'The Keeper of Lost Things', '20170810', '', 1, 'Hodder & Stoughton General Division');
 
-INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive) VALUES (16.11, 20, 
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, 
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive)
+VALUES (16.11, 20,
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
 fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9781784751173.jpg', '/UL/Images/9781784751173_thumb.jpg', 1);
-INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher) VALUES (5, '9781784751173', 'Run Away', '20180806', '', 1, 'ARROW LTD');
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9781784751173.jpg', '/UL/Images/9781784751173_thumb.jpg', 1);
+INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher)
+VALUES (5, '9781784751173', 'Run Away', '20180806', '', 1, 'ARROW LTD');
 
-INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive) VALUES (19.99, 20, 
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, 
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive)
+VALUES (19.99, 20,
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
 fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9780008152406.jpg', '/UL/Images/9780008152406_thumb.jpg', 1);
-INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher) VALUES (6, '9780008152406', 'Holy Sister', '20190318', '', 1, 'Voyager - GB');
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9780008152406.jpg', '/UL/Images/9780008152406_thumb.jpg', 1);
+INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher)
+VALUES (6, '9780008152406', 'Holy Sister', '20190318', '', 1, 'Voyager - GB');
 
-INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive) VALUES (74.62, 20, 
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, 
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive)
+VALUES (74.62, 20,
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
 fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9780847846597.jpg', '/UL/Images/9780847846597_thumb.jpg', 1);
-INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher) VALUES (7, '9780847846597', 'Masterpiece Paintings', '20161001', '', 1, 'Rizzoli');
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9780847846597.jpg', '/UL/Images/9780847846597_thumb.jpg', 1);
+INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher)
+VALUES (7, '9780847846597', 'Masterpiece Paintings', '20161001', '', 1, 'Rizzoli');
 
-INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive) VALUES (23.36, 20, 
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, 
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive)
+VALUES (23.36, 20,
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
 fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9780753555644.jpg', '/UL/Images/9780753555644_thumb.jpg', 1);
-INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher) VALUES (8, '9780753555644', 'Elon Musk', '20160310', '', 1, 'Ebury Publishing');
+		'Lorem ipsum dolor sit amet, consectetur adipiscing elit', '/UL/Images/9780753555644.jpg', '/UL/Images/9780753555644_thumb.jpg', 1);
+INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher)
+VALUES (8, '9780753555644', 'Elon Musk', '20160310', '', 1, 'Ebury Publishing');
 
 --Insert into bookAuthor
 INSERT INTO bookAuthor (itemID, authorID) VALUES (1, 1);
@@ -300,14 +322,34 @@ INSERT INTO bookCategory (itemID, categoryID) VALUES (7, 7);
 INSERT INTO bookCategory (itemID, categoryID) VALUES (8, 8);
 
 --Insert postage options
-INSERT INTO postageOption (postageOptionName, shippingCost) VALUES ('Pick Up', 0.00);
-INSERT INTO postageOption (postageOptionName, shippingCost) VALUES ('AusPost', 5.99);
-INSERT INTO postageOption (postageOptionName, shippingCost) VALUES ('AusPost Express', 9.99);
-INSERT INTO postageOption (postageOptionName, shippingCost) VALUES ('Startrack', 3.99);
-INSERT INTO postageOption (postageOptionName, shippingCost) VALUES ('Startrack Express', 7.99);
+INSERT INTO postageOption (postageOptionName, shippingCost, isActive) VALUES ('Pick Up', 0.00, 1);
+INSERT INTO postageOption (postageOptionName, shippingCost, isActive) VALUES ('AusPost', 5.99, 1);
+INSERT INTO postageOption (postageOptionName, shippingCost, isActive) VALUES ('AusPost Express', 9.99, 1);
+INSERT INTO postageOption (postageOptionName, shippingCost, isActive) VALUES ('Startrack', 3.99, 1);
+INSERT INTO postageOption (postageOptionName, shippingCost, isActive) VALUES ('Startrack Express', 7.99, 1);
 
-----Insert Payments
---INSERT INTO payment (datePayed, total) VALUES ('20190504', 4.99);
+-- INSERT ORDERS --
+--Insert into postCode
+INSERT INTO postCode (city, addressState, postCode) VALUES ('New Lambton', 'NSW', 2305);
+--Insert into shippingAddress
+INSERT INTO shippingAddress (streetNumber, streetName, city, addressState) VALUES ('29-1', 'Evescourt Rd', 'New Lambton', 'NSW');
+--Insert into orders
+INSERT INTO orders (userID, paymentID, postageOptionID, orderStatus, GST, subTotal, dateOrdered, shippingAddressID)
+VALUES (1, 1, 7, 'Shipped', 10, 45.92, '20190504', 1);
+--Insert into orderItem
+INSERT INTO orderItem (orderID, itemID, quantity) VALUES (2, 1, 1);
+--Insert Payments
+INSERT INTO payment (datePayed, total) VALUES ('20190504', 45.92);
+
+--Insert into orders
+INSERT INTO orders (userID, paymentID, postageOptionID, orderStatus, GST, subTotal, dateOrdered, shippingAddressID)
+VALUES (1, 2, 7, 'Shipped', 10, 39.48, '20190510', 1);
+--Insert into orderItem
+INSERT INTO orderItem (orderID, itemID, quantity) VALUES (3, 2, 1);
+INSERT INTO orderItem (orderID, itemID, quantity) VALUES (3, 3, 1);
+--Insert Payments
+INSERT INTO payment (datePayed, total) VALUES ('20190510', 39.48);
+
 --INSERT INTO payment (datePayed, total) VALUES ('20190703', 14.99);
 --INSERT INTO payment (datePayed, total) VALUES ('20190704', 4.99);
 --INSERT INTO payment (datePayed, total) VALUES ('20191204', 20.99);
@@ -319,33 +361,33 @@ INSERT INTO postageOption (postageOptionName, shippingCost) VALUES ('Startrack E
 --INSERT INTO payment (datePayed, total) VALUES ('20190201', 7.99);
 
 --Select all book information
-SELECT item.itemID, price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, 
-ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher, firstName, lastName, author.description, 
-Name, category.description 
-FROM item 
-INNER JOIN book ON item.itemID = book.itemID
-INNER JOIN bookAuthor ON book.itemID = bookAuthor.itemID
-INNER JOIN author ON bookAuthor.authorID = author.authorID
-INNER JOIN bookCategory ON book.itemID = bookCategory.itemID
-INNER JOIN category ON bookCategory.categoryID = category.categoryID;
+SELECT item.itemID, price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath,
+	ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher, firstName, lastName, author.description,
+	Name, category.description
+FROM item
+	INNER JOIN book ON item.itemID = book.itemID
+	INNER JOIN bookAuthor ON book.itemID = bookAuthor.itemID
+	INNER JOIN author ON bookAuthor.authorID = author.authorID
+	INNER JOIN bookCategory ON book.itemID = bookCategory.itemID
+	INNER JOIN category ON bookCategory.categoryID = category.categoryID;
 
 --Select all book information for a single category
-SELECT item.itemID, price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, 
-ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher, firstName, lastName, author.description, 
-Name, category.description
-FROM item 
-INNER JOIN book ON item.itemID = book.itemID
-INNER JOIN bookAuthor ON book.itemID = bookAuthor.itemID
-INNER JOIN author ON bookAuthor.authorID = author.authorID
-INNER JOIN bookCategory ON book.itemID = bookCategory.itemID
-INNER JOIN category ON bookCategory.categoryID = category.categoryID
+SELECT item.itemID, price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath,
+	ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher, firstName, lastName, author.description,
+	Name, category.description
+FROM item
+	INNER JOIN book ON item.itemID = book.itemID
+	INNER JOIN bookAuthor ON book.itemID = bookAuthor.itemID
+	INNER JOIN author ON bookAuthor.authorID = author.authorID
+	INNER JOIN bookCategory ON book.itemID = bookCategory.itemID
+	INNER JOIN category ON bookCategory.categoryID = category.categoryID
 WHERE category.Name = 'category';
 
 --Select all book information
 SELECT item.itemID, title, price
-FROM item 
-INNER JOIN book ON item.itemID = book.itemID
-INNER JOIN bookAuthor ON book.itemID = bookAuthor.itemID
-INNER JOIN author ON bookAuthor.authorID = author.authorID
-INNER JOIN bookCategory ON book.itemID = bookCategory.itemID
-INNER JOIN category ON bookCategory.categoryID = category.categoryID;
+FROM item
+	INNER JOIN book ON item.itemID = book.itemID
+	INNER JOIN bookAuthor ON book.itemID = bookAuthor.itemID
+	INNER JOIN author ON bookAuthor.authorID = author.authorID
+	INNER JOIN bookCategory ON book.itemID = bookCategory.itemID
+	INNER JOIN category ON bookCategory.categoryID = category.categoryID;

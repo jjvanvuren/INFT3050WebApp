@@ -20,6 +20,32 @@ namespace INFT3050WebApp.DAL
             }
         }
 
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Category> GetCategory()
+        {
+            List<Category> ListofCategory = new List<Category>();
+            string sql = @"SELECT [categoryID], [name], [description] 
+                            FROM [dbo].[category]";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Category newCategory = CreateCategory(reader);
+                        ListofCategory.Add(newCategory);
+                        
+                    }
+                    
+                }
+            }
+            return ListofCategory;
+        }
+
         // Method used to get a Category by ID
         [DataObjectMethod(DataObjectMethodType.Select)]
         public Category GetCategoryById(int Id)
@@ -51,10 +77,73 @@ namespace INFT3050WebApp.DAL
         {
             Category category = new Category();
             category.Id = (int)reader["categoryID"];
-            category.Name = reader["name"].ToString();
-            category.Description = reader["description"].ToString();
+            category.Name = (string)reader.GetSqlString(1);
+            category.Description = (string)reader.GetSqlString(2);
 
             return category;
+        }
+
+
+        [DataObjectMethod(DataObjectMethodType.Insert)]
+        public void ConnectBookCategory(int BookID, List<Category> Categories)
+        {
+            string sql = @"INSERT INTO bookCategory ([itemID], [categoryID]) VALUES";
+            int i = 0;
+            foreach (Category category in Categories)
+            {
+                sql = sql + "(@itemID" + i.ToString() + ", @CategoryID" + i.ToString() + ")";
+                if (Categories.Count == 1 || Categories.IndexOf(category) == Categories.Count - 1)
+                {
+
+                }
+                else
+                {
+                    sql += ", ";
+                }
+                i++;
+            }
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    int j = 0;
+                    foreach (Category category in Categories)
+                    {
+                        command.CommandText = sql;
+                        command.Parameters.AddWithValue("itemID" + j.ToString(), BookID);
+                        command.Parameters.AddWithValue("CategoryID" + j.ToString(), category.Id);
+                        j++;
+                    }
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        //getting a list of authors by Book ID
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Category> getCategories(int BookID)
+        {
+            List<Category> listofCategories = new List<Category>();
+            string sql = @"SELECT [category].[categoryID], [category].[Name],[category].[description]
+                            FROM [dbo].[bookCategory]                   
+                            INNER JOIN [category] ON [bookCategory].[categoryID] = [category].[categoryID]
+                            WHERE[bookCategory].[itemID] = @itemID ";
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.Add(new SqlParameter("itemID", BookID));
+                    con.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Category catergory = CreateCategory(reader);
+                        listofCategories.Add(catergory);
+                    }
+                    return listofCategories;
+                }
+            }
         }
     }
 }

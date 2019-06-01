@@ -30,5 +30,36 @@ namespace INFT3050WebApp.BL
 
             return allPostageOptions;
         }
+
+        // Method to "delete" a postage option by calling DeletePostageOptionById from the DAL
+        public int DeletePostageOption(int Id)
+        {
+            
+            var db = new PostageOptionDataAccess();
+
+            int rowsAffected = db.DeletePostageOptionById(Id);
+
+            return rowsAffected;
+        }
+
+        // Method to update postage option by calling UdatePostageOptionById from the DAL
+        public int UpdatePostageOptionById(int Id, double price, string name)
+        {
+            var db = new PostageOptionDataAccess();
+
+            int rowsAffected = db.UpdatePostageOptionById(Id, price, name);
+
+            return rowsAffected;
+        }
+
+        // Method to add a new postage option to the database by calling the AddPostageOption method in the DAL
+        public int AddPostageOption(string name, double price)
+        {
+            var db = new PostageOptionDataAccess();
+
+            int rowsAffected = db.AddPostageOption(name, price);
+
+            return rowsAffected;
+        }
     }
 }

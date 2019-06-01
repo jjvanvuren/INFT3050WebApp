@@ -8,16 +8,21 @@
     <h1>Inventory Managment</h1>
     <div class="container-flex">
         <%--Setting data source to be used for display of data in gridview --%>
-        <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetBooks" TypeName="INFT3050WebApp.DAL.BookDataAccess"></asp:ObjectDataSource>
-        <asp:GridView ID="ItemManagment" runat="server" AutoGenerateColumns="false" DataSourceID="bookDataSource" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True" PageSize="5">
+        <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetAdminBooks" TypeName="INFT3050WebApp.BL.Book"></asp:ObjectDataSource>
+        <asp:GridView ID="ItemManagment" runat="server" AutoGenerateColumns="false" DataSourceID="bookDataSource" AllowSorting="true" CssClass="table" GridLines="None"
+            AllowPaging="True" PageSize="5" OnRowUpdating="ItemManagment_RowUpdating" OnRowDeleting="ItemManagment_RowDeleting">
             <Columns>
                 <%--Item iD displayed--%>
-                <asp:BoundField DataField="Id" HeaderText="ID" ReadOnly="True" SortExpression="Id">
+                <asp:BoundField DataField="Id" HeaderText="ID" ReadOnly="True" >
+                    <ItemStyle CssClass="col-xs-1" />
+                </asp:BoundField>
+                <%--Item iD displayed--%>
+                <asp:BoundField DataField="IsActive" HeaderText="Active" ReadOnly="True" >
                     <ItemStyle CssClass="col-xs-1" />
                 </asp:BoundField>
 
                 <%--Title of item--%>
-                <asp:TemplateField HeaderText="Title" SortExpression="Title">
+                <asp:TemplateField HeaderText="Title">
                     <%-- Title field during Edit--%>
                     <EditItemTemplate>
                         <div class="col-xs-11 col-edit">
@@ -47,17 +52,43 @@
                     <ItemTemplate>
                         <asp:Label ID="lblGridStockQuantity" runat="server" Text='<%# Bind("StockQuantity") %>'></asp:Label>
                     </ItemTemplate>
+                    <ItemStyle CssClass="col-xs-5" />
+                </asp:TemplateField>
+
+                 <%--ImagePath of item--%>
+                <asp:TemplateField HeaderText="Image Path">
+                    <%-- ImagePath field during Edit--%>
+                    <EditItemTemplate>
+                        <div class="col-xs-11 col-edit">
+                            <asp:TextBox ID="txtGridImagePath" runat="server" MaxLength="45" CssClass="form-control" Text='<%# Bind("ImagePath") %>'></asp:TextBox>
+                        </div>
+                        <%-- ImagePath field validation--%>
+                    </EditItemTemplate>
+                    <%-- ImagePath field normal--%>
+                    <ItemTemplate>
+                        <asp:Label ID="lblImagePath" runat="server" Text='<%# Bind("ImagePath") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle CssClass="col-xs-5" />
+                </asp:TemplateField>
+
+                
+                 <%--ThumbnailPath of item--%>
+                <asp:TemplateField HeaderText="Thumbnail Path">
+                    <%-- ImagePath field during Edit--%>
+                    <EditItemTemplate>
+                        <div class="col-xs-11 col-edit">
+                            <asp:TextBox ID="txtGridThumbnailPath" runat="server" MaxLength="45" CssClass="form-control" Text='<%# Bind("ThumbnailPath") %>'></asp:TextBox>
+                        </div>
+                        <%-- ThumbnailPath field validation--%>
+                    </EditItemTemplate>
+                    <%-- ThumbnailPath field normal--%>
+                    <ItemTemplate>
+                        <asp:Label ID="lblThumbnailPath" runat="server" Text='<%# Bind("ThumbnailPath") %>'></asp:Label>
+                    </ItemTemplate>
                     <ItemStyle CssClass="col-xs-2" />
                 </asp:TemplateField>
 
-                <%--Item imagePath displayed--%>
-                <asp:BoundField DataField="ImagePath" HeaderText="Image Path">
-                    <ItemStyle CssClass="col-xs-3" />
-                </asp:BoundField>
-                <%--Item ThumbnailPath displayed--%>
-                <asp:BoundField DataField="ThumbnailPath" HeaderText="Thumbnail Image Path">
-                    <ItemStyle CssClass="col-xs-3" />
-                </asp:BoundField>
+
 
                 <%--Item Price displayed--%>
                 <asp:TemplateField HeaderText="Price">
@@ -82,7 +113,7 @@
                 </asp:CommandField>
 
                 <%--Delete Buttons--%>
-                <asp:CommandField ShowDeleteButton="True">
+                <asp:CommandField ShowDeleteButton="True" DeleteText="Change Status" >
                     <ItemStyle CssClass="col-xs-2" />
                 </asp:CommandField>
 
@@ -90,92 +121,6 @@
             <EditRowStyle CssClass="warning" />
         </asp:GridView>
 
-        <div>
-            <br />
-            <h3>Add Book</h3>
-            <br />
-            <%--Table to Add Books--%>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Title</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Image Path</th>
-                        <th scope="col">Thumbnail Path</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Long Description</th>
-                        <th scope="col">Short Description</th>
-                        <th scope="col">ISBN</th>
-                        <th scope="col">Date Published</th>
-                        <th scope="col">Publisher</th>
-                        <th scope="col">Best Seller</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <%--Add Title--%>
-                            <asp:TextBox ID="tbxAddTitle" runat="server" MaxLength="45" CssClass="form-control"></asp:TextBox>
-                            <%--Title Validators--%>
-                            <asp:RequiredFieldValidator ID="rfvAddTitle" runat="server" CssClass="text-danger" ErrorMessage="Title is required"
-                                ControlToValidate="tbxAddTitle">Title is required</asp:RequiredFieldValidator>
-                        </td>
-                        <td>
-                            <%--Add Quantity--%>
-                            <asp:TextBox ID="tbxAddQuantity" runat="server" MaxLength="45" CssClass="form-control"></asp:TextBox>
-                        </td>
-                        <td>
-                            <%--Add Image Path--%>
-                            <asp:TextBox ID="tbxAddImagePath" runat="server" MaxLength="45" CssClass="form-control" ToolTip="Must be full file path"></asp:TextBox>
-                        </td>
-                        <td>
-                            <%--Add Thumbnail Path--%>
-                            <asp:TextBox ID="tbxAddThumbnailPath" runat="server" MaxLength="45" CssClass="form-control" ToolTip="Must be full file path"></asp:TextBox>
-                        </td>
-                        <td>
-                            <%--Add Price--%>
-                            <asp:TextBox ID="tbxAddPrice" runat="server" MaxLength="45" CssClass="form-control"></asp:TextBox>
-                            <%--Price Validators--%>
-                            <asp:RequiredFieldValidator ID="rfvAddPrice" runat="server" CssClass="text-danger" ErrorMessage="Price is required"
-                                ControlToValidate="tbxAddPrice">Price is required</asp:RequiredFieldValidator>
-                        </td>
-                        <td>
-                            <%--Add Long Description--%>
-                            <asp:TextBox ID="tbxAddLongDesc" runat="server" MaxLength="45" CssClass="form-control"></asp:TextBox>
-                        </td>
-                        <td>
-                            <%--Add Short Description--%>
-                            <asp:TextBox ID="tbxAddShortDesc" runat="server" MaxLength="45" CssClass="form-control"></asp:TextBox>
-                        </td>
-                        <td>
-                            <%--Add ISBN--%>
-                            <asp:TextBox ID="tbxAddISBN" runat="server" MaxLength="45" CssClass="form-control"></asp:TextBox>
-                            <%--ISBN Validators--%>
-                            <asp:RequiredFieldValidator ID="rfvAddISBN" runat="server" CssClass="text-danger" ErrorMessage="ISBN is required"
-                                ControlToValidate="tbxAddISBN">ISBN is required</asp:RequiredFieldValidator>
-                        </td>
-                        <td>
-                            <%--Add Date Published--%>
-                            <asp:TextBox ID="tbxAddDatePublished" runat="server" MaxLength="45" CssClass="form-control"></asp:TextBox>
-                            <%--Date Published Validators--%>
-                            <asp:RequiredFieldValidator ID="rfvAddDatePublised" runat="server" CssClass="text-danger" ErrorMessage="Date published is required"
-                                ControlToValidate="tbxAddDatePublished">Date published is required</asp:RequiredFieldValidator>
-                        </td>
-                        <td>
-                            <%--Add Publisher--%>
-                            <asp:TextBox ID="tbxAddPublisher" runat="server" MaxLength="45" CssClass="form-control"></asp:TextBox>
-                        </td>
-                        <td>
-                            <%--Add Best Seller--%>
-                            <asp:DropDownList ID="ddlAddBestSeller" runat="server">
-                                <asp:ListItem Text="True" Value="true" />
-                                <asp:ListItem Text="False" Value="false" />
-                            </asp:DropDownList>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
             <%--Add Book Button--%>
             <asp:Button ID="btnAddBook" type="submit" CssClass="btn btn-primary" runat="server" Text="Add Book" OnClick="btnAddBook_Click" />
         </div>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using INFT3050WebApp.BL;
 
 namespace INFT3050WebApp.UL.Admin
 {
@@ -22,11 +23,33 @@ namespace INFT3050WebApp.UL.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Enable SSL
-            if (!Request.IsSecureConnection)
+            if(!IsPostBack)
             {
-                string url = ConfigurationManager.AppSettings["SecurePath"] + "UL/Admin/AdminPurchaseHistory.aspx";
-                Response.Redirect(url);
+                //Enable SSL
+                if (!Request.IsSecureConnection)
+                {
+                    string url = ConfigurationManager.AppSettings["SecurePath"] + "UL/Admin/AdminPurchaseHistory.aspx";
+                    Response.Redirect(url);
+                }
+
+                string UserID = Request.QueryString["Id"];
+
+                // Display the users purchase history based on the Id passed by the query string
+                if (!string.IsNullOrEmpty(UserID) && int.TryParse(UserID, out int id))
+                {
+                    try
+                    {
+                        Order order = new Order();
+
+                        Orders.DataSource = order.GetOrdersByUserID(id);
+
+                        Orders.DataBind();
+                    }
+                    catch (Exception exc)
+                    {
+                        throw exc;
+                    }
+                }
             }
         }
     }

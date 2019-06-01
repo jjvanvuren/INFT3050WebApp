@@ -14,6 +14,7 @@ namespace INFT3050WebApp.DAL
         IEnumerable<Book> GetBooksByCategory(int categoryId);
         IEnumerable<Book> SearchBooksByTitle(string searchString);
         int UpdateBookById(Book bookUpdate);
-        int DeleteItemById(int itemId);
+        int DeleteItemById(int itemId, Boolean ActiveStatus);
+
     }
 }

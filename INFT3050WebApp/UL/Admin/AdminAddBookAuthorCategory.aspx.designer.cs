@@ -7,135 +7,147 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace INFT3050WebApp {
+namespace INFT3050WebApp.UL.Admin {
     
     
-    public partial class Site {
+    public partial class AdminAddBookAuthorCategory {
         
         /// <summary>
-        /// head control.
+        /// vsAddBookAuthorCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.ValidationSummary vsAddBookAuthorCategory;
         
         /// <summary>
-        /// hypAllBooks control.
+        /// lblCurrentAuthors control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hypAllBooks;
+        protected global::System.Web.UI.WebControls.Label lblCurrentAuthors;
         
         /// <summary>
-        /// hypHistory control.
+        /// GridAddedAuthors control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hypHistory;
+        protected global::System.Web.UI.WebControls.GridView GridAddedAuthors;
         
         /// <summary>
-        /// hypThriller control.
+        /// tbxFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hypThriller;
+        protected global::System.Web.UI.WebControls.TextBox tbxFirstName;
         
         /// <summary>
-        /// hypSciFi control.
+        /// tbxLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hypSciFi;
+        protected global::System.Web.UI.WebControls.TextBox tbxLastName;
         
         /// <summary>
-        /// hypHorror control.
+        /// btnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hypHorror;
+        protected global::System.Web.UI.WebControls.Button btnSearch;
         
         /// <summary>
-        /// hypCrime control.
+        /// authorDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hypCrime;
+        protected global::System.Web.UI.WebControls.ObjectDataSource authorDataSource;
         
         /// <summary>
-        /// hypFantasy control.
+        /// GridAuthors control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hypFantasy;
+        protected global::System.Web.UI.WebControls.GridView GridAuthors;
         
         /// <summary>
-        /// hypArt control.
+        /// lblNoAuthor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hypArt;
+        protected global::System.Web.UI.WebControls.Label lblNoAuthor;
         
         /// <summary>
-        /// hypTechnology control.
+        /// btnNewAuthor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hypTechnology;
+        protected global::System.Web.UI.WebControls.Button btnNewAuthor;
         
         /// <summary>
-        /// searchLink control.
+        /// lblCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink searchLink;
+        protected global::System.Web.UI.WebControls.Label lblCategory;
         
         /// <summary>
-        /// registerLink control.
+        /// CategoryDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink registerLink;
+        protected global::System.Web.UI.WebControls.ObjectDataSource CategoryDataSource;
         
         /// <summary>
-        /// loginLink control.
+        /// gvCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink loginLink;
+        protected global::System.Web.UI.WebControls.GridView gvCategory;
         
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// btnBookDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.Button btnBookDetails;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new INFT3050WebApp.UL.BackEnd.BackEnd Master {
+            get {
+                return ((INFT3050WebApp.UL.BackEnd.BackEnd)(base.Master));
+            }
+        }
     }
 }

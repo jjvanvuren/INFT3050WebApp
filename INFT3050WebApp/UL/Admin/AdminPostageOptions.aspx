@@ -6,9 +6,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <h1>Postage Options</h1>
+            <%-- Validation Summary --%>
+        <asp:ValidationSummary ID="ValidationSummaryAdd" runat="server" HeaderText="Please correct the following errors:" ValidationGroup="Add" CssClass="text-danger" />
+    <h4>Update/Delete</h4>
     <div class="container-flex">
         <asp:ObjectDataSource ID="PostageOptionDataSource" runat="server" SelectMethod="GetPostageOptions" TypeName="INFT3050WebApp.BL.PostageOption"></asp:ObjectDataSource>
-        <asp:GridView ID="PostageOptionManagement" runat="server" AutoGenerateColumns="false" DataSourceID="PostageOptionDataSource" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True">
+        <asp:GridView ID="PostageOptionManagement" runat="server" AutoGenerateColumns="false" DataSourceID="PostageOptionDataSource" AllowSorting="true" 
+            CssClass="table" GridLines="None" AllowPaging="True" OnRowCommand="PostageOptionManagement_RowCommand" OnRowUpdating="PostageOptionManagement_RowUpdating">
             <Columns>
 
                 <%-- ID Field --%>
@@ -50,13 +54,37 @@
                 <asp:CommandField CausesValidation="True" ShowEditButton="True" ValidationGroup="Edit" HeaderText="Edit">
                     <ItemStyle CssClass="col-xs-2" />
                 </asp:CommandField>
+               
+                <%-- Delete button Field --%>
+                <asp:TemplateField HeaderText="Delete">
+                    <ItemTemplate>
+                        <asp:Button ID="btnDelete" Text="Delete" runat="server" CssClass="btn btn-danger" CommandName="cmdDelete" CommandArgument='<%# Eval("id") %>'/>
+                    </ItemTemplate>
+                </asp:TemplateField>
+
 
             </Columns>
             <EditRowStyle CssClass="warning" />
         </asp:GridView>
 
+        <h4>Add New</h4>
+        <%-- Add Name Field --%>
+        <asp:Label ID="lblAddName" Text="Name:" runat="server" />
+        <asp:TextBox ID="txtAddName" runat="server" />
+        <asp:RequiredFieldValidator ID="rfvAddName" runat="server" ControlToValidate="txtAddName" Text="*" ValidationGroup="Add" ErrorMessage="Name is a required field" CssClass="text-danger"></asp:RequiredFieldValidator>
+        <br />
+        <br />
+        <%-- Add Price Field --%>
+        <asp:Label ID="lblAddPrice" Text="Price:" runat="server" />
+        <asp:TextBox ID="txtAddPrice" runat="server" />
+        <asp:RequiredFieldValidator ID="rfvAddPrice" runat="server" ControlToValidate="txtAddPrice" Text="*" ValidationGroup="Add" ErrorMessage="Price is a required field" CssClass="text-danger"></asp:RequiredFieldValidator>
+        <br />
+        <br />
+        <%-- Add Button Field --%>
+        <asp:Button ID="btnAdd" Text="Add" runat="server" CssClass="btn btn-success" CausesValidation="true" ValidationGroup="Add" OnClick="btnAdd_Click"/>
+
         <%-- Validation Summary --%>
-        <asp:ValidationSummary ID="ValidationSummary1" runat="server" HeaderText="Please correct the following errors:" ValidationGroup="Edit" CssClass="text-danger" />
+        <asp:ValidationSummary ID="ValidationEdit" runat="server" HeaderText="Please correct the following errors:" ValidationGroup="Edit" CssClass="text-danger" />
     </div>
 
 </asp:Content>

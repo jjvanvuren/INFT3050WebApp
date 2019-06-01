@@ -13,13 +13,12 @@ namespace INFT3050WebApp.BL
         public DateTime DatePublished { get; set; }
         public string Title { get; set; }
         public string SecondaryTitle { get; set; }
-        public Author Author { get; set; } 
-        public Category Category { get; set; }
+        public List<Author> Authors { get; set; }
+        public List<Category> Categories { get; set; }
         public string Publisher { get; set; }
         public bool IsBestSeller { get; set; }
-        public int AuthorId { get; set; }
-        public int CategoryId { get; set; }
 
+        // Default constructor
         public Book()
         {
             //Set default values
@@ -34,9 +33,11 @@ namespace INFT3050WebApp.BL
             SecondaryTitle = "";
             Publisher = "";
             IsBestSeller = false;
+
         }
 
-        public Book (int iItemID)
+        // Constructor to used to access the DAL and create a book based on bookID
+        public Book(int iItemID)
         {
             // Set up access to database
             IBookDataAccess db = new BookDataAccess();
@@ -55,12 +56,10 @@ namespace INFT3050WebApp.BL
             DatePublished = book.DatePublished;
             Title = book.Title;
             SecondaryTitle = book.SecondaryTitle;
-            Author = book.Author;
-            Category = book.Category;
+            Authors = book.Authors;
+            Categories = book.Categories;
             Publisher = book.Publisher;
             IsBestSeller = book.IsBestSeller;
-            AuthorId = book.AuthorId;
-            CategoryId = book.CategoryId;
         }
         // Method to get all active books from database
         public List<Book> GetAllBooks()
@@ -108,5 +107,26 @@ namespace INFT3050WebApp.BL
 
             return allBooks;
         }
+
+        // Method to call the UpdateBookbyId method in the DAL
+        public int UpdateBookbyID(Book UpdatedBook)
+        {
+            DAL.BookDataAccess connect = new BookDataAccess();
+            return connect.UpdateBookById(UpdatedBook);
+        }
+
+        // Method to call the DeleteItembyId method in the DAL
+        public int DeleteBookbyID(int BookId, Boolean ActiveStatus)
+        {
+            DAL.BookDataAccess connect = new BookDataAccess();
+            return connect.DeleteItemById(BookId, ActiveStatus);
+        }
+
+        public IEnumerable<Book> GetAdminBooks()
+        {
+            DAL.BookDataAccess connect = new BookDataAccess();
+            return connect.GetAdminBooks();
+        }
+
     }
 }

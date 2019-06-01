@@ -57,5 +57,62 @@ namespace INFT3050WebApp.DAL
             }
             return postageOptions;
         }
+
+        //Method used to add a new postage option to the database
+        [DataObjectMethod(DataObjectMethodType.Insert)]
+        public int AddPostageOption(string Name, double Price)
+        {
+            string sql = @"INSERT INTO  dbo.[postageOption] VALUES (@Name, 0.00, @Price, 1);";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("Name", Name);
+                    command.Parameters.AddWithValue("Price", Price);
+                    con.Open();
+                    return command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        // Method to "delete" a postage option in the database by changing isActive's value to 0
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public int DeletePostageOptionById(int Id)
+        {
+            string sql = @"UPDATE dbo.[postageOption] SET [isActive] = 0
+                            WHERE [postageOptionID]=@Id;";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("Id", Id);
+                    con.Open();
+                    return command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        // Method to update a postage option in the database by Id
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public int UpdatePostageOptionById(int Id, double price, string name)
+        {
+            string sql = @"UPDATE dbo.[postageOption] SET [shippingCost] = @price, [postageOptionName] = @name
+                            WHERE [postageOptionID]=@Id;";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("Id", Id);
+                    command.Parameters.AddWithValue("price", price);
+                    command.Parameters.AddWithValue("name", name);
+                    con.Open();
+                    return command.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }

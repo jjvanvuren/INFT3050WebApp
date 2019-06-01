@@ -7,30 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace INFT3050WebApp.UL.Admin {
+namespace INFT3050WebApp.UL {
     
     
-    public partial class AdminPurchaseHistory {
+    public partial class SessionExpired {
         
         /// <summary>
-        /// Orders control.
+        /// lblExpiredMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView Orders;
+        protected global::System.Web.UI.WebControls.Label lblExpiredMessage;
         
         /// <summary>
-        /// Master property.
+        /// btnLogIn control.
         /// </summary>
         /// <remarks>
-        /// Auto-generated property.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        public new INFT3050WebApp.UL.BackEnd.BackEnd Master {
-            get {
-                return ((INFT3050WebApp.UL.BackEnd.BackEnd)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.WebControls.Button btnLogIn;
     }
 }

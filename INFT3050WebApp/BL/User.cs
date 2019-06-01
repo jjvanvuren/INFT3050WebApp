@@ -84,6 +84,44 @@ namespace INFT3050WebApp.BL
             this.IsVerified = user.IsVerified;
         }
 
+        // Method to get all users from database
+        public List<User> GetAllUsers()
+        {
+            var db = new UserDataAccess();
+            var users = db.GetUsers();
+
+            List<User> allUsers = new List<User>();
+
+            foreach (User user in users)
+            {
+                allUsers.Add(user);
+            }
+
+            return allUsers;
+        }
+
+        // Deactivate a user by their ID
+        public int DeactivateUserById(int Id)
+        {
+
+            var db = new UserDataAccess();
+
+            int rowsAffected = db.DeactivateUserById(Id);
+
+            return rowsAffected;
+        }
+
+        // Activate a user by their ID
+        public int ActivateUserById(int Id)
+        {
+
+            var db = new UserDataAccess();
+
+            int rowsAffected = db.ActivateUserById(Id);
+
+            return rowsAffected;
+        }
+
         // Verifies if user ValidationKey is a match
         public bool Verify(string strEmail, string strKey)
         {

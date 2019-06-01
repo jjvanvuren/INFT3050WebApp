@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
+using Microsoft.AspNet.FriendlyUrls;
 
 namespace INFT3050WebApp.UL
 {
@@ -27,8 +28,12 @@ namespace INFT3050WebApp.UL
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var segments = Request.GetFriendlyUrlSegments();
+            int count = segments.Count;
+            string idString = segments[0];
+
             // Get ID and try parse
-            var idString = Request.QueryString["id"];
+            //var idString = Request.QueryString["id"];
             if (!string.IsNullOrEmpty(idString) && int.TryParse(idString, out int id))
             {
 
@@ -44,36 +49,70 @@ namespace INFT3050WebApp.UL
                             imgBook.ImageUrl = book.ImagePath;
                             lblDescription.Text = book.LongDescription;
                             lblPrice.Text = "Price: $" + book.Price.ToString();
-                            lblAuthor.Text = book.Author.FirstName + " " + book.Author.LastName;
+                            string listOfAuthorsDisplay = "Writen by: ";
+                            foreach (Author author in book.Authors)
+                            {
+                                listOfAuthorsDisplay += author.FirstName + " " + author.LastName;
+                                if (book.Authors.Count == 1 || book.Authors.IndexOf(author) == book.Authors.Count - 1)
+                                {
+
+                                }
+                                else
+                                {
+                                    listOfAuthorsDisplay += ", ";
+                                }
+                            }
+
+                            lblAuthor.Text = listOfAuthorsDisplay;
                             lblQuantity.Text = "In Stock: " + book.StockQuantity.ToString();
                             lblPublisher.Text = "Published: " + book.Publisher;
                             lblDatePublished.Text = book.DatePublished.ToShortDateString();
                         }
                     }
-                    catch (Exception exception)
+                    catch (Exception exc)
                     {
-                        //string exceptionString = "?error=" + exception.Message;
-
-                        //if (exception.InnerException != null)
-                        //{
-                        //    exceptionString += "&innerex=" + exception.GetType().ToString() + "<br/>" + exception.InnerException.Message;
-                        //    exceptionString += "&stacktrace=" + exception.InnerException.StackTrace;
-                        //}
-                        //else
-                        //{
-                        //    exceptionString += "&innerex=" + exception.GetType().ToString();
-                        //    if (exception.StackTrace != null)
-                        //    {
-                        //        exceptionString += "&stacktrace=" + exception.StackTrace.ToString().TrimStart();
-                        //    }
-                        //}
-
-                        //Response.Redirect("DefaultError.aspx" + exceptionString);
-
-                        Server.Transfer("DefaultError.aspx?handler=Book.aspx", true);
+                        throw exc;
                     }
+
+                }
+
+            }
+
+        }
+        protected void btnAddCart_Click(object sender, EventArgs e)
+        {
+            // Get ID and try parse
+            var segments = Request.GetFriendlyUrlSegments();
+            int count = segments.Count;
+            string idString = segments[0];
+            if (!string.IsNullOrEmpty(idString) && int.TryParse(idString, out int id))
+            {
+
+                //if (!IsPostBack)
+                //{
+                try
+                {
+                    BL.Book book = new BL.Book(id);
+
+                    if (Session["cartSession"] == null)
+                    {
+                        BL.CartSession cartCurrent = new BL.CartSession();
+                        Session["cartSession"] = cartCurrent;
+                    }
+
+                    CartSession csCart = (CartSession)Session["cartSession"];
+                    CartItem cartItem = new CartItem(book.Id, 1);
+
+                    csCart.AddItem(cartItem);
+                    Response.Redirect("~/UL/Cart.aspx");
+                }
+                catch (Exception exc)
+                {
+                    throw exc;
                 }
             }
         }
+
     }
+
 }
