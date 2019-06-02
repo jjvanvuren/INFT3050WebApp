@@ -110,10 +110,6 @@
         <br />
         <asp:DropDownList ID="ddlShippingMethod" runat="server">
             <asp:ListItem>--Select--</asp:ListItem>
-            <asp:ListItem Value="8">Auspost &#36;5.99</asp:ListItem>
-            <asp:ListItem Value="9">Auspost Express &#36;9.99</asp:ListItem>
-            <asp:ListItem Value="10">StarTrack &#36;3.99</asp:ListItem>
-            <asp:ListItem Value="11">StarTrack Express &#36;7.99</asp:ListItem>
         </asp:DropDownList>
 
         <%--Check if user selected a shipping method--%>

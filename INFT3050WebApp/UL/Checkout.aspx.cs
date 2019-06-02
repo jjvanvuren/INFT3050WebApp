@@ -32,6 +32,23 @@ namespace INFT3050WebApp.UL
                 string url = ConfigurationManager.AppSettings["SecurePath"] + "UL/Checkout.aspx";
                 Response.Redirect(url);
             }
+
+            try
+            {
+                PostageOption post = new PostageOption();
+
+                var postageOptions = post.GetPostageOptions();
+
+                foreach (PostageOption postage in postageOptions)
+                {
+                    ListItem lst = new ListItem((postage.Name + " $" + postage.Price.ToString()), postage.Id.ToString());
+                    ddlShippingMethod.Items.Add(lst);
+                }
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         protected void btnPlaceOrder_Click(object sender, EventArgs e)
