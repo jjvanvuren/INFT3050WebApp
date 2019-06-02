@@ -19,7 +19,7 @@ namespace INFT3050WebApp
             if (exc is HttpUnhandledException)
             {
                 // Pass the error on to the error page.
-                Server.Transfer("DefaultError.aspx?handler=Application_Error%20-%20Global.asax", true);
+                Server.Transfer("~/UL/DefaultError.aspx?handler=Application_Error%20-%20Global.asax", true);
             }
         }
 

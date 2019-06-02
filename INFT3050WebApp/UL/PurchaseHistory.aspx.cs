@@ -27,38 +27,41 @@ namespace INFT3050WebApp.UL
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            //Enable SSL
+            if (!Request.IsSecureConnection)
             {
-                //Enable SSL
-                if (!Request.IsSecureConnection)
+                string url = ConfigurationManager.AppSettings["SecurePath"] + "UL/PurchaseHistory.aspx";
+                Response.Redirect(url);
+            }
+
+            // Get the current users ID and use the ID to get and display the users purchase history 
+            UserSession query = (UserSession)Session[UserSession.SESSION_KEY];
+            if (query != null)
+            {
+                User currentUser = new User(query.SessionId);
+
+                int id = currentUser.Id;
+
+                try
                 {
-                    string url = ConfigurationManager.AppSettings["SecurePath"] + "UL/Admin/PurchaseHistory.aspx";
-                    Response.Redirect(url);
+                    Order order = new Order();
+
+                    Orders.DataSource = order.GetOrdersByUserID(id);
+
+                    Orders.DataBind();
+                }
+                catch (Exception exc)
+                {
+                    throw exc;
                 }
 
-                // Get the current users ID and use the ID to get and display the users purchase history 
-                UserSession query = (UserSession)Session[UserSession.SESSION_KEY];
-                if (query != null)
-                {
-                    User currentUser = new User(query.SessionId);
-
-                    int id = currentUser.Id;
-
-                    try
-                    {
-                        Order order = new Order();
-
-                        Orders.DataSource = order.GetOrdersByUserID(id);
-
-                        Orders.DataBind();
-                    }
-                    catch (Exception exc)
-                    {
-                        throw exc;
-                    }
-
-                }     
             }
+        }
+
+        protected void Orders_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            Orders.PageIndex = e.NewPageIndex;
+            Orders.DataBind();
         }
     }
 }
