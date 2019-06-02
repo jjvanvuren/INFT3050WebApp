@@ -9,6 +9,9 @@
     <%--Validation summary for checkout--%>
     <div>
         <asp:ValidationSummary ID="vsBilling" runat="server" CssClass="alert-danger" HeaderText="Please correct these issues" />
+
+        <%-- Payment transaction information --%>
+        <asp:Label ID="lblProcessing" runat="server" Text="" Visible="false"></asp:Label>
     </div>
     <br />
     <%--Area for customer to provide Shipping/Bills details--%>
@@ -205,11 +208,6 @@
     </div>
 
     <div class="form-group">
-
-        <div>
-            <asp:Label ID="lblProcessing" runat="server" Text="" Visible="false"></asp:Label>
-        </div>
-        
         <%-- Buttons to place or cancel order --%>
         <asp:Button ID="btnPlaceOrder" CssClass="btn btn-success" runat="server" Text="Confirm" OnClick="btnPlaceOrder_Click" />
         &nbsp;&nbsp;
