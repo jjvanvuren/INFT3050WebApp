@@ -13,13 +13,6 @@ namespace INFT3050WebApp
             var settings = new FriendlyUrlSettings();
             settings.AutoRedirectMode = RedirectMode.Permanent;
             routes.EnableFriendlyUrls(settings);
-
-            //routes.EnableFriendlyUrls();
-
-            //routes.Ignore("{resource}.axd/{*pathInfo}");
-
-            //routes.MapPageRoute("Default", "Default", "~/UL/Default.aspx");
-            //routes.MapPageRoute("Search", "Search", "~/UL/Search.aspx");
         }
     }
 }

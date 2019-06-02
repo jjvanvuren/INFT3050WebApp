@@ -26,8 +26,6 @@ namespace INFT3050WebApp
         protected void Application_Start(object sender, EventArgs e)
         {
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
-            //RouteTable.Routes.EnableFriendlyUrls();
         }
     }
 }

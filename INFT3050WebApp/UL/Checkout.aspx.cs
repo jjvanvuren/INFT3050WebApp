@@ -4,6 +4,7 @@ using System.Web.UI;
 using INFT3050WebApp.BL;
 using Microsoft.AspNet.FriendlyUrls;
 using INFT3050.PaymentSystem;
+using System.Web.UI.WebControls;
 
 namespace INFT3050WebApp.UL
 {
@@ -35,6 +36,7 @@ namespace INFT3050WebApp.UL
 
             try
             {
+                // Dynamically populate postage option dropdown from database
                 PostageOption post = new PostageOption();
 
                 var postageOptions = post.GetPostageOptions();

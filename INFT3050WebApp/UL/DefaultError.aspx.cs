@@ -20,9 +20,6 @@ namespace INFT3050WebApp.UL
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //string errorMessage = Request.QueryString["error"];
-            //string errorTrace = Request.QueryString["stacktrace"];
-            //string innerException = Request.QueryString["innerex"];
             string defaultString = "An error has occured with the web application. Please contact customer support for details on this issue.";
             string unhandledErrorMsg = "The error was unhandled by application code.";
 
@@ -65,9 +62,6 @@ namespace INFT3050WebApp.UL
                     }
                 }
                 panErrorDetails.Visible = true;
-                //lblErrorDetails.Text = errorMessage;
-                //lblInnerTrace.Text = errorTrace;
-                //lblInnerMessage.Text = innerException;
             }
         }
     }

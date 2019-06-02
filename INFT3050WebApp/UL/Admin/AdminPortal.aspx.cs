@@ -59,15 +59,13 @@ namespace INFT3050WebApp.UL.BackEnd
                     updatedBook.ImagePath = updatedImagePath;
                     updatedBook.ThumbnailPath = updatedThumbnail;
                     int rowsAffected = updatedBook.UpdateBookbyID(updatedBook);
+
+                    Response.Redirect("~/UL/Admin/AdminPortal.aspx");
                 }
             }
             catch (Exception exc)
             {
-                Server.Transfer("~/UL/DefaultError.aspx?handler=AdminPortal.aspx", true);
-            }
-            finally
-            {
-                Response.Redirect("~/UL/Admin/AdminPortal.aspx");
+                throw exc;
             }
         }
 
@@ -86,14 +84,11 @@ namespace INFT3050WebApp.UL.BackEnd
                     DeleteBook.DeleteBookbyID(iID, boolIsActive);
                 }
 
-            }
-            catch (Exception)
-            {
-                Server.Transfer("~/UL/DefaultError.aspx?handler=AdminPortal.aspx", true);
-            }
-            finally
-            {
                 Response.Redirect("~/UL/Admin/AdminPortal.aspx");
+            }
+            catch (Exception exc)
+            {
+                throw exc;
             }
         }
     }

@@ -10,7 +10,7 @@
         <br />
         <%--Search Field--%>
         <div class="input-group">
-            <asp:TextBox ID="tbxSearch" class="form-control" type="text" placeholder="Search" aria-label="Search" runat="server"></asp:TextBox>
+            <asp:TextBox ID="tbxSearch" class="form-control" type="text" placeholder="Search by title" aria-label="Search" runat="server"></asp:TextBox>
             <span class="input-group-btn">&nbsp;&nbsp;
                     <asp:Button ID="btnSearch" Text="Search" runat="server" OnClick="btnSearch_Click" CssClass="btn btn-success" />
             </span>
