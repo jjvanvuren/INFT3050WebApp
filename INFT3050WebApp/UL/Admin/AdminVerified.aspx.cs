@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
 
 namespace INFT3050WebApp.UL.Admin
@@ -24,9 +19,18 @@ namespace INFT3050WebApp.UL.Admin
             string strEmail = Request.QueryString["email"];
             string strKey = Request.QueryString["key"];
 
-            // Verify the user with the DB
-            User user = new User(strEmail);
-            bool bVerified = user.Verify(strEmail, strKey);
+            bool bVerified;
+
+            try
+            {
+                // Verify the user with the DB
+                User user = new User(strEmail);
+                bVerified = user.Verify(strEmail, strKey);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
 
             if (bVerified)
             {
