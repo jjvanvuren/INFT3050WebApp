@@ -45,9 +45,14 @@ namespace INFT3050WebApp.UL
             lblTheTotalPrice.Text = populateGridView.totalPrice.ToString();
         }
 
-        // If the cancel button is clicked go back to Checkout
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
+            // Check if the session has expired
+            if (Session["userSession"] == null)
+            {
+                Response.Redirect("SessionExpired.aspx");
+            }
+
             Response.Redirect("~/UL/Checkout.aspx");
         }
 
@@ -62,17 +67,15 @@ namespace INFT3050WebApp.UL
                     sessionInstance.RemoveItem(iID);
                 }
 
+                Response.Redirect("~/UL/Cart.aspx");
             }
             catch (Exception exc)
             {
                 throw exc;
             }
-            finally
-            {
-                Response.Redirect("~/UL/Cart.aspx");
-            }
         }
-
+                //this was for updating quantity but for some reason It wount read the new number from the next box
+               //Identical code to example code of cart given
         //protected void UpdateQuantity_Click(object sender, EventArgs e)
         //{
         //    try
@@ -95,10 +98,7 @@ namespace INFT3050WebApp.UL
         //    {
         //        foreach (GridViewRow gvrow in gridCart.Rows)
         //        {
-        //            string sID = gridCart.DataKeys[gvrow.RowIndex].Values[0].ToString();
-        //            TextBox quantityTextBox = new TextBox();
-        //            quantityTextBox = (TextBox)gridCart.Rows[gvrow.RowIndex].FindControl("txtQuantity");
-        //            int test = Convert.ToInt16(quantityTextBox.Text.ToString());
+        //            string sID = gridCart.DataKeys[gvrow.RowIndex].Values[0].ToString();  
         //            string updatedQuantity = ((TextBox)gridCart.Rows[gvrow.RowIndex].FindControl("txtQuantity")).Text;
         //            if (int.TryParse(sID, out int iID) &&(int.TryParse(updatedQuantity, out int iQuantity)))
         //            {

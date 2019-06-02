@@ -39,16 +39,24 @@ namespace INFT3050WebApp
         // Validate email and password. If successful redirect to Customer.aspx
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            Session.Clear();
-
             string strEmail = tbxEmail.Text;
             string strPassword = tbxPassword.Text;
+            
 
             // Used for BL Validation
             bool bValid;
-
+            int iCheckUser;
             User userVerify = new User();
-            int iCheckUser = userVerify.CheckLoginUser(strEmail, strPassword);
+
+            try
+            {
+                iCheckUser = userVerify.CheckLoginUser(strEmail, strPassword);
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
 
             if (iCheckUser == 0)
             {
@@ -85,11 +93,19 @@ namespace INFT3050WebApp
             {
                 if (iCheckUser == 2)
                 {
-                    // Create a new session for the user
-                    UserSession usCurrent = new UserSession(strEmail);
-                    Session["userSession"] = usCurrent;
+                    try
+                    {
+                        // Create a new session for the user
+                        UserSession usCurrent = new UserSession(strEmail);
+                        Session["userSession"] = usCurrent;
 
-                    Response.Redirect("~/UL/Customer.aspx");
+                        Response.Redirect("~/UL/Customer.aspx");
+                    }
+                    catch (Exception exc)
+                    {
+                        throw exc;
+                    }
+                    
                 }
             }
         }

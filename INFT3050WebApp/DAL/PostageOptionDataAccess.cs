@@ -33,6 +33,31 @@ namespace INFT3050WebApp.DAL
             return postageOption;
         }
 
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public PostageOption GetPostageOptions(int PostageID)
+        {
+            PostageOption postageOption = new PostageOption();
+            string sql = @"SELECT [postageOption].[postageOptionID], [postageOption].[postageOptionName], [postageOption].[shippingCost], [postageOption].[isActive]
+                            FROM [dbo].[postageOption] 
+                            WHERE postageOptionID = @ID;";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    command.Parameters.AddWithValue("ID", PostageID);
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                            postageOption = CreatePostageOption(reader);
+                    }
+                }
+            }
+            return postageOption;
+        }
+
         // Method used to get all Postage Options
         [DataObjectMethod(DataObjectMethodType.Select)]
         public IEnumerable <PostageOption> GetPostageOptions()

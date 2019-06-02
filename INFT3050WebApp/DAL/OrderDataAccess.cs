@@ -64,10 +64,37 @@ namespace INFT3050WebApp.DAL
             return orders;
         }
 
+        // Method used to get an order by user ID & payment ID
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public Order GetOrder(int iPaymentId)
+        {
+            Order order = new Order();
+
+            string sql = @"SELECT [orderID], [userID], [paymentID], [postageOptionID], [orderStatus], [GST], [subTotal], [dateOrdered]
+                FROM[dbo].[orders]
+                WHERE [paymentID] = @Id;";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("Id", iPaymentId);
+                    con.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        order = CreateOrder(reader);
+                    }
+                }
+            }
+            return order;
+        }
+
 
         //methord for adding order to the database
         [DataObjectMethod(DataObjectMethodType.Insert)]
-        public void submitCart(int userID, Address userAddress, int ipostageOptionID, List<CartItem> Cart,double dTotalPrice, DateTime PurchaseTime)
+        public int submitCart(int userID, Address userAddress, int ipostageOptionID, List<CartItem> Cart, double dTotalPrice, double dsubPrice, DateTime PurchaseTime)
         {   //this should be in a StoredProcedure didnt have time to do this
             //submitting the payment  details
             string sql = @"INSERT INTO payment ([datePayed], [total])
@@ -122,9 +149,9 @@ namespace INFT3050WebApp.DAL
                     command.Parameters.Add(new SqlParameter("postageOptionID", ipostageOptionID));
                     command.Parameters.Add(new SqlParameter("orderStatus", orderStatus));
                     command.Parameters.Add(new SqlParameter("GST", iGST));
-                    command.Parameters.Add(new SqlParameter("subTotal", dTotalPrice));
+                    command.Parameters.Add(new SqlParameter("subTotal", dsubPrice));
                     command.Parameters.Add(new SqlParameter("dateOrdered", PurchaseTime));
-                    command.Parameters.Add(new SqlParameter("shippingAddressID", iAddressID));
+                    command.Parameters.Add(new SqlParameter("shippingAddressID", 1));
                     con.Open();
                     iOrderID = Convert.ToInt32((object)command.ExecuteScalar());
 
@@ -133,6 +160,8 @@ namespace INFT3050WebApp.DAL
             //submitting the items from the Order
             sql = @"INSERT INTO orderItem ([orderID], [itemID], [quantity]) VALUES";
            int i = 0;
+
+            //Creating a Value input of all items
            foreach (CartItem item in Cart)
            {
                sql = sql + "(@orderID" + i.ToString() + ", @itemID" + i.ToString() + ", @quantity" + i.ToString() +")";
@@ -162,7 +191,66 @@ namespace INFT3050WebApp.DAL
                     }
                     command.ExecuteNonQuery();
                 }
-            }    
+            }
+            return iPaymentID;
+        }
+
+        //Selecting a list of postcodes in a Address object 
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Address> GetPostCodes() 
+        {
+            List<Address> Postcodes = new List<Address>();
+            string sql = @"SELECT *
+                        FROM[dbo].[postCode]";
+
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        Address newPostCode = CreatePostcode(reader);
+                        Postcodes.Add(newPostCode);
+                    }
+                }
+            }
+            return Postcodes;
+        }
+
+        //Inserting a postcode
+        [DataObjectMethod(DataObjectMethodType.Insert)]
+        public void AddPostCode(string City, string State, int postCode)
+        {
+            string sql = @"INSERT INTO postCode ([city], [addressState], [postCode] )
+                            VALUES (@city, @addressState, @postCode)";
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.Add(new SqlParameter("city", City));
+                    command.Parameters.Add(new SqlParameter("addressState", State));
+                    command.Parameters.Add(new SqlParameter("postCode", postCode));
+                    con.Open();
+                    command.ExecuteNonQuery();
+
+                }
+            }
+
+        }
+        //setting a Post code on address object
+        private static Address CreatePostcode(SqlDataReader reader)
+        {
+            Address postcode = new Address();
+            postcode.City = (string)reader["city"];
+            postcode.State = (string)reader["addressState"];
+            postcode.postCode = (int)reader["postCode"];
+
+            return postcode;
         }
     }
 }
