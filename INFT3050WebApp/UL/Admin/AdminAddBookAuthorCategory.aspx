@@ -15,7 +15,7 @@
     <br />
     <div class="container-flex">
         <%--Display all Authors that are added to the book using gridview--%>
-        <asp:GridView ID="GridAddedAuthors" runat="server" AutoGenerateColumns="false" CssClass="table" GridLines="None" AllowPaging="True">
+        <asp:GridView ID="GridAddedAuthors" runat="server" AutoGenerateColumns="false" CssClass="table" GridLines="None" AllowPaging="True" AllowSorting="false">
             <Columns>
                 <asp:BoundField DataField="id" HeaderText="ID" SortExpression="Title" />
                 <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
@@ -41,7 +41,7 @@
             </SelectParameters>
         </asp:ObjectDataSource>
         <%--Display all Authors using gridview--%>
-        <asp:GridView ID="GridAuthors" runat="server" AutoGenerateColumns="false" DataSourceID="authorDataSource" OnRowCommand="GridSearch_RowCommand" CssClass="table" GridLines="None" AllowPaging="True" PageSize="4">
+        <asp:GridView ID="GridAuthors" runat="server" AutoGenerateColumns="false" DataSourceID="authorDataSource" AllowSorting="false" OnRowCommand="GridSearch_RowCommand" CssClass="table" GridLines="None" AllowPaging="True" PageSize="4">
             <Columns>
                 <asp:BoundField DataField="Id" HeaderText="ID" SortExpression="Title" />
                 <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />

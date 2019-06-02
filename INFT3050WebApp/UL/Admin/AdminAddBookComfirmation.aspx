@@ -71,7 +71,7 @@
     <br />
     <%--Display authors--%>
     <asp:Label ID="Categories" runat="server" Text="Authors :"></asp:Label>
-    <asp:GridView ID="GridAuthors" runat="server" AutoGenerateColumns="false" CssClass="table" GridLines="None" AllowPaging="True" PageSize="4">
+    <asp:GridView ID="GridAuthors" runat="server" AutoGenerateColumns="false" AllowSorting="false" CssClass="table" GridLines="None" AllowPaging="True" PageSize="4">
         <Columns>
             <asp:BoundField DataField="id" HeaderText="ID" SortExpression="Title" />
             <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
@@ -83,7 +83,7 @@
     <br />
     <%--Display Categories--%>
     <asp:Label ID="lblCategories" runat="server" Text="Categories :"></asp:Label>
-    <asp:GridView ID="GridCategories" runat="server" AutoGenerateColumns="false" CssClass="table" GridLines="None" AllowPaging="True" >
+    <asp:GridView ID="GridCategories" runat="server" AutoGenerateColumns="false" AllowSorting="false" CssClass="table" GridLines="None" AllowPaging="True" >
         <Columns>
                 <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id"/>
                 <asp:BoundField DataField="Name" HeaderText="Category" SortExpression="Name" />

@@ -7,7 +7,7 @@
     <h1>Shopping Cart</h1>
     <br />
 
-       <asp:GridView ID="gridCart" runat="server" AutoGenerateColumns="false" AllowSorting="true" CssClass="table" 
+       <asp:GridView ID="gridCart" runat="server" AutoGenerateColumns="false" AllowSorting="false" CssClass="table" 
         GridLines="None" AllowPaging="True" OnRowDeleting="gridCart_RowDeleting" ShowHeaderWhenEmpty="true" DataKeyNames="ID"  >
             <Columns>
                 <%--Item ID--%>

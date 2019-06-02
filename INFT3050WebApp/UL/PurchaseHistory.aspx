@@ -7,7 +7,7 @@
     <h1>Purchase History</h1>
     <%--Use GridView to Display Purchase History--%>
     <div class="container-flex">
-        <asp:GridView ID="Orders" runat="server" AutoGenerateColumns="false" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True" OnPageIndexChanging="Orders_PageIndexChanging">
+        <asp:GridView ID="Orders" runat="server" AutoGenerateColumns="false" AllowSorting="false" CssClass="table" GridLines="None" AllowPaging="True" OnPageIndexChanging="Orders_PageIndexChanging">
             <Columns>
                 <asp:BoundField DataField="orderId" HeaderText="Order ID" SortExpression="orderId" />
                 <asp:BoundField DataField="paymentId" HeaderText="Payment ID" SortExpression="paymentId" />

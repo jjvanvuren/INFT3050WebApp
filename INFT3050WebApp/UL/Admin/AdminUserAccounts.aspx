@@ -9,7 +9,7 @@
     <div class="container-flex">
         <%--Setting data source to be used for display of data in gridview --%>
         <asp:ObjectDataSource ID="UserDataSource" runat="server" SelectMethod="GetAllUsers" TypeName="INFT3050WebApp.BL.User"></asp:ObjectDataSource>
-        <asp:GridView ID="UserManagement" runat="server" AutoGenerateColumns="false" DataSourceID="UserDataSource" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True" OnRowCommand="UserManagement_RowCommand" PageSize="10">
+        <asp:GridView ID="UserManagement" runat="server" AutoGenerateColumns="false" DataSourceID="UserDataSource" AllowSorting="false" CssClass="table" GridLines="None" AllowPaging="True" OnRowCommand="UserManagement_RowCommand" PageSize="10">
             <Columns>
                 <%--User ID displayed--%>
                 <asp:BoundField DataField="Id" HeaderText="ID" ReadOnly="True" SortExpression="Id">

@@ -9,7 +9,7 @@
     <div class="container-flex">
         <%--Setting data source to be used for display of data in gridview --%>
         <asp:ObjectDataSource ID="bookDataSource" runat="server" SelectMethod="GetAdminBooks" TypeName="INFT3050WebApp.BL.Book"></asp:ObjectDataSource>
-        <asp:GridView ID="ItemManagment" runat="server" AutoGenerateColumns="false" DataSourceID="bookDataSource" AllowSorting="true" CssClass="table" GridLines="None"
+        <asp:GridView ID="ItemManagment" runat="server" AutoGenerateColumns="false" DataSourceID="bookDataSource" AllowSorting="false" CssClass="table" GridLines="None"
             AllowPaging="True" PageSize="8" OnRowUpdating="ItemManagment_RowUpdating" OnRowDeleting="ItemManagment_RowDeleting">
             <Columns>
                 <%--Item iD displayed--%>
@@ -126,7 +126,6 @@
         </div>
 
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" HeaderText="Please correct the following errors:" ValidationGroup="Edit" CssClass="text-danger" />
-    </div>
 
 </asp:Content>
 

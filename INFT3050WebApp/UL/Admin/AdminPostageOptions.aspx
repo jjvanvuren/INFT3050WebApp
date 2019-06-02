@@ -11,7 +11,7 @@
     <h4>Update/Delete</h4>
     <div class="container-flex">
         <asp:ObjectDataSource ID="PostageOptionDataSource" runat="server" SelectMethod="GetPostageOptions" TypeName="INFT3050WebApp.BL.PostageOption"></asp:ObjectDataSource>
-        <asp:GridView ID="PostageOptionManagement" runat="server" AutoGenerateColumns="false" DataSourceID="PostageOptionDataSource" AllowSorting="true" 
+        <asp:GridView ID="PostageOptionManagement" runat="server" AutoGenerateColumns="false" DataSourceID="PostageOptionDataSource" AllowSorting="false" 
             CssClass="table" GridLines="None" AllowPaging="True" OnRowCommand="PostageOptionManagement_RowCommand" OnRowUpdating="PostageOptionManagement_RowUpdating">
             <Columns>
 
