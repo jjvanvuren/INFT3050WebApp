@@ -12,8 +12,11 @@ namespace INFT3050WebApp.BL
     {
         public const string SESSION_KEY = "addBookSession";
         public int SessionId { get; set; }
-        public AddBookSession() { }
-
+        public AddBookSession() {
+            Authors = new List<Author>();
+            Categories = new List<Category>();
+        }
+        //Constructor for AddBookSession with varaibles passed to it
         public AddBookSession(double newPrice, int newStockQuantity, String newShortDescription, String newLongDescription, String newImagePath, String newThumbnailPath, String newIsbn,
             DateTime newDatePublished, String newTitle, String newSecondaryTitle, String newPublisher, Boolean newIsBestSeller)
         {
@@ -130,6 +133,15 @@ namespace INFT3050WebApp.BL
             foreach (int CategoryID in newCategories)
             {
                 bool categoryFound = false;
+                //stop from adding the same category multiple times to the book
+                foreach (Category alreadyAdded in Categories)
+                {
+                    if(CategoryID == alreadyAdded.Id)
+                    {
+                        categoryFound = true;
+                    }
+                }
+                //adding the category to the book
                 while (categoryFound !=true)
                 {
                     foreach (Category cat in ListOfCategoires)
@@ -144,7 +156,7 @@ namespace INFT3050WebApp.BL
             }
 
         }
-
+        //Creating the book session for submission
         public Book createTempBook()
         {
             Book bookTemp = new Book();
@@ -166,16 +178,17 @@ namespace INFT3050WebApp.BL
 
             return bookTemp;
         }
-
+        //Getter methord for Authors
         public List<Author> addedAuthors()
         {
             return Authors;
         }
+        //Getter methord for Categories
         public List<Category> addedCategories()
         {
             return Categories;
         }
-
+        //Submitting book to the data base
         public void submitBook()
         {
             

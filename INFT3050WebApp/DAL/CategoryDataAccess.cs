@@ -20,7 +20,7 @@ namespace INFT3050WebApp.DAL
             }
         }
 
-
+        //Getting all Categories
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Category> GetCategory()
         {
@@ -83,12 +83,13 @@ namespace INFT3050WebApp.DAL
             return category;
         }
 
-
+        //Connections books with Categories
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public void ConnectBookCategory(int BookID, List<Category> Categories)
         {
             string sql = @"INSERT INTO bookCategory ([itemID], [categoryID]) VALUES";
             int i = 0;
+            //Creating a Values section for each instance of Categories with unquie IDs for inserting.
             foreach (Category category in Categories)
             {
                 sql = sql + "(@itemID" + i.ToString() + ", @CategoryID" + i.ToString() + ")";
@@ -107,6 +108,7 @@ namespace INFT3050WebApp.DAL
                 using (SqlCommand command = new SqlCommand(sql, con))
                 {
                     con.Open();
+                    //adding both Item ID and categoryID  to each unquie ID in the SQL string for inserting.
                     int j = 0;
                     foreach (Category category in Categories)
                     {

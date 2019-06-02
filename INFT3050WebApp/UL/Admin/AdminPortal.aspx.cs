@@ -68,7 +68,7 @@ namespace INFT3050WebApp.UL.BackEnd
                 throw exc;
             }
         }
-
+        //Handles the delete button been clicked
         protected void ItemManagment_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
@@ -76,6 +76,7 @@ namespace INFT3050WebApp.UL.BackEnd
                 GridViewRow row = ItemManagment.Rows[e.RowIndex];
                 string sID = row.Cells[0].Text;
                 string sIsActive = row.Cells[1].Text;
+                //Changes the active status of a book to the opposite status via the BL
                 if (int.TryParse(sID, out int iID)&& Boolean.TryParse(sIsActive, out Boolean boolIsActive))
                 {
                     boolIsActive = !boolIsActive;

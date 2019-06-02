@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
+using System.Configuration;
 
 namespace INFT3050WebApp.UL.Admin
 {
@@ -15,6 +16,11 @@ namespace INFT3050WebApp.UL.Admin
             if (Session["UserSession"] == null)
             {
                 Response.Redirect("~/UL/Admin/AdminLogin.aspx");
+            }
+            if (!Request.IsSecureConnection)
+            {
+                string url = ConfigurationManager.AppSettings["SecurePath"] + "UL/Admin/AdminAddBookDetails.aspx";
+                Response.Redirect(url);
             }
 
         }
@@ -36,8 +42,9 @@ namespace INFT3050WebApp.UL.Admin
             {
                 newStockQuantity = Convert.ToInt32(tbxStockonHand.Text);
             }
-            catch(InvalidCastException)
+            catch (Exception exc)
             {
+                throw exc;
             }
             String newShortDescription = tbxShortDescription.Text.Trim();
             String newLongDescription = tbxLongDescription.Text.Trim();
@@ -48,8 +55,9 @@ namespace INFT3050WebApp.UL.Admin
             {
                 newDatePublished = Convert.ToDateTime(tbxDatePublished.Text.Trim());
             }
-            catch(Exception)
+            catch (Exception exc)
             {
+                throw exc;
             }
             String newTitle = tbxTitle.Text.Trim();
             String newSecondaryTitle = tbxSecondaryTitle.Text.Trim();
@@ -64,12 +72,17 @@ namespace INFT3050WebApp.UL.Admin
                 newIsBestSeller = true;
             }
 
-
+            try {
             AddBookSession newBook = new AddBookSession(newPrice, newStockQuantity, newShortDescription, newLongDescription, newImagePath, newThumbnailPath, newIsbn,
              newDatePublished, newTitle, newSecondaryTitle, newPublisher, newIsBestSeller);
             Session["addBookSession"] = newBook;
 
             Response.Redirect("~/UL/Admin/AdminAddBookAuthorCategory.aspx");
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
     }
 }
