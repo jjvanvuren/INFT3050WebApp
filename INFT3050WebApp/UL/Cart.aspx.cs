@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -22,8 +19,6 @@ namespace INFT3050WebApp.UL
             {
                 Page.MasterPageFile = "~/UL/Site.Master";
             }
-
-
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -74,8 +69,9 @@ namespace INFT3050WebApp.UL
                 throw exc;
             }
         }
-                //this was for updating quantity but for some reason It wount read the new number from the next box
-               //Identical code to example code of cart given
+
+        //this was for updating quantity but for some reason It wount read the new number from the next box
+        //Identical code to example code of cart given
         //protected void UpdateQuantity_Click(object sender, EventArgs e)
         //{
         //    try

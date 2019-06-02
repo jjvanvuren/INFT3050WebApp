@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
 
 namespace INFT3050WebApp.UL
@@ -26,9 +21,10 @@ namespace INFT3050WebApp.UL
             User uUser;
             bool bVerified;
 
+            // Get the email and key from the url
             string strEmail = Request.QueryString["email"];
             string strKey = Request.QueryString["key"];
-            
+
             try
             {
                 // Verify the user with the DB
@@ -66,8 +62,7 @@ namespace INFT3050WebApp.UL
                     lblError.Text = "Error: Password reset validation failed. Please try resetting your password again.";
                     lblError.Visible = true;
                 }
-
-            }       
+            }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

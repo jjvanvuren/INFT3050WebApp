@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
 using Microsoft.AspNet.FriendlyUrls;
 using INFT3050.PaymentSystem;
@@ -40,10 +36,9 @@ namespace INFT3050WebApp.UL
 
         protected void btnPlaceOrder_Click(object sender, EventArgs e)
         {
-
-            //this should receive a payment valid
-            if (IsValid)
+            if (IsValid) // If the form validation checks are passed
             {
+                // Indicate to user that payment is processing
                 lblProcessing.Visible = true;
                 lblProcessing.Text = "Processing Payment...";
                 lblProcessing.CssClass = "text-info";
@@ -69,6 +64,7 @@ namespace INFT3050WebApp.UL
                     IPaymentSystem paymentSystem = INFT3050PaymentFactory.Create();
                     PaymentRequest payment = new PaymentRequest
                     {
+                        // Add customer entered values to the payment request
                         CardName = tbxCardName.Text,
                         CardNumber = tbxCardNumber.Text,
                         CVC = iCVC,
@@ -92,7 +88,7 @@ namespace INFT3050WebApp.UL
                         cartSession.submitCart(user.Id, customerAddress, iShippingId);
 
                         // Submit the order details to the db
-                        int iPaymentId= cartSession.submitCart(user.Id, customerAddress, iShippingId); ;
+                        int iPaymentId = cartSession.submitCart(user.Id, customerAddress, iShippingId); ;
 
                         // Send payment confirmation email to customer
                         user.SendPaymentEmail(user.Id, iPaymentId);
@@ -102,11 +98,13 @@ namespace INFT3050WebApp.UL
                     }
                     else if (task.IsCompleted && tResult == "Declined")
                     {
+                        // Display payment declined to customer
                         lblProcessing.Text = "Payment transaction declined";
                         lblProcessing.CssClass = "text-danger";
                     }
                     else
                     {
+                        // Display payment failed to customer
                         lblProcessing.Text = "Payment transaction failed, please try again";
                         lblProcessing.CssClass = "text-danger";
                     }
@@ -116,11 +114,11 @@ namespace INFT3050WebApp.UL
                     throw exc;
                 }
             }
-            
         }
 
         protected void btnCancelOrder_Click(object sender, EventArgs e)
         {
+            // Return to the cart page if user cancels checkout
             Response.Redirect("~/UL/Cart.aspx");
         }
     }

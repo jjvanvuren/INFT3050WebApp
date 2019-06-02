@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
 
 namespace INFT3050WebApp
@@ -32,9 +28,16 @@ namespace INFT3050WebApp
             UserSession query = (UserSession)Session[UserSession.SESSION_KEY];
             if (query != null)
             {
-                User currentUser = new User(query.SessionId);
-
-                thanksMessageLabel.Text = String.Format(THANKS_FORMAT, currentUser.FirstName);
+                try
+                {
+                    // Show custom thank you message to customer
+                    User currentUser = new User(query.SessionId);
+                    thanksMessageLabel.Text = String.Format(THANKS_FORMAT, currentUser.FirstName);
+                }
+                catch (Exception exc)
+                {
+                    throw exc;
+                }
             }
         }
     }
