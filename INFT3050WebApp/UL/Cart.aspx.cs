@@ -34,10 +34,16 @@ namespace INFT3050WebApp.UL
                 BL.CartSession cartCurrent = new BL.CartSession();
                 Session["cartSession"] = cartCurrent;
             }
-            BL.CartSession populateGridView = (BL.CartSession)Session["cartSession"];
-            gridCart.DataSource = populateGridView.GetCart();
-            gridCart.DataBind();
-            lblTheTotalPrice.Text = populateGridView.totalPrice.ToString();
+            try { 
+                BL.CartSession populateGridView = (BL.CartSession)Session["cartSession"];
+                gridCart.DataSource = populateGridView.GetCart();
+                gridCart.DataBind();
+                lblTheTotalPrice.Text = populateGridView.totalPrice.ToString();
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         protected void btnCheckout_Click(object sender, EventArgs e)

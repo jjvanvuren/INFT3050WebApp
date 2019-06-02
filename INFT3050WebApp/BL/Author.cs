@@ -19,6 +19,7 @@ namespace INFT3050WebApp.BL
             LastName = "";
             Description = "";
         }
+        //Methord Passes a author by name and adds a blank description
         public Author(string SearchFirstName, string SearchLastName)
         {
             var db = new AuthorDataAccess();
@@ -30,7 +31,7 @@ namespace INFT3050WebApp.BL
             }
 
         }
-
+        //Methord searches Author by Name
         public List<Author> SearchAuthorByName(string SearchFirstName, string SearchLastName)
         {
             List<Author> Authors = new List<Author>();
@@ -39,7 +40,7 @@ namespace INFT3050WebApp.BL
 
                 return Authors;
         }
-
+        //Methord used to getAuthor By ID
         public Author getAuthor(int ID)
         {
             Author Author = new Author();
@@ -48,7 +49,7 @@ namespace INFT3050WebApp.BL
 
             return Author;
         }
-
+        //Methord used to get Author by First and Last Name - passes the code to dataAccess Layer
         public Author getAddAuthor(string SearchFirstName, string SearchLastName)
         {
             var db = new AuthorDataAccess();

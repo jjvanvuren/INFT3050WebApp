@@ -23,7 +23,8 @@ namespace INFT3050WebApp.DAL
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Author> GetAuthors(string SearchFirstName, string SearchLastName)
         {
-
+            //each of these cases allows for searching for an author by
+            //a different methord. 
             List<Author> ListofAuthors = new List<Author>();
             string sql = @"SELECT *
                             FROM [dbo].[author]";
@@ -44,10 +45,12 @@ namespace INFT3050WebApp.DAL
             {
                 using (SqlCommand command = new SqlCommand(sql, con))
                 {
+                    //check if first Name needs to be added
                     if (SearchFirstName != null)
                     {
                         command.Parameters.Add(new SqlParameter("FirstName", SearchFirstName));
                     }
+                    //check if last Name needs to be added
                     if (SearchLastName != null)
                     {
                         command.Parameters.Add(new SqlParameter("LastName", SearchLastName));
@@ -167,13 +170,14 @@ namespace INFT3050WebApp.DAL
             return null;
         }
        
-
+        //Adding Authors to Books in the Database
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public void ConnectBookAuthor(int BookID, List<Author> Authors)
         {
             string sql = @"INSERT INTO bookAuthor ([itemID], [authorID]) VALUES";
             int i = 0;
-            foreach(Author author in Authors)
+            //Creating a Values section for each instance of Author with unquie IDs for inserting.
+            foreach (Author author in Authors)
             {
                 sql = sql + "(@itemID"+ i.ToString() +", @authorID"+ i.ToString() +")";
                 if (Authors.Count == 1 || Authors.IndexOf(author) == Authors.Count - 1)
@@ -191,6 +195,7 @@ namespace INFT3050WebApp.DAL
                 using (SqlCommand command = new SqlCommand(sql, con))
                 {
                     con.Open();
+                    //adding both Item ID and authorID  to each unquie ID in the SQL string for inserting.
                     int j = 0;
                     foreach (Author author in Authors)
                     {
