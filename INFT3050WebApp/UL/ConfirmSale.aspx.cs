@@ -27,9 +27,15 @@ namespace INFT3050WebApp.UL
             UserSession query = (UserSession)Session[UserSession.SESSION_KEY];
             if (query != null)
             {
-                User currentUser = new User(query.SessionId);
-
-                confirmSaleMessageLabel.Text = String.Format(CONFIRM_SALE_FORMAT, currentUser.FirstName, currentUser.Email);
+                try
+                {
+                    User currentUser = new User(query.SessionId);
+                    confirmSaleMessageLabel.Text = String.Format(CONFIRM_SALE_FORMAT, currentUser.FirstName, currentUser.Email);
+                }
+                catch (Exception exc)
+                {
+                    throw exc;
+                }
             }
         }
     }

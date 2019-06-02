@@ -28,18 +28,35 @@ namespace INFT3050WebApp.UL
             Session.Clear();
 
             User userVerify = new User();
+            bool bUserExists;
 
-            // Check if the user exists on the DB
-            bool bUserExists = userVerify.UserExists(tbxEmail.Text);
+            try
+            {
+                // Check if the user exists on the DB
+                bUserExists = userVerify.UserExists(tbxEmail.Text);
+            }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
 
             if (IsValid)
             {
                 // If the email exists
                 if (bUserExists)
                 {
-                    // Send recovery email
-                    userVerify.SendResetPassword(tbxEmail.Text);
-                    Response.Redirect("~/UL/RecoveryEmailSent.aspx");
+                    try
+                    {
+                        // Send recovery email
+                        userVerify.SendResetPassword(tbxEmail.Text);
+                        Response.Redirect("~/UL/RecoveryEmailSent.aspx");
+                    }
+                    catch (Exception exc)
+                    {
+
+                        throw exc;
+                    }
                 }
                 else
                 {

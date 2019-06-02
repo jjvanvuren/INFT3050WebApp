@@ -16,14 +16,15 @@ namespace INFT3050WebApp.UL
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
-            // Check if user is logged in to use correct master page
+            // Check if user is logged in
             if (Session["userSession"] != null)
             {
                 Page.MasterPageFile = "~/UL/Customer.Master";
             }
             else
             {
-                Page.MasterPageFile = "~/UL/Site.Master";
+                // Check if the session has expired
+                Response.Redirect("SessionExpired.aspx");
             }
         }
 

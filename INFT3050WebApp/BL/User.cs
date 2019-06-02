@@ -399,7 +399,6 @@ namespace INFT3050WebApp.BL
             // Get the newly created order details
             Order order = db.GetOrder(iPaymentId);
 
-
             const string strSubject = "Used Books Payment Confirmation";
             string strEmailFormat;
             string strBody;
@@ -423,7 +422,6 @@ namespace INFT3050WebApp.BL
             // Send payment confirmation email
             SendEmail("donotreply@usedbooksales.com.au", "UsedBooks.com.au", user.Email, strSubject, strBody);
         }
-
 
         // Send the password reset email to the user.
         public void SendResetPassword(string strEmail)

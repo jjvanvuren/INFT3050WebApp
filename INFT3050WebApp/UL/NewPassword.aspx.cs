@@ -23,23 +23,42 @@ namespace INFT3050WebApp.UL
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
+            User uUser;
+            bool bVerified;
+
             string strEmail = Request.QueryString["email"];
             string strKey = Request.QueryString["key"];
+            
+            try
+            {
+                // Verify the user with the DB
+                User user = new User(strEmail);
+                uUser = user;
 
-            // Verify the user with the DB
-            User user = new User(strEmail);
-            bool bVerified = user.Verify(strEmail, strKey);
+                bVerified = uUser.Verify(strEmail, strKey);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
 
             if (IsValid)
             {
                 // If the email exists
                 if (bVerified)
                 {
-                    user.Password = tbxPassword.Text;
+                    uUser.Password = tbxPassword.Text;
 
-                    // Update the password in the DB
-                    user.ResetPassword();
-                    Response.Redirect("~/UL/SuccessfulPasswordRecovery.aspx");
+                    try
+                    {
+                        // Update the password in the DB
+                        uUser.ResetPassword();
+                        Response.Redirect("~/UL/SuccessfulPasswordRecovery.aspx");
+                    }
+                    catch (Exception exc)
+                    {
+                        throw exc;
+                    }
                 }
                 else
                 {

@@ -45,9 +45,9 @@ namespace INFT3050WebApp.UL
             lblTheTotalPrice.Text = populateGridView.totalPrice.ToString();
         }
 
-        // If the cancel button is clicked go back to Checkout
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
+            // Check if the session has expired
             if (Session["userSession"] == null)
             {
                 Response.Redirect("SessionExpired.aspx");
@@ -67,14 +67,11 @@ namespace INFT3050WebApp.UL
                     sessionInstance.RemoveItem(iID);
                 }
 
+                Response.Redirect("~/UL/Cart.aspx");
             }
             catch (Exception exc)
             {
                 throw exc;
-            }
-            finally
-            {
-                Response.Redirect("~/UL/Cart.aspx");
             }
         }
                 //this was for updating quantity but for some reason It wount read the new number from the next box
