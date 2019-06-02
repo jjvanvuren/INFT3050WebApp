@@ -77,7 +77,7 @@ namespace INFT3050WebApp.UL
                         Description = string.Format(strDescriptionFormat, DateTime.Now.Day.ToString(), DateTime.Now.Month.ToString(), DateTime.Now.Year.ToString())
                     };
 
-
+                    // Make the payment
                     var task = paymentSystem.MakePayment(payment);
 
                     // Wait for payment to be processed
@@ -97,24 +97,18 @@ namespace INFT3050WebApp.UL
                         // Send payment confirmation email to customer
                         user.SendPaymentEmail(user.Id, iPaymentId);
 
-                        var checkoutUrl = FriendlyUrl.Href("~/UL/ConfirmSale", tResult);
+                        var checkoutUrl = FriendlyUrl.Href("~/UL/ConfirmSale");
                         Response.Redirect(checkoutUrl);
                     }
                     else if (task.IsCompleted && tResult == "Declined")
                     {
-                        //lblProcessing.Text = "Transaction Declined";
-                        //lblProcessing.CssClass = "text-danger";
-
-                        var checkoutUrl = FriendlyUrl.Href("~/UL/ConfirmSale", tResult);
-                        Response.Redirect(checkoutUrl);
+                        lblProcessing.Text = "Payment transaction declined";
+                        lblProcessing.CssClass = "text-danger";
                     }
-                    else if (task.IsCompleted && tResult == "Timeout")
+                    else
                     {
-                        //lblProcessing.Text = "Transaction timed out";
-                        //lblProcessing.CssClass = "text-danger";
-
-                        var checkoutUrl = FriendlyUrl.Href("~/UL/ConfirmSale", tResult);
-                        Response.Redirect(checkoutUrl);
+                        lblProcessing.Text = "Payment transaction failed, please try again";
+                        lblProcessing.CssClass = "text-danger";
                     }
                 }
                 catch (Exception exc)

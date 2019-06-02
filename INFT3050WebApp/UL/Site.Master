@@ -65,6 +65,10 @@
                                 <asp:HyperLink href="/UL/Search" ID="searchLink" CssClass="nav-link" Title="Search for books" runat="server"><i class="fa fa-search"></i></asp:HyperLink></li>
 
                             <li class="nav-item">
+                                <asp:HyperLink href="/UL/Cart" ID="cartLink" CssClass="nav-link" Title="View Shopping Cart" runat="server"><i class="fa fa-shopping-cart"></i></asp:HyperLink>
+                            </li>
+
+                            <li class="nav-item">
                                 <asp:HyperLink href="/UL/Register" ID="registerLink" CssClass="nav-link" runat="server"><i class="fa fa-user-circle"></i>&nbsp;&nbsp;Register</asp:HyperLink></li>
 
                             <li class="nav-item">
