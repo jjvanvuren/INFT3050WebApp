@@ -57,6 +57,7 @@ namespace INFT3050WebApp.UL
             Response.Redirect("~/UL/Checkout.aspx");
         }
 
+        //Sends the book that user wants to delete from cart to BL to be removed from session
         protected void gridCart_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try

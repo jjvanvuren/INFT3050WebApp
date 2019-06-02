@@ -35,13 +35,20 @@ namespace INFT3050WebApp.UL.Admin
             // when clicking view redirect to the selected users purchase history
             if (e.CommandName == "cmdView")
             {
-                int index = Convert.ToInt32(e.CommandArgument);
+                try
+                {
+                    int index = Convert.ToInt32(e.CommandArgument);
 
-                GridViewRow row = UserManagement.Rows[index];
+                    GridViewRow row = UserManagement.Rows[index];
 
-                string sID = Server.HtmlDecode(row.Cells[0].Text);
+                    string sID = Server.HtmlDecode(row.Cells[0].Text);
 
-                Response.Redirect("~/UL/Admin/AdminPurchaseHistory.aspx?Id=" + sID);
+                    Response.Redirect("~/UL/Admin/AdminPurchaseHistory.aspx?Id=" + sID);
+                }
+                catch (Exception exc)
+                {
+                    throw exc;
+                }
             }
 
             else if (e.CommandName == "cmdActivate")
