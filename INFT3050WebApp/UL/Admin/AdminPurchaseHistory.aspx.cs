@@ -23,34 +23,37 @@ namespace INFT3050WebApp.UL.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            //Enable SSL
+            if (!Request.IsSecureConnection)
             {
-                //Enable SSL
-                if (!Request.IsSecureConnection)
+                string url = ConfigurationManager.AppSettings["SecurePath"] + "UL/Admin/AdminPurchaseHistory.aspx";
+                Response.Redirect(url);
+            }
+
+            string UserID = Request.QueryString["Id"];
+
+            // Display the users purchase history based on the Id passed by the query string
+            if (!string.IsNullOrEmpty(UserID) && int.TryParse(UserID, out int id))
+            {
+                try
                 {
-                    string url = ConfigurationManager.AppSettings["SecurePath"] + "UL/Admin/AdminPurchaseHistory.aspx";
-                    Response.Redirect(url);
+                    Order order = new Order();
+
+                    Orders.DataSource = order.GetOrdersByUserID(id);
+                    Orders.DataBind();
                 }
-
-                string UserID = Request.QueryString["Id"];
-
-                // Display the users purchase history based on the Id passed by the query string
-                if (!string.IsNullOrEmpty(UserID) && int.TryParse(UserID, out int id))
+                catch (Exception exc)
                 {
-                    try
-                    {
-                        Order order = new Order();
-
-                        Orders.DataSource = order.GetOrdersByUserID(id);
-
-                        Orders.DataBind();
-                    }
-                    catch (Exception exc)
-                    {
-                        throw exc;
-                    }
+                    throw exc;
                 }
             }
+
+        }
+
+        protected void Orders_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            Orders.PageIndex = e.NewPageIndex;
+            Orders.DataBind();
         }
     }
 }

@@ -8,7 +8,6 @@
 
     <h1>Registration Successful</h1>
     <br />
-    <br />
     <asp:Label ID="thanksMessageLabel" runat="server" Text=""></asp:Label>
 
 </asp:Content>

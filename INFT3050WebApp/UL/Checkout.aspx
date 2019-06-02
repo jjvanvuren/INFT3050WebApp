@@ -9,6 +9,9 @@
     <%--Validation summary for checkout--%>
     <div>
         <asp:ValidationSummary ID="vsBilling" runat="server" CssClass="alert-danger" HeaderText="Please correct these issues" />
+
+        <%-- Payment transaction information --%>
+        <asp:Label ID="lblProcessing" runat="server" Text="" Visible="false"></asp:Label>
     </div>
     <br />
     <%--Area for customer to provide Shipping/Bills details--%>
@@ -107,10 +110,6 @@
         <br />
         <asp:DropDownList ID="ddlShippingMethod" runat="server">
             <asp:ListItem>--Select--</asp:ListItem>
-            <asp:ListItem Value ="8">Auspost &#36;5.99</asp:ListItem>
-            <asp:ListItem Value ="9">Auspost Express &#36;9.99</asp:ListItem>
-            <asp:ListItem Value ="10">StarTrack &#36;3.99</asp:ListItem>
-            <asp:ListItem Value ="11">StarTrack Express &#36;7.99</asp:ListItem>
         </asp:DropDownList>
 
         <%--Check if user selected a shipping method--%>
@@ -192,7 +191,6 @@
             <asp:ListItem Value="2027">2027</asp:ListItem>
             <asp:ListItem Value="2028">2028</asp:ListItem>
         </asp:DropDownList>
-
         <br />
 
         <%-- Expiry month is required --%>
@@ -205,11 +203,6 @@
     </div>
 
     <div class="form-group">
-
-        <div>
-            <asp:Label ID="lblProcessing" runat="server" Text="" Visible="false"></asp:Label>
-        </div>
-        
         <%-- Buttons to place or cancel order --%>
         <asp:Button ID="btnPlaceOrder" CssClass="btn btn-success" runat="server" Text="Confirm" OnClick="btnPlaceOrder_Click" />
         &nbsp;&nbsp;

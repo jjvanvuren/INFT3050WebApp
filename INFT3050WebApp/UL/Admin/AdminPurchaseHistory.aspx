@@ -8,7 +8,7 @@
     <h1>Purchase History</h1>
     <div class="container-flex">
         <%--Setting data source to be used for display of data in gridview --%>
-        <asp:GridView ID="Orders" runat="server" AutoGenerateColumns="false" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True">
+        <asp:GridView ID="Orders" runat="server" AutoGenerateColumns="false" AllowSorting="true" CssClass="table" GridLines="None" AllowPaging="True" OnPageIndexChanging="Orders_PageIndexChanging">
             <%--Display of selected attributes of a order - no validation --%>
             <Columns>
                 <asp:BoundField DataField="orderId" HeaderText="Order ID" SortExpression="orderId" />

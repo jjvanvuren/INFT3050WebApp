@@ -112,6 +112,15 @@ namespace INFT3050WebApp {
         protected global::System.Web.UI.WebControls.HyperLink searchLink;
         
         /// <summary>
+        /// cartLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink cartLink;
+        
+        /// <summary>
         /// registerLink control.
         /// </summary>
         /// <remarks>

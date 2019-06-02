@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
 
 namespace INFT3050WebApp.UL
@@ -37,7 +32,6 @@ namespace INFT3050WebApp.UL
             }
             catch (Exception exc)
             {
-
                 throw exc;
             }
 
@@ -60,6 +54,7 @@ namespace INFT3050WebApp.UL
                 }
                 else
                 {
+                    // Display the message to the user
                     lblUserExists.Text = "Email not registered or account has been disabled";
                     lblUserExists.Visible = true;
                 }

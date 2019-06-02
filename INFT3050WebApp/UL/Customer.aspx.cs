@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
-using INFT3050WebApp.DAL;
 using Microsoft.AspNet.FriendlyUrls;
 
 namespace INFT3050WebApp
@@ -25,12 +22,11 @@ namespace INFT3050WebApp
             {
                 Page.MasterPageFile = "~/UL/Site.Master";
             }
-
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // Display a custom welcome message to the customer
             UserSession query = (UserSession)Session[UserSession.SESSION_KEY];
             if (query != null)
             {
@@ -44,8 +40,6 @@ namespace INFT3050WebApp
                 {
                     throw exc;
                 }
-
-
             }
 
             if (!IsPostBack)
@@ -76,7 +70,6 @@ namespace INFT3050WebApp
                 {
                     throw exc;
                 }
-
             }
         }
 

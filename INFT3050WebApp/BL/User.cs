@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Net.Mail;
 using INFT3050WebApp.DAL;
 using System.Configuration;
@@ -132,18 +130,19 @@ namespace INFT3050WebApp.BL
                 // Setup access to database
                 IUserDataAccess db = new UserDataAccess();
 
+                // Verify the user with the db
                 int iVerified = db.VerifyUser(user);
                 
-                if (iVerified == 1)
+                if (iVerified == 1)    // Successfully verified user
                 {
                     return true;
                 }
-                else
+                else    // User db verification failed
                 {
                     return false;
                 }
             }
-            else
+            else    // The keys do not match
             {
                 return false;
             }
@@ -285,15 +284,15 @@ namespace INFT3050WebApp.BL
             Match matchEmail = rxEmail.Match(strEmail);
             Match matchPassword = rxPassword.Match(strPassword);
 
-            if (!matchEmail.Success)
+            if (!matchEmail.Success)    // Email doesn't meet requirements
             {
                 return 0;
             }
-            else if (matchEmail.Success && !matchPassword.Success)
+            else if (matchEmail.Success && !matchPassword.Success)  // Password doesn't meet requirements
             {
                 return 1;
             }
-            else
+            else    // All requirements are met
             {
                 return 2;
             }
@@ -465,6 +464,7 @@ namespace INFT3050WebApp.BL
             SendEmail("donotreply@usedbooksales.com.au", "UsedBooks.com.au", user.Email, strSubject, strBody);
         }
 
+        // Resets a user's password
         public void ResetPassword()
         {
             User user = new User(this.Email);

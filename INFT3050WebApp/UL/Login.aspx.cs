@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
 
 namespace INFT3050WebApp
@@ -23,7 +19,6 @@ namespace INFT3050WebApp
             {
                 Page.MasterPageFile = "~/UL/Site.Master";
             }
-
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -50,22 +45,22 @@ namespace INFT3050WebApp
 
             try
             {
+                // Verify the user with the DB
                 iCheckUser = userVerify.CheckLoginUser(strEmail, strPassword);
             }
             catch (Exception exc)
             {
-
                 throw exc;
             }
 
-            if (iCheckUser == 0)
+            if (iCheckUser == 0)    // Either the account not registered or account has been disabled
             {
                 lblUserExists.Text = "Email not registered or account has been disabled";
                 lblUserExists.Visible = true;
 
                 bValid = false;
             }
-            else if (iCheckUser == 1)
+            else if (iCheckUser == 1)   // The password is incorrect
             {
                 lblUserExists.Visible = false;
 
@@ -74,14 +69,14 @@ namespace INFT3050WebApp
 
                 bValid = false;
             }
-            else if (iCheckUser == 3)
+            else if (iCheckUser == 3)   // The account has not yet been verified
             {
                 lblUserExists.Text = "Email has not yet been verified. Please check your email inbox";
                 lblUserExists.Visible = true;
 
                 bValid = false;
             }
-            else
+            else    // Has passed all verification checks
             {
                 lblUserExists.Visible = false;
                 lblInvalidPassword.Visible = false;
@@ -89,23 +84,19 @@ namespace INFT3050WebApp
                 bValid = true;
             }
 
-            if (IsValid && bValid)
+            if (IsValid && bValid)  // Has passed form validation & all verification checks
             {
-                if (iCheckUser == 2)
+                try
                 {
-                    try
-                    {
-                        // Create a new session for the user
-                        UserSession usCurrent = new UserSession(strEmail);
-                        Session["userSession"] = usCurrent;
+                    // Create a new session for the user
+                    UserSession usCurrent = new UserSession(strEmail);
+                    Session["userSession"] = usCurrent;
 
-                        Response.Redirect("~/UL/Customer.aspx");
-                    }
-                    catch (Exception exc)
-                    {
-                        throw exc;
-                    }
-                    
+                    Response.Redirect("~/UL/Customer.aspx");
+                }
+                catch (Exception exc)
+                {
+                    throw exc;
                 }
             }
         }

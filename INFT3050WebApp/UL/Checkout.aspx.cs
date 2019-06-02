@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using INFT3050WebApp.BL;
 using Microsoft.AspNet.FriendlyUrls;
 using INFT3050.PaymentSystem;
@@ -36,14 +32,30 @@ namespace INFT3050WebApp.UL
                 string url = ConfigurationManager.AppSettings["SecurePath"] + "UL/Checkout.aspx";
                 Response.Redirect(url);
             }
+
+            try
+            {
+                PostageOption post = new PostageOption();
+
+                var postageOptions = post.GetPostageOptions();
+
+                foreach (PostageOption postage in postageOptions)
+                {
+                    ListItem lst = new ListItem((postage.Name + " $" + postage.Price.ToString()), postage.Id.ToString());
+                    ddlShippingMethod.Items.Add(lst);
+                }
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         protected void btnPlaceOrder_Click(object sender, EventArgs e)
         {
-
-            //this should receive a payment valid
-            if (IsValid)
+            if (IsValid) // If the form validation checks are passed
             {
+                // Indicate to user that payment is processing
                 lblProcessing.Visible = true;
                 lblProcessing.Text = "Processing Payment...";
                 lblProcessing.CssClass = "text-info";
@@ -69,6 +81,7 @@ namespace INFT3050WebApp.UL
                     IPaymentSystem paymentSystem = INFT3050PaymentFactory.Create();
                     PaymentRequest payment = new PaymentRequest
                     {
+                        // Add customer entered values to the payment request
                         CardName = tbxCardName.Text,
                         CardNumber = tbxCardNumber.Text,
                         CVC = iCVC,
@@ -77,7 +90,7 @@ namespace INFT3050WebApp.UL
                         Description = string.Format(strDescriptionFormat, DateTime.Now.Day.ToString(), DateTime.Now.Month.ToString(), DateTime.Now.Year.ToString())
                     };
 
-
+                    // Make the payment
                     var task = paymentSystem.MakePayment(payment);
 
                     // Wait for payment to be processed
@@ -92,29 +105,25 @@ namespace INFT3050WebApp.UL
                         cartSession.submitCart(user.Id, customerAddress, iShippingId);
 
                         // Submit the order details to the db
-                        int iPaymentId= cartSession.submitCart(user.Id, customerAddress, iShippingId); ;
+                        int iPaymentId = cartSession.submitCart(user.Id, customerAddress, iShippingId); ;
 
                         // Send payment confirmation email to customer
                         user.SendPaymentEmail(user.Id, iPaymentId);
 
-                        var checkoutUrl = FriendlyUrl.Href("~/UL/ConfirmSale", tResult);
+                        var checkoutUrl = FriendlyUrl.Href("~/UL/ConfirmSale");
                         Response.Redirect(checkoutUrl);
                     }
                     else if (task.IsCompleted && tResult == "Declined")
                     {
-                        //lblProcessing.Text = "Transaction Declined";
-                        //lblProcessing.CssClass = "text-danger";
-
-                        var checkoutUrl = FriendlyUrl.Href("~/UL/ConfirmSale", tResult);
-                        Response.Redirect(checkoutUrl);
+                        // Display payment declined to customer
+                        lblProcessing.Text = "Payment transaction declined";
+                        lblProcessing.CssClass = "text-danger";
                     }
-                    else if (task.IsCompleted && tResult == "Timeout")
+                    else
                     {
-                        //lblProcessing.Text = "Transaction timed out";
-                        //lblProcessing.CssClass = "text-danger";
-
-                        var checkoutUrl = FriendlyUrl.Href("~/UL/ConfirmSale", tResult);
-                        Response.Redirect(checkoutUrl);
+                        // Display payment failed to customer
+                        lblProcessing.Text = "Payment transaction failed, please try again";
+                        lblProcessing.CssClass = "text-danger";
                     }
                 }
                 catch (Exception exc)
@@ -122,11 +131,11 @@ namespace INFT3050WebApp.UL
                     throw exc;
                 }
             }
-            
         }
 
         protected void btnCancelOrder_Click(object sender, EventArgs e)
         {
+            // Return to the cart page if user cancels checkout
             Response.Redirect("~/UL/Cart.aspx");
         }
     }

@@ -7,7 +7,6 @@
 
     <h1>Register New Account</h1>
     <br />
-    <br />
     <div>
         <asp:ValidationSummary ID="vsRegister" runat="server" CssClass="alert-danger" HeaderText="Please correct these issues" />
     </div>

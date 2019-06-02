@@ -32,42 +32,29 @@
                         <ul class="nav navbar-nav mr-auto">
 
                             <%-- Categories --%>
-                            <li>
-                                <asp:HyperLink CssClass="nav-link" ID="hypAllBooks" NavigateUrl="~/UL/Books" runat="server" Text="All Books" />
-                            </li>
-                            <li>
-                                <asp:HyperLink CssClass="nav-link" ID="hypHistory" NavigateUrl="~/UL/BooksByCategory/1" runat="server" Text="History" />
-                            </li>
-                            <li>
-                                <asp:HyperLink CssClass="nav-link" ID="hypThriller" NavigateUrl="~/UL/BooksByCategory/2" runat="server" Text="Thriller" />
-                            </li>
-                            <li>
-                                <asp:HyperLink CssClass="nav-link" ID="hypSciFi" NavigateUrl="~/UL/BooksByCategory/3" runat="server" Text="Sci-Fi" />
-                            </li>
-                            <li>
-                                <asp:HyperLink CssClass="nav-link" ID="hypHorror" NavigateUrl="~/UL/BooksByCategory/4" runat="server" Text="Horror" />
-                            </li>
-                            <li>
-                                <asp:HyperLink CssClass="nav-link" ID="hypCrime" NavigateUrl="~/UL/BooksByCategory/5" runat="server" Text="Crime" />
-                            </li>
-                            <li>
-                                <asp:HyperLink CssClass="nav-link" ID="hypFantasy" NavigateUrl="~/UL/BooksByCategory/6" runat="server" Text="Fantasy" />
-                            </li>
-                            <li>
-                                <asp:HyperLink CssClass="nav-link" ID="hypArt" NavigateUrl="~/UL/BooksByCategory/7" runat="server" Text="Art" />
-                            </li>
-                            <li>
-                                <asp:HyperLink CssClass="nav-link" ID="hypTechnology" NavigateUrl="~/UL/BooksByCategory/8" runat="server" Text="Technology" />
-                            </li>
+                            <li><asp:HyperLink CssClass="nav-link" ID="hypAllBooks" NavigateUrl="~/UL/Books" runat="server" Text="All Books" /></li>
+                            <li><asp:HyperLink CssClass="nav-link" ID="hypHistory" NavigateUrl="~/UL/BooksByCategory/1" runat="server" Text="History" /></li>
+                            <li><asp:HyperLink CssClass="nav-link" ID="hypThriller" NavigateUrl="~/UL/BooksByCategory/2" runat="server" Text="Thriller" /></li>
+                            <li><asp:HyperLink CssClass="nav-link" ID="hypSciFi" NavigateUrl="~/UL/BooksByCategory/3" runat="server" Text="Sci-Fi" /></li>
+                            <li><asp:HyperLink CssClass="nav-link" ID="hypHorror" NavigateUrl="~/UL/BooksByCategory/4" runat="server" Text="Horror" /></li>
+                            <li><asp:HyperLink CssClass="nav-link" ID="hypCrime" NavigateUrl="~/UL/BooksByCategory/5" runat="server" Text="Crime" /></li>
+                            <li><asp:HyperLink CssClass="nav-link" ID="hypFantasy" NavigateUrl="~/UL/BooksByCategory/6" runat="server" Text="Fantasy" /></li>
+                            <li><asp:HyperLink CssClass="nav-link" ID="hypArt" NavigateUrl="~/UL/BooksByCategory/7" runat="server" Text="Art" /></li>
+                            <li><asp:HyperLink CssClass="nav-link" ID="hypTechnology" NavigateUrl="~/UL/BooksByCategory/8" runat="server" Text="Technology" /></li>
                         </ul>
 
                         <%-- All navbar items on the right --%>
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="nav-item">
-                                <asp:HyperLink href="/UL/Search" ID="searchLink" CssClass="nav-link" Title="Search for books" runat="server"><i class="fa fa-search"></i></asp:HyperLink></li>
 
+                            <%-- Search page link --%>
                             <li class="nav-item">
-                                <asp:HyperLink href="/UL/Cart" ID="cartLink" CssClass="nav-link" Title="View Shopping Cart" runat="server"><i class="fa fa-shopping-cart"></i></asp:HyperLink></li>
+                                <asp:HyperLink href="/UL/Search" ID="searchLink" CssClass="nav-link" Title="Search for books" runat="server"><i class="fa fa-search"></i></asp:HyperLink>
+                            </li>
+
+                            <%-- Cart page link --%>
+                            <li class="nav-item">
+                                <asp:HyperLink href="/UL/Cart" ID="cartLink" CssClass="nav-link" Title="View Shopping Cart" runat="server"><i class="fa fa-shopping-cart"></i></asp:HyperLink>
+                            </li>
 
                             <%-- Dropdown to access purchase history --%>
                             <li class="nav-item">
@@ -81,13 +68,12 @@
                                 </ul>
 
                             </li>
-
+                            <%-- Logout Link --%>
                             <li class="nav-item">
                                 <asp:HyperLink href="/UL/Logout" ID="logoutLink" CssClass="nav-link" Title="Logout" runat="server"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Logout</asp:HyperLink></li>
                         </ul>
                     </div>
                 </div>
-
             </nav>
         </div>
 
