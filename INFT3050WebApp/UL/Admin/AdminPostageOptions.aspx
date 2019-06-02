@@ -42,6 +42,8 @@
                             <asp:TextBox ID="txtGridPrice" runat="server" MaxLength="45" CssClass="form-control" Text='<%# Bind("Price") %>'></asp:TextBox>
                         </div>
                         <%-- Price Validator/s --%>
+
+                        <asp:RegularExpressionValidator ID="revGridPrice" runat="server" ControlToValidate="txtGridPrice" ValidationGroup="Edit" Text="*" ErrorMessage="Price has to be a number" ValidationExpression="[-+]?[0-9]*\.?[0-9]+" CssClass="text-danger"></asp:RegularExpressionValidator>
                         <asp:RequiredFieldValidator ID="rfvGridPrice" runat="server" ControlToValidate="txtGridPrice" ValidationGroup="Edit" Text="*" ErrorMessage="Price is a required field" CssClass="text-danger"></asp:RequiredFieldValidator>
                     </EditItemTemplate>
                     <ItemTemplate>
@@ -77,6 +79,7 @@
         <%-- Add Price Field --%>
         <asp:Label ID="lblAddPrice" Text="Price:" runat="server" />
         <asp:TextBox ID="txtAddPrice" runat="server" />
+        <asp:RegularExpressionValidator ID="revAddPrice" runat="server" ControlToValidate="txtAddPrice" ValidationGroup="Add" Text="*" ErrorMessage="Price has to be a number" ValidationExpression="[-+]?[0-9]*\.?[0-9]+" CssClass="text-danger"></asp:RegularExpressionValidator>
         <asp:RequiredFieldValidator ID="rfvAddPrice" runat="server" ControlToValidate="txtAddPrice" Text="*" ValidationGroup="Add" ErrorMessage="Price is a required field" CssClass="text-danger"></asp:RequiredFieldValidator>
         <br />
         <br />
