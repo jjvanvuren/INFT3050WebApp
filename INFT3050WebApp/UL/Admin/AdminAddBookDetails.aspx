@@ -78,7 +78,6 @@
         <br />
         <asp:Label ID="lblIsBestSeller" runat="server" Text="Best Seller"></asp:Label>
         <asp:DropDownList ID="ddlIsBestSeller"
-            AutoPostBack="True"
             runat="server">
             <asp:ListItem Selected="True" Value="False"> False </asp:ListItem>
             <asp:ListItem Value="True"> True </asp:ListItem>

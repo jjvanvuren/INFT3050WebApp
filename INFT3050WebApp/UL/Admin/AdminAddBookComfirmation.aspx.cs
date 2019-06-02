@@ -43,6 +43,8 @@ namespace INFT3050WebApp.UL.Admin
 
             BL.AddBookSession connect = (BL.AddBookSession)Session["addBookSession"];
             connect.submitBook();
+            connect = new BL.AddBookSession();
+            Session["addBookSession"] = connect;
             Response.Redirect("~/UL/Admin/AdminPortal.aspx");
         }
     }

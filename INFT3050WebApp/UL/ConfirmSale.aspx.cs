@@ -12,7 +12,7 @@ namespace INFT3050WebApp.UL
     public partial class ConfirmSale : System.Web.UI.Page
     {
         // Sale confirmation message format
-        const string CONFIRM_SALE_FORMAT = "Thank you for shopping at the Used Book Store {0}. Your receipt has been sent to {1}. You will be notified once your order has been shipped.";
+        const string CONFIRM_SALE_FORMAT = "Thank you for shopping at the Used Book Store {0}. Your order confirmation has been sent to {1}. You will be notified once your order has been shipped.";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,9 +27,15 @@ namespace INFT3050WebApp.UL
             UserSession query = (UserSession)Session[UserSession.SESSION_KEY];
             if (query != null)
             {
-                User currentUser = new User(query.SessionId);
-
-                confirmSaleMessageLabel.Text = String.Format(CONFIRM_SALE_FORMAT, currentUser.FirstName, currentUser.Email);
+                try
+                {
+                    User currentUser = new User(query.SessionId);
+                    confirmSaleMessageLabel.Text = String.Format(CONFIRM_SALE_FORMAT, currentUser.FirstName, currentUser.Email);
+                }
+                catch (Exception exc)
+                {
+                    throw exc;
+                }
             }
         }
     }
