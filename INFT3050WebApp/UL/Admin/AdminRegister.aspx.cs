@@ -32,10 +32,22 @@ namespace INFT3050WebApp.UL.BackEnd
             // Used for BL Validation
             bool bValid;
 
-            // Create a new user based on info entered
-            User registeredUser = new User(tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, true, true, "", false);
+            int iRegistered;
+            User uUser;
 
-            int iRegistered = registeredUser.CheckRegisterUser(tbxEmail.Text, tbxPassword.Text);
+            try
+            {
+                // Create a new user based on info entered
+                User registeredUser = new User(tbxEmail.Text, tbxPassword.Text, tbxFirstName.Text, tbxLastName.Text, true, true, "", false);
+
+                iRegistered = registeredUser.CheckRegisterUser(tbxEmail.Text, tbxPassword.Text);
+
+                uUser = registeredUser;
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
 
             if (iRegistered == 0)
             {
@@ -61,16 +73,25 @@ namespace INFT3050WebApp.UL.BackEnd
 
             if (IsValid && bValid)
             {
-                User currentUser = new User();
+                try
+                {
+                    User currentUser = new User();
 
-                currentUser.RegisterNewAdmin(registeredUser);
+                    currentUser.RegisterNewAdmin(uUser);
 
-                User dbUser = new User(registeredUser.Email);
+                    User dbUser = new User(uUser.Email);
+
+                    uUser = dbUser;
+                }
+                catch (Exception exc)
+                {
+                    throw exc;
+                }
 
                 // Data to be retained in session
                 UserSession currentUserSession = new UserSession
                 {
-                    SessionId = dbUser.Id
+                    SessionId = uUser.Id
                 };
 
                 Session["userSession"] = currentUserSession;
