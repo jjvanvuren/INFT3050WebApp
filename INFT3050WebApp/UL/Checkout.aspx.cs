@@ -69,12 +69,14 @@ namespace INFT3050WebApp.UL
                 {
                     int iPostCode = Int32.Parse(tbxPostCode.Text);
                     int iShippingId = Int32.Parse(ddlShippingMethod.SelectedValue);
+                    PostageOption paymentPostage = new PostageOption();
+                    paymentPostage = paymentPostage.GetPostOption(iShippingId);
 
                     // Values to be used by PaymentSystem
                     int iCVC = Int32.Parse(tbxSecurityCode.Text);
                     int iDateYear = Int32.Parse(ddlYear.SelectedValue);
                     int iDateMonth = Int32.Parse(ddlMonth.SelectedValue);
-                    decimal dAmount = (decimal)cartSession.totalPrice;
+                    decimal dAmount = (decimal)cartSession.totalPrice + (decimal)paymentPostage.Price;
 
                     string strDescriptionFormat = "Used Books Store Purchase: {0}/{1}/{2}";
 
@@ -104,10 +106,8 @@ namespace INFT3050WebApp.UL
                     {
                         Address customerAddress = new Address(tbxStreetNumber.Text, tbxStreetName.Text, tbxCity.Text, ddlState.SelectedValue, iPostCode);
 
-                        cartSession.submitCart(user.Id, customerAddress, iShippingId);
-
                         // Submit the order details to the db
-                        int iPaymentId = cartSession.submitCart(user.Id, customerAddress, iShippingId); ;
+                        int iPaymentId = cartSession.submitCart(user.Id, customerAddress, iShippingId);
 
                         // Send payment confirmation email to customer
                         user.SendPaymentEmail(user.Id, iPaymentId);

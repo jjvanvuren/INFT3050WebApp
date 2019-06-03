@@ -61,5 +61,12 @@ namespace INFT3050WebApp.BL
 
             return rowsAffected;
         }
+
+        public PostageOption GetPostOption(int PostageOptionID)
+        {
+            //adding postage option to te total cost.
+            DAL.PostageOptionDataAccess postageConnect = new DAL.PostageOptionDataAccess();
+            return  postageConnect.GetPostageOption(PostageOptionID);
+        }
     }
 }

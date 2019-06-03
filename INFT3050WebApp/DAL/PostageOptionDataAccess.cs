@@ -35,7 +35,7 @@ namespace INFT3050WebApp.DAL
 
 
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public PostageOption GetPostageOptions(int PostageID)
+        public PostageOption GetPostageOption(int PostageID)
         {
             PostageOption postageOption = new PostageOption();
             string sql = @"SELECT [postageOption].[postageOptionID], [postageOption].[postageOptionName], [postageOption].[shippingCost], [postageOption].[isActive]

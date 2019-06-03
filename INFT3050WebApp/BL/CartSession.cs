@@ -21,7 +21,7 @@ namespace INFT3050WebApp.BL
             //adding postage option to te total cost.
             DAL.PostageOptionDataAccess postageConnect = new DAL.PostageOptionDataAccess();
             userAddress.CheckPostCode();
-            totalPrice += postageConnect.GetPostageOptions(postageOption).Price;
+            totalPrice += postageConnect.GetPostageOption(postageOption).Price;
             //get time of when Payed
             DateTime currentDate = DateTime.Now;
             int OrderID = connect.submitCart(userID, userAddress, postageOption, Cart, totalPrice,subtotalPrice, currentDate);
