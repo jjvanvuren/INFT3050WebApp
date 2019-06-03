@@ -53,8 +53,12 @@ namespace INFT3050WebApp.UL
             {
                 Response.Redirect("SessionExpired.aspx");
             }
+            BL.CartSession checkCart = (BL.CartSession)Session["cartSession"];
 
-            Response.Redirect("~/UL/Checkout.aspx");
+            if (checkCart.GetCart().Count>0)
+            {
+                Response.Redirect("~/UL/Checkout.aspx");
+            }
         }
 
         //Sends the book that user wants to delete from cart to BL to be removed from session

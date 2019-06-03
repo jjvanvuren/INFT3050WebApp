@@ -91,7 +91,7 @@ namespace INFT3050WebApp.BL
         }
 
         //Methord of getting the cart
-        public IEnumerable<CartItem> GetCart()
+        public List<CartItem> GetCart()
         {
             if (Cart == null)
             {
