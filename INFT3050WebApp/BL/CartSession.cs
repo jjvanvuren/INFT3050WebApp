@@ -16,7 +16,6 @@ namespace INFT3050WebApp.BL
          //Handles the submission of the cart to the Databasse
         public int submitCart(int userID, Address userAddress, int postageOption)
         {
-            double subtotalPrice = totalPrice;
             DAL.OrderDataAccess connect = new DAL.OrderDataAccess();
             //adding postage option to te total cost.
             DAL.PostageOptionDataAccess postageConnect = new DAL.PostageOptionDataAccess();
@@ -24,7 +23,7 @@ namespace INFT3050WebApp.BL
             totalPrice += postageConnect.GetPostageOption(postageOption).Price;
             //get time of when Payed
             DateTime currentDate = DateTime.Now;
-            int OrderID = connect.submitCart(userID, userAddress, postageOption, Cart, totalPrice,subtotalPrice, currentDate);
+            int OrderID = connect.submitCart(userID, userAddress, postageOption, Cart, totalPrice, currentDate);
             return OrderID;
         }
 
