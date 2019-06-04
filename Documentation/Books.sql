@@ -13,7 +13,7 @@ DROP TABLE shippingAddress
 DROP TABLE postCode
 
 /* Create Database Login */
-CREATE LOGIN Admin WITH PASSWORD = 'Password#1';
+CREATE LOGIN editAdmin WITH PASSWORD = 'INFT3050!';
 
 /* Create Item Table */
 CREATE TABLE item
@@ -29,6 +29,8 @@ CREATE TABLE item
 	PRIMARY KEY (itemID)
 )
 
+GO
+
 /* Create Book Table */
 CREATE TABLE book
 (
@@ -43,6 +45,8 @@ CREATE TABLE book
 	FOREIGN KEY (itemID) REFERENCES item(itemID) ON DELETE CASCADE ON UPDATE CASCADE
 )
 
+GO
+
 /* Create Author Table */
 CREATE TABLE author
 (
@@ -53,6 +57,8 @@ CREATE TABLE author
 	PRIMARY KEY (authorID)
 )
 
+GO
+
 /* Create Category Table */
 CREATE TABLE category
 (
@@ -61,6 +67,8 @@ CREATE TABLE category
 	description VARCHAR(MAX),
 	PRIMARY KEY (categoryID)
 )
+
+GO
 
 /* Create BookAuthor Table */
 CREATE TABLE bookAuthor
@@ -72,6 +80,8 @@ CREATE TABLE bookAuthor
 	FOREIGN KEY (authorID) REFERENCES author (authorID)ON DELETE NO ACTION ON UPDATE NO ACTION
 )
 
+GO
+
 /* Create BookCategory Table */
 CREATE TABLE bookCategory
 (
@@ -81,6 +91,8 @@ CREATE TABLE bookCategory
 	FOREIGN KEY (itemID) REFERENCES book (itemID)ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (categoryID) REFERENCES category (categoryID)ON DELETE NO ACTION ON UPDATE NO ACTION
 )
+
+GO
 
 /* Create WebSiteUser Table*/
 CREATE TABLE webSiteUser
@@ -97,6 +109,8 @@ CREATE TABLE webSiteUser
 	PRIMARY KEY (userID)
 )
 
+GO
+
 /* Create Payment Table*/
 CREATE TABLE payment
 (
@@ -105,6 +119,8 @@ CREATE TABLE payment
 	total DECIMAL(7,2) DEFAULT 0.0,
 	PRIMARY KEY (paymentID)
 )
+
+GO
 
 /* Create Postage Option Table*/
 CREATE TABLE postageOption
@@ -116,6 +132,33 @@ CREATE TABLE postageOption
 	isActive BIT,
 	PRIMARY KEY (postageOptionID)
 )
+
+GO
+
+/* Create PostCode Table*/
+CREATE TABLE postCode
+(
+	city VARCHAR(15) NOT NULL,
+	addressState CHAR(3)NOT NULL,
+	postCode INTEGER,
+	PRIMARY KEY(city,addressState)
+)
+
+GO
+
+/* Create User Address Table */
+CREATE TABLE shippingAddress
+(
+	addressID INTEGER IDENTITY(1,1),
+	streetNumber VARCHAR(6)NOT NULL,
+	streetName VARCHAR(15)NOT NULL,
+	city VARCHAR(15)NOT NULL,
+	addressState CHAR(3) NOT NULL,
+	PRIMARY KEY (addressID),
+	FOREIGN KEY(city,addressState) REFERENCES postCode(city,addressState)ON DELETE NO ACTION ON UPDATE CASCADE
+)
+
+GO
 
 /* Create Orders Table */
 CREATE TABLE orders
@@ -134,8 +177,9 @@ CREATE TABLE orders
 	FOREIGN KEY(paymentID) REFERENCES payment(paymentID)ON DELETE NO ACTION ON UPDATE CASCADE,
 	FOREIGN KEY(postageOptionID) REFERENCES postageOption(postageOptionID)ON DELETE NO ACTION ON UPDATE CASCADE,
 	FOREIGN KEY(shippingAddressID) REFERENCES shippingAddress(addressID)ON DELETE NO ACTION ON UPDATE CASCADE
-
 )
+
+GO
 
 /* Create OrderItem Table */
 CREATE TABLE orderItem
@@ -148,32 +192,10 @@ CREATE TABLE orderItem
 	FOREIGN KEY(itemID) REFERENCES item(itemID)ON DELETE NO ACTION
 )
 
-
-/* Create PostCode Table*/
-CREATE TABLE postCode
-(
-	city VARCHAR(15) NOT NULL,
-	addressState CHAR(3)NOT NULL,
-	postCode INTEGER,
-	PRIMARY KEY(city,addressState)
-)
-/* Create User Address Table */
-CREATE TABLE shippingAddress
-(
-	addressID INTEGER IDENTITY(1,1),
-	streetNumber VARCHAR(6)NOT NULL,
-	streetName VARCHAR(15)NOT NULL,
-	city VARCHAR(15)NOT NULL,
-	addressState CHAR(3) NOT NULL,
-	PRIMARY KEY (addressID),
-	FOREIGN KEY(city,addressState) REFERENCES postCode(city,addressState)ON DELETE NO ACTION ON UPDATE CASCADE
-)
+GO
 
 -- Create fulltext catalog to be used when creating a fulltext index
 CREATE FULLTEXT CATALOG fulltextCatalog AS DEFAULT;
-
--- Drop Fulltext index
-DROP FULLTEXT INDEX ON book;
 
 -- Create unique index
 CREATE UNIQUE INDEX PK_book_itemID ON Book(itemID)
@@ -183,31 +205,35 @@ CREATE FULLTEXT INDEX ON book(title)
 KEY INDEX PK_book_itemID
 WITH STOPLIST = SYSTEM;
 
+GO
+
 --INSERT DATA INTO TABLES
 
 --Insert Users
 INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
-VALUES ('joe@example.com', 'Password#1', 'Joe', '', 0, 1, '', 1);
+VALUES ('joe@example.com', '1e28284f59e926547bb6793ad8723722', 'Joe', '', 0, 1, '', 1);
 INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
-VALUES ('james@example.com', 'Password#1', 'James', 'Smith', 0, 0, '', 1);
+VALUES ('james@example.com', '1e28284f59e926547bb6793ad8723722', 'James', 'Smith', 0, 0, '', 1);
 INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
-VALUES ('sara@example.com', 'Password#1', 'Sara', 'Headges', 0, 1, '', 1);
+VALUES ('sara@example.com', '1e28284f59e926547bb6793ad8723722', 'Sara', 'Headges', 0, 1, '', 1);
 INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
-VALUES ('alex@usedbooksales.com.au', 'Password#1', 'Alex', 'Budwill', 1, 1, '', 1);
+VALUES ('alex@usedbooksales.com.au', '1e28284f59e926547bb6793ad8723722', 'Alex', 'Budwill', 1, 1, '', 1);
 INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
-VALUES ('patrick@usedbooksales.com.au', 'Password#1', 'Patrick', 'Foley', 1, 1, '', 1);
+VALUES ('patrick@usedbooksales.com.au', '1e28284f59e926547bb6793ad8723722', 'Patrick', 'Foley', 1, 1, '', 1);
 INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
-VALUES ('derrick@example.com', 'Password#1', 'Derrick', 'Hardy', 0, 1, '', 1);
+VALUES ('derrick@example.com', '1e28284f59e926547bb6793ad8723722', 'Derrick', 'Hardy', 0, 1, '', 1);
 INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
-VALUES ('soli@example.com', 'Password#1', 'Soli', 'Soliman', 0, 1, '', 1);
+VALUES ('soli@example.com', '1e28284f59e926547bb6793ad8723722', 'Soli', 'Soliman', 0, 1, '', 1);
 INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
-VALUES ('chelsea@example.com', 'Password#1', 'Chelsea', 'Gordon', 0, 1, '', 1);
+VALUES ('chelsea@example.com', '1e28284f59e926547bb6793ad8723722', 'Chelsea', 'Gordon', 0, 1, '', 1);
 INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
-VALUES ('karl@usedbooksales.com.au', 'Password#1', 'Karl', 'Foley', 1, 1, '', 1);
+VALUES ('karl@usedbooksales.com.au', '1e28284f59e926547bb6793ad8723722', 'Karl', 'Foley', 1, 1, '', 1);
 INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
-VALUES ('jacques@usedbooksales.com.au', 'Password#1', 'Jacques', 'Janse van Vuren', 1, 1, '', 1);
+VALUES ('jacques@usedbooksales.com.au', '1e28284f59e926547bb6793ad8723722', 'Jacques', 'Janse van Vuren', 1, 1, '', 1);
 INSERT INTO webSiteUser (email, password, firstName, lastName, isAdmin, isActive, validationKey, isVerified)
-VALUES ('francois@usedbooksales.com.au', 'Password#1', 'Francois', 'Janse van Vuren', 1, 1, '', 1);
+VALUES ('francois@usedbooksales.com.au', '1e28284f59e926547bb6793ad8723722', 'Francois', 'Janse van Vuren', 1, 1, '', 1);
+
+GO
 
 --Insert Categories
 INSERT INTO category (Name, description) VALUES ('History', 'Category description goes here.');
@@ -219,6 +245,8 @@ INSERT INTO category (Name, description) VALUES ('Fantasy', 'Category descriptio
 INSERT INTO category (Name, description) VALUES ('Art', 'Category description goes here.');
 INSERT INTO category (Name, description) VALUES ('Technology', 'Category description goes here.');
 
+GO
+
 --Insert Authors
 INSERT INTO author (firstName, lastName, description) VALUES ('J L', 'Pickering', 'Author description goes here.');
 INSERT INTO author (firstName, lastName, description) VALUES ('K.L', 'Slater', 'Author description goes here.');
@@ -227,6 +255,8 @@ INSERT INTO author (firstName, lastName, description) VALUES ('Ruth', 'Hogan', '
 INSERT INTO author (firstName, lastName, description) VALUES ('Harlan', 'Coben', 'Author description goes here.');
 INSERT INTO author (firstName, lastName, description) VALUES ('Metropolitan Museum of Art New York', '', 'Author description goes here.');
 INSERT INTO author (firstName, lastName, description) VALUES ('Ashlee', 'Vance', 'Author description goes here.');
+
+GO
 
 --Insert item and book tables
 INSERT INTO item (price, stockQuantity, longDescription, shortDescription, imagePath, thumbnailPath, isActive)
@@ -301,6 +331,8 @@ fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in cu
 INSERT INTO book (itemID, ISBN, title, datePublished, secondaryTitle, isBestSeller, publisher)
 VALUES (8, '9780753555644', 'Elon Musk', '20160310', '', 1, 'Ebury Publishing');
 
+GO
+
 --Insert into bookAuthor
 INSERT INTO bookAuthor (itemID, authorID) VALUES (1, 1);
 INSERT INTO bookAuthor (itemID, authorID) VALUES (2, 2);
@@ -310,6 +342,8 @@ INSERT INTO bookAuthor (itemID, authorID) VALUES (5, 5);
 INSERT INTO bookAuthor (itemID, authorID) VALUES (6, 3);
 INSERT INTO bookAuthor (itemID, authorID) VALUES (7, 6);
 INSERT INTO bookAuthor (itemID, authorID) VALUES (8, 7);
+
+GO
 
 --Insert into bookCategory
 INSERT INTO bookCategory (itemID, categoryID) VALUES (1, 1);
@@ -321,6 +355,8 @@ INSERT INTO bookCategory (itemID, categoryID) VALUES (6, 6);
 INSERT INTO bookCategory (itemID, categoryID) VALUES (7, 7);
 INSERT INTO bookCategory (itemID, categoryID) VALUES (8, 8);
 
+GO
+
 --Insert postage options
 INSERT INTO postageOption (postageOptionName, shippingCost, isActive) VALUES ('Pick Up', 0.00, 1);
 INSERT INTO postageOption (postageOptionName, shippingCost, isActive) VALUES ('AusPost', 5.99, 1);
@@ -328,24 +364,4 @@ INSERT INTO postageOption (postageOptionName, shippingCost, isActive) VALUES ('A
 INSERT INTO postageOption (postageOptionName, shippingCost, isActive) VALUES ('Startrack', 3.99, 1);
 INSERT INTO postageOption (postageOptionName, shippingCost, isActive) VALUES ('Startrack Express', 7.99, 1);
 
--- INSERT ORDERS --
---Insert into postCode
-INSERT INTO postCode (city, addressState, postCode) VALUES ('New Lambton', 'NSW', 2305);
---Insert into shippingAddress
-INSERT INTO shippingAddress (streetNumber, streetName, city, addressState) VALUES ('29-1', 'Evescourt Rd', 'New Lambton', 'NSW');
---Insert into orders
-INSERT INTO orders (userID, paymentID, postageOptionID, orderStatus, GST, subTotal, dateOrdered, shippingAddressID)
-VALUES (1, 1, 7, 'Shipped', 10, 45.92, '20190504', 1);
---Insert into orderItem
-INSERT INTO orderItem (orderID, itemID, quantity) VALUES (2, 1, 1);
---Insert Payments
-INSERT INTO payment (datePayed, total) VALUES ('20190504', 45.92);
-
---Insert into orders
-INSERT INTO orders (userID, paymentID, postageOptionID, orderStatus, GST, subTotal, dateOrdered, shippingAddressID)
-VALUES (1, 2, 7, 'Shipped', 10, 39.48, '20190510', 1);
---Insert into orderItem
-INSERT INTO orderItem (orderID, itemID, quantity) VALUES (3, 2, 1);
-INSERT INTO orderItem (orderID, itemID, quantity) VALUES (3, 3, 1);
---Insert Payments
-INSERT INTO payment (datePayed, total) VALUES ('20190510', 39.48);
+GO
